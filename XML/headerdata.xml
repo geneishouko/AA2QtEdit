@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- DO NOT CHANGE THE CONTENTS OF THIS FILE, DOING SO CAN MAKE THE EDITOR STOP WORKING -->
+<!-- Xml Document Distributed with ReiEditAA2 -->
+<dataset>
+  <enumerables>
+    <enumerable key="CLUB_TYPE" type="byte">
+      <enumpair key="0" value="Track" />
+      <enumpair key="1" value="Swimming" />
+      <enumpair key="2" value="Baseball" />
+      <enumpair key="3" value="Ball Games" />
+      <enumpair key="4" value="Martial" />
+      <enumpair key="5" value="Arts" />
+      <enumpair key="6" value="Culture" />
+      <enumpair key="7" value="Other" />
+    </enumerable>
+    <enumerable key="WEEKDAY" type="byte">
+      <enumpair key="0" value="Sunday" />
+      <enumpair key="1" value="Monday" />
+      <enumpair key="2" value="Tueday" />
+      <enumpair key="3" value="Wednesday" />
+      <enumpair key="4" value="Thursday" />
+      <enumpair key="5" value="Friday" />
+      <enumpair key="6" value="Saturday" />
+    </enumerable>
+  </enumerables>
+  <structs>
+    <struct key="CLUB_DATA">
+      <datablock key="CLUB_NAME" type="string" datasize="24" />
+      <datablock key="CLUB_TYPE" type="enum" metakey="CLUB_TYPE" />
+    </struct>
+  </structs>
+  <datablocks>
+    <datablock key="HEADER_VERSION" type="int32" readonly="true" />
+    <datablock key="HEADER_ACADEMY" type="string" datasize="64" />
+    <datablock key="HEADER_YEAR" type="string" datasize="16" />
+    <datablock key="HEADER_CLASS" type="string" datasize="16" />
+    <datablock key="HEADER_BOYS" type="int32" readonly="true" />
+    <datablock key="HEADER_GIRLS" type="int32" readonly="true" />
+    <datablock key="HEADER_HOURS" type="int16" minvalue="0" />
+    <datablock key="HEADER_MINS" type="int16" minvalue="0" maxvalue="59" />
+    <datablock key="HEADER_SECS" type="int16" minvalue="0" maxvalue="59" />
+    <datablock key="HEADER_CLUBS" type="array" arraysize="8" innertype="struct" metakey="CLUB_DATA" />
+    <datablock key="HEADER_GAMETIME" type="byte" />
+    <datablock key="HEADER_GAMEDAYS" type="byte" minvalue="1" maxvalue="42" />
+    <datablock key="HEADER_GAMEWEEKDAY" type="enum" metakey="WEEKDAY" />
+  </datablocks>
+</dataset>

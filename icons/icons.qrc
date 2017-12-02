@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>folder-people.svg</file>
+        <file>game.svg</file>
+        <file>window-close.svg</file>
+        <file>save-all.svg</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- DO NOT CHANGE THE CONTENTS OF THIS FILE, DOING SO CAN MAKE THE EDITOR STOP WORKING -->
+<!-- Xml Document Distributed with ReiEditAA2 -->
+<dataset>
+  <enumerables>
+    <enumerable key="GENDER">
+      <enumpair key="0" value="Male" />
+      <enumpair key="1" value="Female" />
+    </enumerable>
+    <enumerable key="PERSONALITY">
+      <enumpair key="0" value="Lively" />
+      <enumpair key="1" value="Delicate" />
+      <enumpair key="2" value="Cheerful" />
+      <enumpair key="3" value="Stoic" />
+      <enumpair key="4" value="Playful" />
+      <enumpair key="5" value="Energetic" />
+      <enumpair key="6" value="Kind" />
+      <enumpair key="7" value="Upbeat" />
+      <enumpair key="8" value="Normal" />
+      <enumpair key="9" value="Irritable" />
+      <enumpair key="10" value="Uptight" />
+      <enumpair key="11" value="Friendly" />
+      <enumpair key="12" value="Creepy" />
+      <enumpair key="13" value="Reserved" />
+      <enumpair key="14" value="Dignified" />
+      <enumpair key="15" value="Assertive" />
+      <enumpair key="16" value="Sensitive" />
+      <enumpair key="17" value="Virtuous" />
+      <enumpair key="18" value="Mature" />
+      <enumpair key="19" value="Lazy" />
+      <enumpair key="20" value="Manly" />
+      <enumpair key="21" value="Affectionate (M)" />
+      <enumpair key="22" value="Positive (M)" />
+      <enumpair key="23" value="Otaku (M)" />
+      <enumpair key="24" value="Rough (M)" />
+    </enumerable>
+    <enumerable key="HEIGHT">
+      <enumpair key="0" value="Short" />
+      <enumpair key="1" value="Normal" />
+      <enumpair key="2" value="Tall" />
+    </enumerable>
+    <enumerable key="FEMALEFIGURE">
+      <enumpair key="0" value="Slim" />
+      <enumpair key="1" value="Normal" />
+      <enumpair key="2" value="Fat" />
+    </enumerable>
+    <enumerable key="MALEFIGURE">
+      <enumpair key="0" value="Delicate" />
+      <enumpair key="1" value="Normal" />
+      <enumpair key="2" value="Tall" />
+      <enumpair key="3" value="Fat" />
+    </enumerable>
+    <enumerable key="BREASTSIZE">
+      <enumpair key="0" value="Small" />
+      <enumpair key="1" value="Medium" />
+      <enumpair key="2" value="Big" />
+    </enumerable>
+    <enumerable key="CLUB">
+      <enumpair key="0" value="Club 1" />
+      <enumpair key="1" value="Club 2" />
+      <enumpair key="2" value="Club 3" />
+      <enumpair key="3" value="Club 4" />
+      <enumpair key="4" value="Club 5" />
+      <enumpair key="5" value="Club 6" />
+      <enumpair key="6" value="Club 7" />
+      <enumpair key="7" value="Club 8" />
+    </enumerable>
+    <enumerable key="BREASTSHAPE">
+      <enumpair key="0" value="Shape 1" />
+      <enumpair key="1" value="Shape 2" />
+      <enumpair key="2" value="Shape 3" />
+      <enumpair key="3" value="Shape 4" />
+    </enumerable>
+    <enumerable key="BREASTFIRMNESS">
+      <enumpair key="0" value="Soft" />
+      <enumpair key="1" value="Medium" />
+      <enumpair key="2" value="Hard" />
+    </enumerable>
+    <enumerable key="PUBICHAIR">
+      <enumpair key="0" value="Shape 1" />
+      <enumpair key="1" value="Shape 2" />
+      <enumpair key="2" value="Shape 3" />
+      <enumpair key="3" value="Shape 4" />
+    </enumerable>
+    <enumerable key="NIPPLETYPE">
+      <enumpair key="0" value="Type 1" />
+      <enumpair key="1" value="Type 2" />
+      <enumpair key="2" value="Type 3" />
+      <enumpair key="3" value="Type 4" />
+    </enumerable>
+    <enumerable key="NIPPLECOLOR">
+      <enumpair key="0" value="Color 1" />
+      <enumpair key="1" value="Color 2" />
+      <enumpair key="2" value="Color 3" />
+      <enumpair key="3" value="Color 4" />
+      <enumpair key="4" value="Color 5" />
+      <enumpair key="5" value="Color 6" />
+      <enumpair key="6" value="Color 7" />
+      <enumpair key="7" value="Color 8" />
+    </enumerable>
+    <enumerable key="TANMARKS">
+      <enumpair key="0" value="Tan 1" />
+      <enumpair key="1" value="Tan 2" />
+      <enumpair key="2" value="Tan 3" />
+      <enumpair key="3" value="Tan 4" />
+      <enumpair key="4" value="Tan 5" />
+      <enumpair key="5" value="Tan 6" />
+    </enumerable>
+    <enumerable key="MOSAICCOLOR">
+      <enumpair key="0" value="Color 1" />
+      <enumpair key="1" value="Color 2" />
+      <enumpair key="2" value="Color 3" />
+      <enumpair key="3" value="Color 4" />
+      <enumpair key="4" value="Color 5" />
+    </enumerable>
+    <enumerable key="FACETYPE_F">
+      <enumpair key="0" value="Face 1" />
+      <enumpair key="1" value="Face 2" />
+      <enumpair key="2" value="Face 3" />
+      <enumpair key="3" value="Face 4" />
+      <enumpair key="4" value="Face 5" />
+      <enumpair key="5" value="Face 6" />
+      <enumpair key="6" value="Face 7" />
+    </enumerable>
+    <enumerable key="FACETYPE_M">
+      <enumpair key="0" value="Face 1" />
+      <enumpair key="1" value="Face 2" />
+      <enumpair key="2" value="Face 3" />
+      <enumpair key="3" value="Face 4" />
+    </enumerable>
+    <enumerable key="IRISSHAPE">
+      <enumpair key="0" value="Shape 1" />
+      <enumpair key="1" value="Shape 2" />
+      <enumpair key="2" value="Shape 3" />
+      <enumpair key="3" value="Shape 4" />
+    </enumerable>
+    <enumerable key="IRISTYPE">
+      <enumpair key="0" value="Type 1" />
+      <enumpair key="1" value="Type 2" />
+      <enumpair key="2" value="Type 3" />
+      <enumpair key="3" value="Type 4" />
+      <enumpair key="4" value="Type 5" />
+      <enumpair key="5" value="Type 6" />
+      <enumpair key="6" value="Type 7" />
+    </enumerable>
+    <enumerable key="HIGHLIGHTTYPE">
+      <enumpair key="0" value="Highlight 1" />
+      <enumpair key="1" value="Highlight 2" />
+      <enumpair key="2" value="Highlight 3" />
+      <enumpair key="3" value="Highlight 4" />
+      <enumpair key="4" value="Highlight 5" />
+      <enumpair key="5" value="Highlight 6" />
+      <enumpair key="6" value="Highlight 7" />
+    </enumerable>
+    <enumerable key="EYEBROWSHAPE">
+      <enumpair key="0" value="Shape 1" />
+      <enumpair key="1" value="Shape 2" />
+      <enumpair key="2" value="Shape 3" />
+      <enumpair key="3" value="Shape 4" />
+      <enumpair key="4" value="Shape 5" />
+      <enumpair key="5" value="Shape 6" />
+      <enumpair key="6" value="Shape 7" />
+      <enumpair key="7" value="Shape 8" />
+      <enumpair key="8" value="Shape 9" />
+      <enumpair key="9" value="Shape 10" />
+      <enumpair key="10" value="Shape 11" />
+      <enumpair key="11" value="Shape 12" />
+      <enumpair key="12" value="Shape 13" />
+      <enumpair key="13" value="Shape 14" />
+      <enumpair key="14" value="Shape 15" />
+      <enumpair key="15" value="Shape 16" />
+      <enumpair key="16" value="Shape 17" />
+      <enumpair key="17" value="Shape 18" />
+      <enumpair key="18" value="Shape 19" />
+      <enumpair key="19" value="Shape 20" />
+    </enumerable>
+    <enumerable key="EYELIDTYPE">
+      <enumpair key="0" value="Type 1" />
+      <enumpair key="1" value="Type 2" />
+      <enumpair key="2" value="Type 3" />
+      <enumpair key="3" value="Type 4" />
+      <enumpair key="4" value="Type 5" />
+      <enumpair key="5" value="Type 6" />
+      <enumpair key="6" value="Type 7" />
+      <enumpair key="7" value="Type 8" />
+    </enumerable>
+    <enumerable key="EYELIDTYPEU">
+      <enumpair key="0" value="Type 1" />
+      <enumpair key="1" value="Type 2" />
+      <enumpair key="2" value="Type 3" />
+      <enumpair key="3" value="Type 4" />
+      <enumpair key="4" value="Type 5" />
+      <enumpair key="5" value="Type 6" />
+      <enumpair key="6" value="Type 7" />
+      <enumpair key="7" value="Type 8" />
+    </enumerable>
+    <enumerable key="EYELIDTYPEL">
+      <enumpair key="0" value="Type 1" />
+      <enumpair key="1" value="Type 2" />
+      <enumpair key="2" value="Type 3" />
+      <enumpair key="3" value="Type 4" />
+      <enumpair key="4" value="Type 5" />
+      <enumpair key="5" value="Type 6" />
+      <enumpair key="6" value="Type 7" />
+      <enumpair key="7" value="Type 8" />
+    </enumerable>
+    <enumerable key="GLASSESTYPE">
+      <enumpair key="0" value="None" />
+      <enumpair key="1" value="Type 1" />
+      <enumpair key="2" value="Type 2" />
+      <enumpair key="3" value="Type 3" />
+      <enumpair key="4" value="Type 4" />
+    </enumerable>
+    <enumerable key="LIPSTICKCOLOR">
+      <enumpair key="0" value="Color 1" />
+      <enumpair key="1" value="Color 2" />
+      <enumpair key="2" value="Color 3" />
+      <enumpair key="3" value="Color 4" />
+      <enumpair key="4" value="Color 5" />
+      <enumpair key="5" value="Color 6" />
+      <enumpair key="6" value="Color 7" />
+      <enumpair key="7" value="Color 8" />
+    </enumerable>
+    <enumerable key="LOW_HIGH">
+      <enumpair key="0" value="Lowest" />
+      <enumpair key="1" value="Low" />
+      <enumpair key="2" value="Normal" />
+      <enumpair key="3" value="High" />
+      <enumpair key="4" value="Highest" />
+    </enumerable>
+    <enumerable key="LOW_HIGHPLUS">
+      <enumpair key="0" value="Lowest" />
+      <enumpair key="1" value="Low" />
+      <enumpair key="2" value="Normal" />
+      <enumpair key="3" value="High" />
+      <enumpair key="4" value="Highest" />
+      <enumpair key="5" value="Maximum" />
+    </enumerable>
+    <enumerable key="FIGHTSTYLE">
+      <enumpair key="0" value="No Restraint" />
+      <enumpair key="1" value="One Blow" />
+      <enumpair key="2" value="Irregular" />
+    </enumerable>
+    <enumerable key="SEXUALITY">
+      <enumpair key="0" value="Heterosexual" />
+      <enumpair key="1" value="Leans Hetero" />
+      <enumpair key="2" value="Bisexual" />
+      <enumpair key="3" value="Leans Homo" />
+      <enumpair key="4" value="Homosexual" />
+    </enumerable>
+    <enumerable key="IMPREGNATION">
+      <enumpair key="0" value="Normal" />
+      <enumpair key="1" value="Safe" />
+      <enumpair key="2" value="Dangerous" />
+    </enumerable>
+    <enumerable key="CLOTHES_F" type="int32">
+      <enumpair key="0" value="Uniform" />
+      <enumpair key="1" value="Sports" />
+      <enumpair key="2" value="Swimsuit" />
+      <enumpair key="3" value="Formal" />
+    </enumerable>
+    <enumerable key="CLOTHES_M" type="int32">
+      <enumpair key="0" value="Uniform" />
+      <enumpair key="1" value="Sports" />
+      <enumpair key="2" value="Swimsuit" />
+    </enumerable>
+    <enumerable key="SOCKS_F">
+      <enumpair key="0" value="Barefoot" />
+      <enumpair key="1" value="Over Knee" />
+      <enumpair key="2" value="High" />
+      <enumpair key="3" value="Loose" />
+      <enumpair key="4" value="Wrapping" />
+      <enumpair key="5" value="Stockings" />
+    </enumerable>
+    <enumerable key="SOCKS_M">
+      <enumpair key="0" value="Barefoot" />
+      <enumpair key="1" value="Anklet" />
+    </enumerable>
+    <enumerable key="SHOES_F">
+      <enumpair key="0" value="Barefoot" />
+      <enumpair key="1" value="Indoor" />
+      <enumpair key="2" value="Leather" />
+      <enumpair key="3" value="Sports" />
+      <enumpair key="4" value="Heeled" />
+    </enumerable>
+    <enumerable key="SHOES_M">
+      <enumpair key="0" value="Barefoot" />
+      <enumpair key="1" value="Indoor" />
+      <enumpair key="2" value="Leather" />
+      <enumpair key="3" value="Sports" />
+    </enumerable>
+  </enumerables>
+  <datablocks>
+    <!-- 【エディット】\\0\\0 -->
+    <datablock type="string" key="HEADER_TEXT" address="0x000" datasize="16" readonly="true" />
+
+    <datablock type="int32" key="VERSION" address="0x010" />
+    <datablock type="enum" key="PROFILE_GENDER" address="0x014" metakey="GENDER" />
+    <datablock type="encodedstring" key="PROFILE_FAMILY_NAME" address="0x015" datasize="260" />
+    <datablock type="encodedstring" key="PROFILE_FIRST_NAME" address="0x119" datasize="260" />
+    <datablock type="encodedstring" key="PROFILE_PROFILE" address="0x21D" datasize="512" />
+    <datablock type="enum" key="PROFILE_PERSONALITY" address="0x41D" metakey="PERSONALITY" />
+    <datablock type="enum" key="PROFILE_CLUB" address="0x428" metakey="CLUB" />
+    <datablock type="enum" key="PROFILE_INTELLIGENCE" address="0x68A" metakey="LOW_HIGHPLUS" />
+    <datablock type="byte" key="PROFILE_INTELLIGENCE_RANK" address="0x68B" minvalue="0" maxvalue="8" />
+    <datablock type="int32" key="PROFILE_INTELLIGENCE_VALUE" address="0x68C" minvalue="0" maxvalue="1000" />
+    <datablock type="enum" key="PROFILE_STRENGTH" address="0x690" metakey="LOW_HIGHPLUS" />
+    <datablock type="byte" key="PROFILE_STRENGTH_RANK" address="0x691" minvalue="0" maxvalue="8" />
+    <datablock type="int32" key="PROFILE_STRENGTH_VALUE" address="0x692" minvalue="0" maxvalue="1000" />
+    <datablock type="byte" key="PROFILE_CLUB_RANK" address="0x696" minvalue="0" maxvalue="8" />
+    <datablock type="int32" key="PROFILE_CLUB_VALUE" address="0x697" minvalue="0" maxvalue="1000" />
+    <datablock type="enum" key="PROFILE_SOCIABILITY" address="0x69B" metakey="LOW_HIGH" />
+    <datablock type="enum" key="PROFILE_FIGHTING_STYLE" address="0x69C" metakey="FIGHTSTYLE" />
+    <datablock type="enum" key="PROFILE_VIRTUE" address="0x69D" metakey="LOW_HIGH" />
+    <datablock type="enum" key="PROFILE_SEXUAL_ORIENTATION" address="0x69E" metakey="SEXUALITY" />
+    <datablock type="bool" key="PROFILE_EXPERIENCE_VAGINAL" address="0x69F" copyaddress="0x426" />
+    <datablock type="bool" key="PROFILE_EXPERIENCE_ANAL" address="0x6A0" />
+    <datablock type="enum" key="PROFILE_VOICE_PITCH" address="0x6A1" metakey="LOW_HIGH" />
+    <datablock type="encodedstring" key="PROFILE_ITEM_LOVERS" address="0x74B" datasize="260" />
+    <datablock type="encodedstring" key="PROFILE_ITEM_FRIEND" address="0x84F" datasize="260" />
+    <datablock type="encodedstring" key="PROFILE_ITEM_SEXUAL" address="0x953" datasize="260" />
+    <!-- Body -->
+    <datablock type="enum" key="BODY_HEIGHT" address="0x41E" copyaddress="0x42a" metakey="HEIGHT" />
+    <datablock type="enum" key="BODY_FIGURE_FEMALE" address="0x41F" copyaddress="0x42b" metakey="FEMALEFIGURE" />
+
+    <!-- 0x420->0x42F: 0~30=0 31~69=1 70~100=2; Male=1 -->
+    <datablock type="enum" key="BODY_BREAST_RANK" address="0x420" metakey="BREASTSIZE" />
+
+    <datablock type="color" key="BODY_SKIN_COLOR" address="0x421" copyaddress="0x438" />
+    <datablock type="bool" key="BODY_GLASSES" address="0x425" />
+    <datablock type="enum" key="BODY_FIGURE_MALE" address="0x429" metakey="MALEFIGURE" />
+    <datablock type="byte" key="BODY_HEAD_SIZE" address="0x42C" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_HEAD_HEIGHT" address="0x42D" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_WAIST_SIZE" address="0x42E" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_BREAST_SIZE" address="0x42F" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="enum" key="BODY_BREAST_SHAPE" address="0x431" metakey="BREASTSHAPE" />
+    <datablock type="byte" key="BODY_BREAST_ROUNDNESS" address="0x432" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_BREAST_DIRECTION" address="0x433" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_BREAST_HEIGHT" address="0x434" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_BREAST_SPACING" address="0x435" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_BREAST_DEPTH" address="0x436" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="enum" key="BODY_BREAST_FIRMNESS" address="0x437" metakey="BREASTFIRMNESS" />
+    <datablock type="enum" key="BODY_PUBIC_HAIR_SHAPE" address="0x43C" metakey="PUBICHAIR" />
+    <datablock type="byte" key="BODY_PUBIC_HAIR_OPACITY" address="0x43D" minvalue="0" maxvalue="255" />
+    <datablock type="color" key="BODY_PUBIC_HAIR_COLOR" address="0x43E" />
+    <datablock type="byte" key="BODY_NIPPLE_SIZE" address="0x430" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="enum" key="BODY_NIPPLE_TYPE" address="0x442" metakey="NIPPLETYPE" />
+    <datablock type="enum" key="BODY_NIPPLE_COLOR" address="0x443" metakey="NIPPLECOLOR" />
+    <datablock type="byte" key="BODY_NIPPLE_OPACITY" address="0x444" minvalue="0" maxvalue="255" />
+    <datablock type="enum" key="BODY_TAN_MARK" address="0x445" metakey="TANMARKS" />
+    <datablock type="byte" key="BODY_TAN_OPACITY" address="0x446" minvalue="0" maxvalue="255" />
+    <datablock type="enum" key="BODY_PUSSY_MOSAIC_COLOR" address="0x447" metakey="MOSAICCOLOR" />
+    <datablock type="enum" key="BODY_FACE_TYPE_F" address="0x448" metakey="FACETYPE_F" />
+    <datablock type="enum" key="BODY_FACE_TYPE_M" address="0x448" metakey="FACETYPE_M" />
+    <datablock type="byte" key="BODY_EYE_WIDTH" address="0x449" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_EYE_HEIGHT" address="0x44A" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_EYE_POSITION" address="0x44B" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_EYE_SPACING" address="0x44C" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_EYE_ANGLE" address="0x44D" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="enum" key="BODY_IRIS_SHAPE" address="0x44E" metakey="IRISSHAPE" />
+    <datablock type="byte" key="BODY_IRIS_WIDTH" address="0x44F" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_IRIS_HEIGHT" address="0x450" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="byte" key="BODY_IRIS_POSITION" address="0x451" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="enum" key="BODY_IRIS_TYPE" address="0x452" metakey="IRISTYPE" />
+    <datablock type="enum" key="BODY_EYE_HIGHLIGHT_TYPE" address="0x453" metakey="HIGHLIGHTTYPE" />
+    <datablock type="bool" key="BODY_EXTERNAL_IRIS_TEXTURE" address="0x454" />
+    <datablock type="bool" key="BODY_EXTERNAL_HIGHLIGHT_TEXTURE" address="0x455" />
+    <datablock type="encodedstring" key="BODY_EXTERNAL_IRIS_TEXTURE_NAME" address="0x456" datasize="260" />
+    <datablock type="encodedstring" key="BODY_EXTERNAL_EYE_HIGHLIGHT_TEXTURE_NAME" address="0x55A" datasize="260" />
+    <datablock type="enum" key="BODY_EYEBROW_SHAPE" address="0x65E" metakey="EYEBROWSHAPE" />
+    <datablock type="byte" key="BODY_EYEBROW_ANGLE" address="0x65F" minvalue="0" maxvalue="255" warnvalue="100" />
+    <datablock type="color" key="BODY_EYEBROW_COLOR" address="0x660" />
+    <datablock type="color" key="BODY_LEFT_EYE_COLOR" address="0x664" />
+    <datablock type="color" key="BODY_RIGHT_EYE_COLOR" address="0x668" />
+    <datablock type="enum" key="BODY_EYELID" address="0x66C" metakey="EYELIDTYPE" />
+    <datablock type="enum" key="BODY_UPPER_EYELID" address="0x66D" metakey="EYELIDTYPEU" />
+    <datablock type="enum" key="BODY_LOWER_EYELID" address="0x66E" metakey="EYELIDTYPEL" />
+    <datablock type="enum" key="BODY_GLASSES_TYPE" address="0x66F" metakey="GLASSESTYPE" />
+    <datablock type="bool" key="BODY_CHEEKBONE_MOLE_LEFT" address="0x670" />
+    <datablock type="bool" key="BODY_CHEEKBONE_MOLE_RIGHT" address="0x671" />
+    <datablock type="bool" key="BODY_CHIN_MOLE_LEFT" address="0x672" />
+    <datablock type="bool" key="BODY_CHIN_MOLE_RIGHT" address="0x673" />
+    <datablock type="enum" key="BODY_LIPSTICK_COLOR" address="0x674" metakey="LIPSTICKCOLOR" />
+    <datablock type="byte" key="BODY_LIPSTICK_OPACITY" address="0x675" minvalue="0" maxvalue="255" />
+    <datablock type="color" key="BODY_GLASSES_COLOR" address="0x676" />
+    <datablock type="byte" key="BODY_FRONT_HAIR" address="0x67A" />
+    <datablock type="byte" key="BODY_SIDE_HAIR" address="0x67B" />
+    <datablock type="byte" key="BODY_BACK_HAIR" address="0x67C" />
+    <datablock type="byte" key="BODY_EXTENSION_HAIR" address="0x67D" />
+    <datablock type="byte" key="BODY_FRONT_HAIR_LENGTH" address="0x67E" minvalue="0" maxvalue="255" />
+    <datablock type="byte" key="BODY_SIDE_HAIR_LENGTH" address="0x67F" minvalue="0" maxvalue="255" />
+    <datablock type="byte" key="BODY_BACK_HAIR_LENGTH" address="0x680" minvalue="0" maxvalue="255" />
+    <datablock type="byte" key="BODY_EXTENSION_HAIR_LENGTH" address="0x681" minvalue="0" maxvalue="255" />
+    <datablock type="bool" key="BODY_FRONT_HAIR_FLIP" address="0x682" />
+    <datablock type="bool" key="BODY_SIDE_HAIR_FLIP" address="0x683" />
+    <datablock type="bool" key="BODY_BACK_HAIR_FLIP" address="0x684" />
+    <datablock type="bool" key="BODY_EXTENSION_HAIR_FLIP" address="0x685" />
+    <datablock type="color" key="BODY_HAIR_COLOR" address="0x686" />
+    <!-- Traits -->
+    <datablock type="bool" key="TRAIT_EASYGOING" address="0x6A2" displayname="Easygoing" />
+    <datablock type="bool" key="TRAIT_LOYAL_FRIEND" address="0x6A3" displayname="Loyal Friend" />
+    <datablock type="bool" key="TRAIT_DISLIKE_MALES" address="0x6A4" displayname="Dislikes Males" />
+    <datablock type="bool" key="TRAIT_DISLIKE_FEMALES" address="0x6A5" displayname="Dislikes Females" />
+    <datablock type="bool" key="TRAIT_CHARMING" address="0x6A6" displayname="Charming" />
+    <datablock type="bool" key="TRAIT_TSUNDERE" address="0x6A7" displayname="Tsundere" />
+    <datablock type="bool" key="TRAIT_CHIVALROUS" address="0x6A8" displayname="Chivalrous" />
+    <datablock type="bool" key="TRAIT_GROUPIE" address="0x6A9" displayname="Groupie" />
+    <datablock type="bool" key="TRAIT_OBEDIENT" address="0x6AA" displayname="Obedient" />
+    <datablock type="bool" key="TRAIT_POSITIVE" address="0x6AB" displayname="Positive" />
+    <datablock type="bool" key="TRAIT_SHY" address="0x6AC" displayname="Shy" />
+    <datablock type="bool" key="TRAIT_JEALOUS" address="0x6AD" displayname="Jealous" />
+    <datablock type="bool" key="TRAIT_HYPERSENSITIVE" address="0x6AE" displayname="Hypersensitive" />
+    <datablock type="bool" key="TRAIT_LEWD" address="0x6AF" displayname="Lewd" />
+    <datablock type="bool" key="TRAIT_GENUINE" address="0x6B0" displayname="Genuine" />
+    <datablock type="bool" key="TRAIT_CALM" address="0x6B1" displayname="Calm" />
+    <datablock type="bool" key="TRAIT_IMPULSIVE" address="0x6B2" displayname="Impulsive" />
+    <datablock type="bool" key="TRAIT_NAIVE" address="0x6B3" displayname="Naive" />
+    <datablock type="bool" key="TRAIT_VIOLENT" address="0x6B4" displayname="Violent" />
+    <datablock type="bool" key="TRAIT_PASSIVE" address="0x6B5" displayname="Passive" />
+    <datablock type="bool" key="TRAIT_MEDDLESOME" address="0x6B6" displayname="Meddlesome" />
+    <datablock type="bool" key="TRAIT_CLASS_PREZ" address="0x6B7" displayname="Class Prez" />
+    <datablock type="bool" key="TRAIT_CHATTY" address="0x6B8" displayname="Chatty" />
+    <datablock type="bool" key="TRAIT_ALWAYS_HUNGRY" address="0x6B9" displayname="Always Hungry" />
+    <datablock type="bool" key="TRAIT_PASSIONATE" address="0x6BA" displayname="Passionate" />
+    <datablock type="bool" key="TRAIT_SINGLEMINDED" address="0x6BB" displayname="Singleminded" />
+    <datablock type="bool" key="TRAIT_INDECISIVE" address="0x6BC" displayname="Indecisive" />
+    <datablock type="bool" key="TRAIT_COMPETITIVE" address="0x6BD" displayname="Competitive" />
+    <datablock type="bool" key="TRAIT_DECEPTIVE" address="0x6BE" displayname="Deceptive" />
+    <datablock type="bool" key="TRAIT_DILIGENT" address="0x6BF" displayname="Diligent" />
+    <datablock type="bool" key="TRAIT_WILD" address="0x6C0" displayname="Wild" />
+    <datablock type="bool" key="TRAIT_MASOCHIST" address="0x6C1" displayname="Masochist" />
+    <datablock type="bool" key="TRAIT_SWEATS_A_LOT" address="0x6C2" displayname="Sweats a Lot" />
+    <datablock type="bool" key="TRAIT_EVIL" address="0x6C3" displayname="Evil" />
+    <datablock type="bool" key="TRAIT_DEAF" address="0x6C4" displayname="Deaf" />
+    <datablock type="bool" key="TRAIT_EXPLOITABLE" address="0x6C5" displayname="Exploitable" />
+    <datablock type="bool" key="TRAIT_ASEXUAL" address="0x6C6" displayname="Asexual" />
+    <datablock type="bool" key="TRAIT_LUCKY" address="0x6C7" displayname="Lucky" />
+    <!-- End Traits -->
+
+    <!-- Character Stats Boost? -->
+    <datablock type="bool" key="RAINBOW_CARD" address="0x6C8" />
+
+    <!-- Preferences -->
+    <datablock type="bool" key="PREFERENCE_KISSING" address="0x6C9" displayname="Kissing" />
+    <datablock type="bool" key="PREFERENCE_BREAST_CARESSING" address="0x6CA" displayname="Breast Caressing" />
+    <datablock type="bool" key="PREFERENCE_VAGINA_CARESSING" address="0x6CB" displayname="Vagina Caressing" />
+    <datablock type="bool" key="PREFERENCE_PENIS_CARESSING" address="0x6CC" displayname="Penis Caressing" />
+    <datablock type="bool" key="PREFERENCE_CUNNILINGUS" address="0x6CD" displayname="Cunnilingus" />
+    <datablock type="bool" key="PREFERENCE_FELLATIO" address="0x6CE" displayname="Fellatio" />
+    <datablock type="bool" key="PREFERENCE_DOGGY_STYLE" address="0x6CF" displayname="Doggy Style" />
+    <datablock type="bool" key="PREFERENCE_FEMDOM" address="0x6D0" displayname="Femdom" />
+    <datablock type="bool" key="PREFERENCE_ANAL_PLAY" address="0x6D1" displayname="Anal Play" />
+    <datablock type="bool" key="PREFERENCE_NO_CONDOM" address="0x6D2" displayname="No Condom" />
+    <datablock type="bool" key="PREFERENCE_SWALLOWING" address="0x6D3" displayname="Swallowing" />
+    <datablock type="bool" key="PREFERENCE_CREAMPIE" address="0x6D4" displayname="Creampie" />
+    <datablock type="bool" key="PREFERENCE_BUKKAKE" address="0x6D5" displayname="Bukkake" />
+    <datablock type="bool" key="PREFERENCE_RESERVED1" address="0x6D6" readonly="true" displayname="Reserved" />
+    <datablock type="bool" key="PREFERENCE_RESERVED2" address="0x6D7" readonly="true" displayname="Reserved" />
+    <datablock type="bool" key="PREFERENCE_RESERVED3" address="0x6D8" readonly="true" displayname="Reserved" />
+    <!-- End Preferences -->
+    <datablock type="enum" key="PREGNANCY_RISK_1_SUN" address="0x6D9" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_1_MON" address="0x6DA" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_1_TUE" address="0x6DB" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_1_WED" address="0x6DC" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_1_THU" address="0x6DD" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_1_FRI" address="0x6DE" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_1_SAT" address="0x6DF" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_2_SUN" address="0x6E0" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_2_MON" address="0x6E1" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_2_TUE" address="0x6E2" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_2_WED" address="0x6E3" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_2_THU" address="0x6E4" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_2_FRI" address="0x6E5" metakey="IMPREGNATION" />
+    <datablock type="enum" key="PREGNANCY_RISK_2_SAT" address="0x6E6" metakey="IMPREGNATION" />
+    <datablock type="int32" key="COMPATIBILITY_N00" address="0x6E7" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N01" address="0x6EB" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N02" address="0x6EF" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N03" address="0x6F3" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N04" address="0x6F7" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N05" address="0x6FB" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N06" address="0x6FF" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N07" address="0x703" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N08" address="0x707" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N09" address="0x70B" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N10" address="0x70F" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N11" address="0x713" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N12" address="0x717" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N13" address="0x71B" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N14" address="0x71F" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N15" address="0x723" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N16" address="0x727" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N17" address="0x72B" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N18" address="0x72F" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N19" address="0x733" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N20" address="0x737" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N21" address="0x73B" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N22" address="0x73F" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N23" address="0x743" minvalue="0" maxvalue="999" />
+    <datablock type="int32" key="COMPATIBILITY_N24" address="0x747" minvalue="0" maxvalue="999" />
+    <!-- Uniform -->
+    <datablock type="enum" key="UNIFORM_SUIT_F" address="0xA57" metakey="CLOTHES_F" />
+    <datablock type="enum" key="UNIFORM_SUIT_M" address="0xA57" metakey="CLOTHES_M" />
+    <datablock type="bool" key="UNIFORM_SHORT_SKIRT" address="0xA5B" />
+    <datablock type="enum" key="UNIFORM_SOCKS_F" address="0xA5C" metakey="SOCKS_F" />
+    <datablock type="enum" key="UNIFORM_SOCKS_M" address="0xA5C" metakey="SOCKS_M" />
+    <datablock type="enum" key="UNIFORM_INDOOR_SHOES_F" address="0xA5D" metakey="SHOES_F" />
+    <datablock type="enum" key="UNIFORM_INDOOR_SHOES_M" address="0xA5D" metakey="SHOES_M" />
+    <datablock type="enum" key="UNIFORM_OUTDOOR_SHOES_F" address="0xA5E" metakey="SHOES_F" />
+    <datablock type="enum" key="UNIFORM_OUTDOOR_SHOES_M" address="0xA5E" metakey="SHOES_M" />
+    <datablock type="color" key="UNIFORM_TOP_1_COLOR" address="0xA5F" />
+    <datablock type="color" key="UNIFORM_TOP_2_COLOR" address="0xA63" />
+    <datablock type="color" key="UNIFORM_TOP_3_COLOR" address="0xA67" />
+    <datablock type="color" key="UNIFORM_TOP_4_COLOR" address="0xA6B" />
+    <datablock type="color" key="UNIFORM_BOTTOM_1_COLOR" address="0xA6F" />
+    <datablock type="color" key="UNIFORM_BOTTOM_2_COLOR" address="0xA73" />
+    <datablock type="color" key="UNIFORM_UNDERWEAR_COLOR" address="0xA77" />
+    <datablock type="color" key="UNIFORM_SOCKS_COLOR" address="0xA7B" />
+    <datablock type="color" key="UNIFORM_INDOOR_SHOES_COLOR" address="0xA7F" />
+    <datablock type="color" key="UNIFORM_OUTDOOR_SHOES_COLOR" address="0xA83" />
+    <datablock type="int32" key="UNIFORM_SKIRT_TEXTURE" address="0xA87" />
+    <datablock type="int32" key="UNIFORM_UNDERWEAR_TEXTURE" address="0xA8B" />
+    <datablock type="int32" key="UNIFORM_SKIRT_HUE" address="0xA8F" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="UNIFORM_SKIRT_BRIGHTNESS" address="0xA93" minvalue="-100" maxvalue="100" />
+    <datablock type="int32" key="UNIFORM_UNDERWEAR_HUE" address="0xA97" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="UNIFORM_UNDERWEAR_BRIGHTNESS" address="0xA9B" minvalue="-100" maxvalue="100" />
+    <datablock type="bool" key="UNIFORM_IS_ONEPIECE" address="0xA9F" />
+    <datablock type="bool" key="UNIFORM_IS_UNDERWEAR" address="0xAA0" />
+    <datablock type="bool" key="UNIFORM_IS_SKIRT" address="0xAA1" />
+    <datablock type="int32" key="UNIFORM_SKIRT_SHADOW_HUE" address="0xAA2" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="UNIFORM_SKIRT_SHADOW_BRIGHTNESS" address="0xAA6" minvalue="-100" maxvalue="100" />
+    <datablock type="int32" key="UNIFORM_UNDERWEAR_SHADOW_HUE" address="0xAAA" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="UNIFORM_UNDERWEAR_SHADOW_BRIGHTNESS" address="0xAAE" minvalue="-100" maxvalue="100" />
+    <!-- PE Uniform -->
+    <datablock type="enum" key="SPORT_SUIT_F" address="0xAB2" metakey="CLOTHES_F" />
+    <datablock type="enum" key="SPORT_SUIT_M" address="0xAB2" metakey="CLOTHES_M" />
+    <datablock type="bool" key="SPORT_SHORT_SKIRT" address="0xAB6" />
+    <datablock type="enum" key="SPORT_SOCKS_F" address="0xAB7" metakey="SOCKS_F" />
+    <datablock type="enum" key="SPORT_SOCKS_M" address="0xAB7" metakey="SOCKS_M" />
+    <datablock type="enum" key="SPORT_INDOOR_SHOES_F" address="0xAB8" metakey="SHOES_F" />
+    <datablock type="enum" key="SPORT_INDOOR_SHOES_M" address="0xAB8" metakey="SHOES_M" />
+    <datablock type="enum" key="SPORT_OUTDOOR_SHOES_F" address="0xAB9" metakey="SHOES_F" />
+    <datablock type="enum" key="SPORT_OUTDOOR_SHOES_M" address="0xAB9" metakey="SHOES_M" />
+    <datablock type="color" key="SPORT_TOP_1_COLOR" address="0xABA" />
+    <datablock type="color" key="SPORT_TOP_2_COLOR" address="0xABE" />
+    <datablock type="color" key="SPORT_TOP_3_COLOR" address="0xAC2" />
+    <datablock type="color" key="SPORT_TOP_4_COLOR" address="0xAC6" />
+    <datablock type="color" key="SPORT_BOTTOM_1_COLOR" address="0xACA" />
+    <datablock type="color" key="SPORT_BOTTOM_2_COLOR" address="0xACE" />
+    <datablock type="color" key="SPORT_UNDERWEAR_COLOR" address="0xAD2" />
+    <datablock type="color" key="SPORT_SOCKS_COLOR" address="0xAD6" />
+    <datablock type="color" key="SPORT_INDOOR_SHOES_COLOR" address="0xADA" />
+    <datablock type="color" key="SPORT_OUTDOOR_SHOES_COLOR" address="0xADE" />
+    <datablock type="int32" key="SPORT_SKIRT_TEXTURE" address="0xAE2" />
+    <datablock type="int32" key="SPORT_UNDERWEAR_TEXTURE" address="0xAE6" />
+    <datablock type="int32" key="SPORT_SKIRT_HUE" address="0xAEA" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="SPORT_SKIRT_BRIGHTNESS" address="0xAEE" minvalue="-100" maxvalue="100" />
+    <datablock type="int32" key="SPORT_UNDERWEAR_HUE" address="0xAF2" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="SPORT_UNDERWEAR_BRIGHTNESS" address="0xAF6" minvalue="-100" maxvalue="100" />
+    <datablock type="bool" key="SPORT_IS_ONEPIECE" address="0xAFA" />
+    <datablock type="bool" key="SPORT_IS_UNDERWEAR" address="0xAFB" />
+    <datablock type="bool" key="SPORT_IS_SKIRT" address="0xAFC" />
+    <datablock type="int32" key="SPORT_SKIRT_SHADOW_HUE" address="0xAFD" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="SPORT_SKIRT_SHADOW_BRIGHTNESS" address="0xB01" minvalue="-100" maxvalue="100" />
+    <datablock type="int32" key="SPORT_UNDERWEAR_SHADOW_HUE" address="0xB05" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="SPORT_UNDERWEAR_SHADOW_BRIGHTNESS" address="0xB09" minvalue="-100" maxvalue="100" />
+    <!-- Swimsuit -->
+    <datablock type="enum" key="SWIMSUIT_SUIT_F" address="0xB0D" metakey="CLOTHES_F" />
+    <datablock type="enum" key="SWIMSUIT_SUIT_M" address="0xB0D" metakey="CLOTHES_M" />
+    <datablock type="bool" key="SWIMSUIT_SHORT_SKIRT" address="0xB11" />
+    <datablock type="enum" key="SWIMSUIT_SOCKS_F" address="0xB12" metakey="SOCKS_F" />
+    <datablock type="enum" key="SWIMSUIT_SOCKS_M" address="0xB12" metakey="SOCKS_M" />
+    <datablock type="enum" key="SWIMSUIT_INDOOR_SHOES_F" address="0xB13" metakey="SHOES_F" />
+    <datablock type="enum" key="SWIMSUIT_INDOOR_SHOES_M" address="0xB13" metakey="SHOES_M" />
+    <datablock type="enum" key="SWIMSUIT_OUTDOOR_SHOES_F" address="0xB14" metakey="SHOES_F" />
+    <datablock type="enum" key="SWIMSUIT_OUTDOOR_SHOES_M" address="0xB14" metakey="SHOES_M" />
+    <datablock type="color" key="SWIMSUIT_TOP_1_COLOR" address="0xB15" />
+    <datablock type="color" key="SWIMSUIT_TOP_2_COLOR" address="0xB19" />
+    <datablock type="color" key="SWIMSUIT_TOP_3_COLOR" address="0xB1D" />
+    <datablock type="color" key="SWIMSUIT_TOP_4_COLOR" address="0xB21" />
+    <datablock type="color" key="SWIMSUIT_BOTTOM_1_COLOR" address="0xB25" />
+    <datablock type="color" key="SWIMSUIT_BOTTOM_2_COLOR" address="0xB29" />
+    <datablock type="color" key="SWIMSUIT_UNDERWEAR_COLOR" address="0xB2D" />
+    <datablock type="color" key="SWIMSUIT_SOCKS_COLOR" address="0xB31" />
+    <datablock type="color" key="SWIMSUIT_INDOOR_SHOES_COLOR" address="0xB35" />
+    <datablock type="color" key="SWIMSUIT_OUTDOOR_SHOES_COLOR" address="0xB39" />
+    <datablock type="int32" key="SWIMSUIT_SKIRT_TEXTURE" address="0xB3D" />
+    <datablock type="int32" key="SWIMSUIT_UNDERWEAR_TEXTURE" address="0xB41" />
+    <datablock type="int32" key="SWIMSUIT_SKIRT_HUE" address="0xB45" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="SWIMSUIT_SKIRT_BRIGHTNESS" address="0xB49" minvalue="-100" maxvalue="100" />
+    <datablock type="int32" key="SWIMSUIT_UNDERWEAR_HUE" address="0xB4D" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="SWIMSUIT_UNDERWEAR_BRIGHTNESS" address="0xB51" minvalue="-100" maxvalue="100" />
+    <datablock type="bool" key="SWIMSUIT_IS_ONEPIECE" address="0xB55" />
+    <datablock type="bool" key="SWIMSUIT_IS_UNDERWEAR" address="0xB56" />
+    <datablock type="bool" key="SWIMSUIT_IS_SKIRT" address="0xB57" />
+    <datablock type="int32" key="SWIMSUIT_SKIRT_SHADOW_HUE" address="0xB58" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="SWIMSUIT_SKIRT_SHADOW_BRIGHTNESS" address="0xB5C" minvalue="-100" maxvalue="100" />
+    <datablock type="int32" key="SWIMSUIT_UNDERWEAR_SHADOW_HUE" address="0xB60" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="SWIMSUIT_UNDERWEAR_SHADOW_BRIGHTNESS" address="0xB64" minvalue="-100" maxvalue="100" />
+    <!-- Club -->
+    <datablock type="enum" key="CLUB_SUIT_F" address="0xB68" metakey="CLOTHES_F" />
+    <datablock type="enum" key="CLUB_SUIT_M" address="0xB68" metakey="CLOTHES_M" />
+    <datablock type="bool" key="CLUB_SHORT_SKIRT" address="0xB6C" />
+    <datablock type="enum" key="CLUB_SOCKS_F" address="0xB6D" metakey="SOCKS_F" />
+    <datablock type="enum" key="CLUB_SOCKS_M" address="0xB6D" metakey="SOCKS_M" />
+    <datablock type="enum" key="CLUB_INDOOR_SHOES_F" address="0xB6E" metakey="SHOES_F" />
+    <datablock type="enum" key="CLUB_INDOOR_SHOES_M" address="0xB6E" metakey="SHOES_M" />
+    <datablock type="enum" key="CLUB_OUTDOOR_SHOES_F" address="0xB6F" metakey="SHOES_F" />
+    <datablock type="enum" key="CLUB_OUTDOOR_SHOES_M" address="0xB6F" metakey="SHOES_M" />
+    <datablock type="color" key="CLUB_TOP_1_COLOR" address="0xB70" />
+    <datablock type="color" key="CLUB_TOP_2_COLOR" address="0xB74" />
+    <datablock type="color" key="CLUB_TOP_3_COLOR" address="0xB78" />
+    <datablock type="color" key="CLUB_TOP_4_COLOR" address="0xB7C" />
+    <datablock type="color" key="CLUB_BOTTOM_1_COLOR" address="0xB80" />
+    <datablock type="color" key="CLUB_BOTTOM_2_COLOR" address="0xB84" />
+    <datablock type="color" key="CLUB_UNDERWEAR_COLOR" address="0xB88" />
+    <datablock type="color" key="CLUB_SOCKS_COLOR" address="0xB8C" />
+    <datablock type="color" key="CLUB_INDOOR_SHOES_COLOR" address="0xB90" />
+    <datablock type="color" key="CLUB_OUTDOOR_SHOES_COLOR" address="0xB94" />
+    <datablock type="int32" key="CLUB_SKIRT_TEXTURE" address="0xB98" />
+    <datablock type="int32" key="CLUB_UNDERWEAR_TEXTURE" address="0xB9C" />
+    <datablock type="int32" key="CLUB_SKIRT_HUE" address="0xBA0" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="CLUB_SKIRT_BRIGHTNESS" address="0xBA4" minvalue="-100" maxvalue="100" />
+    <datablock type="int32" key="CLUB_UNDERWEAR_HUE" address="0xBA8" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="CLUB_UNDERWEAR_BRIGHTNESS" address="0xBAC" minvalue="-100" maxvalue="100" />
+    <datablock type="bool" key="CLUB_IS_ONEPIECE" address="0xBB0" />
+    <datablock type="bool" key="CLUB_IS_UNDERWEAR" address="0xBB1" />
+    <datablock type="bool" key="CLUB_IS_SKIRT" address="0xBB2" />
+    <datablock type="int32" key="CLUB_SKIRT_SHADOW_HUE" address="0xBB3" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="CLUB_SKIRT_SHADOW_BRIGHTNESS" address="0xBB7" minvalue="-100" maxvalue="100" />
+    <datablock type="int32" key="CLUB_UNDERWEAR_SHADOW_HUE" address="0xBBB" minvalue="-359" maxvalue="359" />
+    <datablock type="int32" key="CLUB_UNDERWEAR_SHADOW_BRIGHTNESS" address="0xBBF" minvalue="-100" maxvalue="100" />
+  </datablocks>
+</dataset>
