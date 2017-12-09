@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QWidget *separator = new QWidget(this);
     separator->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     ui->mainToolBar->insertWidget(ui->actionQuit, separator);
-    //QObject::connect(m_sortFilterModel, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), ui->cardListView, SLOT(update(QModelIndex)));
+    QObject::connect(m_sortFilterModel, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), ui->cardListView, SLOT(update(QModelIndex)));
     m_sortFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     connect(ui->textFilter, &QLineEdit::textChanged, m_sortFilterModel, &QSortFilterProxyModel::setFilterFixedString);
