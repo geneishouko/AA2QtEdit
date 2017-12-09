@@ -110,10 +110,11 @@ void DataReader::write(QIODevice *data, const QString &key, const QVariant &valu
 
     if (type == DataType::String || type == DataType::EncodedString) {
         QString string = value.toString();
+        int fieldSize = db->dataSize();
         QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
         QByteArray array = codec->fromUnicode(string);
         if (type == DataType::EncodedString) {
-            array.append('\xFF');
+            array.append(fieldSize - array.size(), '\x00');
             array = decodeString(array);
         }
         data->write(array.data(), db->dataSize());
