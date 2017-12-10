@@ -10,7 +10,7 @@ namespace ClassEdit {
     class DataEnumerable
     {
     public:
-        DataEnumerable(const DataType& type);
+        DataEnumerable(const DataType &type);
         DataType type() const;
         void registerStringValue(qint32 value, const QString &string);
 

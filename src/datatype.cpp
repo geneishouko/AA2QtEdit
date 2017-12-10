@@ -23,7 +23,7 @@ using namespace ClassEdit;
 
 static QHash<QString, DataType> dataTypeNames;
 
-DataType ClassEdit::stringToDataType(const QString& string) {
+DataType ClassEdit::stringToDataType(const QString &string) {
     if (dataTypeNames.empty()) {
         dataTypeNames["byte"] = Byte;
         dataTypeNames["int16"] = Int16;

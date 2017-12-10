@@ -98,7 +98,7 @@ int ClassSaveCardListModel::rowCount(const QModelIndex &parent) const
 
 QVariant ClassSaveCardListModel::data(const QModelIndex &index, int role) const
 {
-    CardFile* card = m_cardList[index.row()];
+    CardFile *card = m_cardList[index.row()];
     if (role == Qt::DisplayRole)
         return card->getFullName();
     else if (role == Qt::DecorationRole)

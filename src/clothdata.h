@@ -12,16 +12,16 @@ namespace ClassEdit {
     public:
         ClothData(QObject *parent = nullptr);
 
-        static ClothData* fromCardData(const QString &type, CardFile* card);
-        static ClothData* fromClothFile(const QString &file);
+        static ClothData *fromCardData(const QString &type, CardFile *card);
+        static ClothData *fromClothFile(const QString &file);
 
         QVariant getValue(const QString &key) const;
         QHash<QString, QVariant> getValues(const QString &key) const;
         void setValue(const QString &key, const QVariant &value);
         QByteArray toClothFile() const;
     private:
-        DataReader* m_dataReader;
-        Dictionary* m_dictionary;
+        DataReader *m_dataReader;
+        Dictionary *m_dictionary;
     };
 
 }

@@ -14,7 +14,7 @@ namespace ClassEdit {
         FileSystemCardListModel(const QString &path);
         ~FileSystemCardListModel();
 
-        CardFile* getCard(int index) const;
+        CardFile *getCard(int index) const;
 
         int rowCount(const QModelIndex &) const;
         int columnCount(const QModelIndex &) const;

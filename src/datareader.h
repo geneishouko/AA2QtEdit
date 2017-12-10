@@ -25,13 +25,13 @@ namespace ClassEdit {
         typedef QList<DataBlock*> DataBlockList;
 
     public:
-        DataReader(QIODevice* xmlDefinition);
-        static DataReader* getDataReader(const QString& name);
-        DataEnumerable* getDataEnumerable(const QString& name) const;
+        DataReader(QIODevice *xmlDefinition);
+        static DataReader *getDataReader(const QString& name);
+        DataEnumerable *getDataEnumerable(const QString& name) const;
         QVariant read(QIODevice *data, DataType type, int dataSize = 0) const;
         QVariant read(QIODevice *data, DataBlock *db) const;
         inline QVariant read(QIODevice *data, const QString &key) const {
-                DataBlock* db = m_dataBlockMap[key];
+                DataBlock *db = m_dataBlockMap[key];
                 return read(data, db);
         }
         void write(QIODevice *data, const QString &key, const QVariant &value) const;
@@ -40,14 +40,14 @@ namespace ClassEdit {
         static QByteArray decodeString(const QByteArray &data);
 
     private:
-        bool loadDefinitions(QIODevice* xmlDefinition);
-        void parseDefinitions(QXmlStreamReader& xml);
-        void parseEnumerables(QXmlStreamReader& xml);
-        void parseStructs(QXmlStreamReader& xml);
-        void parseDatablocks(QXmlStreamReader& xml);
+        bool loadDefinitions(QIODevice *xmlDefinition);
+        void parseDefinitions(QXmlStreamReader &xml);
+        void parseEnumerables(QXmlStreamReader &xml);
+        void parseStructs(QXmlStreamReader &xml);
+        void parseDatablocks(QXmlStreamReader &xml);
 
         DataStruct *getStruct(const QString &key) const;
-        DataEnumerable* registerEnumerable(const QString &key, DataType type);
+        DataEnumerable *registerEnumerable(const QString &key, DataType type);
         DataStruct *registerStruct(const QString &key);
 
         DataEnumerableMap m_enumerables;

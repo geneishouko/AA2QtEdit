@@ -10,11 +10,11 @@ namespace ClassEdit {
     class CardListView : public QListView
     {
     public:
-        CardListView(QWidget* parent = nullptr);
+        CardListView(QWidget *parent = nullptr);
         void mouseMoveEvent(QMouseEvent *event);
 
     private:
-        CardListDelegate* m_delegate;
+        CardListDelegate *m_delegate;
     };
 
 }

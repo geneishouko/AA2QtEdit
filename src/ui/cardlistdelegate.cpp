@@ -40,7 +40,7 @@ CardListDelegate::CardListDelegate(QObject *parent) :
 
 bool CardListDelegate::editorEvent(QEvent *event, QAbstractItemModel */* model */, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    CardFile* card = index.data(CardFileRole).value<CardFile*>();
+    CardFile *card = index.data(CardFileRole).value<CardFile*>();
 
     if (event->type() == QEvent::MouseButtonRelease) {
         QMouseEvent *mouseEvent = reinterpret_cast<QMouseEvent*>(event);
@@ -78,7 +78,7 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     painter->save();
     style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, nullptr);
 
-    CardFile* card = index.data(CardFileRole).value<CardFile*>();
+    CardFile *card = index.data(CardFileRole).value<CardFile*>();
     painter->drawPixmap(cardRect, card->getRoster());
     painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->getFullName());
     painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin * 4, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fileName());

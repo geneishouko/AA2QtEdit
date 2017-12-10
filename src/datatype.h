@@ -21,7 +21,7 @@ namespace ClassEdit {
         Dummy,
     };
 
-    DataType stringToDataType(const QString& string);
+    DataType stringToDataType(const QString &string);
 
     inline void dataTypeToSize(DataType type, int &size) {
         if (type == DataType::Bool || type == DataType::Byte)

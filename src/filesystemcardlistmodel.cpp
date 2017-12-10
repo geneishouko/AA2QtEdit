@@ -31,7 +31,7 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path)
     filter << "*.png";
     QFileInfoList files = dir.entryInfoList(filter, QDir::Files, QDir::Time);
 
-    CardFile* cf;
+    CardFile *cf;
     foreach (const QFileInfo &file, files) {
         cf = new CardFile(file);
         cf->setParent(this);
@@ -47,7 +47,7 @@ FileSystemCardListModel::~FileSystemCardListModel()
         delete card;
 }
 
-CardFile* FileSystemCardListModel::getCard(int index) const
+CardFile *FileSystemCardListModel::getCard(int index) const
 {
     return m_cardList[index];
 }
@@ -64,7 +64,7 @@ int FileSystemCardListModel::columnCount(const QModelIndex &) const
 
 QVariant FileSystemCardListModel::data(const QModelIndex &index, int role) const
 {
-    CardFile* card = m_cardList[index.row()];
+    CardFile *card = m_cardList[index.row()];
     if (role == Qt::DisplayRole)
         return card->getFullName();
     else if (role == Qt::DecorationRole)

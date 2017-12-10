@@ -27,7 +27,7 @@ using namespace ClassEdit;
 
 QVector<QString> CardDataModel::s_keys;
 
-CardDataModel::CardDataModel(CardFile* cardFile) :
+CardDataModel::CardDataModel(CardFile *cardFile) :
     QAbstractListModel(cardFile),
     m_cardFile(cardFile)
 {

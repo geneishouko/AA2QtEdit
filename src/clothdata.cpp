@@ -30,9 +30,9 @@ ClothData::ClothData(QObject *parent) :
     m_dictionary = new Dictionary(this);
 }
 
-ClothData* ClothData::fromCardData(const QString &type, CardFile *card)
+ClothData *ClothData::fromCardData(const QString &type, CardFile *card)
 {
-    ClothData* data = new ClothData;
+    ClothData *data = new ClothData;
     DataReader::DataBlockList &blockList = data->m_dataReader->m_dataBlocks;
     for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
         data->m_dictionary->insert((*it)->key(), card->getValue((*it)->key().replace("CLOTH", type)));
@@ -40,9 +40,9 @@ ClothData* ClothData::fromCardData(const QString &type, CardFile *card)
     return data;
 }
 
-ClothData* ClothData::fromClothFile(const QString &path)
+ClothData *ClothData::fromClothFile(const QString &path)
 {
-    ClothData* data = new ClothData;
+    ClothData *data = new ClothData;
     QFile file(path);
     if (file.open(QIODevice::ReadOnly)) {
         DataReader::DataBlockList &blockList = data->m_dataReader->m_dataBlocks;
@@ -81,7 +81,7 @@ QByteArray ClothData::toClothFile() const
     if (m_dictionary->isEmpty())
         return data;
     QBuffer buffer(&data);
-    foreach(DataBlock* db, m_dataReader->m_dataBlocks) {
+    foreach(DataBlock *db, m_dataReader->m_dataBlocks) {
         buffer.seek(db->offset());
         m_dataReader->write(&buffer, db->key(), m_dictionary->value(db->key()));
     }

@@ -51,7 +51,7 @@ void CardView::cardDestroyed()
 
 void CardView::modelItemActivated(const QModelIndex &index)
 {
-    CardFile* card = index.data(CardFileRole).value<CardFile*>();
+    CardFile *card = index.data(CardFileRole).value<CardFile*>();
     ui->cardFace->setPixmap(card->getFace());
     m_cardDataSortFilterModel->setSourceModel(card->getEditDataModel());
     QHeaderView *header = ui->editDataView->header();

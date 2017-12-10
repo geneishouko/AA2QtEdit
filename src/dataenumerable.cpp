@@ -19,7 +19,7 @@
 
 using namespace ClassEdit;
 
-DataEnumerable::DataEnumerable(const DataType& type) : m_type(type)
+DataEnumerable::DataEnumerable(const DataType &type) : m_type(type)
 {
 
 }

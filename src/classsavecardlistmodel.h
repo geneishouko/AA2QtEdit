@@ -32,7 +32,7 @@ namespace ClassEdit {
         QVariant data(const QModelIndex &index, int role) const;
     private:
         DataReader *m_classHeaderReader;
-        Dictionary* m_headerDictionary;
+        Dictionary *m_headerDictionary;
         DataReader::DataBlockList m_classData;
         QList<CardFile*> m_cardList;
 

@@ -98,10 +98,6 @@ void DataBlock::setAttributes(int currentOffset, QXmlStreamAttributes attributes
 
     if (!ok)
         m_isValid = false;
-
-    if (m_address < 0) {
-        //m_address = currentOffset;
-    }
 }
 
 QString DataBlock::key() const

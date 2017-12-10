@@ -177,7 +177,7 @@ int CardFile::loadPlayData(QIODevice *file, int offset)
     return blockList.last()->nextOffset();
 }
 
-CardDataModel* CardFile::getEditDataModel() const
+CardDataModel *CardFile::getEditDataModel() const
 {
     return m_editDataModel;
 }

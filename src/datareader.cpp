@@ -27,7 +27,7 @@ using namespace ClassEdit;
 
 QHash<QString, DataReader*> DataReader::s_readers;
 
-DataReader::DataReader(QIODevice* xmlDefinition)
+DataReader::DataReader(QIODevice *xmlDefinition)
 {
     loadDefinitions(xmlDefinition);
 }
@@ -41,7 +41,7 @@ DataReader *DataReader::getDataReader(const QString &name)
     qDebug() << "load definitions" << name;
     QFile xml(QString(":/XML/" % name % ".xml"));
     xml.open(QFile::ReadOnly);
-    DataReader* reader = new DataReader(&xml);
+    DataReader *reader = new DataReader(&xml);
     s_readers.insert(name, reader);
     return reader;
 }
@@ -102,7 +102,7 @@ QVariant DataReader::read(QIODevice *data, DataBlock *db) const
 
 void DataReader::write(QIODevice *data, const QString &key, const QVariant &value) const
 {
-    DataBlock* db = m_dataBlockMap[key];
+    DataBlock *db = m_dataBlockMap[key];
     DataType type = db->type();
     if (type == DataType::Enum) {
         type = m_enumerables[db->metaKey()]->type();
@@ -304,7 +304,7 @@ void DataReader::parseEnumerables(QXmlStreamReader &xml) {
         type = xml.attributes().value("type").toString();
         if (type.isEmpty())
             type = "byte";
-        DataEnumerable* enumerable = registerEnumerable(name, stringToDataType(type));
+        DataEnumerable *enumerable = registerEnumerable(name, stringToDataType(type));
 
         int enumKey;
         QString enumValue;
@@ -323,7 +323,7 @@ void DataReader::parseStructs(QXmlStreamReader &xml) {
     while (xml.readNextStartElement()) {
         Q_ASSERT(xml.name() == "struct");
         key = xml.attributes().value("key").toString();
-        DataStruct* ds = registerStruct(key);
+        DataStruct *ds = registerStruct(key);
         while(xml.readNextStartElement()) {
             ds->registerDataBlock(xml.attributes());
             xml.skipCurrentElement();
@@ -338,7 +338,7 @@ void DataReader::parseDatablocks(QXmlStreamReader &xml) {
         Q_ASSERT(xml.name() == "datablock");
 
         const QXmlStreamAttributes &attr = xml.attributes();
-        DataBlock* block = new DataBlock(currentOffset, attr);
+        DataBlock *block = new DataBlock(currentOffset, attr);
         currentOffset = block->nextOffset();
 
         m_dataBlocks.push_back(block);
@@ -354,13 +354,13 @@ DataStruct *DataReader::getStruct(const QString &key) const
     return *it;
 }
 
-DataEnumerable* DataReader::registerEnumerable(const QString &key, DataType type)
+DataEnumerable *DataReader::registerEnumerable(const QString &key, DataType type)
 {
     DataEnumerableMap::iterator it = m_enumerables.find(key);
     if (it != m_enumerables.end()) {
         return *it;
     }
-    DataEnumerable* newEnum = new DataEnumerable(type);
+    DataEnumerable *newEnum = new DataEnumerable(type);
     m_enumerables.insert(key, newEnum);
     return newEnum;
 }
@@ -371,7 +371,7 @@ DataStruct *DataReader::registerStruct(const QString &key)
     if (it != m_structs.end()) {
         return *it;
     }
-    DataStruct* newStruct = new DataStruct;
+    DataStruct *newStruct = new DataStruct;
     m_structs.insert(key, newStruct);
     return newStruct;
 }

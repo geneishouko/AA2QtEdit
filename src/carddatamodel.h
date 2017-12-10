@@ -10,7 +10,7 @@ namespace ClassEdit {
     class CardDataModel : public QAbstractListModel
     {
     public:
-        CardDataModel(CardFile* cardFile);
+        CardDataModel(CardFile *cardFile);
 
         int columnCount(const QModelIndex &parent) const;
         Qt::ItemFlags flags(const QModelIndex &index) const;
@@ -20,7 +20,7 @@ namespace ClassEdit {
         bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
 
     private:
-        CardFile* m_cardFile;
+        CardFile *m_cardFile;
         static QVector<QString> s_keys;
     };
 
