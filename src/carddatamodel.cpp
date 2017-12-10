@@ -60,20 +60,20 @@ QVariant CardDataModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole) {
         switch (index.column()) {
             case 0:
-            return m_cardFile->getAddress(s_keys[index.row()]);
+            return m_cardFile->getEditDataAddress(s_keys[index.row()]);
 
             case 1:
-            return m_cardFile->getType(s_keys[index.row()]);
+            return m_cardFile->getEditDataType(s_keys[index.row()]);
 
             case 2:
             return s_keys[index.row()];
 
             case 3:
-            return m_cardFile->getValue(s_keys[index.row()]);
+            return m_cardFile->getEditDataValue(s_keys[index.row()]);
         }
     }
     else if (role == Qt::EditRole) {
-        return m_cardFile->getValue(s_keys[index.row()]);
+        return m_cardFile->getEditDataValue(s_keys[index.row()]);
     }
     else if (role == Qt::BackgroundRole && index.column() != 3) {
         return QBrush(qApp->palette().midlight());
@@ -91,7 +91,7 @@ QVariant CardDataModel::headerData(int section, Qt::Orientation orientation, int
 
 bool CardDataModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    m_cardFile->setValue(s_keys[index.row()], value);
+    m_cardFile->setEditDataValue(s_keys[index.row()], value);
     emit dataChanged(index, index);
     return true;
 }

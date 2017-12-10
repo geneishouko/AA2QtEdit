@@ -30,12 +30,21 @@ namespace ClassEdit {
 
         int rowCount(const QModelIndex &parent) const;
         QVariant data(const QModelIndex &index, int role) const;
+
+        bool saveToDisk();
+        bool submit();
+
+    public slots:
+        void cardChanged(int index);
+
     private:
+        QString m_filePath;
         DataReader *m_classHeaderReader;
         Dictionary *m_headerDictionary;
         DataReader::DataBlockList m_classData;
         QList<CardFile*> m_cardList;
 
+        QByteArray m_header;
         QByteArray m_footer;
 
     };

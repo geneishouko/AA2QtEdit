@@ -66,14 +66,14 @@ QVariant FileSystemCardListModel::data(const QModelIndex &index, int role) const
 {
     CardFile *card = m_cardList[index.row()];
     if (role == Qt::DisplayRole)
-        return card->getFullName();
+        return card->fullName();
     else if (role == Qt::DecorationRole)
         return card->getRoster();
     else if (role == CardFileRole) {
         return QVariant::fromValue<CardFile*>(card);
     }
     else if (role == CardModifiedTimeRole) {
-        return card->getModifiedTime();
+        return card->modifiedTime();
     }
     return QVariant();
 }

@@ -45,7 +45,7 @@ bool CardListDelegate::editorEvent(QEvent *event, QAbstractItemModel */* model *
     if (event->type() == QEvent::MouseButtonRelease) {
         QMouseEvent *mouseEvent = reinterpret_cast<QMouseEvent*>(event);
         if (card->hasPendingChanges() && saveButtonRect(option.rect).contains(mouseEvent->pos())) {
-            card->saveChanges();
+            card->save();
             return true;
         }
     }
@@ -80,7 +80,7 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
     painter->drawPixmap(cardRect, card->getRoster());
-    painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->getFullName());
+    painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fullName());
     painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin * 4, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fileName());
     if (card->hasPendingChanges())
         style->drawControl(QStyle::CE_PushButton, &saveButtonOption, painter, nullptr);

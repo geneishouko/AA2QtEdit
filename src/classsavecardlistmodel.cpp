@@ -24,6 +24,7 @@
 #include <QBuffer>
 #include <QDataStream>
 #include <QFile>
+#include <QSaveFile>
 
 #include <QtDebug>
 
@@ -55,6 +56,11 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
     buffer.open(QIODevice::ReadOnly);
 
     m_classData = m_classHeaderReader->finalizeDataBlocks(&buffer);
+    int headerSize = m_classData.last()->nextOffset();
+    file.seek(0);
+    m_header.resize(headerSize);
+    file.read(m_header.data(), headerSize);
+    qDebug() << "Got" << headerSize << "bytes header";
     for (DataReader::DataBlockList::const_iterator it = m_classData.constBegin(); it != m_classData.constEnd(); it++) {
         m_headerDictionary->insert((*it)->key(), m_classHeaderReader->read(&buffer, (*it)));
     }
@@ -63,7 +69,7 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
     // read characters
     int pos = 0;
     int cardOffset, cardEndOffset;
-    int cardPlayDataOffset, cardPlayDataEndOffset;
+    int cardPlayDataOffset, cardPlayDataEndOffset = 0;
     int playSeat;
     bool isMale;
 
@@ -76,35 +82,67 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
         cardPlayDataOffset = cardEndOffset;
         CardFile *card = new CardFile(&buffer, cardOffset, cardEndOffset);
         cardPlayDataEndOffset = card->loadPlayData(&buffer, cardPlayDataOffset);
+        card->setParentModel(this);
+        QObject::connect(card, &CardFile::changed, this, &ClassSaveCardListModel::cardChanged);
         m_cardList << card;
 
         buffer.seek(cardOffset - 4);
         buffer.read(reinterpret_cast<char*>(&playSeat), 4);
+        card->setSeat(playSeat);
         isMale = data[cardOffset - 5] == '\0';
         pos = cardPlayDataEndOffset;
     }
 
-    qint64 footerSize = buffer.size() - buffer.pos();
+    qint64 footerSize = data.size() - cardPlayDataEndOffset;
+    buffer.seek(cardPlayDataEndOffset);
     m_footer.resize(static_cast<int>(footerSize));
     buffer.read(m_footer.data(), footerSize);
+    m_filePath = path;
 }
 
 int ClassSaveCardListModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
     return m_cardList.size();
-    return 0;
 }
 
 QVariant ClassSaveCardListModel::data(const QModelIndex &index, int role) const
 {
     CardFile *card = m_cardList[index.row()];
     if (role == Qt::DisplayRole)
-        return card->getFullName();
+        return card->fullName();
     else if (role == Qt::DecorationRole)
         return card->getRoster();
     else if (role == CardFileRole) {
         return QVariant::fromValue<CardFile*>(card);
     }
     return QVariant();
+}
+
+bool ClassSaveCardListModel::saveToDisk()
+{
+    QSaveFile file(m_filePath);
+    file.open(QIODevice::WriteOnly);
+    file.write(m_header);
+    int gender, seat;
+    foreach (CardFile *card, m_cardList) {
+        gender = card->getGender();
+        seat = card->seat();
+        file.write(reinterpret_cast<char*>(&gender), 1);
+        file.write(reinterpret_cast<char*>(&seat), 4);
+        card->writeToDevice(&file);
+    }
+    file.write(m_footer);
+    return file.commit();
+}
+
+bool ClassSaveCardListModel::submit()
+{
+    return saveToDisk();
+}
+
+void ClassSaveCardListModel::cardChanged(int cardIndex)
+{
+    const QModelIndex &modelIndex = index(cardIndex);
+    emit dataChanged(modelIndex, modelIndex);
 }

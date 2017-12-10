@@ -37,7 +37,8 @@ int PngImage::setPngData(QIODevice *buffer)
 {
     static const char *pngHeader = "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a";
     static const char *hdrHeader = "IHDR";
-    static const char *datHeader = "IDAT";
+    static const char *endHeader = "IEND";
+    static const char *aauHeader = "aaUd";
     static const char *endBlock= "\x00\x00\x00\x00""IEND""\xae\x42\x60\x82";
     static const int chunkHeaderSize = 8;
     static const int chunkTagSize = 4;
@@ -65,7 +66,7 @@ int PngImage::setPngData(QIODevice *buffer)
         skip = 0;
         in >> size;
         bytesRead = in.readRawData(header, chunkTagSize);
-        if (bytesRead == chunkTagSize && !qstrcmp(header, datHeader))
+        if (bytesRead == chunkTagSize && qstrcmp(header, aauHeader) && qstrcmp(header, endHeader))
             skip = size + chunkTagSize;
     }
     bytesRead = pos - startPos;

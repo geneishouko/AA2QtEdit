@@ -1,6 +1,7 @@
 #ifndef CARDFILE_H
 #define CARDFILE_H
 
+#include <QAbstractItemModel>
 #include <QBuffer>
 #include <QDateTime>
 #include <QFile>
@@ -35,26 +36,33 @@ namespace ClassEdit {
         CardFile(QIODevice *file, qint64 startOffset, qint64 endOffset);
         ~CardFile();
 
+        void setParentModel(QAbstractItemModel *model);
         void init(QIODevice *file, qint64 startOffset, qint64 endOffset);
         int loadPlayData(QIODevice *file, int offset);
-        CardDataModel *getEditDataModel() const;
 
         QString fileName() const;
+        QString filePath() const;
+        CardDataModel *getEditDataModel() const;
         QVector<QString> getEditDataKeys() const;
-        QVariant getAddress(const QString &key) const;
-        QVariant getType(const QString &key) const;
-        QVariant getValue(const QString &key) const;
+        QVariant getEditDataAddress(const QString &key) const;
+        QVariant getEditDataType(const QString &key) const;
+        QVariant getEditDataValue(const QString &key) const;
+        int getGender() const;
         QPixmap getFace() const;
         QPixmap getRoster() const;
-        QString getFullName() const;
-        QDateTime getModifiedTime() const;
+        QString fullName() const;
+        QDateTime modifiedTime() const;
+        int seat() const;
+        void setEditDataValue(const QString &key, const QVariant &value);
         void setModifiedTime(const QDateTime &date);
-        void setValue(const QString &key, const QVariant &value);
+        void setSeat(int seat);
+
+        void updateQuickInfoGetters();
         bool hasPendingChanges() const;
         void commitChanges();
-
-    public slots:
-        void saveChanges();
+        void save();
+        void saveToFile(const QString &file);
+        void writeToDevice(QIODevice *device, qint64 *editOffset = nullptr, qint64 *aaudOffset = nullptr);
 
     signals:
         void changed(int index);
@@ -64,6 +72,7 @@ namespace ClassEdit {
         QString m_fileName;
         QDateTime m_modifiedTime;
         QByteArray m_editData;
+        QByteArray m_playData;
         QBuffer m_editDataIO;
         QByteArray m_aauData;
         qint32 m_aauDataVersion;
@@ -71,9 +80,11 @@ namespace ClassEdit {
         DataReader *m_aauDataReader;
         DataReader *m_playDataReader;
         CardDataModel *m_editDataModel;
-
+        QAbstractItemModel *m_parentModel;
 
         QString m_fullName;
+        int m_gender;
+        int m_seat;
         PngImage *m_face;
         PngImage *m_roster;
 
