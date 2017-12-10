@@ -122,7 +122,7 @@ void DataReader::write(QIODevice *data, const QString &key, const QVariant &valu
 
     else if (type == DataType::Bool) {
         char c = value.toBool();
-        data->write(&c);
+        data->write(&c, 1);
     }
 
     else if (type == DataType::Byte) {
