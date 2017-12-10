@@ -264,9 +264,12 @@ bool CardFile::hasPendingChanges() const
 
 void CardFile::commitChanges()
 {
-    foreach(DataBlock* db, m_editDataReader->m_dataBlocks) {
+    DataBlock *db;
+    for(QSet<QString>::ConstIterator it = m_dirtyKeyValues.cbegin(); it != m_dirtyKeyValues.cend();) {
+        db = m_editDataReader->m_dataBlockMap[*it];
         m_editDataIO.seek(db->offset());
         m_editDataReader->write(&m_editDataIO, db->key(), m_editDataDictionary->value(db->key()));
+        it = m_dirtyKeyValues.erase(it);
     }
 }
 
