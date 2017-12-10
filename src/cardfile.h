@@ -36,16 +36,8 @@ namespace ClassEdit {
         ~CardFile();
 
         void init(QIODevice *file, qint64 startOffset, qint64 endOffset);
-        inline qint64 startOffset() const {
-            return m_startOffset;
-        }
-        inline qint64 endOffset() const {
-            return m_endOffset;
-        }
         int loadPlayData(QIODevice *file, int offset);
         CardDataModel* getEditDataModel() const;
-        void setModelIndex(int index);
-        int modelIndex() const;
 
         QString fileName() const;
         QVector<QString> getEditDataKeys() const;
@@ -70,8 +62,6 @@ namespace ClassEdit {
     private:
         QString m_filePath;
         QString m_fileName;
-        qint64 m_startOffset;
-        qint64 m_endOffset;
         QDateTime m_modifiedTime;
         QBuffer m_editDataIO;
         DataReader* m_editDataReader;
@@ -89,7 +79,6 @@ namespace ClassEdit {
         PngImage* m_roster;
 
         int m_modelIndex;
-        CardDataModel* m_cardDataModel;
         QSet<QString> m_dirtyKeyValues;
     };
 

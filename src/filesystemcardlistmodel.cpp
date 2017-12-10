@@ -32,12 +32,10 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path)
     QFileInfoList files = dir.entryInfoList(filter, QDir::Files, QDir::Time);
 
     CardFile* cf;
-    int index = 0;
     foreach (const QFileInfo &file, files) {
         cf = new CardFile(file);
         cf->setParent(this);
         cf->setModifiedTime(file.lastModified());
-        cf->setModelIndex(index);
         QObject::connect(cf, &CardFile::changed, this, &FileSystemCardListModel::cardChanged);
         m_cardList << cf;
     }

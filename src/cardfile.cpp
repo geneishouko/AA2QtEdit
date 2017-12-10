@@ -182,16 +182,6 @@ CardDataModel* CardFile::getEditDataModel() const
     return m_editDataModel;
 }
 
-void CardFile::setModelIndex(int index)
-{
-    m_modelIndex = index;
-}
-
-int CardFile::modelIndex() const
-{
-    return m_modelIndex;
-}
-
 QString CardFile::fileName() const
 {
     return m_fileName;
