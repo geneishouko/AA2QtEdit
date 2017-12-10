@@ -18,6 +18,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "../cardfile.h"
 #include "../classsavecardlistmodel.h"
 #include "../filesystemcardlistmodel.h"
 
@@ -46,7 +47,18 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(m_sortFilterModel, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), ui->cardListView, SLOT(update(QModelIndex)));
     m_sortFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    m_sortFilterModel->setSortRole(CardModifiedTimeRole);
+    m_sortFilterModel->sort(0, Qt::DescendingOrder);
     connect(ui->textFilter, &QLineEdit::textChanged, m_sortFilterModel, &QSortFilterProxyModel::setFilterFixedString);
+    ui->sortBy->addItem("Modified Time", CardModifiedTimeRole);
+    ui->sortBy->addItem("Name", Qt::DisplayRole);
+    ui->sortBy->addItem("Seat", CardSeatRole);
+    ui->sortOrder->addItem("Ascendant", Qt::AscendingOrder);
+    ui->sortOrder->addItem("Descendant", Qt::DescendingOrder);
+    ui->sortOrder->setCurrentIndex(1);
+    connect(ui->sortBy, SIGNAL(currentIndexChanged(int)), this, SLOT(setSortKeyRole()));
+    connect(ui->sortOrder, SIGNAL(currentIndexChanged(int)), this, SLOT(setSortOrder()));
+    ui->textFilter->setFocus();
 }
 
 MainWindow::~MainWindow()
@@ -82,4 +94,14 @@ void MainWindow::loadSaveFile()
     m_sortFilterModel->setSourceModel(cs);
     destroyCurrentModel();
     m_cardListModel = cs;
+}
+
+void MainWindow::setSortKeyRole()
+{
+    m_sortFilterModel->setSortRole(ui->sortBy->currentData().toInt());
+}
+
+void MainWindow::setSortOrder()
+{
+    m_sortFilterModel->sort(0, static_cast<Qt::SortOrder>(ui->sortOrder->currentData().toInt()));
 }

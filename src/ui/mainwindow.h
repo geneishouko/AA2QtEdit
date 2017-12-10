@@ -22,6 +22,8 @@ public slots:
     void loadDirectory();
     void destroyCurrentModel();
     void quit();
+    void setSortKeyRole();
+    void setSortOrder();
 
 private:
     Ui::MainWindow *ui;

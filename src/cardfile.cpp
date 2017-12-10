@@ -240,14 +240,14 @@ QString CardFile::getFullName() const
     return m_fullName;
 }
 
-QDateTime CardFile::getModifiedDate() const
+QDateTime CardFile::getModifiedTime() const
 {
-    return m_modifiedDate;
+    return m_modifiedTime;
 }
 
-void CardFile::setModifiedDate(const QDateTime &date)
+void CardFile::setModifiedTime(const QDateTime &date)
 {
-    m_modifiedDate = date;
+    m_modifiedTime = date;
 }
 
 void CardFile::setValue(const QString &key, const QVariant &value)

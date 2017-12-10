@@ -18,7 +18,10 @@ namespace ClassEdit {
     class PngImage;
 
     enum CardDataRoles {
-        CardFileRole = 0x100
+        CardFileRole = 0x100,
+        CardNameRole = 0x110,
+        CardModifiedTimeRole = 0x111,
+        CardSeatRole = 0x112
     };
 
     class CardFile : public QObject
@@ -52,8 +55,8 @@ namespace ClassEdit {
         QPixmap getFace() const;
         QPixmap getRoster() const;
         QString getFullName() const;
-        QDateTime getModifiedDate() const;
-        void setModifiedDate(const QDateTime &date);
+        QDateTime getModifiedTime() const;
+        void setModifiedTime(const QDateTime &date);
         void setValue(const QString &key, const QVariant &value);
         bool hasPendingChanges() const;
         void commitChanges();
@@ -69,7 +72,7 @@ namespace ClassEdit {
         QString m_fileName;
         qint64 m_startOffset;
         qint64 m_endOffset;
-        QDateTime m_modifiedDate;
+        QDateTime m_modifiedTime;
         QBuffer m_editDataIO;
         DataReader* m_editDataReader;
         DataReader* m_aauDataReader;

@@ -36,7 +36,7 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path)
     foreach (const QFileInfo &file, files) {
         cf = new CardFile(file);
         cf->setParent(this);
-        cf->setModifiedDate(file.lastModified());
+        cf->setModifiedTime(file.lastModified());
         cf->setModelIndex(index);
         QObject::connect(cf, &CardFile::changed, this, &FileSystemCardListModel::cardChanged);
         m_cardList << cf;
@@ -73,6 +73,9 @@ QVariant FileSystemCardListModel::data(const QModelIndex &index, int role) const
         return card->getRoster();
     else if (role == CardFileRole) {
         return QVariant::fromValue<CardFile*>(card);
+    }
+    else if (role == CardModifiedTimeRole) {
+        return card->getModifiedTime();
     }
     return QVariant();
 }

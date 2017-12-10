@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>914</width>
-    <height>576</height>
+    <width>960</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
         <item>
          <widget class="QLineEdit" name="textFilter">
           <property name="placeholderText">
-           <string>Filter by &lt;..&gt;</string>
+           <string>Filter names</string>
           </property>
           <property name="clearButtonEnabled">
            <bool>true</bool>

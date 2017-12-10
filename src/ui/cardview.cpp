@@ -21,6 +21,7 @@
 #include "../carddatamodel.h"
 #include "../cardfile.h"
 
+#include <QHeaderView>
 #include <QLineEdit>
 
 using namespace ClassEdit;
@@ -28,9 +29,14 @@ using namespace ClassEdit;
 CardView::CardView(QWidget *parent) :
     QTabWidget(parent),
     ui(new Ui::CardView),
-    m_card(nullptr)
+    m_card(nullptr),
+    m_cardDataSortFilterModel(new QSortFilterProxyModel(this))
 {
     ui->setupUi(this);
+    m_cardDataSortFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    m_cardDataSortFilterModel->setFilterKeyColumn(2);
+    ui->editDataView->setModel(m_cardDataSortFilterModel);
+    connect(ui->textMakerKeyFilter, &QLineEdit::textChanged, m_cardDataSortFilterModel, &QSortFilterProxyModel::setFilterFixedString);
 }
 
 CardView::~CardView()
@@ -46,5 +52,13 @@ void CardView::cardDestroyed()
 void CardView::modelItemActivated(const QModelIndex &index)
 {
     CardFile* card = index.data(CardFileRole).value<CardFile*>();
-    ui->editDataView->setModel(card->getEditDataModel());
+    ui->cardFace->setPixmap(card->getFace());
+    m_cardDataSortFilterModel->setSourceModel(card->getEditDataModel());
+    QHeaderView *header = ui->editDataView->header();
+    if (header) {
+        header->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+        header->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+        header->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+        header->setSectionResizeMode(3, QHeaderView::Stretch);
+    }
 }

@@ -1,6 +1,7 @@
 #ifndef CARDVIEW_H
 #define CARDVIEW_H
 
+#include <QSortFilterProxyModel>
 #include <QTabWidget>
 
 namespace Ui {
@@ -28,6 +29,7 @@ namespace ClassEdit {
     private:
         Ui::CardView *ui;
         CardFile *m_card;
+        QSortFilterProxyModel *m_cardDataSortFilterModel;
     };
 
 }
