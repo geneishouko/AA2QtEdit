@@ -34,6 +34,10 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path)
     CardFile *cf;
     foreach (const QFileInfo &file, files) {
         cf = new CardFile(file);
+        if (!cf->isValid()) {
+            delete cf;
+            continue;
+        }
         cf->setParent(this);
         cf->setModifiedTime(file.lastModified());
         QObject::connect(cf, &CardFile::changed, this, &FileSystemCardListModel::cardChanged);

@@ -42,6 +42,7 @@ CardFile::CardFile() :
     m_editDataModel = new CardDataModel(this);
     m_parentModel = nullptr;
     m_seat = 0;
+    m_isValid = true;
 }
 
 CardFile::CardFile(const QFileInfo &file) :
@@ -98,16 +99,34 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     //m_editDataOffset = m_cardRosterOffset + m_cardRosterLength;
     //m_editDataLength = rawLength - m_editDataOffset - 4;
 
-    const qint32 aauChunkId = 'aaUd';
-    const qint32 endChunkId = 'IEND';
-    const qint32 versionChunkId = 'Vers';
-    const qint32 blobChunkId = 'Blob';
+    static const char *pngHeader = "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a";
+    static const qint32 aauChunkId = 'aaUd';
+    static const qint32 endChunkId = 'IEND';
+    static const qint32 versionChunkId = 'Vers';
+    static const qint32 blobChunkId = 'Blob';
+
+    static const char editHeader[] = "\x81\x79\x83\x47\x83\x66\x83\x42\x83\x62\x83\x67\x81\x7a";
+    if (!file->seek(editDataOffset)) {
+        m_isValid = false;
+        return;
+    }
+    m_editData = file->read(sizeof(editHeader) - 1);
+    if (m_editData != editHeader) {
+        m_isValid = false;
+        return;
+    }
+    m_editData.resize(0);
 
     m_aauHasBlob = false;
     aauDataOffset = -1;
     file->seek(startOffset);
     qint32 chunkLength = 0, chunkId = 0;
-    in.skipRawData(8);
+    m_editData = file->read(8);
+    if (m_editData != pngHeader) {
+        m_isValid = false;
+        return;
+    }
+    m_editData.resize(0);
     in.setByteOrder(QDataStream::BigEndian);
     while(!file->atEnd()) {
         in >> chunkLength;
@@ -185,6 +204,11 @@ int CardFile::loadPlayData(QIODevice *file, int offset)
     file->seek(offset);
     file->read(m_playData.data(), playDataSize);
     return static_cast<int>(playDataEnd);
+}
+
+bool CardFile::isValid() const
+{
+    return m_isValid;
 }
 
 CardDataModel *CardFile::getEditDataModel() const

@@ -39,6 +39,7 @@ namespace ClassEdit {
         void setParentModel(QAbstractItemModel *model);
         void init(QIODevice *file, qint64 startOffset, qint64 endOffset);
         int loadPlayData(QIODevice *file, int offset);
+        bool isValid() const;
 
         QString fileName() const;
         QString filePath() const;
@@ -91,6 +92,7 @@ namespace ClassEdit {
         int m_modelIndex;
         Dictionary *m_editDataDictionary;
         QSet<QString> m_dirtyKeyValues;
+        bool m_isValid;
     };
 
 }
