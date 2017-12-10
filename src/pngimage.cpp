@@ -35,6 +35,7 @@ PngImage::PngImage(QByteArray pngData)
 
 int PngImage::setPngData(QIODevice *buffer)
 {
+    m_pixmap = QPixmap();
     static const char *pngHeader = "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a";
     static const char *hdrHeader = "IHDR";
     static const char *endHeader = "IEND";
