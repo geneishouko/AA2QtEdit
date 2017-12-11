@@ -464,7 +464,7 @@ void CardFile::save()
 
 void CardFile::writeToDevice(QIODevice *device, qint64 *editOffset, qint64 *aaudOffset)
 {
-    qDebug() << "Writing card at" << device->pos();
+    int cardat = device->pos();
     qint64 locEditOffset;
     device->write(getEditDataValue(facePngKey).toByteArray());
     if (m_aauDataVersion >= 2) {
@@ -489,7 +489,7 @@ void CardFile::writeToDevice(QIODevice *device, qint64 *editOffset, qint64 *aaud
     qint32 finalOffset = static_cast<qint32>(device->pos() - locEditOffset) + 4;
     device->write(reinterpret_cast<char*>(&finalOffset), 4);
     if (!m_playData.isEmpty()) {
-        qDebug() << "Play data at" << device->pos();
+        qDebug() << "Card at" << cardat << "play data at" << device->pos();
         device->write(m_playData);
     }
 }

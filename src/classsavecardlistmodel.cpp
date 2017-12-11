@@ -60,7 +60,6 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
     file.seek(0);
     m_header.resize(headerSize);
     file.read(m_header.data(), headerSize);
-    qDebug() << "Got" << headerSize << "bytes header";
     for (DataReader::DataBlockList::const_iterator it = m_classData.constBegin(); it != m_classData.constEnd(); it++) {
         m_headerDictionary->insert((*it)->key(), m_classHeaderReader->read(&buffer, (*it)));
     }
@@ -92,6 +91,7 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
         card->setSeat(playSeat);
         isMale = data[cardOffset - 5] == '\0';
         pos = cardPlayDataEndOffset;
+        qDebug() << "Card At" << cardOffset << "play data at" << cardPlayDataOffset;
     }
 
     qint64 footerSize = data.size() - cardPlayDataEndOffset;
@@ -125,6 +125,7 @@ bool ClassSaveCardListModel::saveToDisk()
     QSaveFile file(m_filePath);
     file.open(QIODevice::WriteOnly);
     file.write(m_header);
+    qDebug() << "Wrote"<<m_header.size()<<"header bytes";
     int gender, seat;
     foreach (CardFile *card, m_cardList) {
         gender = card->getGender();
