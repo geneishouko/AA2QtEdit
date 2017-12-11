@@ -25,6 +25,7 @@ namespace ClassEdit {
         void modelItemSelected(const QModelIndex &index);
         void modelItemUpdated(const QModelIndex &index);
         void importCloth();
+        void extractCard();
         void replaceCard();
         void replaceFacePNG();
         void replaceRosterPNG();

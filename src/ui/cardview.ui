@@ -17,7 +17,7 @@
    <enum>QTabWidget::North</enum>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>2</number>
   </property>
   <widget class="QWidget" name="generalTab">
    <attribute name="title">
@@ -189,13 +189,20 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="extractCardButton">
+           <property name="text">
+            <string>Extract Card</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>95</width>
+             <width>47</width>
              <height>20</height>
             </size>
            </property>
@@ -366,6 +373,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>extractCardButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CardView</receiver>
+   <slot>extractCard()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>217</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>modelItemActivated(QModelIndex)</slot>
@@ -373,5 +396,6 @@
   <slot>replaceRosterPNG()</slot>
   <slot>replaceCard()</slot>
   <slot>importCloth()</slot>
+  <slot>extractCard()</slot>
  </slots>
 </ui>

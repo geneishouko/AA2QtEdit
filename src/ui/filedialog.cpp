@@ -13,3 +13,13 @@ QString FileDialog::getOpenFileName(Context context, const QString &filter, cons
     }
     return ret;
 }
+
+QString FileDialog::getSaveFileName(FileDialog::Context context, const QString &filter, const QString &caption, QWidget *parent)
+{
+    QString ret = QFileDialog::getSaveFileName(parent, caption, m_selectionHistory[context], filter);
+    if (!ret.isEmpty()) {
+        QFileInfo info(ret);
+        m_selectionHistory[context] = info.dir().path();
+    }
+    return ret;
+}

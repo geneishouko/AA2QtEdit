@@ -381,7 +381,7 @@ void CardFile::saveToFile(const QString &file)
     QSaveFile save(file);
     save.open(QFile::WriteOnly);
     qint64 editOffset, aaudOffset;
-    writeToDevice(&save, &editOffset, &aaudOffset);
+    writeToDevice(&save, false, &editOffset, &aaudOffset);
 
     // Appended AAU blobs only from AAU data ver 3
     if (m_aauDataVersion < 3) {
@@ -445,7 +445,7 @@ void CardFile::save()
         saveToFile(m_filePath);
 }
 
-void CardFile::writeToDevice(QIODevice *device, qint64 *editOffset, qint64 *aaudOffset)
+void CardFile::writeToDevice(QIODevice *device, bool writePlayData, qint64 *editOffset, qint64 *aaudOffset)
 {
     int cardat = device->pos();
     qint64 locEditOffset;
@@ -471,7 +471,7 @@ void CardFile::writeToDevice(QIODevice *device, qint64 *editOffset, qint64 *aaud
 
     qint32 finalOffset = static_cast<qint32>(device->pos() - locEditOffset) + 4;
     device->write(reinterpret_cast<char*>(&finalOffset), 4);
-    if (!m_playData.isEmpty()) {
+    if (writePlayData && !m_playData.isEmpty()) {
         qDebug() << "Card at" << cardat << "play data at" << device->pos();
         device->write(m_playData);
     }

@@ -132,7 +132,7 @@ bool ClassSaveCardListModel::saveToDisk()
         seat = card->seat();
         file.write(reinterpret_cast<char*>(&gender), 1);
         file.write(reinterpret_cast<char*>(&seat), 4);
-        card->writeToDevice(&file);
+        card->writeToDevice(&file, true);
     }
     file.write(m_footer);
     return file.commit();

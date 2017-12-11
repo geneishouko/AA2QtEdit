@@ -92,6 +92,15 @@ void CardView::importCloth()
     }
 }
 
+void CardView::extractCard()
+{
+    if (m_card) {
+        QString file = FileDialog::getSaveFileName(FileDialog::ExtractCard, "PNG Images (*.png)", "Select a card", this);
+        if (!file.isEmpty())
+            m_card->saveToFile(file);
+    }
+}
+
 void CardView::replaceCard()
 {
     if (m_card) {

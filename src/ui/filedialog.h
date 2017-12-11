@@ -11,11 +11,13 @@ namespace ClassEdit {
             CardFolder,
             ClassSave,
             ImportCloth,
+            ExtractCard,
             ReplaceCard,
             ReplacePNG
         };
 
         QString getOpenFileName(Context context, const QString &filter, const QString &caption, QWidget *parent = nullptr);
+        QString getSaveFileName(Context context, const QString &filter, const QString &caption, QWidget *parent = nullptr);
     };
 
 }

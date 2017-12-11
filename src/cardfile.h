@@ -70,7 +70,7 @@ namespace ClassEdit {
         void commitChanges();
         void save();
         void saveToFile(const QString &file);
-        void writeToDevice(QIODevice *device, qint64 *editOffset = nullptr, qint64 *aaudOffset = nullptr);
+        void writeToDevice(QIODevice *device, bool writePlayData = false, qint64 *editOffset = nullptr, qint64 *aaudOffset = nullptr);
 
     signals:
         void changed(int index);
