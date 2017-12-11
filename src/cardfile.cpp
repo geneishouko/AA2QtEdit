@@ -86,9 +86,6 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     qint32 editDataOffset;
     qint32 aauDataOffset;
     qint32 m_aauDataLength = 0;
-    qint32 aauBlobOffset;
-    qint32 aauBlobLength;
-    bool m_aauHasBlob;
 
     QDataStream in(file);
     in.setByteOrder(QDataStream::LittleEndian);
@@ -109,7 +106,6 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     static const qint32 aauChunkId = 'aaUd';
     static const qint32 endChunkId = 'IEND';
     static const qint32 versionChunkId = 'Vers';
-    static const qint32 blobChunkId = 'Blob';
 
     static const char editHeader[] = "\x81\x79\x83\x47\x83\x66\x83\x42\x83\x62\x83\x67\x81\x7a";
     if (!file->seek(editDataOffset)) {
@@ -123,7 +119,6 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     }
     m_editData.resize(0);
 
-    m_aauHasBlob = false;
     aauDataOffset = -1;
     file->seek(startOffset);
     qint32 chunkLength = 0, chunkId = 0;
@@ -153,22 +148,8 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
         file->seek(aauDataOffset + 8); // skip AAU header
         in >> chunkId;
         in >> chunkLength;
-        //Q_ASSERT(chunkId == versionChunkId);
-        //Q_ASSERT(chunkLength == 3);
         if (chunkId == versionChunkId) {
             m_aauDataVersion = chunkLength;
-            in >> chunkId;
-            if (chunkId == blobChunkId) {
-                m_aauHasBlob = true;
-                aauBlobOffset = -1;
-                file->seek(endOffset - 20);
-                QByteArray magic(8, 0);
-                in.readRawData(magic.data(), 8);
-                if (magic == "MODCARD3") {
-                    in >> aauBlobOffset;
-                    aauBlobOffset = endOffset - aauBlobOffset;
-                }
-            }
         }
     }
 
@@ -411,7 +392,8 @@ void CardFile::saveToFile(const QString &file)
     int blobDelta, aaudDelta, editDelta;
     static const int footerModcardSize = 8 + 4 * 3;
     static const char *footerModcardMagic = "MODCARD3";
-    char magic[8];
+    char magic[9];
+    magic[8] = 0;
     static const int tempSize = 1024 * 1024;
 
     QFile originalFile(m_filePath);
@@ -432,17 +414,17 @@ void CardFile::saveToFile(const QString &file)
     temp.resize(tempSize);
 
     originalFile.seek(originalFile.size() - blobDelta);
-    bytesWritten = originalFile.read(temp.data(), tempSize > blobSize ? blobSize : tempSize);
-    while (bytesWritten > 0 && blobSize > 0) {
-        blobSize -= bytesWritten;
-        save.write(temp.data(), bytesWritten);
+    do {
         bytesWritten = originalFile.read(temp.data(), tempSize < blobSize ? tempSize : blobSize);
-        if (bytesWritten < 1)
-            save.cancelWriting();
-    }
+        save.write(temp.data(), bytesWritten);
+        blobSize -= bytesWritten;
+    } while (bytesWritten > 0 && blobSize > 0);
+    if (blobSize > 0)
+        save.cancelWriting();
     originalFile.close();
 
-    aaudDelta = static_cast<int>(save.pos() - aaudOffset + footerModcardSize);
+    // Skip aaUd png header
+    aaudDelta = static_cast<int>(save.pos() - aaudOffset - 8 + footerModcardSize);
     editDelta = static_cast<int>(save.pos() - editOffset + footerModcardSize);
 
     save.write(footerModcardMagic, 8);
@@ -450,7 +432,7 @@ void CardFile::saveToFile(const QString &file)
     save.write(reinterpret_cast<char*>(&aaudDelta), 4);
     save.write(reinterpret_cast<char*>(&editDelta), 4);
 
-    save.commit();
+    qDebug() << "Saved modcard" << save.commit();
 }
 
 void CardFile::save()
