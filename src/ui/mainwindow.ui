@@ -138,6 +138,9 @@
    </property>
   </action>
   <action name="actionSave_All_Changes">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../../icons/icons.qrc">
      <normaloff>:/icon/save-all.svg</normaloff>:/icon/save-all.svg</iconset>
