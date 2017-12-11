@@ -4,11 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets svg
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET = ClassEditor
+TARGET = AA2QtEdit
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
