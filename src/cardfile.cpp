@@ -402,8 +402,6 @@ void CardFile::saveToFile(const QString &file)
     qint64 editOffset, aaudOffset;
     writeToDevice(&save, &editOffset, &aaudOffset);
 
-    QFile originalFile(m_filePath);
-    originalFile.open(QIODevice::ReadOnly);
     // Appended AAU blobs only from AAU data ver 3
     if (m_aauDataVersion < 3) {
         save.commit();
@@ -416,9 +414,12 @@ void CardFile::saveToFile(const QString &file)
     char magic[8];
     static const int tempSize = 1024 * 1024;
 
+    QFile originalFile(m_filePath);
+    originalFile.open(QIODevice::ReadOnly);
     originalFile.seek(originalFile.size() - footerModcardSize);
     originalFile.read(magic, 8);
     if (qstrcmp(magic, footerModcardMagic)) {
+        originalFile.close();
         save.commit();
         return;
     }
