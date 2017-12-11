@@ -24,6 +24,8 @@ namespace ClassEdit {
     public slots:
         void modelItemSelected(const QModelIndex &index);
         void modelItemUpdated(const QModelIndex &index);
+        void importCloth();
+        void replaceCard();
         void replaceFacePNG();
         void replaceRosterPNG();
 

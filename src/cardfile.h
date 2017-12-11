@@ -13,6 +13,7 @@
 
 namespace ClassEdit {
 
+    class ClothData;
     class DataReader;
     class CardDataModel;
     class Dictionary;
@@ -52,12 +53,16 @@ namespace ClassEdit {
         QPixmap getRoster();
         QString fullName() const;
         QDateTime modifiedTime() const;
+        void replaceCard(const QString &file);
         int seat() const;
+        void setClothes(int slot, ClothData *cloth);
         void setEditDataValue(const QString &key, const QVariant &value);
         void setModelIndex(int index);
         void setModifiedTime(const QDateTime &date);
         void setSeat(int seat);
+        void setFace(const QByteArray &file);
         void setFace(QIODevice *file);
+        void setRoster(const QByteArray &file);
         void setRoster(QIODevice *file);
 
         void updateQuickInfoGetters();

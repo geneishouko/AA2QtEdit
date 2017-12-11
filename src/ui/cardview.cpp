@@ -20,6 +20,7 @@
 
 #include "../carddatamodel.h"
 #include "../cardfile.h"
+#include "../clothdata.h"
 #include "filedialog.h"
 
 #include <QHeaderView>
@@ -62,6 +63,7 @@ void CardView::modelItemSelected(const QModelIndex &index)
         header->setSectionResizeMode(2, QHeaderView::ResizeToContents);
         header->setSectionResizeMode(3, QHeaderView::Stretch);
     }
+    ui->replaceCardButton->setEnabled(card->filePath().isEmpty());
     m_card = card;
 }
 
@@ -70,6 +72,32 @@ void CardView::modelItemUpdated(const QModelIndex &index)
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
     if (m_card == card) {
         ui->cardFace->setPixmap(card->getFace());
+    }
+}
+
+void CardView::importCloth()
+{
+    if (m_card) {
+        bool clothSlot[4];
+        clothSlot[0] = ui->checkClothSlot1->isChecked();
+        clothSlot[1] = ui->checkClothSlot2->isChecked();
+        clothSlot[2] = ui->checkClothSlot3->isChecked();
+        clothSlot[3] = ui->checkClothSlot4->isChecked();
+        ClothData *cloth = ClothData::fromClothFile(FileDialog::getOpenFileName(FileDialog::ImportCloth, "Cloth (*.cloth)", "", this));
+        for (int i = 0; i < 4; i++) {
+            if (clothSlot[i])
+                m_card->setClothes(i, cloth);
+        }
+        delete cloth;
+    }
+}
+
+void CardView::replaceCard()
+{
+    if (m_card) {
+        QString file =FileDialog::getOpenFileName(FileDialog::ReplaceCard, "PNG Images (*.png)", "Select a card", this);
+        if (!file.isEmpty())
+            m_card->replaceCard(file);
     }
 }
 

@@ -10,6 +10,8 @@ namespace ClassEdit {
         enum Context {
             CardFolder,
             ClassSave,
+            ImportCloth,
+            ReplaceCard,
             ReplacePNG
         };
 

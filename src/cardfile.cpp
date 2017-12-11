@@ -18,6 +18,7 @@
 #include "cardfile.h"
 
 #include "carddatamodel.h"
+#include "clothdata.h"
 #include "datareader.h"
 #include "dictionary.h"
 #include "pngimage.h"
@@ -34,6 +35,12 @@ using namespace ClassEdit;
 static const qint32 editDataLength = 3011;
 static const QString facePngKey("FACE_PNG_DATA");
 static const QString rosterPngKey("ROSTER_PNG_DATA");
+static const QString clothKeys[4] = {
+    "UNIFORM",
+    "SPORT",
+    "SWIMSUIT",
+    "CLUB"
+};
 
 CardFile::CardFile()
 {
@@ -283,9 +290,31 @@ QDateTime CardFile::modifiedTime() const
     return m_modifiedTime;
 }
 
+void CardFile::replaceCard(const QString &file)
+{
+    CardFile *c = new CardFile(file);
+    if (c->isValid()) {
+        m_editData = c->m_editData;
+        m_aauData = c->m_aauData;
+        m_aauDataVersion = c->m_aauDataVersion;
+        updateQuickInfoGetters();
+        setFace(c->getEditDataValue(facePngKey).toByteArray());
+        setRoster(c->getEditDataValue(rosterPngKey).toByteArray());
+    }
+    delete c;
+}
+
 int CardFile::seat() const
 {
     return m_seat;
+}
+
+void CardFile::setClothes(int slot, ClothData *cloth)
+{
+    QHash<QString, QVariant> values = cloth->getValues(clothKeys[slot]);
+    for (QHash<QString, QVariant>::ConstIterator it = values.cbegin(); it != values.cend(); it++) {
+        setEditDataValue(it.key(), it.value());
+    }
 }
 
 void CardFile::setModifiedTime(const QDateTime &date)
@@ -298,10 +327,26 @@ void CardFile::setSeat(int seat)
     m_seat = seat;
 }
 
+void CardFile::setFace(const QByteArray &file)
+{
+    QBuffer buffer;
+    buffer.setData(file);
+    buffer.open(QIODevice::ReadOnly);
+    setFace(&buffer);
+}
+
 void CardFile::setFace(QIODevice *file)
 {
     m_face = QPixmap();
     setEditDataValue(facePngKey, PngImage::getPngData(file));
+}
+
+void CardFile::setRoster(const QByteArray &file)
+{
+    QBuffer buffer;
+    buffer.setData(file);
+    buffer.open(QIODevice::ReadOnly);
+    setRoster(&buffer);
 }
 
 void CardFile::setRoster(QIODevice *file)
