@@ -438,6 +438,7 @@ void CardFile::saveToFile(const QString &file)
 void CardFile::save()
 {
     commitChanges();
+    updateQuickInfoGetters();
     if (m_parentModel && m_filePath.isEmpty()) // If this CardFile was read from a class save
         m_parentModel->submit();
     else
