@@ -39,11 +39,27 @@ CardView::CardView(QWidget *parent) :
     m_cardDataSortFilterModel->setFilterKeyColumn(2);
     ui->editDataView->setModel(m_cardDataSortFilterModel);
     connect(ui->textMakerKeyFilter, &QLineEdit::textChanged, m_cardDataSortFilterModel, &QSortFilterProxyModel::setFilterFixedString);
+
+    connect(ui->PROFILE_FAMILY_NAME, &QLineEdit::textEdited, this, &CardView::lineEditChanged);
+    connect(ui->PROFILE_FIRST_NAME, &QLineEdit::textEdited, this, &CardView::lineEditChanged);
 }
 
 CardView::~CardView()
 {
     delete ui;
+}
+
+void CardView::lineEditChanged(const QString &newText)
+{
+    if (m_card) {
+        m_card->setEditDataValue(sender()->objectName(), newText);
+    }
+}
+
+void CardView::updateDataControls()
+{
+    ui->PROFILE_FAMILY_NAME->setText(m_card->getEditDataValue(ui->PROFILE_FAMILY_NAME->objectName()).toString());
+    ui->PROFILE_FIRST_NAME->setText(m_card->getEditDataValue(ui->PROFILE_FIRST_NAME->objectName()).toString());
 }
 
 void CardView::modelItemSelected(const QModelIndex &index)
@@ -63,8 +79,11 @@ void CardView::modelItemSelected(const QModelIndex &index)
         header->setSectionResizeMode(2, QHeaderView::ResizeToContents);
         header->setSectionResizeMode(3, QHeaderView::Stretch);
     }
-    ui->replaceCardButton->setEnabled(card->filePath().isEmpty());
+    bool isFileSystemCard = card->filePath().isEmpty();
+    ui->replaceCardButton->setEnabled(isFileSystemCard);
+    ui->extractCardButton->setEnabled(isFileSystemCard);
     m_card = card;
+    updateDataControls();
 }
 
 void CardView::modelItemUpdated(const QModelIndex &index)
@@ -72,6 +91,7 @@ void CardView::modelItemUpdated(const QModelIndex &index)
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
     if (m_card == card) {
         ui->cardFace->setPixmap(card->getFace());
+        updateDataControls();
     }
 }
 

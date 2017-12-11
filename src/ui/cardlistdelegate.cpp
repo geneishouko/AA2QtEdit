@@ -89,7 +89,7 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 
 QSize CardListDelegate::sizeHint(const QStyleOptionViewItem &/* option */, const QModelIndex &/* index */) const
 {
-    return QSize(220, itemVerticalMargin * 2 + cardSize.height());
+    return QSize(260, itemVerticalMargin * 2 + cardSize.height());
 }
 
 bool CardListDelegate::needsUpdate(const QPoint &pos)

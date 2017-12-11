@@ -21,6 +21,9 @@ namespace ClassEdit {
         explicit CardView(QWidget *parent = nullptr);
         ~CardView();
 
+        void lineEditChanged(const QString &newText);
+        void updateDataControls();
+
     public slots:
         void modelItemSelected(const QModelIndex &index);
         void modelItemUpdated(const QModelIndex &index);
@@ -29,6 +32,9 @@ namespace ClassEdit {
         void replaceCard();
         void replaceFacePNG();
         void replaceRosterPNG();
+
+    signals:
+        void setEditDataValue(const QString &key, const QVariant &value);
 
     private:
         Ui::CardView *ui;

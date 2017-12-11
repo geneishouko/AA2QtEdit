@@ -56,7 +56,6 @@ namespace ClassEdit {
         void replaceCard(const QString &file);
         int seat() const;
         void setClothes(int slot, ClothData *cloth);
-        void setEditDataValue(const QString &key, const QVariant &value);
         void setModelIndex(int index);
         void setModifiedTime(const QDateTime &date);
         void setSeat(int seat);
@@ -71,6 +70,9 @@ namespace ClassEdit {
         void save();
         void saveToFile(const QString &file);
         void writeToDevice(QIODevice *device, bool writePlayData = false, qint64 *editOffset = nullptr, qint64 *aaudOffset = nullptr);
+
+    public slots:
+        void setEditDataValue(const QString &key, const QVariant &value);
 
     signals:
         void changed(int index);
