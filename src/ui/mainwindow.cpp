@@ -21,6 +21,7 @@
 #include "../cardfile.h"
 #include "../classsavecardlistmodel.h"
 #include "../filesystemcardlistmodel.h"
+#include "filedialog.h"
 
 #include <QFileDialog>
 #include <QLabel>
@@ -44,7 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QWidget *separator = new QWidget(this);
     separator->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     ui->mainToolBar->insertWidget(ui->actionQuit, separator);
-    QObject::connect(m_sortFilterModel, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), ui->cardListView, SLOT(update(QModelIndex)));
+    QObject::connect(m_sortFilterModel, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), ui->cardView, SLOT(modelItemUpdated(QModelIndex)));
+    QObject::connect(ui->cardListView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), ui->cardView, SLOT(modelItemSelected(QModelIndex)));
     m_sortFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortRole(CardModifiedTimeRole);
@@ -69,6 +71,8 @@ MainWindow::~MainWindow()
 void MainWindow::loadDirectory()
 {
     QString path = QFileDialog::getExistingDirectory();
+    if (path.isEmpty())
+        return;
     FileSystemCardListModel *fs = new FileSystemCardListModel(path);
     m_sortFilterModel->setSourceModel(fs);
     destroyCurrentModel();
@@ -79,6 +83,7 @@ void MainWindow::destroyCurrentModel()
 {
     if (m_cardListModel)
         m_cardListModel->deleteLater();
+    ui->cardView->modelItemSelected(QModelIndex());
 }
 
 void MainWindow::quit()
@@ -88,7 +93,9 @@ void MainWindow::quit()
 
 void MainWindow::loadSaveFile()
 {
-    QString path = QFileDialog::getOpenFileName();
+    QString path = FileDialog::getOpenFileName(FileDialog::ClassSave, "Class saves (*.sav)", "Open a class save", this);
+    if (path.isEmpty())
+        return;
     ClassSaveCardListModel *cs = new ClassSaveCardListModel();
     cs->loadFromFile(path);
     m_sortFilterModel->setSourceModel(cs);

@@ -25,17 +25,8 @@ using namespace ClassEdit;
 
 static const char *pngFormat = "PNG";
 
-PngImage::PngImage(QByteArray pngData)
+QByteArray PngImage::getPngData(QIODevice *buffer)
 {
-    if (!pngData.isNull()) {
-        QBuffer buffer(&pngData);
-        setPngData(&buffer);
-    }
-}
-
-int PngImage::setPngData(QIODevice *buffer)
-{
-    m_pixmap = QPixmap();
     static const char *pngHeader = "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a";
     static const char *hdrHeader = "IHDR";
     static const char *endHeader = "IEND";
@@ -76,30 +67,19 @@ int PngImage::setPngData(QIODevice *buffer)
     buffer->seek(startPos);
     buffer->read(pngData.data(), bytesRead);
     pngData.append(endBlock, 12);
-    m_pngData = pngData;
-    return m_pngData.size();
+    return pngData;
 }
 
-QByteArray PngImage::pngData() const
+QImage PngImage::toImage(const QByteArray &data)
 {
-    return m_pngData;
+    return QImage::fromData(data, pngFormat);
 }
 
-QImage PngImage::toQImage() const
+QPixmap PngImage::toPixmap(const QByteArray &data)
 {
-    if (!m_pngData.isNull() && !m_pngData.isEmpty()) {
-        return QImage::fromData(m_pngData, pngFormat);
-    }
-    return QImage();
-}
-
-QPixmap PngImage::toQPixmap()
-{
-    if (m_pixmap.isNull() && !m_pngData.isNull() && !m_pngData.isEmpty()) {
-        QBuffer buffer(&m_pngData);
-        buffer.open(QIODevice::ReadOnly);
-        QImageReader reader(&buffer, pngFormat);
-        m_pixmap = QPixmap::fromImageReader(&reader);
-    }
-    return m_pixmap;
+    QBuffer buffer;
+    buffer.setData(data);
+    buffer.open(QIODevice::ReadOnly);
+    QImageReader reader(&buffer, pngFormat);
+    return QPixmap::fromImageReader(&reader);
 }

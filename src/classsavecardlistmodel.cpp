@@ -83,6 +83,7 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
         CardFile *card = new CardFile(&buffer, cardOffset, cardEndOffset);
         cardPlayDataEndOffset = card->loadPlayData(&buffer, cardPlayDataOffset);
         card->setParentModel(this);
+        card->setModelIndex(m_cardList.size());
         QObject::connect(card, &CardFile::changed, this, &ClassSaveCardListModel::cardChanged);
         m_cardList << card;
 

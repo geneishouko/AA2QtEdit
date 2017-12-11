@@ -20,6 +20,7 @@
 
 #include "../carddatamodel.h"
 #include "../cardfile.h"
+#include "filedialog.h"
 
 #include <QHeaderView>
 #include <QLineEdit>
@@ -44,13 +45,13 @@ CardView::~CardView()
     delete ui;
 }
 
-void CardView::cardDestroyed()
+void CardView::modelItemSelected(const QModelIndex &index)
 {
-    m_card = nullptr;
-}
-
-void CardView::modelItemActivated(const QModelIndex &index)
-{
+    if (!index.isValid()) {
+        m_cardDataSortFilterModel->setSourceModel(nullptr);
+        m_card = nullptr;
+        return;
+    }
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
     ui->cardFace->setPixmap(card->getFace());
     m_cardDataSortFilterModel->setSourceModel(card->getEditDataModel());
@@ -60,5 +61,32 @@ void CardView::modelItemActivated(const QModelIndex &index)
         header->setSectionResizeMode(1, QHeaderView::ResizeToContents);
         header->setSectionResizeMode(2, QHeaderView::ResizeToContents);
         header->setSectionResizeMode(3, QHeaderView::Stretch);
+    }
+    m_card = card;
+}
+
+void CardView::modelItemUpdated(const QModelIndex &index)
+{
+    CardFile *card = index.data(CardFileRole).value<CardFile*>();
+    if (m_card == card) {
+        ui->cardFace->setPixmap(card->getFace());
+    }
+}
+
+void CardView::replaceFacePNG()
+{
+    if (m_card) {
+        QFile file(FileDialog::getOpenFileName(FileDialog::ReplacePNG, "PNG Images (*.png)", "Select a PNG image", this));
+        if (file.open(QFile::ReadOnly))
+            m_card->setFace(&file);
+    }
+}
+
+void CardView::replaceRosterPNG()
+{
+    if (m_card) {
+        QFile file(FileDialog::getOpenFileName(FileDialog::ReplacePNG, "PNG Images (*.png)", "Select a PNG image", this));
+        if (file.open(QFile::ReadOnly))
+            m_card->setRoster(&file);
     }
 }

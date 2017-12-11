@@ -89,6 +89,12 @@
              <height>300</height>
             </size>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>300</height>
+            </size>
+           </property>
            <property name="scaledContents">
             <bool>true</bool>
            </property>
@@ -104,7 +110,7 @@
          <item>
           <widget class="QPushButton" name="replaceRosterButton">
            <property name="text">
-            <string>Replace Roster from PNG</string>
+            <string>Replace Thumb from PNG</string>
            </property>
           </widget>
          </item>
@@ -151,8 +157,43 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>replaceFaceButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CardView</receiver>
+   <slot>replaceFacePNG()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>540</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>replaceRosterButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CardView</receiver>
+   <slot>replaceRosterPNG()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>540</x>
+     <y>408</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>modelItemActivated(QModelIndex)</slot>
+  <slot>replaceFacePNG()</slot>
+  <slot>replaceRosterPNG()</slot>
  </slots>
 </ui>

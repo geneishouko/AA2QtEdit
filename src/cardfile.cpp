@@ -32,9 +32,10 @@
 using namespace ClassEdit;
 
 static const qint32 editDataLength = 3011;
+static const QString facePngKey("FACE_PNG_DATA");
+static const QString rosterPngKey("ROSTER_PNG_DATA");
 
-CardFile::CardFile() :
-    m_face(new PngImage), m_roster(new PngImage)
+CardFile::CardFile()
 {
     m_editDataReader = DataReader::getDataReader("chardata");
     m_playDataReader = DataReader::getDataReader("playdata");
@@ -64,8 +65,6 @@ CardFile::CardFile(QIODevice *file, qint64 startOffset, qint64 endOffset) :
 
 CardFile::~CardFile()
 {
-    delete m_face;
-    delete m_roster;
 }
 
 void CardFile::setParentModel(QAbstractItemModel *model)
@@ -167,9 +166,9 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     }
 
     file->seek(startOffset);
-    m_face->setPngData(file);
+    setEditDataValue(facePngKey, PngImage::getPngData(file));
     file->seek(cardRosterOffset);
-    m_roster->setPngData(file);
+    setEditDataValue(rosterPngKey, PngImage::getPngData(file));
 
     if (m_aauDataVersion >= 2) {
         m_aauData.resize(m_aauDataLength);
@@ -189,6 +188,7 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     }
 
     updateQuickInfoGetters();
+    m_dirtyKeyValues.clear();
 }
 
 int CardFile::loadPlayData(QIODevice *file, int offset)
@@ -259,14 +259,18 @@ int CardFile::getGender() const
     return m_gender;
 }
 
-QPixmap CardFile::getFace() const
+QPixmap CardFile::getFace()
 {
-    return m_face->toQPixmap();
+    if (m_face.isNull())
+        m_face = PngImage::toPixmap(getEditDataValue(facePngKey).toByteArray());
+    return m_face;
 }
 
-QPixmap CardFile::getRoster() const
+QPixmap CardFile::getRoster()
 {
-    return m_roster->toQPixmap();
+    if (m_roster.isNull())
+        m_roster= PngImage::toPixmap(getEditDataValue(rosterPngKey).toByteArray());
+    return m_roster;
 }
 
 QString CardFile::fullName() const
@@ -294,6 +298,18 @@ void CardFile::setSeat(int seat)
     m_seat = seat;
 }
 
+void CardFile::setFace(QIODevice *file)
+{
+    m_face = QPixmap();
+    setEditDataValue(facePngKey, PngImage::getPngData(file));
+}
+
+void CardFile::setRoster(QIODevice *file)
+{
+    m_roster = QPixmap();
+    setEditDataValue(rosterPngKey, PngImage::getPngData(file));
+}
+
 void CardFile::updateQuickInfoGetters()
 {
     m_gender = m_editDataReader->read(&m_editDataIO, "PROFILE_GENDER").toInt();
@@ -309,6 +325,11 @@ void CardFile::setEditDataValue(const QString &key, const QVariant &value)
     emit changed(m_modelIndex);
 }
 
+void CardFile::setModelIndex(int index)
+{
+    m_modelIndex = index;
+}
+
 bool CardFile::hasPendingChanges() const
 {
     return !m_dirtyKeyValues.empty();
@@ -319,6 +340,10 @@ void CardFile::commitChanges()
     DataBlock *db;
     for(QSet<QString>::ConstIterator it = m_dirtyKeyValues.cbegin(); it != m_dirtyKeyValues.cend();) {
         db = m_editDataReader->m_dataBlockMap[*it];
+        if (!db) {
+            it = m_dirtyKeyValues.erase(it);
+            continue;
+        }
         m_editDataIO.seek(db->offset());
         m_editDataReader->write(&m_editDataIO, db->key(), m_editDataDictionary->value(db->key()));
         it = m_dirtyKeyValues.erase(it);
@@ -395,7 +420,7 @@ void CardFile::writeToDevice(QIODevice *device, qint64 *editOffset, qint64 *aaud
 {
     qDebug() << "Writing card at" << device->pos();
     qint64 locEditOffset;
-    device->write(m_face->pngData());
+    device->write(getEditDataValue(facePngKey).toByteArray());
     if (m_aauDataVersion >= 2) {
         device->seek(device->pos() - 12); // nuke IEND block
         if (aaudOffset)
@@ -410,9 +435,10 @@ void CardFile::writeToDevice(QIODevice *device, qint64 *editOffset, qint64 *aaud
     qint64 written = device->write(m_editData);
     Q_ASSERT(written = editDataLength);
 
-    qint32 rosterSize = m_roster->pngData().size();
+    QByteArray rosterPng = getEditDataValue(rosterPngKey).toByteArray();
+    qint32 rosterSize = rosterPng.size();
     device->write(reinterpret_cast<char*>(&rosterSize), 4);
-    device->write(m_roster->pngData());
+    device->write(rosterPng);
 
     qint32 finalOffset = static_cast<qint32>(device->pos() - locEditOffset) + 4;
     device->write(reinterpret_cast<char*>(&finalOffset), 4);

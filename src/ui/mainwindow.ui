@@ -210,22 +210,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>cardListView</sender>
-   <signal>activated(QModelIndex)</signal>
-   <receiver>cardView</receiver>
-   <slot>modelItemActivated(QModelIndex)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>229</x>
-     <y>298</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>781</x>
-     <y>293</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>actionQuit</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>

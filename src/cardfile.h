@@ -16,7 +16,6 @@ namespace ClassEdit {
     class DataReader;
     class CardDataModel;
     class Dictionary;
-    class PngImage;
 
     enum CardDataRoles {
         CardFileRole = 0x100,
@@ -49,14 +48,17 @@ namespace ClassEdit {
         QVariant getEditDataType(const QString &key) const;
         QVariant getEditDataValue(const QString &key) const;
         int getGender() const;
-        QPixmap getFace() const;
-        QPixmap getRoster() const;
+        QPixmap getFace();
+        QPixmap getRoster();
         QString fullName() const;
         QDateTime modifiedTime() const;
         int seat() const;
         void setEditDataValue(const QString &key, const QVariant &value);
+        void setModelIndex(int index);
         void setModifiedTime(const QDateTime &date);
         void setSeat(int seat);
+        void setFace(QIODevice *file);
+        void setRoster(QIODevice *file);
 
         void updateQuickInfoGetters();
         bool hasPendingChanges() const;
@@ -86,8 +88,8 @@ namespace ClassEdit {
         QString m_fullName;
         int m_gender;
         int m_seat;
-        PngImage *m_face;
-        PngImage *m_roster;
+        QPixmap m_face;
+        QPixmap m_roster;
 
         int m_modelIndex;
         Dictionary *m_editDataDictionary;

@@ -7,19 +7,11 @@
 
 namespace ClassEdit {
 
-    class PngImage
+    namespace PngImage
     {
-    public:
-        PngImage(QByteArray pngData = QByteArray());
-
-        int setPngData(QIODevice *pngData);
-        QByteArray pngData() const;
-        QImage toQImage() const;
-        QPixmap toQPixmap();
-
-    private:
-        QByteArray m_pngData;
-        QPixmap m_pixmap;
+        QByteArray getPngData(QIODevice *pngData);
+        QImage toImage(const QByteArray &data);
+        QPixmap toPixmap(const QByteArray &data);
     };
 
 }

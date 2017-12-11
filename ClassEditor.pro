@@ -40,7 +40,8 @@ SOURCES += src/main.cpp\
     src/pngimage.cpp \
     src/clothdata.cpp \
     src/datastruct.cpp \
-    src/classsavecardlistmodel.cpp
+    src/classsavecardlistmodel.cpp \
+    src/ui/filedialog.cpp
 
 HEADERS  += src/ui/mainwindow.h \
     src/ui/cardlistview.h \
@@ -58,7 +59,8 @@ HEADERS  += src/ui/mainwindow.h \
     src/pngimage.h \
     src/clothdata.h \
     src/datastruct.h \
-    src/classsavecardlistmodel.h
+    src/classsavecardlistmodel.h \
+    src/ui/filedialog.h
 
 FORMS    += src/ui/mainwindow.ui \
     src/ui/cardview.ui

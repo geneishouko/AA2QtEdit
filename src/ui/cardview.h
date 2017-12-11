@@ -1,6 +1,7 @@
 #ifndef CARDVIEW_H
 #define CARDVIEW_H
 
+#include <QPointer>
 #include <QSortFilterProxyModel>
 #include <QTabWidget>
 
@@ -20,15 +21,15 @@ namespace ClassEdit {
         explicit CardView(QWidget *parent = nullptr);
         ~CardView();
 
-        void setCard(CardFile *card);
-
     public slots:
-        void cardDestroyed();
-        void modelItemActivated(const QModelIndex &index);
+        void modelItemSelected(const QModelIndex &index);
+        void modelItemUpdated(const QModelIndex &index);
+        void replaceFacePNG();
+        void replaceRosterPNG();
 
     private:
         Ui::CardView *ui;
-        CardFile *m_card;
+        QPointer<CardFile> m_card;
         QSortFilterProxyModel *m_cardDataSortFilterModel;
     };
 

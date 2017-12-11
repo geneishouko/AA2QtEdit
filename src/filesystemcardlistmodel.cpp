@@ -40,6 +40,7 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path)
         }
         cf->setParent(this);
         cf->setModifiedTime(file.lastModified());
+        cf->setModelIndex(m_cardList.size());
         QObject::connect(cf, &CardFile::changed, this, &FileSystemCardListModel::cardChanged);
         m_cardList << cf;
     }
