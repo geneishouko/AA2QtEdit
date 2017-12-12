@@ -17,6 +17,7 @@
 
 #include "datareader.h"
 
+#include <QColor>
 #include <QFile>
 #include <QStringBuilder>
 #include <QTextCodec>
@@ -77,10 +78,15 @@ QVariant DataReader::read(QIODevice *data, DataType type, int dataSize) const
         ret = static_cast<int>(c);
     }
 
-    else if (type == DataType::Int32 || type == DataType::Color) {
+    else if (type == DataType::Int32) {
         qint32 c;
         data->read(reinterpret_cast<char*>(&c), 4);
         ret = static_cast<int>(c);
+    }
+    else if (type == DataType::Color) {
+        quint32 c;
+        data->read(reinterpret_cast<char*>(&c), 4);
+        ret = QColor::fromRgba(c);
     }
 
     return ret;
@@ -135,8 +141,13 @@ void DataReader::write(QIODevice *data, const QString &key, const QVariant &valu
         data->write(reinterpret_cast<char*>(&c), 2);
     }
 
-    else if (type == DataType::Int32 || type == DataType::Color) {
+    else if (type == DataType::Int32) {
         int c = static_cast<qint32>(value.toInt());
+        data->write(reinterpret_cast<char*>(&c), 4);
+    }
+    else if (type == DataType::Color) {
+        QColor color = value.value<QColor>();
+        quint32 c = color.rgba();
         data->write(reinterpret_cast<char*>(&c), 4);
     }
 }
