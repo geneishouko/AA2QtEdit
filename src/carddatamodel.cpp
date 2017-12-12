@@ -26,6 +26,7 @@
 using namespace ClassEdit;
 
 QVector<QString> CardDataModel::s_keys;
+static const int dataColumn = 3;
 
 CardDataModel::CardDataModel(CardFile *cardFile) :
     QAbstractListModel(cardFile),
@@ -44,9 +45,14 @@ int CardDataModel::columnCount(const QModelIndex &parent) const
 
 Qt::ItemFlags CardDataModel::flags(const QModelIndex &index) const
 {
-    if (index.column() != 3)
+    if (index.column() != dataColumn)
         return Qt::ItemIsEnabled;
-    return Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren;
+    Qt::ItemFlags f = Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren;
+    if (m_cardFile->dataIsBool(index.row()))
+        f |= Qt::ItemIsUserCheckable;
+    else
+        f |= Qt::ItemIsEditable;
+    return f;
 }
 
 int CardDataModel::rowCount(const QModelIndex &parent) const
@@ -69,13 +75,20 @@ QVariant CardDataModel::data(const QModelIndex &index, int role) const
             return s_keys[index.row()];
 
             case 3:
-            return m_cardFile->getEditDataValue(s_keys[index.row()]);
+            if (!m_cardFile->dataIsBool(index.row()))
+                return m_cardFile->getEditDataValue(s_keys[index.row()]);
+        }
+    }
+    else if (role == Qt::CheckStateRole) {
+        if(index.column() == dataColumn && m_cardFile->dataIsBool(index.row())) {
+            return m_cardFile->getEditDataValue(s_keys[index.row()]).toBool() ?
+                        Qt::Checked : Qt::Unchecked;
         }
     }
     else if (role == Qt::EditRole) {
         return m_cardFile->getEditDataValue(s_keys[index.row()]);
     }
-    else if (role == Qt::BackgroundRole && index.column() != 3) {
+    else if (role == Qt::BackgroundRole && index.column() != dataColumn) {
         return QBrush(qApp->palette().midlight());
     }
     return QVariant();
@@ -91,7 +104,10 @@ QVariant CardDataModel::headerData(int section, Qt::Orientation orientation, int
 
 bool CardDataModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    m_cardFile->setEditDataValue(s_keys[index.row()], value);
+    if (role == Qt::CheckStateRole)
+        m_cardFile->setEditDataValue(s_keys[index.row()], value == Qt::Checked);
+    else
+        m_cardFile->setEditDataValue(s_keys[index.row()], value);
     emit dataChanged(index, index);
     return true;
 }

@@ -271,6 +271,11 @@ QDateTime CardFile::modifiedTime() const
     return m_modifiedTime;
 }
 
+bool CardFile::dataIsBool(int index)
+{
+    return m_editDataReader->m_dataBlocks[index]->type() == DataType::Bool;
+}
+
 void CardFile::replaceCard(const QString &file)
 {
     CardFile *c = new CardFile(file);

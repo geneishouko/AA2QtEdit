@@ -53,6 +53,7 @@ namespace ClassEdit {
         QPixmap getRoster();
         QString fullName() const;
         QDateTime modifiedTime() const;
+        bool dataIsBool(int index);
         void replaceCard(const QString &file);
         int seat() const;
         void setClothes(int slot, ClothData *cloth);
