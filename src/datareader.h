@@ -35,6 +35,7 @@ namespace ClassEdit {
                 return read(data, db);
         }
         void write(QIODevice *data, const QString &key, const QVariant &value) const;
+        void write(QIODevice *data, DataType type, const QVariant &value, int fieldSize) const;
         DataBlockList finalizeDataBlocks(QIODevice *data);
         void finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db);
         static QByteArray decodeString(const QByteArray &data);

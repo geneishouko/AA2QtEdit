@@ -114,16 +114,29 @@ void DataReader::write(QIODevice *data, const QString &key, const QVariant &valu
         type = m_enumerables[db->metaKey()]->type();
     }
 
+    int fieldSize = 0;
+    if (type == DataType::String || type == DataType::EncodedString)
+        fieldSize = db->dataSize();
+
+    write(data, type, value, fieldSize);
+
+    if (db->m_copyAddress > -1) {
+        data->seek(db->m_copyAddress);
+        write(data, type, value, fieldSize);
+    }
+}
+
+void DataReader::write(QIODevice *data, DataType type, const QVariant &value, int fieldSize) const
+{
     if (type == DataType::String || type == DataType::EncodedString) {
         QString string = value.toString();
-        int fieldSize = db->dataSize();
         QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
         QByteArray array = codec->fromUnicode(string);
         if (type == DataType::EncodedString) {
             array.append(fieldSize - array.size(), '\x00');
             array = decodeString(array);
         }
-        data->write(array.data(), db->dataSize());
+        data->write(array.data(), fieldSize);
     }
 
     else if (type == DataType::Bool) {

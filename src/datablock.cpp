@@ -94,6 +94,9 @@ void DataBlock::setAttributes(int currentOffset, QXmlStreamAttributes attributes
         else if (key == "arraysize") {
             m_arraySize = attr.value().toInt();
         }
+
+        else if (key == "copyaddress")
+            m_copyAddress = attr.value().toInt(&ok, 16);
     }
 
     if (!ok)
