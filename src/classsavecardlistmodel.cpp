@@ -91,6 +91,7 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
         card->setSeat(playSeat);
         isMale = data[cardOffset - 5] == '\0';
         pos = cardPlayDataEndOffset;
+        studentsCount--;
         qDebug() << "Card At" << cardOffset << "play data at" << cardPlayDataOffset;
     }
 
