@@ -36,10 +36,14 @@ namespace ClassEdit {
     signals:
         void setEditDataValue(const QString &key, const QVariant &value);
 
+    protected:
+        bool eventFilter(QObject *watched, QEvent *event);
+
     private:
         Ui::CardView *ui;
         QPointer<CardFile> m_card;
         QSortFilterProxyModel *m_cardDataSortFilterModel;
+        int m_setText;
     };
 
 }

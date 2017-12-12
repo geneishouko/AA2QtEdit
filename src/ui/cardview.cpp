@@ -25,6 +25,7 @@
 
 #include <QHeaderView>
 #include <QLineEdit>
+#include <QPlainTextEdit>
 
 using namespace ClassEdit;
 
@@ -32,7 +33,8 @@ CardView::CardView(QWidget *parent) :
     QTabWidget(parent),
     ui(new Ui::CardView),
     m_card(nullptr),
-    m_cardDataSortFilterModel(new QSortFilterProxyModel(this))
+    m_cardDataSortFilterModel(new QSortFilterProxyModel(this)),
+    m_setText(0)
 {
     ui->setupUi(this);
     m_cardDataSortFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -42,6 +44,7 @@ CardView::CardView(QWidget *parent) :
 
     connect(ui->PROFILE_FAMILY_NAME, &QLineEdit::textEdited, this, &CardView::lineEditChanged);
     connect(ui->PROFILE_FIRST_NAME, &QLineEdit::textEdited, this, &CardView::lineEditChanged);
+    ui->PROFILE_PROFILE->installEventFilter(this);
 }
 
 CardView::~CardView()
@@ -60,6 +63,8 @@ void CardView::updateDataControls()
 {
     ui->PROFILE_FAMILY_NAME->setText(m_card->getEditDataValue(ui->PROFILE_FAMILY_NAME->objectName()).toString());
     ui->PROFILE_FIRST_NAME->setText(m_card->getEditDataValue(ui->PROFILE_FIRST_NAME->objectName()).toString());
+    if (!m_setText)
+        ui->PROFILE_PROFILE->setPlainText(m_card->getEditDataValue(ui->PROFILE_PROFILE->objectName()).toString());
 }
 
 void CardView::modelItemSelected(const QModelIndex &index)
@@ -146,4 +151,16 @@ void CardView::replaceRosterPNG()
         if (file.open(QFile::ReadOnly))
             m_card->setRoster(&file);
     }
+}
+
+bool CardView::eventFilter(QObject *watched, QEvent *event)
+{
+    if (event->type() == QEvent::KeyPress) {
+        m_setText++;
+    }
+    else if (event->type() == QEvent::KeyRelease) {
+        m_card->setEditDataValue(watched->objectName(), qobject_cast<QPlainTextEdit*>(watched)->toPlainText());
+        m_setText--;
+    }
+    return false;
 }
