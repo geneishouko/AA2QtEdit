@@ -23,12 +23,20 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+#ifdef Q_OS_LINUX
+    QIcon icon;
+    icon.addFile(":/icon/application-icon_16x16.png");
+    icon.addFile(":/icon/application-icon_32x32.png");
+    icon.addFile(":/icon/application-icon_48x48.png");
+    icon.addFile(":/icon/application-icon_64x64.png");
+    a.setWindowIcon(icon);
+#endif
 
-    MainWindow w;
     ClassEdit::DataReader::getDataReader("chardata");
     ClassEdit::DataReader::getDataReader("playdata");
     ClassEdit::DataReader::getDataReader("headerdata");
     ClassEdit::DataReader::getDataReader("clothdata");
+    MainWindow w;
     w.show();
 
     return a.exec();

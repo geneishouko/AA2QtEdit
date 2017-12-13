@@ -4,5 +4,9 @@
         <file>game.svg</file>
         <file>window-close.svg</file>
         <file>save-all.svg</file>
+        <file>application-icon_64x64.png</file>
+        <file>application-icon_48x48.png</file>
+        <file>application-icon_32x32.png</file>
+        <file>application-icon_16x16.png</file>
     </qresource>
 </RCC>
