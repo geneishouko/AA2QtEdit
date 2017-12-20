@@ -118,6 +118,8 @@ QVariant ClassSaveCardListModel::data(const QModelIndex &index, int role) const
     else if (role == CardFileRole) {
         return QVariant::fromValue<CardFile*>(card);
     }
+    else if (role == CardSeatRole)
+        return card->seat();
     return QVariant();
 }
 
