@@ -26,6 +26,9 @@ namespace ClassEdit {
 
     public:
         DataReader(QIODevice *xmlDefinition);
+        inline DataBlock *getDataBlock(const QString& name) const {
+            return m_dataBlockMap[name];
+        }
         static DataReader *getDataReader(const QString& name);
         DataEnumerable *getDataEnumerable(const QString& name) const;
         QVariant read(QIODevice *data, DataType type, int dataSize = 0) const;

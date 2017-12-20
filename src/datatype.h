@@ -2,6 +2,7 @@
 #define DATATYPE_H
 
 #include <QString>
+#include <QVariant>
 
 namespace ClassEdit {
 
@@ -32,6 +33,26 @@ namespace ClassEdit {
             size = 4;
     }
 
+    inline bool operator==(DataType dt, QVariant::Type vt) {
+        switch (dt) {
+        case Bool:
+            return vt == QVariant::Bool;
+        case Byte:
+        case Int16:
+        case Int32:
+        case Color:
+        case Enum:
+            return vt == QVariant::Int;
+        case String:
+        case EncodedString:
+            return vt == QVariant::String;
+        }
+        return false;
+    }
+
+    inline bool operator!=(DataType dt, QVariant::Type vt) {
+        return !(dt == vt);
+    }
 }
 
 #endif // DATATYPE_H

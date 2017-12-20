@@ -351,6 +351,17 @@ void CardFile::updateQuickInfoGetters()
 
 void CardFile::setEditDataValue(const QString &key, const QVariant &value)
 {
+    if (!value.isValid())
+        return;
+
+    DataBlock *db = m_editDataReader->getDataBlock(key);
+    if (db && db->type() != value.type())
+        return;
+
+    QVariant old = getEditDataValue(key);
+    if (old == value)
+        return;
+
     m_editDataDictionary->insert(key, value);
     m_dirtyKeyValues << key;
     emit changed(m_modelIndex);
