@@ -51,6 +51,9 @@ namespace ClassEdit {
         int getGender() const;
         QPixmap getFace();
         QPixmap getRoster();
+        inline int getModelIndex() const {
+            return m_modelIndex;
+        }
         QString fullName() const;
         QDateTime modifiedTime() const;
         bool dataIsBool(int index);
@@ -77,6 +80,7 @@ namespace ClassEdit {
 
     signals:
         void changed(int index);
+        void saved(int index);
 
     private:
         QString m_filePath;

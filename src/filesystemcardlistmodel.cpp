@@ -42,6 +42,7 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path)
         cf->setModifiedTime(file.lastModified());
         cf->setModelIndex(m_cardList.size());
         QObject::connect(cf, &CardFile::changed, this, &FileSystemCardListModel::cardChanged);
+        QObject::connect(cf, &CardFile::saved, this, &FileSystemCardListModel::cardSaved);
         m_cardList << cf;
     }
 }
@@ -85,7 +86,25 @@ QVariant FileSystemCardListModel::data(const QModelIndex &index, int role) const
 
 void FileSystemCardListModel::cardChanged(int cardIndex)
 {
+    m_changedCardList << m_cardList[cardIndex];
+    emit cardsChanged(m_changedCardList.size());
     const QModelIndex &modelIndex = index(cardIndex);
     emit dataChanged(modelIndex, modelIndex);
+}
+
+void FileSystemCardListModel::cardSaved(int index)
+{
+    m_changedCardList.remove(m_cardList[index]);
+    emit cardsChanged(m_changedCardList.size());
+}
+
+void FileSystemCardListModel::saveAll()
+{
+    // CardFiles will emit saved, which will cause for this model to remove them from this set
+    // don't iterate, just check for empty set
+    while(!m_changedCardList.empty()) {
+        (*m_changedCardList.cbegin())->save();
+    }
+    emit cardsChanged(m_changedCardList.size());
 }
 

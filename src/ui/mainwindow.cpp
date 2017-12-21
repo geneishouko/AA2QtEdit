@@ -68,6 +68,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::cardsChanged(int count)
+{
+    ui->actionSave_All_Changes->setEnabled(count > 0);
+}
+
 void MainWindow::loadDirectory()
 {
     QString path = QFileDialog::getExistingDirectory();
@@ -77,6 +82,9 @@ void MainWindow::loadDirectory()
     m_sortFilterModel->setSourceModel(fs);
     destroyCurrentModel();
     m_cardListModel = fs;
+
+    QObject::connect(fs, &FileSystemCardListModel::cardsChanged, this, &MainWindow::cardsChanged);
+    QObject::connect(ui->actionSave_All_Changes, &QAction::triggered, fs, &FileSystemCardListModel::saveAll);
 }
 
 void MainWindow::destroyCurrentModel()
@@ -101,6 +109,9 @@ void MainWindow::loadSaveFile()
     m_sortFilterModel->setSourceModel(cs);
     destroyCurrentModel();
     m_cardListModel = cs;
+
+    QObject::connect(cs, &ClassSaveCardListModel::cardsChanged, this, &MainWindow::cardsChanged);
+    QObject::connect(ui->actionSave_All_Changes, &QAction::triggered, cs, &ClassSaveCardListModel::saveAll);
 }
 
 void MainWindow::setSortKeyRole()

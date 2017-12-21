@@ -3,6 +3,7 @@
 
 #include <QAbstractListModel>
 #include <QFileSystemWatcher>
+#include <QSet>
 
 namespace ClassEdit {
 
@@ -10,6 +11,8 @@ namespace ClassEdit {
 
     class FileSystemCardListModel : public QAbstractListModel
     {
+        Q_OBJECT
+
     public:
         FileSystemCardListModel(const QString &path);
         ~FileSystemCardListModel();
@@ -22,9 +25,15 @@ namespace ClassEdit {
 
     public slots:
         void cardChanged(int index);
+        void cardSaved(int index);
+        void saveAll();
+
+    signals:
+        void cardsChanged(int count);
 
     private:
         QList<CardFile*> m_cardList;
+        QSet<CardFile*> m_changedCardList;
         QFileSystemWatcher m_fswatcher;
     };
 

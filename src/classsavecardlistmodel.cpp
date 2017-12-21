@@ -84,6 +84,7 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
         card->setParentModel(this);
         card->setModelIndex(m_cardList.size());
         QObject::connect(card, &CardFile::changed, this, &ClassSaveCardListModel::cardChanged);
+        QObject::connect(card, &CardFile::saved, this, &ClassSaveCardListModel::cardSaved);
         m_cardList << card;
 
         buffer.seek(cardOffset - 4);
@@ -148,6 +149,27 @@ bool ClassSaveCardListModel::submit()
 
 void ClassSaveCardListModel::cardChanged(int cardIndex)
 {
+    m_changedCardList << m_cardList[cardIndex];
+    emit cardsChanged(m_changedCardList.size());
     const QModelIndex &modelIndex = index(cardIndex);
     emit dataChanged(modelIndex, modelIndex);
+}
+
+void ClassSaveCardListModel::cardSaved(int index)
+{
+    m_changedCardList.remove(m_cardList[index]);
+    emit cardsChanged(m_changedCardList.size());
+}
+
+void ClassSaveCardListModel::saveAll()
+{
+    for(QSet<CardFile*>::Iterator it = m_changedCardList.begin(); it != m_changedCardList.end(); it++) {
+        (*it)->commitChanges();
+        (*it)->updateQuickInfoGetters();
+        const QModelIndex &modelIndex = index((*it)->getModelIndex());
+        emit dataChanged(modelIndex, modelIndex);
+    }
+    m_changedCardList.clear();
+    saveToDisk();
+    emit cardsChanged(m_changedCardList.size());
 }

@@ -5,6 +5,7 @@
 
 #include <QAbstractListModel>
 #include <QIODevice>
+#include <QSet>
 
 namespace ClassEdit {
 
@@ -36,6 +37,11 @@ namespace ClassEdit {
 
     public slots:
         void cardChanged(int index);
+        void cardSaved(int index);
+        void saveAll();
+
+    signals:
+        void cardsChanged(int count);
 
     private:
         QString m_filePath;
@@ -43,6 +49,7 @@ namespace ClassEdit {
         Dictionary *m_headerDictionary;
         DataReader::DataBlockList m_classData;
         QList<CardFile*> m_cardList;
+        QSet<CardFile*> m_changedCardList;
 
         QByteArray m_header;
         QByteArray m_footer;

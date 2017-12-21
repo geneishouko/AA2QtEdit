@@ -459,6 +459,8 @@ void CardFile::save()
         m_parentModel->submit();
     else
         saveToFile(m_filePath);
+    emit changed(m_modelIndex);
+    emit saved(m_modelIndex);
 }
 
 void CardFile::writeToDevice(QIODevice *device, bool writePlayData, qint64 *editOffset, qint64 *aaudOffset)

@@ -18,6 +18,7 @@ public:
     ~MainWindow();
 
 public slots:
+    void cardsChanged(int count);
     void loadSaveFile();
     void loadDirectory();
     void destroyCurrentModel();
