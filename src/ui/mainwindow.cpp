@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortRole(CardModifiedTimeRole);
     m_sortFilterModel->sort(0, Qt::DescendingOrder);
+    m_sortFilterModel->setDynamicSortFilter(false);
     connect(ui->textFilter, &QLineEdit::textChanged, m_sortFilterModel, &QSortFilterProxyModel::setFilterFixedString);
     ui->sortBy->addItem("Modified Time", CardModifiedTimeRole);
     ui->sortBy->addItem("Name", Qt::DisplayRole);
