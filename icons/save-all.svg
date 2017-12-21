@@ -1,18 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <defs
-     id="defs3051">
-    <style
-       type="text/css"
-       id="current-color-scheme">
-      .ColorScheme-Text {
-        color:#4d4d4d;
-      }
-      </style>
-  </defs>
-  <path
-     style="fill:currentColor;fill-opacity:1;stroke:none" 
-     d="M 11 4 L 11 10 L 12 10 L 12 5 L 15 5 L 15 10 L 23 10 L 23 5 L 24.292969 5 L 27 7.7070312 L 27 20 L 25 20 L 25 14 L 22 14 L 22 15 L 24 15 L 24 20 L 22 20 L 22 21 L 28 21 L 28 7.3007812 L 27.992188 7.3007812 L 28 7.2929688 L 24.707031 4 L 24.699219 4.0078125 L 24.699219 4 L 24 4 L 11 4 z M 16 5 L 20 5 L 20 9 L 16 9 L 16 5 z M 4 11 L 4 28 L 21 28 L 21 14.300781 L 20.992188 14.300781 L 21 14.292969 L 17.707031 11 L 17.699219 11.007812 L 17.699219 11 L 17 11 L 4 11 z M 5 12 L 8 12 L 8 17 L 16 17 L 16 12 L 17.292969 12 L 20 14.707031 L 20 27 L 18 27 L 18 21 L 7 21 L 7 27 L 5 27 L 5 12 z M 9 12 L 13 12 L 13 16 L 9 16 L 9 12 z M 8 22 L 17 22 L 17 27 L 8 27 L 8 22 z "
-     id="path90" 
-     class="ColorScheme-Text"
-     />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="32" version="1.1" xmlns="http://www.w3.org/2000/svg" height="32" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+ <defs id="defs5455">
+  <linearGradient inkscape:collect="always" xlink:href="#linearGradient4303" id="linearGradient4238" y1="545.79797" y2="517.79797" x2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1 0 0 1 -0.000006 0)"/>
+  <linearGradient inkscape:collect="always" xlink:href="#linearGradient4159" id="linearGradient4370" y1="30" y2="1.999974" x2="0" gradientUnits="userSpaceOnUse"/>
+  <linearGradient inkscape:collect="always" id="linearGradient4303">
+   <stop style="stop-color:#c6cdd1" id="stop4305"/>
+   <stop offset="1" style="stop-color:#e0e5e7" id="stop4307"/>
+  </linearGradient>
+  <linearGradient inkscape:collect="always" id="linearGradient4159">
+   <stop style="stop-color:#2a2c2f" id="stop4161"/>
+   <stop offset="1" style="stop-color:#424649" id="stop4163"/>
+  </linearGradient>
+  <linearGradient inkscape:collect="always" xlink:href="#linearGradient4227" id="linearGradient4198" y1="9" x1="9.00001" y2="22.999973" x2="23" gradientUnits="userSpaceOnUse"/>
+  <linearGradient inkscape:collect="always" id="linearGradient4227">
+   <stop style="stop-color:#292c2f" id="stop4229"/>
+   <stop offset="1" style="stop-opacity:0" id="stop4231"/>
+  </linearGradient>
+ </defs>
+ <metadata id="metadata5458"/>
+ <g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1" transform="matrix(1 0 0 1 -384.57143 -515.798)">
+  <rect width="27.999989" x="386.57144" y="517.79797" rx="13.999994" height="28" style="fill:url(#linearGradient4238)" id="rect4175"/>
+  <path inkscape:connector-curvature="0" style="fill:url(#linearGradient4198);opacity:0.2;fill-rule:evenodd" id="path4175" d="m 9.4003906,15 -0.099609,2 0.9999998,1 10.970703,10.970703 c 3.4891,-1.412467 6.267011,-4.183045 7.6875,-7.667969 L 22.706,14.95 22.191,14.6 19.400391,15 19.318359,16.662109 17.706,14.95 17.191,14.6 14.400391,15 14.318359,16.662109 12.706,14.95 12.191,14.6 Z" transform="matrix(1 0 0 1 384.57143 515.798)"/>
+  <path inkscape:connector-curvature="0" style="fill:url(#linearGradient4370)" id="rect4176" d="m 16,14 c -1.108,0 -2,0.892 -2,2 0,1.108 0.892,2 2,2 1.108,0 2,-0.892 2,-2 0,-1.108 -0.892,-2 -2,-2 z m -5,0 c -1.108,0 -2,0.892 -2,2 0,1.108 0.892,2 2,2 1.108,0 2,-0.892 2,-2 0,-1.108 -0.892,-2 -2,-2 z m 10,0 c -1.108,0 -2,0.892 -2,2 0,1.108 0.892,2 2,2 1.108,0 2,-0.892 2,-2 0,-1.108 -0.892,-2 -2,-2 z" transform="matrix(1 0 0 1 384.57143 515.798)"/>
+ </g>
 </svg>
