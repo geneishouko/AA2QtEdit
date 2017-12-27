@@ -34,7 +34,6 @@ ClassSaveCardListModel::ClassSaveCardListModel(QObject *parent) :
     QAbstractListModel(parent)
 {
     m_classHeaderReader = DataReader::getDataReader("headerdata");
-    m_headerDictionary = new Dictionary(this);
 }
 
 ClassSaveCardListModel::~ClassSaveCardListModel()
@@ -61,9 +60,9 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
     m_header.resize(headerSize);
     file.read(m_header.data(), headerSize);
     for (DataReader::DataBlockList::const_iterator it = m_classData.constBegin(); it != m_classData.constEnd(); it++) {
-        m_headerDictionary->insert((*it)->key(), m_classHeaderReader->read(&buffer, (*it)));
+        m_headerDictionary.insert((*it)->key(), m_classHeaderReader->read(&buffer, (*it)));
     }
-    int studentsCount = m_headerDictionary->value("HEADER_BOYS").toInt() + m_headerDictionary->value("HEADER_GIRLS").toInt();
+    int studentsCount = m_headerDictionary.value("HEADER_BOYS").toInt() + m_headerDictionary.value("HEADER_GIRLS").toInt();
 
     // read characters
     int pos = 0;

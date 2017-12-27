@@ -2,6 +2,7 @@
 #define CLOTHDATA_H
 
 #include "cardfile.h"
+#include "dictionary.h"
 
 #include <QObject>
 
@@ -21,7 +22,7 @@ namespace ClassEdit {
         QByteArray toClothFile() const;
     private:
         DataReader *m_dataReader;
-        Dictionary *m_dictionary;
+        Dictionary m_dictionary;
     };
 
 }

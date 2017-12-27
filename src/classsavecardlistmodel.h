@@ -2,6 +2,7 @@
 #define CLASSSAVECARDLISTMODEL_H
 
 #include "datareader.h"
+#include "dictionary.h"
 
 #include <QAbstractListModel>
 #include <QIODevice>
@@ -46,7 +47,7 @@ namespace ClassEdit {
     private:
         QString m_filePath;
         DataReader *m_classHeaderReader;
-        Dictionary *m_headerDictionary;
+        Dictionary m_headerDictionary;
         DataReader::DataBlockList m_classData;
         QList<CardFile*> m_cardList;
         QSet<CardFile*> m_changedCardList;

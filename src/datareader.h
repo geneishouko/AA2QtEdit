@@ -42,6 +42,7 @@ namespace ClassEdit {
         DataBlockList finalizeDataBlocks(QIODevice *data);
         void finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db);
         static QByteArray decodeString(const QByteArray &data);
+        QVariantMap buildDictionary(QIODevice *data) const;
 
     private:
         bool loadDefinitions(QIODevice *xmlDefinition);

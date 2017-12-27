@@ -20,7 +20,6 @@
 #include "carddatamodel.h"
 #include "clothdata.h"
 #include "datareader.h"
-#include "dictionary.h"
 #include "pngimage.h"
 
 #include <QBuffer>
@@ -46,7 +45,6 @@ CardFile::CardFile()
 {
     m_editDataReader = DataReader::getDataReader("chardata");
     m_playDataReader = DataReader::getDataReader("playdata");
-    m_editDataDictionary = new Dictionary(this);
     m_editDataModel = new CardDataModel(this);
     m_parentModel = nullptr;
     m_seat = 0;
@@ -240,7 +238,7 @@ QVector<QString> CardFile::getEditDataKeys() const
     return keyList;
 }
 
-QVariant CardFile::getEditDataAddress(const QString &key) const
+QVariant CardFile::getEditOffset(const QString &key) const
 {
     return QString::asprintf("0x%.4X", m_editDataReader->m_dataBlockMap[key]->offset());
 }
@@ -252,17 +250,16 @@ QVariant CardFile::getEditDataType(const QString &key) const
 
 QVariant CardFile::getEditDataValue(const QString &key) const
 {
-    return m_editDataDictionary->value(key);
+    return m_editDataDictionary.value(key);
 }
 
-QVariantMap CardFile::getEditDictionary(const QString &prefix) const
+Dictionary &CardFile::getEditDictionary() {
+    return m_editDataDictionary;
+}
+
+Dictionary CardFile::getEditDictionary(const QString &prefix) const
 {
-    QVariantMap result;
-    for (Dictionary::ConstIterator it = m_editDataDictionary->constBegin(); it != m_editDataDictionary->constEnd(); it++) {
-        if (it.key().startsWith(prefix, Qt::CaseSensitive))
-            result[it.key()] = it.value();
-    }
-    return result;
+    return  m_editDataDictionary.filterByPrefix(prefix);
 }
 
 int CardFile::getGender() const
@@ -313,11 +310,11 @@ void CardFile::replaceCard(const QString &file)
     delete c;
 }
 
-void CardFile::replaceEditValues(QVariantMap dictionary)
+void CardFile::replaceEditValues(const Dictionary &dictionary)
 {
-    for (QVariantMap::ConstIterator it = dictionary.constBegin(); it != dictionary.constEnd(); it++) {
-        m_editDataDictionary->insert(it.key(), it.value());
-        m_dirtyKeyValues << it.key();
+    for (int i = 0; i < dictionary.size(); i++) {
+        m_editDataDictionary.insert(dictionary.keyAt(i), dictionary.at(i));
+        m_dirtyKeyValues << dictionary.keyAt(i);
     }
     emit changed(m_modelIndex);
     m_editDataModel->updateAllRows();
@@ -395,7 +392,7 @@ void CardFile::updateEditDictionary()
 {
     DataReader::DataBlockList &blockList = m_editDataReader->m_dataBlocks;
     for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
-        m_editDataDictionary->insert((*it)->key(), m_editDataReader->read(&m_editDataIO, (*it)->key()));
+        m_editDataDictionary.insert((*it)->key(), m_editDataReader->read(&m_editDataIO, (*it)->key()));
     }
     updateQuickInfoGetters();
     emit changed(m_modelIndex);
@@ -422,7 +419,7 @@ void CardFile::setEditDataValue(const QString &key, const QVariant &value)
     if (old == value)
         return;
 
-    m_editDataDictionary->insert(key, value);
+    m_editDataDictionary.insert(key, value);
     m_dirtyKeyValues << key;
     emit changed(m_modelIndex);
 }
@@ -447,7 +444,7 @@ void CardFile::commitChanges()
             continue;
         }
         m_editDataIO.seek(db->offset());
-        m_editDataReader->write(&m_editDataIO, db->key(), m_editDataDictionary->value(db->key()));
+        m_editDataReader->write(&m_editDataIO, db->key(), m_editDataDictionary.value(db->key()));
         it = m_dirtyKeyValues.erase(it);
     }
 }

@@ -7,15 +7,21 @@
 
 namespace ClassEdit {
 
-    class Dictionary : public QObject, public QHash<QString, QVariant>
+    typedef QHash<QString,int> KeyIndex;
+
+    class Dictionary : public QList<QVariant>
     {
-        Q_OBJECT
     public:
-        explicit Dictionary(QObject *parent = nullptr);
+        Dictionary();
+        virtual ~Dictionary() = default;
 
-    signals:
+        Dictionary filterByPrefix(const QString &prefix) const;
+        QString keyAt(int index) const;
+        void insert(const QString &key, const QVariant &value);
+        void set(int index, const QVariant &value);
+        QVariant value(const QString &key) const;
 
-    public slots:
+        KeyIndex m_keyMap;
     };
 
 }

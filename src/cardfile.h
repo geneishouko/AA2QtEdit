@@ -1,6 +1,8 @@
 #ifndef CARDFILE_H
 #define CARDFILE_H
 
+#include "dictionary.h"
+
 #include <QAbstractItemModel>
 #include <QBuffer>
 #include <QDateTime>
@@ -16,7 +18,6 @@ namespace ClassEdit {
     class ClothData;
     class DataReader;
     class CardDataModel;
-    class Dictionary;
 
     enum CardDataRoles {
         CardFileRole = 0x100,
@@ -50,10 +51,11 @@ namespace ClassEdit {
         QString filePath() const;
         CardDataModel *getEditDataModel() const;
         QVector<QString> getEditDataKeys() const;
-        QVariant getEditDataAddress(const QString &key) const;
+        QVariant getEditOffset(const QString &key) const;
         QVariant getEditDataType(const QString &key) const;
         QVariant getEditDataValue(const QString &key) const;
-        QVariantMap getEditDictionary(const QString &prefix) const;
+        Dictionary &getEditDictionary();
+        Dictionary getEditDictionary(const QString &prefix) const;
         int getGender() const;
         QPixmap getFace();
         QPixmap getRoster();
@@ -64,7 +66,7 @@ namespace ClassEdit {
         QDateTime modifiedTime() const;
         bool dataIsBool(int index);
         void replaceCard(const QString &file);
-        void replaceEditValues(QVariantMap dictionary);
+        void replaceEditValues(const Dictionary &dictionary);
         inline void resetPortraitPixmap() {
             m_face = QPixmap();
         }
@@ -120,7 +122,7 @@ namespace ClassEdit {
         QPixmap m_roster;
 
         int m_modelIndex;
-        Dictionary *m_editDataDictionary;
+        Dictionary m_editDataDictionary;
         QSet<QString> m_dirtyKeyValues;
         bool m_isValid;
     };

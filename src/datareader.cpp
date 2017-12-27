@@ -103,6 +103,10 @@ QVariant DataReader::read(QIODevice *data, DataBlock *db) const
         size = db->dataSize();
     }
 
+    if (type == DataType::Array || type == DataType::Struct) {
+
+    }
+
     return read(data, type, size);
 }
 
@@ -290,6 +294,15 @@ QByteArray DataReader::decodeString(const QByteArray &data)
         }
     }
     return copy;
+}
+
+QVariantMap DataReader::buildDictionary(QIODevice *data) const
+{
+    QVariantMap dictionary;
+    for (DataReader::DataBlockList::const_iterator it = m_dataBlocks.constBegin(); it != m_dataBlocks.constEnd(); it++) {
+        dictionary.insert((*it)->key(), read(data, (*it)->key()));
+    }
+    return dictionary;
 }
 
 bool DataReader::loadDefinitions(QIODevice *xmlDefinition)

@@ -19,7 +19,43 @@
 
 using namespace ClassEdit;
 
-Dictionary::Dictionary(QObject *parent) : QObject(parent)
+Dictionary::Dictionary() : QList<QVariant>()
 {
 
+}
+
+Dictionary Dictionary::filterByPrefix(const QString &prefix) const
+{
+    Dictionary dict;
+    for (KeyIndex::ConstIterator it = m_keyMap.begin(); it != m_keyMap.end(); it++) {
+        if (it.key().startsWith(prefix, Qt::CaseSensitive)) {
+            dict.insert(it.key(), at(it.value()));
+        }
+    }
+    return dict;
+}
+
+QString Dictionary::keyAt(int index) const
+{
+    return m_keyMap.key(index);
+}
+
+void Dictionary::insert(const QString &key, const QVariant &value)
+{
+    m_keyMap.insertMulti(key, count());
+    append(value);
+}
+
+void Dictionary::set(int index, const QVariant &value)
+{
+    replace(index, value);
+}
+
+QVariant Dictionary::value(const QString &key) const
+{
+    QVariant ret;
+    KeyIndex::ConstIterator it = m_keyMap.find(key);
+    if (it != m_keyMap.end())
+        ret = at(m_keyMap.value(key));
+    return ret;
 }

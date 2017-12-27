@@ -66,7 +66,7 @@ QVariant CardDataModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole) {
         switch (index.column()) {
             case 0:
-            return m_cardFile->getEditDataAddress(s_keys[index.row()]);
+            return m_cardFile->getEditOffset(s_keys[index.row()]);
 
             case 1:
             return m_cardFile->getEditDataType(s_keys[index.row()]);
@@ -76,7 +76,7 @@ QVariant CardDataModel::data(const QModelIndex &index, int role) const
 
             case 3:
             if (!m_cardFile->dataIsBool(index.row()))
-                return m_cardFile->getEditDataValue(s_keys[index.row()]);
+                return m_cardFile->getEditDictionary().value(s_keys[index.row()]);
         }
     }
     else if (role == Qt::CheckStateRole) {

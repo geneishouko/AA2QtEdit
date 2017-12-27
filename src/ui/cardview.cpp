@@ -21,6 +21,8 @@
 #include "../carddatamodel.h"
 #include "../cardfile.h"
 #include "../clothdata.h"
+#include "carddatadelegate.h"
+#include "coloritemeditor.h"
 #include "filedialog.h"
 
 #include <QHeaderView>
@@ -29,6 +31,8 @@
 #include <QPlainTextEdit>
 #include <QSaveFile>
 #include <QSet>
+#include <QStandardItemEditorCreator>
+#include <QVariant>
 
 using namespace ClassEdit;
 
@@ -75,6 +79,13 @@ CardView::CardView(QWidget *parent) :
         QListWidgetItem *item = ui->characterDataSelectionList->item(i);
         item->setData(Qt::UserRole, QVariant(i));
     }
+
+    CardDataDelegate *cardDataDelegate = new CardDataDelegate(this);
+    QItemEditorFactory *editorFactory = new QItemEditorFactory;
+    QItemEditorCreatorBase *creator = new QStandardItemEditorCreator<ColorItemEditor>();
+    editorFactory->registerEditor(QVariant::Color, creator);
+    cardDataDelegate->setItemEditorFactory(editorFactory);
+    ui->editDataView->setItemDelegate(cardDataDelegate);
 }
 
 CardView::~CardView()
