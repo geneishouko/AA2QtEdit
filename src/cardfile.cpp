@@ -242,14 +242,12 @@ QVector<QString> CardFile::getEditDataKeys() const
 
 QVariant CardFile::getEditDataAddress(const QString &key) const
 {
-    return QString("0x%1").arg(m_editDataReader->m_dataBlockMap[key]->offset(), 4, 16, QChar('0'));
+    return QString::asprintf("0x%.4X", m_editDataReader->m_dataBlockMap[key]->offset());
 }
 
 QVariant CardFile::getEditDataType(const QString &key) const
 {
-    Q_UNUSED(key)
-    //return m_editDataReader->m_dataBlockMap[key]->type();
-    return "null";
+    return dataTypeToString(m_editDataReader->m_dataBlockMap[key]->type());
 }
 
 QVariant CardFile::getEditDataValue(const QString &key) const

@@ -40,3 +40,8 @@ DataType ClassEdit::stringToDataType(const QString &string) {
     DataType type = dataTypeNames[string];
     return type;
 }
+
+QString ClassEdit::dataTypeToString(DataType type)
+{
+    return dataTypeNames.key(type, "Unknown");
+}

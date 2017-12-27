@@ -32,6 +32,8 @@ namespace ClassEdit {
             size = 4;
     }
 
+    QString dataTypeToString(DataType type);
+
     inline QVariant::Type variantType(DataType dt) {
         switch (dt) {
         case Bool:
