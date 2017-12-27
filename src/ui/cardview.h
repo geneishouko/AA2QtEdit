@@ -34,8 +34,10 @@ namespace ClassEdit {
         void characterDataEnableImportButton();
         void modelItemSelected(const QModelIndex &index);
         void modelItemUpdated(const QModelIndex &index);
-        void importCloth();
         void exportCard();
+        void exportPortrait();
+        void exportThumbnail();
+        void importCloth();
         void importCard();
         void replaceFacePNG();
         void replaceRosterPNG();

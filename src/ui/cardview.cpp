@@ -27,6 +27,7 @@
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QPlainTextEdit>
+#include <QSaveFile>
 #include <QSet>
 
 using namespace ClassEdit;
@@ -194,6 +195,32 @@ void CardView::exportCard()
         QString file = FileDialog::getSaveFileName(FileDialog::ExtractCard, "PNG Images (*.png)", "Select a card", this);
         if (!file.isEmpty())
             m_card->saveToFile(file);
+    }
+}
+
+void CardView::exportPortrait()
+{
+    if (m_card) {
+        QString file = FileDialog::getSaveFileName(FileDialog::ExtractCard, "PNG Images (*.png)", "Select a card", this);
+        if (!file.isEmpty()) {
+            QSaveFile save(file);
+            save.open(QSaveFile::WriteOnly);
+            save.write(m_card->getEditDataValue("FACE_PNG_DATA").toByteArray());
+            save.commit();
+        }
+    }
+}
+
+void CardView::exportThumbnail()
+{
+    if (m_card) {
+        QString file = FileDialog::getSaveFileName(FileDialog::ExtractCard, "PNG Images (*.png)", "Select a card", this);
+        if (!file.isEmpty()) {
+            QSaveFile save(file);
+            save.open(QSaveFile::WriteOnly);
+            save.write(m_card->getEditDataValue("ROSTER_PNG_DATA").toByteArray());
+            save.commit();
+        }
     }
 }
 

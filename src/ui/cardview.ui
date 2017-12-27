@@ -581,6 +581,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>exportPortraitButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CardView</receiver>
+   <slot>exportPortrait()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>169</x>
+     <y>489</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>exportThumbailButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CardView</receiver>
+   <slot>exportThumbnail()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>271</x>
+     <y>489</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>modelItemActivated(QModelIndex)</slot>
