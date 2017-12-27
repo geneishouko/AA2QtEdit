@@ -19,9 +19,10 @@ ColorItemEditor::ColorItemEditor(QWidget *parent) : QWidget(parent)
 
     QLineEdit *lineEdit = new QLineEdit;
     QFontMetrics fontMetrics = lineEdit->fontMetrics();
-    QSize lineSize = fontMetrics.size(Qt::TextSingleLine, "#00000000");
+    QSize lineSize = fontMetrics.size(Qt::TextSingleLine, "#0000000000");
     lineEdit->setMinimumSize(lineSize);
     lineEdit->setMaximumSize(lineSize);
+    lineEdit->setFrame(false);
     layout->addWidget(lineEdit, 0);
     layout->addWidget(pickButton, 0);
     layout->addStretch(1);
