@@ -25,9 +25,29 @@
 
 #include <QHeaderView>
 #include <QLineEdit>
+#include <QMessageBox>
 #include <QPlainTextEdit>
+#include <QSet>
 
 using namespace ClassEdit;
+
+/* Keep in sync with CardView.ui's QListWidget items */
+enum CharacterDataOptions {
+    CharacterDataPortrait,
+    CharacterDataThumbnail,
+    CharacterDataProfile,
+    CharacterDataBody,
+    CharacterDataTraits,
+    CharacterDataPreferences,
+    CharacterDataPregnancy,
+    CharacterDataCompatibility,
+    CharacterDataSuitUniform,
+    CharacterDataSuitSports,
+    CharacterDataSuitSwimsuit,
+    CharacterDataSuitClub,
+    CharacterDataAAUnlimited,
+    CharacterDataOptionCount
+};
 
 CardView::CardView(QWidget *parent) :
     QTabWidget(parent),
@@ -45,6 +65,15 @@ CardView::CardView(QWidget *parent) :
     connect(ui->PROFILE_FAMILY_NAME, &QLineEdit::textEdited, this, &CardView::lineEditChanged);
     connect(ui->PROFILE_FIRST_NAME, &QLineEdit::textEdited, this, &CardView::lineEditChanged);
     ui->PROFILE_PROFILE->installEventFilter(this);
+
+    connect(ui->characterDataSelectionList, &QListWidget::itemClicked, this, &CardView::characterDataItemClicked);
+    connect(ui->selectAllImportsButton, &QPushButton::clicked, this, &CardView::characterDataItemsSelect);
+    connect(ui->selectNoneImportsButton, &QPushButton::clicked, this, &CardView::characterDataItemsUnselect);
+
+    for (int i = 0; i < CharacterDataOptionCount; i++) {
+        QListWidgetItem *item = ui->characterDataSelectionList->item(i);
+        item->setData(Qt::UserRole, QVariant(i));
+    }
 }
 
 CardView::~CardView()
@@ -67,6 +96,51 @@ void CardView::updateDataControls()
         ui->PROFILE_PROFILE->setPlainText(m_card->getEditDataValue(ui->PROFILE_PROFILE->objectName()).toString());
 }
 
+void CardView::characterDataItemSetCheckedState(QListWidgetItem *item, bool checked)
+{
+    item->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
+}
+
+void CardView::characterDataItemClicked(QListWidgetItem *item)
+{
+    bool checked = item->data(Qt::CheckStateRole).toInt() == Qt::Checked;
+    characterDataItemSetCheckedState(item, !checked);
+    characterDataEnableImportButton();
+}
+
+void CardView::characterDataItemsSelectSet(bool select)
+{
+    int count = ui->characterDataSelectionList->count();
+    for (int i = 0; i < count; i++) {
+        QListWidgetItem *item = ui->characterDataSelectionList->item(i);
+        characterDataItemSetCheckedState(item, select);
+    }
+    characterDataEnableImportButton();
+}
+
+void CardView::characterDataItemsSelect()
+{
+    characterDataItemsSelectSet(true);
+}
+
+void CardView::characterDataItemsUnselect()
+{
+    characterDataItemsSelectSet(false);
+}
+
+void CardView::characterDataEnableImportButton()
+{
+    int count = ui->characterDataSelectionList->count();
+    for (int i = 0; i < count; i++) {
+        QListWidgetItem *item = ui->characterDataSelectionList->item(i);
+        if (item->checkState() == Qt::Checked) {
+            ui->importCardButton->setEnabled(true);
+            return;
+        }
+    }
+    ui->importCardButton->setEnabled(false);
+}
+
 void CardView::modelItemSelected(const QModelIndex &index)
 {
     if (!index.isValid()) {
@@ -84,9 +158,6 @@ void CardView::modelItemSelected(const QModelIndex &index)
         header->setSectionResizeMode(2, QHeaderView::ResizeToContents);
         header->setSectionResizeMode(3, QHeaderView::Stretch);
     }
-    bool isFileSystemCard = card->filePath().isEmpty();
-    ui->replaceCardButton->setEnabled(isFileSystemCard);
-    ui->extractCardButton->setEnabled(isFileSystemCard);
     m_card = card;
     updateDataControls();
 }
@@ -117,7 +188,7 @@ void CardView::importCloth()
     }
 }
 
-void CardView::extractCard()
+void CardView::exportCard()
 {
     if (m_card) {
         QString file = FileDialog::getSaveFileName(FileDialog::ExtractCard, "PNG Images (*.png)", "Select a card", this);
@@ -126,12 +197,55 @@ void CardView::extractCard()
     }
 }
 
-void CardView::replaceCard()
+void CardView::importCard()
 {
     if (m_card) {
         QString file =FileDialog::getOpenFileName(FileDialog::ReplaceCard, "PNG Images (*.png)", "Select a card", this);
-        if (!file.isEmpty())
-            m_card->replaceCard(file);
+        if (file.isEmpty())
+            return;
+        CardFile card(file);
+        if (!card.isValid()) {
+            QMessageBox::critical(this, tr("Invalid card"), tr("Invalid card"));
+            return;
+        }
+        int count = ui->characterDataSelectionList->count();
+        QSet<int> selection;
+        for (int i = 0; i < count; i++) {
+            QListWidgetItem *item = ui->characterDataSelectionList->item(i);
+            if (item->checkState() == Qt::Checked)
+                selection << item->data(Qt::UserRole).toInt();
+        }
+        if (selection.contains(CharacterDataProfile))
+            m_card->replaceEditValues(card.getEditDictionary("PROFILE"));
+        if (selection.contains(CharacterDataBody))
+            m_card->replaceEditValues(card.getEditDictionary("BODY"));
+        if (selection.contains(CharacterDataTraits))
+            m_card->replaceEditValues(card.getEditDictionary("TRAIT"));
+        if (selection.contains(CharacterDataPreferences))
+            m_card->replaceEditValues(card.getEditDictionary("PREFERENCE"));
+        if (selection.contains(CharacterDataPregnancy))
+            m_card->replaceEditValues(card.getEditDictionary("PREGNANCY"));
+        if (selection.contains(CharacterDataCompatibility))
+            m_card->replaceEditValues(card.getEditDictionary("COMPATIBILITY"));
+        if (selection.contains(CharacterDataSuitUniform))
+            m_card->replaceEditValues(card.getEditDictionary("UNIFORM"));
+        if (selection.contains(CharacterDataSuitSports))
+            m_card->replaceEditValues(card.getEditDictionary("SPORT"));
+        if (selection.contains(CharacterDataSuitSwimsuit))
+            m_card->replaceEditValues(card.getEditDictionary("SWIMSUIT"));
+        if (selection.contains(CharacterDataSuitClub))
+            m_card->replaceEditValues(card.getEditDictionary("CLUB"));
+        if (selection.contains(CharacterDataPortrait)) {
+            m_card->resetPortraitPixmap();
+            m_card->replaceEditValues(card.getEditDictionary("FACE_PNG_DATA"));
+        }
+        if (selection.contains(CharacterDataThumbnail)) {
+            m_card->resetThumbnailPixmap();
+            m_card->replaceEditValues(card.getEditDictionary("ROSTER_PNG_DATA"));
+        }
+        if (selection.contains(CharacterDataAAUnlimited))
+            m_card->setAAUnlimitedData(card.aauData(), card.aauDataVersion());
+        m_card->updateQuickInfoGetters();
     }
 }
 
@@ -155,6 +269,8 @@ void CardView::replaceRosterPNG()
 
 bool CardView::eventFilter(QObject *watched, QEvent *event)
 {
+    if (!m_card)
+        return false;
     if (event->type() == QEvent::KeyPress) {
         m_setText++;
     }

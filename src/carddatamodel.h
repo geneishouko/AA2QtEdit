@@ -19,6 +19,10 @@ namespace ClassEdit {
         QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
         bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
 
+    public slots:
+        void updateAllRows();
+        void updateRow(int row);
+
     private:
         CardFile *m_cardFile;
         static QVector<QString> s_keys;

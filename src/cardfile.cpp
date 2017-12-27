@@ -170,12 +170,7 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     m_editDataIO.setBuffer(&m_editData);
     m_editDataIO.open(QIODevice::ReadWrite);
 
-    DataReader::DataBlockList &blockList = m_editDataReader->m_dataBlocks;
-    for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
-        m_editDataDictionary->insert((*it)->key(), m_editDataReader->read(&m_editDataIO, (*it)->key()));
-    }
-
-    updateQuickInfoGetters();
+    updateEditDictionary();
     m_dirtyKeyValues.clear();
 }
 
@@ -197,6 +192,26 @@ int CardFile::loadPlayData(QIODevice *file, int offset)
 bool CardFile::isValid() const
 {
     return m_isValid;
+}
+
+QByteArray CardFile::aauData() const
+{
+    return m_aauData;
+}
+
+int CardFile::aauDataVersion() const
+{
+    return m_aauDataVersion;
+}
+
+QByteArray CardFile::editData() const
+{
+    return m_editData;
+}
+
+QByteArray CardFile::portrait() const
+{
+    return getEditDataValue(facePngKey).toByteArray();
 }
 
 CardDataModel *CardFile::getEditDataModel() const
@@ -240,6 +255,16 @@ QVariant CardFile::getEditDataType(const QString &key) const
 QVariant CardFile::getEditDataValue(const QString &key) const
 {
     return m_editDataDictionary->value(key);
+}
+
+QVariantMap CardFile::getEditDictionary(const QString &prefix) const
+{
+    QVariantMap result;
+    for (Dictionary::ConstIterator it = m_editDataDictionary->constBegin(); it != m_editDataDictionary->constEnd(); it++) {
+        if (it.key().startsWith(prefix, Qt::CaseSensitive))
+            result[it.key()] = it.value();
+    }
+    return result;
 }
 
 int CardFile::getGender() const
@@ -290,9 +315,25 @@ void CardFile::replaceCard(const QString &file)
     delete c;
 }
 
+void CardFile::replaceEditValues(QVariantMap dictionary)
+{
+    for (QVariantMap::ConstIterator it = dictionary.constBegin(); it != dictionary.constEnd(); it++) {
+        m_editDataDictionary->insert(it.key(), it.value());
+        m_dirtyKeyValues << it.key();
+    }
+    emit changed(m_modelIndex);
+    m_editDataModel->updateAllRows();
+}
+
 int CardFile::seat() const
 {
     return m_seat;
+}
+
+void CardFile::setAAUnlimitedData(const QByteArray &data, int version)
+{
+    m_aauData = data;
+    m_aauDataVersion = version;
 }
 
 void CardFile::setClothes(int slot, ClothData *cloth)
@@ -301,6 +342,12 @@ void CardFile::setClothes(int slot, ClothData *cloth)
     for (QHash<QString, QVariant>::ConstIterator it = values.cbegin(); it != values.cend(); it++) {
         setEditDataValue(it.key(), it.value());
     }
+}
+
+void CardFile::setEditData(const QByteArray &data)
+{
+    m_editData = data;
+    m_editDataModel->updateAllRows();
 }
 
 void CardFile::setModifiedTime(const QDateTime &date)
@@ -341,6 +388,21 @@ void CardFile::setRoster(QIODevice *file)
     setEditDataValue(rosterPngKey, PngImage::getPngData(file));
 }
 
+QByteArray CardFile::thumbnail() const
+{
+    return getEditDataValue(rosterPngKey).toByteArray();
+}
+
+void CardFile::updateEditDictionary()
+{
+    DataReader::DataBlockList &blockList = m_editDataReader->m_dataBlocks;
+    for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
+        m_editDataDictionary->insert((*it)->key(), m_editDataReader->read(&m_editDataIO, (*it)->key()));
+    }
+    updateQuickInfoGetters();
+    emit changed(m_modelIndex);
+}
+
 void CardFile::updateQuickInfoGetters()
 {
     m_gender = m_editDataReader->read(&m_editDataIO, "PROFILE_GENDER").toInt();
@@ -355,7 +417,7 @@ void CardFile::setEditDataValue(const QString &key, const QVariant &value)
         return;
 
     DataBlock *db = m_editDataReader->getDataBlock(key);
-    if (db && db->type() != value.type())
+    if (db && variantType(db->type()) != value.type())
         return;
 
     QVariant old = getEditDataValue(key);

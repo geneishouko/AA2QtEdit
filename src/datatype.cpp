@@ -34,7 +34,6 @@ DataType ClassEdit::stringToDataType(const QString &string) {
         dataTypeNames["string"] = String;
         dataTypeNames["encodedstring"] = EncodedString;
         dataTypeNames["struct"] = Struct;
-        dataTypeNames["seat"] = Seat;
         dataTypeNames["array"] = Array;
         dataTypeNames["dummy"] = Dummy;
     }

@@ -111,3 +111,14 @@ bool CardDataModel::setData(const QModelIndex &index, const QVariant &value, int
     emit dataChanged(index, index);
     return true;
 }
+
+void CardDataModel::updateAllRows()
+{
+    emit dataChanged(index(0), index(s_keys.size() - 1));
+}
+
+void CardDataModel::updateRow(int row)
+{
+    QModelIndex modelIndex = index(row);
+    emit dataChanged(modelIndex, modelIndex);
+}

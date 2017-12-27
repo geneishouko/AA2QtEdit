@@ -41,6 +41,11 @@ namespace ClassEdit {
         int loadPlayData(QIODevice *file, int offset);
         bool isValid() const;
 
+        QByteArray aauData() const;
+        int aauDataVersion() const;
+        QByteArray editData() const;
+        QByteArray portrait() const;
+        QByteArray thumbnail() const;
         QString fileName() const;
         QString filePath() const;
         CardDataModel *getEditDataModel() const;
@@ -48,6 +53,7 @@ namespace ClassEdit {
         QVariant getEditDataAddress(const QString &key) const;
         QVariant getEditDataType(const QString &key) const;
         QVariant getEditDataValue(const QString &key) const;
+        QVariantMap getEditDictionary(const QString &prefix) const;
         int getGender() const;
         QPixmap getFace();
         QPixmap getRoster();
@@ -58,8 +64,17 @@ namespace ClassEdit {
         QDateTime modifiedTime() const;
         bool dataIsBool(int index);
         void replaceCard(const QString &file);
+        void replaceEditValues(QVariantMap dictionary);
+        inline void resetPortraitPixmap() {
+            m_face = QPixmap();
+        }
+        inline void resetThumbnailPixmap() {
+            m_roster = QPixmap();
+        }
         int seat() const;
+        void setAAUnlimitedData(const QByteArray &data, int version);
         void setClothes(int slot, ClothData *cloth);
+        void setEditData(const QByteArray &data);
         void setModelIndex(int index);
         void setModifiedTime(const QDateTime &date);
         void setSeat(int seat);
@@ -68,6 +83,7 @@ namespace ClassEdit {
         void setRoster(const QByteArray &file);
         void setRoster(QIODevice *file);
 
+        void updateEditDictionary();
         void updateQuickInfoGetters();
         bool hasPendingChanges() const;
         void commitChanges();

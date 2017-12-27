@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>660</width>
-    <height>471</height>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,10 @@
         <item row="0" column="0">
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Last Name</string>
+           <string>&amp;Last Name</string>
+          </property>
+          <property name="buddy">
+           <cstring>PROFILE_FAMILY_NAME</cstring>
           </property>
          </widget>
         </item>
@@ -41,7 +44,10 @@
         <item row="1" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>First Name</string>
+           <string>First &amp;Name</string>
+          </property>
+          <property name="buddy">
+           <cstring>PROFILE_FIRST_NAME</cstring>
           </property>
          </widget>
         </item>
@@ -52,6 +58,9 @@
          <widget class="QLabel" name="label">
           <property name="text">
            <string>Profile</string>
+          </property>
+          <property name="buddy">
+           <cstring>PROFILE_PROFILE</cstring>
           </property>
          </widget>
         </item>
@@ -103,14 +112,14 @@
          <item>
           <widget class="QPushButton" name="replaceFaceButton">
            <property name="text">
-            <string>Replace Face from PNG</string>
+            <string>Replace Portrait from PNG</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="replaceRosterButton">
            <property name="text">
-            <string>Replace Thumb from PNG</string>
+            <string>Replace Thumbnail from PNG</string>
            </property>
           </widget>
          </item>
@@ -159,54 +168,203 @@
    <attribute name="title">
     <string>Advanced</string>
    </attribute>
-   <layout class="QHBoxLayout" name="horizontalLayout_5">
+   <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
+     <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,0,0,0">
       <item>
        <widget class="QGroupBox" name="groupBox">
         <property name="title">
-         <string>Class save</string>
+         <string>Import Character Data</string>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QVBoxLayout" name="verticalLayout_6">
          <item>
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QPushButton" name="selectAllImportsButton">
+             <property name="text">
+              <string>Select All</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="selectNoneImportsButton">
+             <property name="text">
+              <string>Select None</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QPushButton" name="replaceCardButton">
-           <property name="text">
-            <string>Replace card</string>
-           </property>
+          <widget class="QListWidget" name="characterDataSelectionList">
+           <item>
+            <property name="text">
+             <string>Portrait</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Thumbnail</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Profile</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Body</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Traits</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Preferences</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pregnancy</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Compatibility</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Suit - Uniform</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Suit - Sports</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Suit - Swimsuit</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Suit - Club</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>AAUnlimited data</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsEnabled</set>
+            </property>
+           </item>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="extractCardButton">
-           <property name="text">
-            <string>Extract Card</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>47</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QPushButton" name="importCardButton">
+             <property name="text">
+              <string>Import</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>47</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
@@ -214,7 +372,7 @@
       <item>
        <widget class="QGroupBox" name="groupBox_2">
         <property name="title">
-         <string>Import .cloth file to</string>
+         <string>Import .cloth file as</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
@@ -222,28 +380,28 @@
            <item>
             <widget class="QCheckBox" name="checkClothSlot1">
              <property name="text">
-              <string>Slot 1</string>
+              <string>Uniform</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="checkClothSlot2">
              <property name="text">
-              <string>Slot 2</string>
+              <string>Sports</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="checkClothSlot3">
              <property name="text">
-              <string>Slot 3</string>
+              <string>Swimsuit</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="checkClothSlot4">
              <property name="text">
-              <string>Slot 4</string>
+              <string>Club</string>
              </property>
             </widget>
            </item>
@@ -277,6 +435,40 @@
        </widget>
       </item>
       <item>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="title">
+         <string>Export to File</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QPushButton" name="exportCardButton">
+             <property name="text">
+              <string>Card</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="exportPortraitButton">
+             <property name="text">
+              <string>Portrait</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="exportThumbailButton">
+             <property name="text">
+              <string>Thumbnail</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
        <spacer name="verticalSpacer_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -298,7 +490,7 @@
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>314</width>
+        <width>311</width>
         <height>20</height>
        </size>
       </property>
@@ -358,10 +550,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>replaceCardButton</sender>
+   <sender>importCardButton</sender>
    <signal>clicked()</signal>
    <receiver>CardView</receiver>
-   <slot>replaceCard()</slot>
+   <slot>importCard()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>168</x>
@@ -374,18 +566,18 @@
    </hints>
   </connection>
   <connection>
-   <sender>extractCardButton</sender>
+   <sender>exportCardButton</sender>
    <signal>clicked()</signal>
    <receiver>CardView</receiver>
-   <slot>extractCard()</slot>
+   <slot>exportCard()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>217</x>
-     <y>88</y>
+     <x>67</x>
+     <y>489</y>
     </hint>
     <hint type="destinationlabel">
      <x>329</x>
-     <y>235</y>
+     <y>286</y>
     </hint>
    </hints>
   </connection>
@@ -394,8 +586,10 @@
   <slot>modelItemActivated(QModelIndex)</slot>
   <slot>replaceFacePNG()</slot>
   <slot>replaceRosterPNG()</slot>
-  <slot>replaceCard()</slot>
+  <slot>importCard()</slot>
   <slot>importCloth()</slot>
-  <slot>extractCard()</slot>
+  <slot>exportCard()</slot>
+  <slot>exportPortrait()</slot>
+  <slot>exportThumbnail()</slot>
  </slots>
 </ui>

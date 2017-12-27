@@ -1,6 +1,7 @@
 #ifndef CARDVIEW_H
 #define CARDVIEW_H
 
+#include <QListWidgetItem>
 #include <QPointer>
 #include <QSortFilterProxyModel>
 #include <QTabWidget>
@@ -25,11 +26,17 @@ namespace ClassEdit {
         void updateDataControls();
 
     public slots:
+        void characterDataItemSetCheckedState(QListWidgetItem *item, bool checked);
+        void characterDataItemClicked(QListWidgetItem *item);
+        void characterDataItemsSelectSet(bool select);
+        void characterDataItemsSelect();
+        void characterDataItemsUnselect();
+        void characterDataEnableImportButton();
         void modelItemSelected(const QModelIndex &index);
         void modelItemUpdated(const QModelIndex &index);
         void importCloth();
-        void extractCard();
-        void replaceCard();
+        void exportCard();
+        void importCard();
         void replaceFacePNG();
         void replaceRosterPNG();
 

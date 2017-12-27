@@ -17,7 +17,6 @@ namespace ClassEdit {
         String,
         EncodedString,
         Struct,
-        Seat,
         Array,
         Dummy,
     };
@@ -33,21 +32,31 @@ namespace ClassEdit {
             size = 4;
     }
 
-    inline bool operator==(DataType dt, QVariant::Type vt) {
+    inline QVariant::Type variantType(DataType dt) {
         switch (dt) {
         case Bool:
-            return vt == QVariant::Bool;
+            return QVariant::Bool;
         case Byte:
         case Int16:
         case Int32:
-        case Color:
         case Enum:
-            return vt == QVariant::Int;
+            return QVariant::Int;
+        case Color:
+            return QVariant::Color;
         case String:
         case EncodedString:
-            return vt == QVariant::String;
+            return QVariant::String;
+        case Struct:
+        case Array:
+        case Dummy:
+        case Invalid:
+            break;
         }
-        return false;
+        return QVariant::Invalid;
+    }
+
+    inline bool operator==(DataType dt, QVariant::Type vt) {
+        return vt == variantType(dt);
     }
 
     inline bool operator!=(DataType dt, QVariant::Type vt) {
