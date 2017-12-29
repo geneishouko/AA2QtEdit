@@ -52,6 +52,7 @@ namespace ClassEdit {
         Ui::CardView *ui;
         QPointer<CardFile> m_card;
         QSortFilterProxyModel *m_cardDataSortFilterModel;
+        QSortFilterProxyModel *m_cardPlayDataSortFilterModel;
         int m_setText;
     };
 

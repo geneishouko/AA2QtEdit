@@ -139,6 +139,35 @@ DataType DataBlock::type() const
     return m_type;
 }
 
+QString DataBlock::typeName() const
+{
+    switch (m_type) {
+        case Invalid:
+            return QObject::tr("Invalid");
+        case Byte:
+            return QObject::tr("Byte");
+        case Int16:
+            return QObject::tr("Int16");
+        case Int32:
+            return QObject::tr("Int32");
+        case Bool:
+            return QObject::tr("Bool");
+        case Color:
+            return QObject::tr("Color");
+        case Enum:
+            return QObject::tr("Enum");
+        case String:
+        case EncodedString:
+            return QObject::tr("String");
+        case Struct:
+            return QObject::tr("Struct");
+        case Array:
+            return QObject::tr("Array");
+        case Dummy:
+            return QObject::tr("Dummy");
+    }
+}
+
 QString DataBlock::metaKey() const
 {
     return m_metaKey;

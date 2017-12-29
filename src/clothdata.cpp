@@ -34,7 +34,7 @@ ClothData *ClothData::fromCardData(const QString &type, CardFile *card)
     ClothData *data = new ClothData;
     DataReader::DataBlockList &blockList = data->m_dataReader->m_dataBlocks;
     for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
-        data->m_dictionary.insert((*it)->key(), card->getEditDataValue((*it)->key().replace("CLOTH", type)));
+        data->m_dictionary.insert((*it)->key(), card->editDictionary()->value((*it)->key().replace("CLOTH", type)));
     }
     return data;
 }

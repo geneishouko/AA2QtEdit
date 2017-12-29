@@ -23,32 +23,48 @@
 #include <QBrush>
 #include <QPalette>
 
+#include <QtDebug>
+
 using namespace ClassEdit;
 
-QVector<QString> CardDataModel::s_keys;
-static const int dataColumn = 3;
+enum ModelHeaders {
+    OffsetHeader,
+    TypeHeader,
+    KeyHeader,
+    ValueHeader,
+    HeaderCount
+};
 
-CardDataModel::CardDataModel(CardFile *cardFile) :
-    QAbstractListModel(cardFile),
-    m_cardFile(cardFile)
+CardDataModel::CardDataModel(Dictionary *dictionary) :
+    QAbstractItemModel(dictionary),
+    m_dictionary(dictionary)
 {
-    if (s_keys.empty()) {
-        s_keys = cardFile->getEditDataKeys();
-    }
 }
 
 int CardDataModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
-    return 4;
+    return HeaderCount;
+}
+
+Dictionary *CardDataModel::getDictionaryForIndex(const QModelIndex &index) const
+{
+    Dictionary *dictionary = static_cast<Dictionary*>(index.internalPointer());
+    if (!dictionary)
+        dictionary = m_dictionary;
+    return dictionary;
 }
 
 Qt::ItemFlags CardDataModel::flags(const QModelIndex &index) const
 {
-    if (index.column() != dataColumn)
+    if (index.column() != ValueHeader)
         return Qt::ItemIsEnabled;
-    Qt::ItemFlags f = Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren;
-    if (m_cardFile->dataIsBool(index.row()))
+    QVariant value = getEntryForIndex(index);
+    Dictionary *dictionary = value.value<Dictionary*>();
+    Qt::ItemFlags f = Qt::NoItemFlags;
+    if (!dictionary && value.type() != QVariant::Invalid)
+        f |= Qt::ItemNeverHasChildren | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    if (value.type() == QVariant::Bool)
         f |= Qt::ItemIsUserCheckable;
     else
         f |= Qt::ItemIsEditable;
@@ -57,38 +73,48 @@ Qt::ItemFlags CardDataModel::flags(const QModelIndex &index) const
 
 int CardDataModel::rowCount(const QModelIndex &parent) const
 {
-    Q_UNUSED(parent)
-    return s_keys.size();
+    if (!parent.isValid())
+        return m_dictionary->displayKeyList().size();
+    Dictionary *dictionary = getEntryForIndex(parent).value<Dictionary*>();
+    if (dictionary)
+        return dictionary->displayKeyList().count();
+    return 0;
 }
 
 QVariant CardDataModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole) {
+        Dictionary *dictionary = getDictionaryForIndex(index);
+        QVariant value = dictionary->at(index.row());
+        DataType dataType = dictionary->dataType(index.row());
         switch (index.column()) {
-            case 0:
-            return m_cardFile->getEditOffset(s_keys[index.row()]);
+            case OffsetHeader:
+            return QString::asprintf("0x%.4X", dictionary->offset(index.row()));
 
-            case 1:
-            return m_cardFile->getEditDataType(s_keys[index.row()]);
+            case TypeHeader:
+            return dictionary->typeName(index.row());
 
-            case 2:
-            return s_keys[index.row()];
+            case KeyHeader:
+            return dictionary->keyAt(index.row());
 
-            case 3:
-            if (!m_cardFile->dataIsBool(index.row()))
-                return m_cardFile->getEditDictionary().value(s_keys[index.row()]);
+            case ValueHeader:
+            if (dataType == DataType::Array || dataType == DataType::Struct) {
+                Dictionary *dictionary = value.value<Dictionary*>();
+                return tr("(%1 items)", nullptr, dictionary->count()).arg(dictionary->count());
+            }
+            if (value.type() != QVariant::Bool)
+                return value;
         }
     }
     else if (role == Qt::CheckStateRole) {
-        if(index.column() == dataColumn && m_cardFile->dataIsBool(index.row())) {
-            return m_cardFile->getEditDataValue(s_keys[index.row()]).toBool() ?
-                        Qt::Checked : Qt::Unchecked;
+        if(index.column() == ValueHeader && getEntryForIndex(index).type() == QVariant::Bool) {
+            return getEntryForIndex(index).toBool() ? Qt::Checked : Qt::Unchecked;
         }
     }
     else if (role == Qt::EditRole) {
-        return m_cardFile->getEditDataValue(s_keys[index.row()]);
+        return getEntryForIndex(index);
     }
-    else if (role == Qt::BackgroundRole && index.column() != dataColumn) {
+    else if (role == Qt::BackgroundRole && index.column() != ValueHeader) {
         return QBrush(qApp->palette().midlight());
     }
     return QVariant();
@@ -96,29 +122,70 @@ QVariant CardDataModel::data(const QModelIndex &index, int role) const
 
 QVariant CardDataModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    static const char* const headers[] = { "Address", "Type", "Key", "Value" };
-    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
-        return QString(headers[section]);
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        QString header;
+        switch (section) {
+        case OffsetHeader:
+            header = tr("Offset");
+            break;
+        case TypeHeader:
+            header = tr("Type");
+            break;
+        case KeyHeader:
+            header = tr("Key");
+            break;
+        case ValueHeader:
+            header = tr("Value");
+            break;
+        case HeaderCount:
+            Q_ASSERT_X(0, "CardDataModel Header", "Unhandled Section");
+        }
+        return header;
+    }
     return QVariant();
+}
+
+QModelIndex CardDataModel::index(int row, int column, const QModelIndex &parent) const
+{
+    Dictionary *dictionary = nullptr;
+    if (parent.isValid()) {
+        dictionary = static_cast<Dictionary*>(parent.internalPointer());
+        if (!dictionary)
+            dictionary = m_dictionary;
+        dictionary = dictionary->at(parent.row()).value<Dictionary*>();
+    }
+    return createIndex(row, column, dictionary);
+}
+
+QModelIndex CardDataModel::parent(const QModelIndex &index) const
+{
+    Dictionary *parentDictionary = static_cast<Dictionary*>(index.internalPointer());
+    Dictionary *grandParentDictionary = nullptr;
+    if (parentDictionary) {
+         grandParentDictionary = qobject_cast<Dictionary*>(parentDictionary->parent());
+         int parentRow = grandParentDictionary->indexOf(QVariant::fromValue(parentDictionary), 0);
+         if (grandParentDictionary == m_dictionary)
+             grandParentDictionary = nullptr;
+         return createIndex(parentRow, 0, grandParentDictionary);
+    }
+    return QModelIndex();
 }
 
 bool CardDataModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
+    Dictionary *dictionary = getDictionaryForIndex(index);
+    if (dictionary->at(index.row()).type() != value.type())
+        return false;
     if (role == Qt::CheckStateRole)
-        m_cardFile->setEditDataValue(s_keys[index.row()], value == Qt::Checked);
+        dictionary->set(index.row(), value == Qt::Checked);
     else
-        m_cardFile->setEditDataValue(s_keys[index.row()], value);
+        dictionary->set(index.row(), value);
     emit dataChanged(index, index);
     return true;
 }
 
-void CardDataModel::updateAllRows()
-{
-    emit dataChanged(index(0), index(s_keys.size() - 1));
-}
-
 void CardDataModel::updateRow(int row)
 {
-    QModelIndex modelIndex = index(row);
+    QModelIndex modelIndex = index(row, 0);
     emit dataChanged(modelIndex, modelIndex);
 }

@@ -16,6 +16,7 @@
 */
 
 #include "datareader.h"
+#include "dictionary.h"
 
 #include <QColor>
 #include <QFile>
@@ -104,7 +105,16 @@ QVariant DataReader::read(QIODevice *data, DataBlock *db) const
     }
 
     if (type == DataType::Array || type == DataType::Struct) {
-
+        Dictionary *dict = new Dictionary;
+        QList<DataBlock*> dictBlocks;
+        dictBlocks.reserve(db->m_children.size());
+        for (QVector<DataBlock>::Iterator it = db->m_children.begin(); it != db->m_children.end(); it++) {
+            dict->insert(it->key(), read(data, it));
+            dictBlocks.append(it);
+        }
+        dict->setDataBlockList(dictBlocks);
+        dict->buildDisplayKeyList();
+        return QVariant::fromValue(dict);
     }
 
     return read(data, type, size);
@@ -169,7 +179,7 @@ void DataReader::write(QIODevice *data, DataType type, const QVariant &value, in
     }
 }
 
-DataReader::DataBlockList DataReader::finalizeDataBlocks(QIODevice *data)
+DataReader::DataBlockList DataReader::finalizeDataBlocks(QIODevice *data) const
 {
     DataBlockList blocks;
     for (DataBlockList::const_iterator it = m_dataBlocks.constBegin(); it != m_dataBlocks.constEnd(); it++) {
@@ -181,7 +191,15 @@ DataReader::DataBlockList DataReader::finalizeDataBlocks(QIODevice *data)
     return blocks;
 }
 
-void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db)
+void DataReader::finalizeDataBlockOffset(DataBlock *db, qint64 offset) const
+{
+    db->m_address -= offset;
+    for (QVector<DataBlock>::Iterator it = db->m_children.begin(); it != db->m_children.end(); it++) {
+        finalizeDataBlockOffset(it, offset);
+    }
+}
+
+void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db) const
 {
     if (db->offset() < 0)
         db->m_address = static_cast<int>(data->pos());
@@ -221,7 +239,7 @@ void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db)
             default:
                 Q_ASSERT(innerSize);
         }
-        int curOffset = data->pos();
+        int curOffset = static_cast<int>(data->pos());
         for(int i = 0; i < arraySize; i++) {
             if (db->m_arrayInnerType == DataType::Struct) {
                 db->m_children[i].m_type = DataType::Struct;
@@ -253,6 +271,7 @@ void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db)
                 db->m_children[i].m_type = db->m_arrayInnerType;
                 db->m_children[i].m_dataSize = innerSize;
                 db->m_children[i].m_address = curOffset + innerSize * i;
+                db->m_children[i].m_metaKey = db->m_metaKey;
                 if (db->m_arrayInnerType == DataType::Struct)
                     finalizeChildrenDataBlocks(data, &db->m_children[i]);
             }
@@ -296,12 +315,35 @@ QByteArray DataReader::decodeString(const QByteArray &data)
     return copy;
 }
 
-QVariantMap DataReader::buildDictionary(QIODevice *data) const
+Dictionary *DataReader::buildDictionary(QIODevice *data, DataBlockList dataBlocks) const
 {
-    QVariantMap dictionary;
-    for (DataReader::DataBlockList::const_iterator it = m_dataBlocks.constBegin(); it != m_dataBlocks.constEnd(); it++) {
-        dictionary.insert((*it)->key(), read(data, (*it)->key()));
+    Dictionary *dictionary = new Dictionary;
+    for (DataReader::DataBlockList::const_iterator it = dataBlocks.constBegin(); it != dataBlocks.constEnd(); it++) {
+        QVariant value;
+        if ((*it)->m_children.isEmpty()) {
+            value = read(data, *it);
+        }
+        else {
+            value = QVariant::fromValue(buildDictionary(data, (*it)->m_children, dictionary));
+        }
+        dictionary->insert((*it)->key(), value);
     }
+    dictionary->buildDisplayKeyList();
+    dictionary->setDataBlockList(dataBlocks);
+    return dictionary;
+}
+
+Dictionary *DataReader::buildDictionary(QIODevice *data, QVector<DataBlock> &dataBlocks, Dictionary *parent) const
+{
+    Dictionary *dictionary = new Dictionary;
+    for (QVector<DataBlock>::Iterator it = dataBlocks.begin(); it != dataBlocks.end(); it++) {
+        if (it->m_children.isEmpty())
+            dictionary->insert(it->key(), read(data, it));
+        else
+            dictionary->insert(it->key(), QVariant::fromValue(buildDictionary(data, it->m_children, dictionary)));
+    }
+    dictionary->buildDisplayKeyList();
+    dictionary->setParent(parent);
     return dictionary;
 }
 

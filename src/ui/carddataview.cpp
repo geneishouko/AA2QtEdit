@@ -17,10 +17,26 @@
 
 #include "carddataview.h"
 
+#include <QApplication>
+#include <QPainter>
+
 using namespace ClassEdit;
 
 CardDataView::CardDataView(QWidget *parent) :
     QTreeView (parent)
 {
+    connect(this, &QAbstractItemView::clicked, this, &CardDataView::toggleCollapse);
+}
 
+void CardDataView::toggleCollapse(const QModelIndex &index)
+{
+    QModelIndex root = index.sibling(index.row(), 0);
+    setExpanded(root, !isExpanded(root));
+}
+
+void CardDataView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
+{
+    Q_UNUSED(index)
+    painter->fillRect(rect, QBrush(qApp->palette().midlight()));
+    QTreeView::drawBranches(painter, rect, index);
 }

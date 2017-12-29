@@ -19,11 +19,16 @@ namespace ClassEdit {
         void setAttributes(int currentOffset, QXmlStreamAttributes attributes);
         bool isValid() const;
 
+        inline QVector<DataBlock> &children() {
+            return m_children;
+        }
+
         QString key() const;
         int offset() const;
         int nextOffset() const;
         int dataSize() const;
         DataType type() const;
+        QString typeName() const;
         QString metaKey() const;
 
     private:

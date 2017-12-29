@@ -49,7 +49,8 @@ SOURCES += src/main.cpp\
     src/classsavecardlistmodel.cpp \
     src/ui/filedialog.cpp \
     src/ui/carddatadelegate.cpp \
-    src/ui/coloritemeditor.cpp
+    src/ui/coloritemeditor.cpp \
+    src/constants.cpp
 
 HEADERS  += src/ui/mainwindow.h \
     src/ui/cardlistview.h \
@@ -70,7 +71,8 @@ HEADERS  += src/ui/mainwindow.h \
     src/classsavecardlistmodel.h \
     src/ui/filedialog.h \
     src/ui/carddatadelegate.h \
-    src/ui/coloritemeditor.h
+    src/ui/coloritemeditor.h \
+    src/constants.h
 
 FORMS    += src/ui/mainwindow.ui \
     src/ui/cardview.ui

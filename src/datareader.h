@@ -4,6 +4,7 @@
 #include "datablock.h"
 #include "dataenumerable.h"
 #include "datastruct.h"
+#include "dictionary.h"
 
 #include <QIODevice>
 #include <QXmlStreamReader>
@@ -39,10 +40,12 @@ namespace ClassEdit {
         }
         void write(QIODevice *data, const QString &key, const QVariant &value) const;
         void write(QIODevice *data, DataType type, const QVariant &value, int fieldSize) const;
-        DataBlockList finalizeDataBlocks(QIODevice *data);
-        void finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db);
+        DataBlockList finalizeDataBlocks(QIODevice *data) const;
+        void finalizeDataBlockOffset(DataBlock *db, qint64 offset) const;
+        void finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db) const;
         static QByteArray decodeString(const QByteArray &data);
-        QVariantMap buildDictionary(QIODevice *data) const;
+        Dictionary *buildDictionary(QIODevice *data, DataBlockList dataBlocks) const;
+        Dictionary *buildDictionary(QIODevice *data, QVector<DataBlock> &dataBlocks, Dictionary *parent) const;
 
     private:
         bool loadDefinitions(QIODevice *xmlDefinition);

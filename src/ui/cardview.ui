@@ -164,6 +164,27 @@
     </item>
    </layout>
   </widget>
+  <widget class="QWidget" name="tab">
+   <attribute name="title">
+    <string>Play Data</string>
+   </attribute>
+   <layout class="QVBoxLayout" name="verticalLayout_8">
+    <item>
+     <widget class="QLineEdit" name="textPlayKeyFilter">
+      <property name="placeholderText">
+       <string>Filter keys</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="ClassEdit::CardDataView" name="playDataView">
+      <property name="rootIsDecorated">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QWidget" name="advancedTab">
    <attribute name="title">
     <string>Advanced</string>
@@ -499,6 +520,13 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClassEdit::CardDataView</class>
+   <extends>QTreeView</extends>
+   <header>src/ui/carddataview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

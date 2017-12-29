@@ -19,6 +19,7 @@
 
 #include "carddatamodel.h"
 #include "clothdata.h"
+#include "constants.h"
 #include "datareader.h"
 #include "pngimage.h"
 
@@ -31,21 +32,14 @@
 
 using namespace ClassEdit;
 
-static const qint32 editDataLength = 3011;
-static const QString facePngKey("FACE_PNG_DATA");
-static const QString rosterPngKey("ROSTER_PNG_DATA");
-static const QString clothKeys[4] = {
-    "UNIFORM",
-    "SPORT",
-    "SWIMSUIT",
-    "CLUB"
-};
 
 CardFile::CardFile()
 {
     m_editDataReader = DataReader::getDataReader("chardata");
     m_playDataReader = DataReader::getDataReader("playdata");
-    m_editDataModel = new CardDataModel(this);
+    m_editDataModel = nullptr;
+    m_playDataModel = nullptr;
+    m_playDataDictionary = nullptr;
     m_parentModel = nullptr;
     m_seat = 0;
     m_isValid = true;
@@ -92,7 +86,7 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     in >> editDataOffset;
     editDataOffset = static_cast<qint32>(endOffset) - editDataOffset;
 
-    cardRosterOffset = editDataOffset + editDataLength + 4;
+    cardRosterOffset = editDataOffset + EditDataLength + 4;
     file->seek(cardRosterOffset - 4);
     in >> cardRosterLength;
     cardRosterLength -= 4;
@@ -151,10 +145,17 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
         }
     }
 
+    m_editData.resize(EditDataLength);
+    file->seek(editDataOffset);
+    file->read(m_editData.data(), EditDataLength);
+    m_editDataIO.setBuffer(&m_editData);
+    m_editDataIO.open(QIODevice::ReadWrite);
+
+    buildEditDictionary();
     file->seek(startOffset);
-    setEditDataValue(facePngKey, PngImage::getPngData(file));
+    m_editDataDictionary->insert(PortraitPngKey, PngImage::getPngData(file));
     file->seek(cardRosterOffset);
-    setEditDataValue(rosterPngKey, PngImage::getPngData(file));
+    m_editDataDictionary->insert(ThumbnailPngKey, PngImage::getPngData(file));
 
     if (m_aauDataVersion >= 2) {
         m_aauData.resize(m_aauDataLength);
@@ -162,28 +163,27 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
         file->read(m_aauData.data(), m_aauDataLength);
     }
 
-    m_editData.resize(editDataLength);
-    file->seek(editDataOffset);
-    file->read(m_editData.data(), editDataLength);
-    m_editDataIO.setBuffer(&m_editData);
-    m_editDataIO.open(QIODevice::ReadWrite);
-
-    updateEditDictionary();
-    m_dirtyKeyValues.clear();
+    m_editDataModel = new CardDataModel(m_editDataDictionary);
+    emit changed(m_modelIndex);
 }
 
 int CardFile::loadPlayData(QIODevice *file, int offset)
 {
     file->seek(offset);
     DataReader::DataBlockList blockList = m_playDataReader->finalizeDataBlocks(file);
-    /*for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
-        m_editDataDictionary->insert((*it)->key(), m_editDataReader->read(&m_editDataIO, (*it)->key()));
-    }*/
     qint64 playDataEnd = blockList.last()->nextOffset();
     qint64 playDataSize = playDataEnd - offset;
     m_playData.resize(static_cast<int>(playDataSize));
     file->seek(offset);
     file->read(m_playData.data(), playDataSize);
+
+    for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
+        m_playDataReader->finalizeDataBlockOffset(*it, offset);
+    }
+    m_playDataIO.setBuffer(&m_playData);
+    m_playDataIO.open(QIODevice::ReadWrite);
+    m_playDataDictionary = m_playDataReader->buildDictionary(&m_playDataIO, blockList);
+    m_playDataModel = new CardDataModel(m_playDataDictionary);
     return static_cast<int>(playDataEnd);
 }
 
@@ -207,14 +207,19 @@ QByteArray CardFile::editData() const
     return m_editData;
 }
 
-QByteArray CardFile::portrait() const
+QByteArray CardFile::portraitData() const
 {
-    return getEditDataValue(facePngKey).toByteArray();
+    return m_editDataDictionary->value(PortraitPngKey).toByteArray();
 }
 
 CardDataModel *CardFile::getEditDataModel() const
 {
     return m_editDataModel;
+}
+
+CardDataModel *CardFile::getPlayDataModel() const
+{
+    return m_playDataModel;
 }
 
 QString CardFile::fileName() const
@@ -227,39 +232,8 @@ QString CardFile::filePath() const
     return m_filePath;
 }
 
-QVector<QString> CardFile::getEditDataKeys() const
-{
-    QVector<QString> keyList;
-    DataReader::DataBlockList &blockList = m_editDataReader->m_dataBlocks;
-    keyList.reserve(blockList.size());
-    for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
-        keyList.push_back((*it)->key());
-    }
-    return keyList;
-}
-
-QVariant CardFile::getEditOffset(const QString &key) const
-{
-    return QString::asprintf("0x%.4X", m_editDataReader->m_dataBlockMap[key]->offset());
-}
-
-QVariant CardFile::getEditDataType(const QString &key) const
-{
-    return dataTypeToString(m_editDataReader->m_dataBlockMap[key]->type());
-}
-
-QVariant CardFile::getEditDataValue(const QString &key) const
-{
-    return m_editDataDictionary.value(key);
-}
-
-Dictionary &CardFile::getEditDictionary() {
+Dictionary *CardFile::editDictionary() {
     return m_editDataDictionary;
-}
-
-Dictionary CardFile::getEditDictionary(const QString &prefix) const
-{
-    return  m_editDataDictionary.filterByPrefix(prefix);
 }
 
 int CardFile::getGender() const
@@ -267,17 +241,17 @@ int CardFile::getGender() const
     return m_gender;
 }
 
-QPixmap CardFile::getFace()
+QPixmap CardFile::portraitPixmap()
 {
     if (m_face.isNull())
-        m_face = PngImage::toPixmap(getEditDataValue(facePngKey).toByteArray());
+        m_face = PngImage::toPixmap(portraitData());
     return m_face;
 }
 
 QPixmap CardFile::getRoster()
 {
     if (m_roster.isNull())
-        m_roster= PngImage::toPixmap(getEditDataValue(rosterPngKey).toByteArray());
+        m_roster= PngImage::toPixmap(thumbnailData());
     return m_roster;
 }
 
@@ -291,35 +265,6 @@ QDateTime CardFile::modifiedTime() const
     return m_modifiedTime;
 }
 
-bool CardFile::dataIsBool(int index)
-{
-    return m_editDataReader->m_dataBlocks[index]->type() == DataType::Bool;
-}
-
-void CardFile::replaceCard(const QString &file)
-{
-    CardFile *c = new CardFile(file);
-    if (c->isValid()) {
-        m_editData = c->m_editData;
-        m_aauData = c->m_aauData;
-        m_aauDataVersion = c->m_aauDataVersion;
-        updateQuickInfoGetters();
-        setFace(c->getEditDataValue(facePngKey).toByteArray());
-        setRoster(c->getEditDataValue(rosterPngKey).toByteArray());
-    }
-    delete c;
-}
-
-void CardFile::replaceEditValues(const Dictionary &dictionary)
-{
-    for (int i = 0; i < dictionary.size(); i++) {
-        m_editDataDictionary.insert(dictionary.keyAt(i), dictionary.at(i));
-        m_dirtyKeyValues << dictionary.keyAt(i);
-    }
-    emit changed(m_modelIndex);
-    m_editDataModel->updateAllRows();
-}
-
 int CardFile::seat() const
 {
     return m_seat;
@@ -331,18 +276,17 @@ void CardFile::setAAUnlimitedData(const QByteArray &data, int version)
     m_aauDataVersion = version;
 }
 
-void CardFile::setClothes(int slot, ClothData *cloth)
+void CardFile::setClothes(const QString &slot, ClothData *cloth)
 {
-    QHash<QString, QVariant> values = cloth->getValues(clothKeys[slot]);
+    QHash<QString, QVariant> values = cloth->getValues(slot);
     for (QHash<QString, QVariant>::ConstIterator it = values.cbegin(); it != values.cend(); it++) {
-        setEditDataValue(it.key(), it.value());
+        m_editDataDictionary->set(it.key(), it.value());
     }
 }
 
 void CardFile::setEditData(const QByteArray &data)
 {
     m_editData = data;
-    m_editDataModel->updateAllRows();
 }
 
 void CardFile::setModifiedTime(const QDateTime &date)
@@ -366,7 +310,7 @@ void CardFile::setFace(const QByteArray &file)
 void CardFile::setFace(QIODevice *file)
 {
     m_face = QPixmap();
-    setEditDataValue(facePngKey, PngImage::getPngData(file));
+    m_editDataDictionary->set(ThumbnailPngKey, PngImage::getPngData(file));
 }
 
 void CardFile::setRoster(const QByteArray &file)
@@ -380,48 +324,27 @@ void CardFile::setRoster(const QByteArray &file)
 void CardFile::setRoster(QIODevice *file)
 {
     m_roster = QPixmap();
-    setEditDataValue(rosterPngKey, PngImage::getPngData(file));
+    m_editDataDictionary->set(PortraitPngKey, PngImage::getPngData(file));
 }
 
-QByteArray CardFile::thumbnail() const
+QByteArray CardFile::thumbnailData() const
 {
-    return getEditDataValue(rosterPngKey).toByteArray();
+    return m_editDataDictionary->value(ThumbnailPngKey).toByteArray();
 }
 
-void CardFile::updateEditDictionary()
+void CardFile::buildEditDictionary()
 {
-    DataReader::DataBlockList &blockList = m_editDataReader->m_dataBlocks;
-    for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
-        m_editDataDictionary.insert((*it)->key(), m_editDataReader->read(&m_editDataIO, (*it)->key()));
-    }
+    m_editDataDictionary = m_editDataReader->buildDictionary(&m_editDataIO, m_editDataReader->m_dataBlocks);
+    m_editDataDictionary->setParent(this);
     updateQuickInfoGetters();
-    emit changed(m_modelIndex);
 }
 
 void CardFile::updateQuickInfoGetters()
 {
-    m_gender = m_editDataReader->read(&m_editDataIO, "PROFILE_GENDER").toInt();
+    m_gender = m_editDataDictionary->value("PROFILE_GENDER").toInt();
     m_fullName = QString("%1 %2")
-            .arg(m_editDataReader->read(&m_editDataIO, "PROFILE_FAMILY_NAME").toString())
-            .arg(m_editDataReader->read(&m_editDataIO, "PROFILE_FIRST_NAME").toString()).trimmed();
-}
-
-void CardFile::setEditDataValue(const QString &key, const QVariant &value)
-{
-    if (!value.isValid())
-        return;
-
-    DataBlock *db = m_editDataReader->getDataBlock(key);
-    if (db && variantType(db->type()) != value.type())
-        return;
-
-    QVariant old = getEditDataValue(key);
-    if (old == value)
-        return;
-
-    m_editDataDictionary.insert(key, value);
-    m_dirtyKeyValues << key;
-    emit changed(m_modelIndex);
+            .arg(m_editDataDictionary->value("PROFILE_FAMILY_NAME").toString())
+            .arg(m_editDataDictionary->value("PROFILE_FIRST_NAME").toString()).trimmed();
 }
 
 void CardFile::setModelIndex(int index)
@@ -431,22 +354,21 @@ void CardFile::setModelIndex(int index)
 
 bool CardFile::hasPendingChanges() const
 {
-    return !m_dirtyKeyValues.empty();
+    return m_editDataDictionary->hasDirtyValues() || (m_playDataDictionary && m_playDataDictionary->hasDirtyValues());
 }
 
 void CardFile::commitChanges()
 {
     DataBlock *db;
-    for(QSet<QString>::ConstIterator it = m_dirtyKeyValues.cbegin(); it != m_dirtyKeyValues.cend();) {
-        db = m_editDataReader->m_dataBlockMap[*it];
+    for(Dictionary::IndexSet::Iterator it = m_editDataDictionary->dirtyIndexBegin(); it != m_editDataDictionary->dirtyIndexEnd(); it++) {
+        db = m_editDataReader->m_dataBlocks[*it];
         if (!db) {
-            it = m_dirtyKeyValues.erase(it);
             continue;
         }
         m_editDataIO.seek(db->offset());
-        m_editDataReader->write(&m_editDataIO, db->key(), m_editDataDictionary.value(db->key()));
-        it = m_dirtyKeyValues.erase(it);
+        m_editDataReader->write(&m_editDataIO, db->key(), m_editDataDictionary->value(db->key()));
     }
+    m_editDataDictionary->resetDirtyValues();
 }
 
 void CardFile::saveToFile(const QString &file)
@@ -522,9 +444,8 @@ void CardFile::save()
 
 void CardFile::writeToDevice(QIODevice *device, bool writePlayData, qint64 *editOffset, qint64 *aaudOffset)
 {
-    int cardat = device->pos();
     qint64 locEditOffset;
-    device->write(getEditDataValue(facePngKey).toByteArray());
+    device->write(m_editDataDictionary->value(PortraitPngKey).toByteArray());
     if (m_aauDataVersion >= 2) {
         device->seek(device->pos() - 12); // nuke IEND block
         if (aaudOffset)
@@ -537,9 +458,9 @@ void CardFile::writeToDevice(QIODevice *device, bool writePlayData, qint64 *edit
     if (editOffset)
         *editOffset = locEditOffset;
     qint64 written = device->write(m_editData);
-    Q_ASSERT(written = editDataLength);
+    Q_ASSERT(written = EditDataLength);
 
-    QByteArray rosterPng = getEditDataValue(rosterPngKey).toByteArray();
+    QByteArray rosterPng = m_editDataDictionary->value(ThumbnailPngKey).toByteArray();
     qint32 rosterSize = rosterPng.size();
     device->write(reinterpret_cast<char*>(&rosterSize), 4);
     device->write(rosterPng);
@@ -547,7 +468,11 @@ void CardFile::writeToDevice(QIODevice *device, bool writePlayData, qint64 *edit
     qint32 finalOffset = static_cast<qint32>(device->pos() - locEditOffset) + 4;
     device->write(reinterpret_cast<char*>(&finalOffset), 4);
     if (writePlayData && !m_playData.isEmpty()) {
-        qDebug() << "Card at" << cardat << "play data at" << device->pos();
         device->write(m_playData);
     }
+}
+
+void CardFile::dictionaryChanged()
+{
+    emit changed(m_modelIndex);
 }

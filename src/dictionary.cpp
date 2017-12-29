@@ -19,14 +19,21 @@
 
 using namespace ClassEdit;
 
-Dictionary::Dictionary() : QList<QVariant>()
+Dictionary::Dictionary(QObject *parent) : QObject(parent), QList<QVariant>()
 {
 
 }
 
-Dictionary Dictionary::filterByPrefix(const QString &prefix) const
+void Dictionary::buildDisplayKeyList()
 {
-    Dictionary dict;
+    for (int i = 0; i < count(); i++) {
+        m_displayKeyList << m_keyMap.key(i);
+    }
+}
+
+QVariantMap Dictionary::filterByPrefix(const QString &prefix) const
+{
+    QVariantMap dict;
     for (KeyIndex::ConstIterator it = m_keyMap.begin(); it != m_keyMap.end(); it++) {
         if (it.key().startsWith(prefix, Qt::CaseSensitive)) {
             dict.insert(it.key(), at(it.value()));
@@ -35,20 +42,49 @@ Dictionary Dictionary::filterByPrefix(const QString &prefix) const
     return dict;
 }
 
-QString Dictionary::keyAt(int index) const
+void Dictionary::set(int index, const QVariant value)
 {
-    return m_keyMap.key(index);
-}
-
-void Dictionary::insert(const QString &key, const QVariant &value)
-{
-    m_keyMap.insertMulti(key, count());
-    append(value);
-}
-
-void Dictionary::set(int index, const QVariant &value)
-{
+    if (value == at(index))
+        return;
     replace(index, value);
+    m_dirtyValues << index;
+}
+
+void Dictionary::set(const QString &key, QVariant value)
+{
+    KeyIndex::Iterator it = m_keyMap.find(key);
+    if (it != m_keyMap.end())
+        replace(m_keyMap.value(key), value);
+    else
+        insert(key, value);
+}
+
+void Dictionary::set(const QVariantMap &values)
+{
+    for (QVariantMap::ConstIterator it = values.begin(); it != values.end(); it++) {
+        set(it.key(), it.value());
+    }
+}
+
+void Dictionary::setDataBlockList(QList<DataBlock *> blockList)
+{
+    m_dataBlockList = blockList;
+    for (int i = 0; i < blockList.size(); i++) {
+        if (blockList.at(i)->children().size()) {
+            QList<DataBlock *> childList;
+            QVector<DataBlock> &origChild = blockList.at(i)->children();
+            for (int j = 0; j < origChild.size(); j++) {
+                childList.append(&origChild[j]);
+            }
+            Dictionary *dictionary = at(i).value<Dictionary*>();
+            dictionary->setDataBlockList(childList);
+        }
+    }
+}
+
+QString Dictionary::typeName(int index) const
+{
+    return m_dataBlockList.at(index)->typeName();
 }
 
 QVariant Dictionary::value(const QString &key) const

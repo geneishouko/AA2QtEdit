@@ -9,6 +9,12 @@ namespace ClassEdit {
     {
     public:
         CardDataView(QWidget *parent = nullptr);
+
+    public slots:
+        void toggleCollapse(const QModelIndex &index);
+
+    protected:
+        void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
     };
 
 }

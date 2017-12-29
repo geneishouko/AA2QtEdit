@@ -15,9 +15,9 @@
 
 namespace ClassEdit {
 
+    class CardDataModel;
     class ClothData;
     class DataReader;
-    class CardDataModel;
 
     enum CardDataRoles {
         CardFileRole = 0x100,
@@ -45,28 +45,21 @@ namespace ClassEdit {
         QByteArray aauData() const;
         int aauDataVersion() const;
         QByteArray editData() const;
-        QByteArray portrait() const;
-        QByteArray thumbnail() const;
+        QByteArray portraitData() const;
+        QByteArray thumbnailData() const;
         QString fileName() const;
         QString filePath() const;
         CardDataModel *getEditDataModel() const;
-        QVector<QString> getEditDataKeys() const;
-        QVariant getEditOffset(const QString &key) const;
-        QVariant getEditDataType(const QString &key) const;
-        QVariant getEditDataValue(const QString &key) const;
-        Dictionary &getEditDictionary();
-        Dictionary getEditDictionary(const QString &prefix) const;
+        CardDataModel *getPlayDataModel() const;
+        Dictionary *editDictionary();
         int getGender() const;
-        QPixmap getFace();
+        QPixmap portraitPixmap();
         QPixmap getRoster();
         inline int getModelIndex() const {
             return m_modelIndex;
         }
         QString fullName() const;
         QDateTime modifiedTime() const;
-        bool dataIsBool(int index);
-        void replaceCard(const QString &file);
-        void replaceEditValues(const Dictionary &dictionary);
         inline void resetPortraitPixmap() {
             m_face = QPixmap();
         }
@@ -75,7 +68,7 @@ namespace ClassEdit {
         }
         int seat() const;
         void setAAUnlimitedData(const QByteArray &data, int version);
-        void setClothes(int slot, ClothData *cloth);
+        void setClothes(const QString &slot, ClothData *cloth);
         void setEditData(const QByteArray &data);
         void setModelIndex(int index);
         void setModifiedTime(const QDateTime &date);
@@ -85,7 +78,7 @@ namespace ClassEdit {
         void setRoster(const QByteArray &file);
         void setRoster(QIODevice *file);
 
-        void updateEditDictionary();
+        void buildEditDictionary();
         void updateQuickInfoGetters();
         bool hasPendingChanges() const;
         void commitChanges();
@@ -94,7 +87,8 @@ namespace ClassEdit {
         void writeToDevice(QIODevice *device, bool writePlayData = false, qint64 *editOffset = nullptr, qint64 *aaudOffset = nullptr);
 
     public slots:
-        void setEditDataValue(const QString &key, const QVariant &value);
+        //void setEditDataValue(const QString &key, const QVariant &value);
+        void dictionaryChanged();
 
     signals:
         void changed(int index);
@@ -107,12 +101,14 @@ namespace ClassEdit {
         QByteArray m_editData;
         QByteArray m_playData;
         QBuffer m_editDataIO;
+        QBuffer m_playDataIO;
         QByteArray m_aauData;
         qint32 m_aauDataVersion;
         DataReader *m_editDataReader;
         DataReader *m_aauDataReader;
         DataReader *m_playDataReader;
         CardDataModel *m_editDataModel;
+        CardDataModel *m_playDataModel;
         QAbstractItemModel *m_parentModel;
 
         QString m_fullName;
@@ -122,8 +118,8 @@ namespace ClassEdit {
         QPixmap m_roster;
 
         int m_modelIndex;
-        Dictionary m_editDataDictionary;
-        QSet<QString> m_dirtyKeyValues;
+        Dictionary *m_editDataDictionary;
+        Dictionary *m_playDataDictionary;
         bool m_isValid;
     };
 

@@ -3,29 +3,36 @@
 
 #include "cardfile.h"
 
-#include <QAbstractListModel>
+#include <QAbstractItemModel>
+#include <QPersistentModelIndex>
+#include <QHash>
+#include <QVector>
 
 namespace ClassEdit {
-
-    class CardDataModel : public QAbstractListModel
+    class CardDataModelIndex;
+    class CardDataModel : public QAbstractItemModel
     {
     public:
-        CardDataModel(CardFile *cardFile);
+        CardDataModel(Dictionary *dictionary);
 
         int columnCount(const QModelIndex &parent) const;
-        Qt::ItemFlags flags(const QModelIndex &index) const;
-        int rowCount(const QModelIndex &parent) const;
         QVariant data(const QModelIndex &index, int role) const;
+        Qt::ItemFlags flags(const QModelIndex &index) const;
+        Dictionary *getDictionaryForIndex(const QModelIndex &index) const;
+        inline QVariant getEntryForIndex(const QModelIndex &index) const {
+            return getDictionaryForIndex(index)->at(index.row());
+        }
         QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+        QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
+        QModelIndex parent(const QModelIndex &index) const;
+        int rowCount(const QModelIndex &parent) const;
         bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
 
     public slots:
-        void updateAllRows();
         void updateRow(int row);
 
     private:
-        CardFile *m_cardFile;
-        static QVector<QString> s_keys;
+        Dictionary *m_dictionary;
     };
 
 }
