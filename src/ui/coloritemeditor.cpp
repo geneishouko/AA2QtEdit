@@ -48,7 +48,10 @@ QColor ColorItemEditor::color() const
 void ColorItemEditor::setColor(QColor color)
 {
     m_color = color;
-    m_colorLineEdit->setText(color.name(QColor::HexArgb));
+    if (color.alpha() == 255)
+        m_colorLineEdit->setText(color.name(QColor::HexRgb));
+    else
+        m_colorLineEdit->setText(color.name(QColor::HexArgb));
 }
 
 void ColorItemEditor::setFocus() const

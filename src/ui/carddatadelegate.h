@@ -11,7 +11,6 @@ namespace ClassEdit {
         CardDataDelegate(QObject *parent = nullptr);
 
         QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-        void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     };
 
 }

@@ -117,6 +117,11 @@ QVariant CardDataModel::data(const QModelIndex &index, int role) const
     else if (role == Qt::BackgroundRole && index.column() != ValueHeader) {
         return QBrush(qApp->palette().midlight());
     }
+    else if (role == Qt::DecorationRole && index.column() == ValueHeader) {
+        QVariant value = getEntryForIndex(index);
+        if (value.type() == QVariant::Color)
+            return value;
+    }
     return QVariant();
 }
 

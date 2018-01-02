@@ -21,17 +21,3 @@ QWidget *CardDataDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     }
     return editor;
 }
-
-void CardDataDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    QVariant data = index.data(Qt::DisplayRole);
-    if (data.type() == QVariant::Color) {
-        painter->save();
-        painter->setBrush(QBrush(data.value<QColor>()));
-        painter->drawRect(option.rect);
-        painter->restore();
-    }
-    else {
-        QStyledItemDelegate::paint(painter, option, index);
-    }
-}
