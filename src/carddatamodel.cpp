@@ -179,8 +179,6 @@ QModelIndex CardDataModel::parent(const QModelIndex &index) const
 bool CardDataModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     Dictionary *dictionary = getDictionaryForIndex(index);
-    if (dictionary->at(index.row()).type() != value.type())
-        return false;
     if (role == Qt::CheckStateRole)
         dictionary->set(index.row(), value == Qt::Checked);
     else
