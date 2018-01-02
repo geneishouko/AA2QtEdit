@@ -343,7 +343,7 @@ Dictionary *DataReader::buildDictionary(QIODevice *data, QVector<DataBlock> &dat
             dictionary->insert(it->key(), QVariant::fromValue(buildDictionary(data, it->m_children, dictionary)));
     }
     dictionary->buildDisplayKeyList();
-    dictionary->setParent(parent);
+    dictionary->setParentDictionary(parent);
     return dictionary;
 }
 

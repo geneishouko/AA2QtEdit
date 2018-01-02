@@ -151,7 +151,11 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     m_editDataIO.setBuffer(&m_editData);
     m_editDataIO.open(QIODevice::ReadWrite);
 
-    buildEditDictionary();
+    m_editDataDictionary = m_editDataReader->buildDictionary(&m_editDataIO, m_editDataReader->m_dataBlocks);
+    m_editDataDictionary->setParent(this);
+    updateQuickInfoGetters();
+    connect(m_editDataDictionary, &Dictionary::changed, this, &CardFile::dictionaryChanged);
+
     file->seek(startOffset);
     m_editDataDictionary->insert(PortraitPngKey, PngImage::getPngData(file));
     file->seek(cardRosterOffset);
@@ -230,10 +234,6 @@ QString CardFile::fileName() const
 QString CardFile::filePath() const
 {
     return m_filePath;
-}
-
-Dictionary *CardFile::editDictionary() {
-    return m_editDataDictionary;
 }
 
 int CardFile::getGender() const
@@ -332,13 +332,6 @@ QByteArray CardFile::thumbnailData() const
     return m_editDataDictionary->value(ThumbnailPngKey).toByteArray();
 }
 
-void CardFile::buildEditDictionary()
-{
-    m_editDataDictionary = m_editDataReader->buildDictionary(&m_editDataIO, m_editDataReader->m_dataBlocks);
-    m_editDataDictionary->setParent(this);
-    updateQuickInfoGetters();
-}
-
 void CardFile::updateQuickInfoGetters()
 {
     m_gender = m_editDataDictionary->value("PROFILE_GENDER").toInt();
@@ -361,6 +354,8 @@ void CardFile::commitChanges()
 {
     DataBlock *db;
     for(Dictionary::IndexSet::Iterator it = m_editDataDictionary->dirtyIndexBegin(); it != m_editDataDictionary->dirtyIndexEnd(); it++) {
+        if (*it >= m_editDataReader->m_dataBlocks.count())
+            continue;
         db = m_editDataReader->m_dataBlocks[*it];
         if (!db) {
             continue;
@@ -458,7 +453,7 @@ void CardFile::writeToDevice(QIODevice *device, bool writePlayData, qint64 *edit
     if (editOffset)
         *editOffset = locEditOffset;
     qint64 written = device->write(m_editData);
-    Q_ASSERT(written = EditDataLength);
+    Q_ASSERT(written == EditDataLength);
 
     QByteArray rosterPng = m_editDataDictionary->value(ThumbnailPngKey).toByteArray();
     qint32 rosterSize = rosterPng.size();

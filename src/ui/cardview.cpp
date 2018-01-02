@@ -173,14 +173,14 @@ void CardView::modelItemSelected(const QModelIndex &index)
     m_cardDataSortFilterModel->setSourceModel(card->getEditDataModel());
     m_cardPlayDataSortFilterModel->setSourceModel(card->getPlayDataModel());
     QHeaderView *header = ui->editDataView->header();
-    if (header) {
+    if (header && header->count() >= 3) {
         header->setSectionResizeMode(0, QHeaderView::ResizeToContents);
         header->setSectionResizeMode(1, QHeaderView::ResizeToContents);
         header->setSectionResizeMode(2, QHeaderView::ResizeToContents);
         header->setSectionResizeMode(3, QHeaderView::Stretch);
     }
     QHeaderView *playHeader = ui->playDataView->header();
-    if (playHeader) {
+    if (playHeader && playHeader->count() >= 3) {
         playHeader->setSectionResizeMode(0, QHeaderView::ResizeToContents);
         playHeader->setSectionResizeMode(1, QHeaderView::ResizeToContents);
         playHeader->setSectionResizeMode(2, QHeaderView::ResizeToContents);

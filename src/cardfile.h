@@ -45,13 +45,17 @@ namespace ClassEdit {
         QByteArray aauData() const;
         int aauDataVersion() const;
         QByteArray editData() const;
+
+        inline Dictionary *editDictionary() {
+            return m_editDataDictionary;
+        }
+
         QByteArray portraitData() const;
         QByteArray thumbnailData() const;
         QString fileName() const;
         QString filePath() const;
         CardDataModel *getEditDataModel() const;
         CardDataModel *getPlayDataModel() const;
-        Dictionary *editDictionary();
         int getGender() const;
         QPixmap portraitPixmap();
         QPixmap getRoster();
@@ -78,7 +82,6 @@ namespace ClassEdit {
         void setRoster(const QByteArray &file);
         void setRoster(QIODevice *file);
 
-        void buildEditDictionary();
         void updateQuickInfoGetters();
         bool hasPendingChanges() const;
         void commitChanges();

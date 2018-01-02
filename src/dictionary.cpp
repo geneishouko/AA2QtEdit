@@ -48,13 +48,14 @@ void Dictionary::set(int index, const QVariant value)
         return;
     replace(index, value);
     m_dirtyValues << index;
+    emit changed(index);
 }
 
 void Dictionary::set(const QString &key, QVariant value)
 {
     KeyIndex::Iterator it = m_keyMap.find(key);
     if (it != m_keyMap.end())
-        replace(m_keyMap.value(key), value);
+        set(m_keyMap.value(key), value);
     else
         insert(key, value);
 }
@@ -94,4 +95,12 @@ QVariant Dictionary::value(const QString &key) const
     if (it != m_keyMap.end())
         ret = at(m_keyMap.value(key));
     return ret;
+}
+
+void Dictionary::childChanged()
+{
+    Dictionary *child = qobject_cast<Dictionary*>(sender());
+    Q_ASSERT(child);
+    int index = indexOf(QVariant::fromValue(child));
+    emit changed(index);
 }

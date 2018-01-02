@@ -67,11 +67,20 @@ namespace ClassEdit {
         void set(const QString &key, QVariant value);
         void set(const QVariantMap &values);
         void setDataBlockList(QList<DataBlock*> blockList);
+
+        inline void setParentDictionary(Dictionary *parent) {
+            setParent(parent);
+            connect(this, &Dictionary::changed, parent, &Dictionary::childChanged);
+        }
+
         QString typeName(int index) const;
         QVariant value(const QString &key) const;
 
+    public slots:
+        void childChanged();
+
     signals:
-        void changed();
+        void changed(int index);
 
     private:
         KeyIndex m_keyMap;
