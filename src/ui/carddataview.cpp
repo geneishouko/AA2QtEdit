@@ -31,7 +31,8 @@ CardDataView::CardDataView(QWidget *parent) :
 void CardDataView::toggleCollapse(const QModelIndex &index)
 {
     QModelIndex root = index.sibling(index.row(), 0);
-    setExpanded(root, !isExpanded(root));
+    if (model()->rowCount(root))
+        setExpanded(root, !isExpanded(root));
 }
 
 void CardDataView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
