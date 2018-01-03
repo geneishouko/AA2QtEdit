@@ -30,10 +30,15 @@
       <enumpair key="18" value="Mature" />
       <enumpair key="19" value="Lazy" />
       <enumpair key="20" value="Manly" />
-      <enumpair key="21" value="Gentle (M)" />
-      <enumpair key="22" value="Positive (M)" />
-      <enumpair key="23" value="Otaku (M)" />
-      <enumpair key="24" value="Savage (M)" />
+      <enumpair key="21" value="Gentle" />
+      <enumpair key="22" value="Positive" />
+      <enumpair key="23" value="Otaku" />
+      <enumpair key="24" value="Savage" />
+      <enumpair key="25" value="Cadet" />
+      <enumpair key="26" value="Caring" />
+      <enumpair key="27" value="Schemer" />
+      <enumpair key="28" value="Carefree" />
+      <enumpair key="29" value="Warm" />
     </enumerable>
     <enumerable key="HEIGHT">
       <enumpair key="0" value="Short" />
@@ -255,15 +260,20 @@
       <enumpair key="2" value="Dangerous" />
     </enumerable>
     <enumerable key="CLOTHES_F" type="int32">
-      <enumpair key="0" value="Uniform" />
-      <enumpair key="1" value="Sports" />
-      <enumpair key="2" value="Swimsuit" />
-      <enumpair key="3" value="Formal" />
+      <enumpair key="0" value="[0] Sailor" />
+      <enumpair key="1" value="[1] Bloomers" />
+      <enumpair key="2" value="[2] Swimsuit" />
+      <enumpair key="3" value="[3] Teacher Suit" />
+      <enumpair key="4" value="[4] Blazer"/>
+      <enumpair key="5" value="[5] Naked"/>
+      <enumpair key="6" value="[6] Underwear"/>
+      <enumpair key="7" value="[7] Sweater"/>
     </enumerable>
     <enumerable key="CLOTHES_M" type="int32">
-      <enumpair key="0" value="Uniform" />
-      <enumpair key="1" value="Sports" />
-      <enumpair key="2" value="Swimsuit" />
+      <enumpair key="0" value="[0] Shirt" />
+      <enumpair key="1" value="[1] Jersey" />
+      <enumpair key="2" value="[2] Swimsuit" />
+      <enumpair key="3" value="[3] Nude"/>
     </enumerable>
     <enumerable key="SOCKS_F">
       <enumpair key="0" value="Barefoot" />
