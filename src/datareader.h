@@ -31,7 +31,9 @@ namespace ClassEdit {
             return m_dataBlockMap[name];
         }
         static DataReader *getDataReader(const QString& name);
-        DataEnumerable *getDataEnumerable(const QString& name) const;
+        inline DataEnumerable *getDataEnumerable(const QString& name) const {
+            return m_enumerables[name];
+        }
         QVariant read(QIODevice *data, DataType type, int dataSize = 0) const;
         QVariant read(QIODevice *data, DataBlock *db) const;
         inline QVariant read(QIODevice *data, const QString &key) const {

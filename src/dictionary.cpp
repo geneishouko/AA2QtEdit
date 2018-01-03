@@ -15,13 +15,14 @@
     along with AA2QtEdit.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "datareader.h"
 #include "dictionary.h"
 
 using namespace ClassEdit;
 
 Dictionary::Dictionary(QObject *parent) : QObject(parent), QList<QVariant>()
 {
-
+    m_dataReader = nullptr;
 }
 
 void Dictionary::buildDisplayKeyList()
@@ -29,6 +30,21 @@ void Dictionary::buildDisplayKeyList()
     for (int i = 0; i < count(); i++) {
         m_displayKeyList << m_keyMap.key(i);
     }
+}
+
+const DataReader *Dictionary::dataReader()
+{
+    if (m_dataReader)
+        return m_dataReader;
+    Dictionary *parentDictionary = qobject_cast<Dictionary*>(parent());
+    if (parentDictionary)
+        m_dataReader = parentDictionary->dataReader();
+    return m_dataReader;
+}
+
+QString Dictionary::enumerable(int index)
+{
+    return dataReader()->getDataEnumerable(m_dataBlockList.at(index)->metaKey())->name(at(index).toInt());
 }
 
 QVariantMap Dictionary::filterByPrefix(const QString &prefix) const

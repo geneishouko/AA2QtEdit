@@ -11,6 +11,7 @@
 namespace ClassEdit {
 
     class DataBlock;
+    class DataReader;
 
     class Dictionary : public QObject, public QList<QVariant>
     {
@@ -23,6 +24,8 @@ namespace ClassEdit {
         virtual ~Dictionary() = default;
 
         void buildDisplayKeyList();
+
+        const DataReader *dataReader();
 
         inline DataType dataType(int index) const {
             return m_dataBlockList.at(index)->type();
@@ -39,6 +42,8 @@ namespace ClassEdit {
         inline QStringList displayKeyList() const {
             return m_displayKeyList;
         }
+
+        QString enumerable(int index);
 
         QVariantMap filterByPrefix(const QString &prefix) const;
 
@@ -68,6 +73,10 @@ namespace ClassEdit {
         void set(const QVariantMap &values);
         void setDataBlockList(QList<DataBlock*> blockList);
 
+        inline void setDataReader(const DataReader *reader) {
+            m_dataReader = reader;
+        }
+
         inline void setParentDictionary(Dictionary *parent) {
             setParent(parent);
             connect(this, &Dictionary::changed, parent, &Dictionary::childChanged);
@@ -85,6 +94,7 @@ namespace ClassEdit {
     private:
         KeyIndex m_keyMap;
         QList<DataBlock*> m_dataBlockList;
+        const DataReader *m_dataReader;
         IndexSet m_dirtyValues;
         QStringList m_displayKeyList;
     };

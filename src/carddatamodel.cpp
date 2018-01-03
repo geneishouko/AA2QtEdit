@@ -102,6 +102,9 @@ QVariant CardDataModel::data(const QModelIndex &index, int role) const
                 Dictionary *dictionary = value.value<Dictionary*>();
                 return tr("(%1 items)", nullptr, dictionary->count()).arg(dictionary->count());
             }
+            if (dataType == DataType::Enum) {
+                return dictionary->enumerable(index.row());
+            }
             if (value.type() != QVariant::Bool)
                 return value;
         }

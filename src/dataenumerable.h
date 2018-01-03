@@ -11,6 +11,9 @@ namespace ClassEdit {
     {
     public:
         DataEnumerable(const DataType &type);
+        inline QString name(qint32 value) const {
+            return m_strings[value];
+        }
         DataType type() const;
         void registerStringValue(qint32 value, const QString &string);
 

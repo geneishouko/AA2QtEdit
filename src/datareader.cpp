@@ -330,6 +330,7 @@ Dictionary *DataReader::buildDictionary(QIODevice *data, DataBlockList dataBlock
     }
     dictionary->buildDisplayKeyList();
     dictionary->setDataBlockList(dataBlocks);
+    dictionary->setDataReader(this);
     return dictionary;
 }
 
