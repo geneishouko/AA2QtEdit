@@ -29,6 +29,14 @@ qmake
 make
 ```
 
+## Screenshots
+### AA2QtEdit on Linux
+![AA2QtEdit on Linux](https://github.com/geneishouko/AA2QtEdit/blob/screenshots/screenshots/linux_1.png "AA2QtEdit on Linux")
+![AA2QtEdit on Linux](https://github.com/geneishouko/AA2QtEdit/blob/screenshots/screenshots/linux_2.png "AA2QtEdit on Linux")
+### AA2QtEdit on Windows
+![AA2QtEdit on Windows](https://github.com/geneishouko/AA2QtEdit/blob/screenshots/screenshots/windows_1.png "AA2QtEdit on Windows")
+![AA2QtEdit on Windows](https://github.com/geneishouko/AA2QtEdit/blob/screenshots/screenshots/windows_2.png "AA2QtEdit on Windows")
+
 ## Links
 ### Similar software:
  * [ReiEdit](http://www.hongfire.com/forum/forum/hentai-lair/hf-modding-translation/artificial-academy-2-mods/407642) is a similar program for Windows.
