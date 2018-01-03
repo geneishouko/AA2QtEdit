@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dataset>
+  <enumerables>
+    <enumerable key="FACETYPE_F">
+      <enumpair key="9" value="Face 1 Long A" />
+      <enumpair key="10" value="Face 1 Long B" />
+      <enumpair key="11" value="Face 1 Long C" />
+      <enumpair key="12" value="Face 1 Long X" />
+      <enumpair key="13" value="Face 1 Medium A" />
+      <enumpair key="14" value="Face 1 Medium B" />
+      <enumpair key="15" value="Face 1 Medium X" />
+      <enumpair key="16" value="Face 1 Short A" />
+      <enumpair key="17" value="Face 1 Short B" />
+      <enumpair key="18" value="Face 1 Earless" />
+      <enumpair key="20" value="wwc ddh1" />
+      <enumpair key="21" value="wwc ddh1 e_e" />
+      <enumpair key="22" value="wwc ddh2" />
+      <enumpair key="23" value="wwc ddh3" />
+      <enumpair key="24" value="wwc ddh4" />
+      <enumpair key="25" value="wwc ddh5" />
+      <enumpair key="26" value="wwc ddh6" />
+      <enumpair key="27" value="wwc ddh9" />
+      <enumpair key="28" value="wwc ddh10" />
+      <enumpair key="29" value="wwc ddh11" />
+      <enumpair key="30" value="wwc ddh12" />
+      <enumpair key="31" value="wwc ddh13" />
+      <enumpair key="32" value="wwc ddh14" />
+      <enumpair key="33" value="wwc ddh15" />
+      <enumpair key="59" value="Mitcher" />
+      <enumpair key="60" value="Tuman Garie" />
+      <enumpair key="61" value="Micha Jawkan" />
+      <enumpair key="62" value="Rounded Face 11 Variant A" />
+      <enumpair key="63" value="Rounded Face 13 Variant A" />
+      <enumpair key="64" value="Rounded Face 1 Half Closed Variant" />
+      <enumpair key="65" value="Rounded Face 8" />
+      <enumpair key="66" value="Half-Closed Eyes Face 4 + DDH" />
+      <enumpair key="67" value="Face 11 (Variant A) + Lower Iris + Extended highlight + Thinner eyebrows + DDH + Fixed lips V2" />
+      <enumpair key="68" value="Face 11 + Thinner eyebrows" />
+      <enumpair key="69" value="Face 11 + Thinner eyebrows + Lashes [Slightly] Angled Downward" />
+      <enumpair key="70" value="Face 12 + Thinner eyebrows" />
+      <enumpair key="71" value="Face 13 + Thinner eyebrows" />
+      <enumpair key="72" value="Face 13 + Thinner eyebrows + Lashes [Slightly] Angled Downward" />
+      <enumpair key="73" value="Face 11 (Variant A) + Thinner eyebrows" />
+      <enumpair key="74" value="Face 13 (Variant A) + Thinner eyebrows" />
+      <enumpair key="75" value="Face 11 + Thinner eyebrows + Jaw raised" />
+      <enumpair key="76" value="Face 11 + Thinner eyebrows + Lashes [Slightly] Angled Downward + Jaw raised" />
+      <enumpair key="77" value="Face 12 + Thinner eyebrows + Jaw raised" />
+      <enumpair key="78" value="Face 13 + Thinner eyebrows + Jaw raised" />
+      <enumpair key="79" value="Face 13 + Thinner eyebrows + Lashes [Slightly] Angled Downward + Jaw raised" />
+      <enumpair key="80" value="Face 11 (Variant A) + Thinner eyebrows + Jaw raised" />
+      <enumpair key="81" value="Face 13 (Variant A) + Thinner eyebrows + Jaw raised" />
+      <enumpair key="82" value="Face 13 + Elf Ears" />
+      <enumpair key="83" value="JS3F DDH 1" />
+      <enumpair key="84" value="JS3F DDH 2" />
+      <enumpair key="85" value="JS3F DDH 3" />
+      <enumpair key="86" value="Rounded Face 1" />
+      <enumpair key="87" value="Rounded Face 2" />
+      <enumpair key="88" value="Rounded Face 3" />
+      <enumpair key="89" value="Rounded Face 11" />
+      <enumpair key="90" value="Rounded Face 12" />
+      <enumpair key="91" value="Rounded Face 13" />
+      <enumpair key="92" value="DDH 2 + Lowered Iris" />
+      <enumpair key="93" value="DDH 6 + Lower Ears + Snaggletooth" />
+      <enumpair key="94" value="Face 1 Snaggletooth" />
+      <enumpair key="95" value="Face 2 Snaggletooth" />
+      <enumpair key="96" value="Face 3 Snaggletooth" />
+      <enumpair key="97" value="Face 4 Snaggletooth" />
+      <enumpair key="98" value="Face 5 Snaggletooth" />
+      <enumpair key="99" value="Face 6 Snaggletooth" />
+      <enumpair key="100" value="Face 7 Snaggletooth" />
+      <enumpair key="101" value="Face 8 Snaggletooth" />
+      <enumpair key="102" value="Face 1 Vampire Teeth" />
+      <enumpair key="103" value="Face 2 Vampire Teeth" />
+      <enumpair key="104" value="Face 3 Vampire Teeth" />
+      <enumpair key="105" value="Face 4 Vampire Teeth" />
+      <enumpair key="106" value="Face 5 Vampire Teeth" />
+      <enumpair key="107" value="Face 6 Vampire Teeth" />
+      <enumpair key="108" value="Face 7 Vampire Teeth" />
+      <enumpair key="109" value="Face 8 Vampire Teeth" />
+      <enumpair key="110" value="Face 1 Vampire Teeth w/ Bottom" />
+      <enumpair key="111" value="Face 2 Vampire Teeth w/ Bottom" />      
+      <enumpair key="112" value="Face 3 Vampire Teeth w/ Bottom" />      
+      <enumpair key="113" value="Face 4 Vampire Teeth w/ Bottom" />      
+      <enumpair key="114" value="Face 5 Vampire Teeth w/ Bottom" />      
+      <enumpair key="115" value="Face 6 Vampire Teeth w/ Bottom" />      
+      <enumpair key="116" value="Face 7 Vampire Teeth w/ Bottom" />      
+      <enumpair key="117" value="Face 8 Vampire Teeth w/ Bottom" />      
+      <enumpair key="118" value="Face 1 Shark Teeth" />
+      <enumpair key="119" value="Face 2 Shark Teeth" />
+      <enumpair key="120" value="Face 3 Shark Teeth" />
+      <enumpair key="121" value="Face 4 Shark Teeth" />
+      <enumpair key="122" value="Face 5 Shark Teeth" />
+      <enumpair key="123" value="Face 6 Shark Teeth" />
+      <enumpair key="124" value="Face 7 Shark Teeth" />
+      <enumpair key="125" value="Face 8 Shark Teeth" />
+      <enumpair key="126" value="Face 1 w/ Blush Sticker" />
+      <enumpair key="127" value="Face 2 w/ Blush Sticker" />
+      <enumpair key="128" value="Face 3 w/ Blush Sticker" />
+      <enumpair key="129" value="Face 4 w/ Blush Sticker" />
+      <enumpair key="130" value="Face 5 w/ Blush Sticker" />
+      <enumpair key="131" value="Face 6 w/ Blush Sticker" />
+      <enumpair key="132" value="Face 7 w/ Blush Sticker" />
+      <enumpair key="133" value="Face 8 w/ Blush Sticker" />
+      <enumpair key="134" value="Face 8" />
+      <enumpair key="135" value="Round Face 1" />
+      <enumpair key="136" value="Round Face 2" />
+      <enumpair key="137" value="Round Face 3" />
+      <enumpair key="138" value="Round Face 4" />
+      <enumpair key="139" value="Round Face 5" />
+      <enumpair key="140" value="Round Face 6" />
+      <enumpair key="141" value="Round Face 7" />
+      <enumpair key="142" value="DDH 1 Colorable Eyelashes Lowered Ears" />
+      <enumpair key="143" value="DDH 2 Colorable Eyelashes Lowered Ears" />
+      <enumpair key="144" value="DDH 3 Colorable Eyelashes Lowered Ears" />
+      <enumpair key="145" value="DDH 4 Colorable Eyelashes Lowered Ears" />
+      <enumpair key="146" value="DDH 5 Colorable Eyelashes Lowered Ears" />
+      <enumpair key="147" value="DDH 6 Colorable Eyelashes Lowered Ears" />
+      <enumpair key="148" value="Face 9 DDH Colorable Eyelashes Lowered Ears" />
+      <enumpair key="149" value="Face 10 DDH Colorable Eyelashes Lowered Ears" />
+      <enumpair key="150" value="Round Face 1 + ElfEars Long C + SC + Shark Teeth" />
+      <enumpair key="151" value="Round Face 2 + ElfEars Long A + SC + Shark Teeth" />
+      <enumpair key="152" value="JS3F DDH 1 [Black Eyelashes]" />
+      <enumpair key="153" value="JS3F DDH 2 [Black Eyelashes]" />
+      <enumpair key="154" value="JS3F DDH 3 [Black Eyelashes]" />
+      <enumpair key="155" value="JS3F DDH 4 [Black Eyelashes]" />
+      <enumpair key="156" value="JS3F DDH 5 [Black Eyelashes]" />
+      <enumpair key="157" value="JS3F DDH 6 [Black Eyelashes]" />
+      <enumpair key="158" value="JS3F DDH 6 + Vampire Teeth [Black Eyelashes]" />
+      <enumpair key="159" value="Face 2 [Black Sclera]" />
+      <enumpair key="160" value="Face 1 [Yellow Sclera]" />
+      <enumpair key="161" value="Face 2 [Red Sclera]" />
+      <enumpair key="162" value="Face 2 [Black Sclera + Elf Ears]" />
+      <enumpair key="163" value="Face 1 [Colorable Eyelashes]" />
+      <enumpair key="164" value="Face 2 [Colorable Eyelashes]" />
+      <enumpair key="165" value="Face 3 [Colorable Eyelashes]" />
+      <enumpair key="166" value="Face 4 [Colorable Eyelashes]" />
+      <enumpair key="167" value="Face 5 [Colorable Eyelashes]" />
+      <enumpair key="168" value="Face 6 [Colorable Eyelashes]" />
+      <enumpair key="169" value="Face 7 [Colorable Eyelashes]" />
+      <enumpair key="170" value="Face 8 [Colorable Eyelashes]" />
+      <enumpair key="171" value="Face 1 Thicker Beauty Marks + Raised Jaw" />
+      <enumpair key="172" value="Face 2 Thicker Beauty Marks + Raised Jaw" />
+      <enumpair key="173" value="Face 3 Thicker Beauty Marks + Raised Jaw" />
+      <enumpair key="174" value="Face 4 Thicker Beauty Marks + Raised Jaw" />
+      <enumpair key="175" value="Face 5 Thicker Beauty Marks + Raised Jaw" />
+      <enumpair key="176" value="Face 6 Thicker Beauty Marks + Raised Jaw" />
+      <enumpair key="177" value="Face 7 Thicker Beauty Marks+ Raised Jaw" />
+      <enumpair key="178" value="Face 1 Thicker Beauty Marks - Double variant + Raised Jaw" />
+      <enumpair key="179" value="Face 2 Thicker Beauty Marks - Double variant + Raised Jaw" />
+      <enumpair key="180" value="Face 3 Thicker Beauty Marks - Double variant + Raised Jaw" />
+      <enumpair key="181" value="Face 4 Thicker Beauty Marks - Double variant + Raised Jaw" />
+      <enumpair key="182" value="Face 5 Thicker Beauty Marks - Double variant + Raised Jaw" />
+      <enumpair key="183" value="Face 6 Thicker Beauty Marks - Double variant + Raised Jaw" />
+      <enumpair key="184" value="Face 7 Thicker Beauty Marks - Double variant + Raised Jaw" />
+      <enumpair key="185" value="Face 1 Thicker Beauty Marks - Tear variant + Raised Jaw" />
+      <enumpair key="186" value="Face 2 Thicker Beauty Marks - Tear variant + Raised Jaw" />
+      <enumpair key="187" value="Face 3 Thicker Beauty Marks - Tear variant + Raised Jaw" />
+      <enumpair key="188" value="Face 4 Thicker Beauty Marks - Tear variant + Raised Jaw" />
+      <enumpair key="189" value="Face 5 Thicker Beauty Marks - Tear variant + Raised Jaw" />
+      <enumpair key="190" value="Face 6 Thicker Beauty Marks - Tear variant + Raised Jaw" />
+      <enumpair key="191" value="Face 7 Thicker Beauty Marks - Tear variant + Raised Jaw" />
+      <enumpair key="192" value="Face 11 + Thinner eyebrows + DDH" />
+      <enumpair key="193" value="Face 11 + Thinner eyebrows + Lashes [Slightly] Angled Downward + DDH" />
+      <enumpair key="194" value="Face 12 + Thinner eyebrows + DDH" />
+      <enumpair key="195" value="Face 13 + Thinner eyebrows + DDH" />
+      <enumpair key="196" value="Face 13 + Thinner eyebrows + Lashes [Slightly] Angled Downward + DDH" />
+      <enumpair key="197" value="Face 11 (Variant A) + Thinner eyebrows + DDH" />
+      <enumpair key="198" value="Face 13 (Variant A) + Thinner eyebrows + DDH" />
+      <enumpair key="199" value="Face 1 No Blush" />
+      <enumpair key="200" value="Face 2 No Blush" />
+      <enumpair key="201" value="Face 3 No Blush" />
+      <enumpair key="202" value="Face 4 No Blush" />
+      <enumpair key="203" value="Face 5 No Blush" />
+      <enumpair key="204" value="Face 6 No Blush" />
+      <enumpair key="205" value="Face 7 No Blush" />
+      <enumpair key="206" value="Face 8 Earless" />
+      <enumpair key="207" value="Face 9 Earless" />
+      <enumpair key="208" value="Face 10 Earless" />
+      <enumpair key="209" value="DDH 1 Earless" />
+      <enumpair key="210" value="DDH 3 Earless" />
+      <enumpair key="211" value="DDH 3 Earless w/ Snaggletooth" />
+      <enumpair key="212" value="Face 1 Colorable sclera" />
+      <enumpair key="213" value="Face 2 Colorable sclera" />
+      <enumpair key="214" value="Face 3 Colorable sclera" />
+      <enumpair key="215" value="Face 4 Colorable sclera" />
+      <enumpair key="216" value="Face 5 Colorable sclera" />
+      <enumpair key="217" value="Face 6 Colorable sclera" />
+      <enumpair key="218" value="Face 7 Colorable sclera" />
+      <enumpair key="219" value="Face 9" />
+      <enumpair key="220" value="Face 10" />
+      <enumpair key="221" value="Face 9 + DDH" />
+      <enumpair key="222" value="Face 10 + DDH" />
+      <enumpair key="223" value="Face 9 + DDH + Lower ears" />
+      <enumpair key="224" value="Face 10 + DDH + Lower ears" />
+      <enumpair key="225" value="Face 9 + Thinner eyebrows" />
+      <enumpair key="226" value="Face 10 + Thinner eyebrows" />
+      <enumpair key="227" value="Face 9 + Thinner eyebrows + DDH" />
+      <enumpair key="228" value="Face 10 + Thinner eyebrows + DDH" />
+      <enumpair key="229" value="Face 1 + Lower ears" />
+      <enumpair key="230" value="Face 2 + Lower ears" />
+      <enumpair key="231" value="JS3F DDH 1 [Black Eyelashes] + Lower ears" />
+      <enumpair key="232" value="JS3F DDH 6 [Black Eyelashes] + Lower ears" />
+      <enumpair key="233" value="JS3F DDH 3 [Black Eyelashes] + Lower ears" />
+      <enumpair key="234" value="Face 9 + Thinner eyebrows + DDH + Lower ears" />
+      <enumpair key="235" value="Face 10 + Thinner eyebrows + DDH + Lower ears" />
+      <enumpair key="236" value="Face 10 Vampire Teeth + Thinner eyebrows + DDH + Lower ears" />
+      <enumpair key="237" value="JS3F DDH 1 [Black Eyelashes] + Short B" />
+      <enumpair key="238" value="Face 9 + Thinner eyebrows + DDH + Short B" />
+      <enumpair key="239" value="Face 9 + DDH + Medium B" />
+      <enumpair key="240" value="DDH 1 + Dark red eyelashes + Lower ears + Higher nose" />
+      <enumpair key="241" value="DDH 1 + Lower ears + Higher nose" />
+      <enumpair key="242" value="Face 10 + DDH + Thinner eyebrows + Lower ears + Snaggletooth" />
+      <enumpair key="243" value="Face 9 + DDH + Lower Ears + Long Lash + Flatter Sclera Texture" />
+      <enumpair key="244" value="Face 10 + DDH + Lower Ears + Long Lash + Flatter Sclera Texture" />
+      <enumpair key="245" value="Face 1 + DDH + Lower Ears + Higher Nose + Flatter Sclera Texture" />
+      <enumpair key="246" value="Face 11 DDH No Bottom Lash + Custom Lash + Sclera Texture" />
+      <enumpair key="247" value="Face 13 + Thinner eyebrows + DDH [Colorable Eyelashes]" />
+      <enumpair key="248" value="JS3F DDH 2 + Perma Catface" />
+      <enumpair key="249" value="Hole Face" />
+      <enumpair key="250" value="Black Sclera - Face 10" />
+      <enumpair key="251" value="Black Sclera - Face 10 DDH" />
+      <enumpair key="252" value="Possessed - Face 10 DDH" />
+      <enumpair key="253" value="Stitched Face [White]" />
+      <enumpair key="254" value="Clock Eye" />
+    </enumerable>
+    <enumerable key="FACETYPE_M">
+      <enumpair key="4" value="Face 1 Shark Teeth" />
+      <enumpair key="5" value="Face 2 Shark Teeth" />
+      <enumpair key="6" value="Face 3 Shark Teeth" />
+      <enumpair key="7" value="Face 4 Shark Teeth" />
+      <enumpair key="8" value="Face 1 Vampire Teeth" />
+      <enumpair key="9" value="Face 2 Vampire Teeth" />
+      <enumpair key="10" value="Face 3 Vampire Teeth" />
+      <enumpair key="11" value="Face 4 Vampire Teeth" />
+      <enumpair key="12" value="Face 1 Vampire Teeth + Bottom Fangs" />
+      <enumpair key="13" value="Face 2 Vampire Teeth + Bottom Fangs" />
+      <enumpair key="14" value="Face 3 Vampire Teeth + Bottom Fangs" />
+      <enumpair key="15" value="Face 4 Vampire Teeth + Bottom Fangs" />
+      <enumpair key="16" value="Face 1 Snaggletooth" />
+      <enumpair key="17" value="Face 2 Snaggletooth" />
+      <enumpair key="18" value="Face 3 Snaggletooth" />
+      <enumpair key="19" value="Face 4 Snaggletooth" />
+      <enumpair key="20" value="DeUglyOne Face" />
+      <enumpair key="21" value="Face 1 Geass" />
+      <enumpair key="22" value="Face 2 Geass" />
+      <enumpair key="23" value="Face 3 Geass" />
+      <enumpair key="24" value="Sasuke" />
+      <enumpair key="25" value="Face 1 No Lower Lid" />
+      <enumpair key="26" value="Face 1 Colorable Sclera" />
+      <enumpair key="27" value="Face 2 Colorable Sclera" />
+      <enumpair key="28" value="Face 3 Colorable Sclera" />
+      <enumpair key="29" value="Face 4 Colorable Sclera" />
+      <enumpair key="30" value="Face 1 Elf ears - Short A" />
+      <enumpair key="31" value="Face 1 Elf ears - Short B" />
+      <enumpair key="32" value="Face 1 Elf ears - Medium A" />
+      <enumpair key="33" value="Face 1 Elf ears - Medium B" />
+      <enumpair key="34" value="Face 1 Elf ears - Medium X" />
+      <enumpair key="35" value="Face 1 Elf ears - Long A" />
+      <enumpair key="36" value="Face 1 Elf ears - Long B" />
+      <enumpair key="37" value="Face 1 Elf ears - Long C" />
+      <enumpair key="38" value="Face 1 Elf ears - Long X" />
+      <enumpair key="39" value="Face 1 Earless" />
+      <enumpair key="40" value="Face 2 Elf ears - Short A" />
+      <enumpair key="41" value="Face 2 Elf ears - Short B" />
+      <enumpair key="42" value="Face 2 Elf ears - Medium A" />
+      <enumpair key="43" value="Face 2 Elf ears - Medium B" />
+      <enumpair key="44" value="Face 2 Elf ears - Medium X" />
+      <enumpair key="45" value="Face 2 Elf ears - Long A" />
+      <enumpair key="46" value="Face 2 Elf ears - Long B" />
+      <enumpair key="47" value="Face 2 Elf ears - Long C" />
+      <enumpair key="48" value="Face 2 Elf ears - Long X" />
+      <enumpair key="49" value="Face 2 Earless" />
+      <enumpair key="50" value="Face 3 Elf ears - Short A" />
+      <enumpair key="51" value="Face 3 Elf ears - Short B" />
+      <enumpair key="52" value="Face 3 Elf ears - Medium A" />
+      <enumpair key="53" value="Face 3 Elf ears - Medium B" />
+      <enumpair key="54" value="Face 3 Elf ears - Medium X" />
+      <enumpair key="55" value="Face 3 Elf ears - Long A" />
+      <enumpair key="56" value="Face 3 Elf ears - Long B" />
+      <enumpair key="57" value="Face 3 Elf ears - Long C" />
+      <enumpair key="58" value="Face 3 Elf ears - Long X" />
+      <enumpair key="59" value="Face 3 Earless" />
+      <enumpair key="60" value="Face 4 Elf ears - Short A" />
+      <enumpair key="61" value="Face 4 Elf ears - Short B" />
+      <enumpair key="62" value="Face 4 Elf ears - Medium A" />
+      <enumpair key="63" value="Face 4 Elf ears - Medium B" />
+      <enumpair key="64" value="Face 4 Elf ears - Medium X" />
+      <enumpair key="65" value="Face 4 Elf ears - Long A" />
+      <enumpair key="66" value="Face 4 Elf ears - Long B" />
+      <enumpair key="67" value="Face 4 Elf ears - Long C" />
+      <enumpair key="68" value="Face 4 Elf ears - Long X" />
+      <enumpair key="69" value="Face 4 Earless" />
+      <enumpair key="70" value="Face 1 Colorable Eyelashes" />
+      <enumpair key="71" value="Face 2 Colorable Eyelashes" />
+      <enumpair key="72" value="Face 3 Colorable Eyelashes" />
+      <enumpair key="73" value="Face 4 Colorable Eyelashes" />
+      <enumpair key="74" value="Face 1 No Brows" />
+      <enumpair key="75" value="Face 2 No Brows" />
+      <enumpair key="76" value="Face 3 No Brows" />
+      <enumpair key="77" value="Face 4 No Brows" />
+      <enumpair key="78" value="Face 1 No Blush" />
+      <enumpair key="79" value="Face 2 No Blush" />
+      <enumpair key="80" value="Face 3 No Blush" />
+      <enumpair key="81" value="Face 4 No Blush" />
+      <enumpair key="82" value="Face 1 Lower Ears" />
+      <enumpair key="83" value="Face 2 Lower Ears" />
+      <enumpair key="84" value="Face 3 Lower Ears" />
+      <enumpair key="85" value="Face 4 Lower Ears" />
+      <enumpair key="86" value="Seccom Masada" />
+      <enumpair key="87" value="Male DDH" />
+      <enumpair key="88" value="Orc" />
+      <enumpair key="89" value="Green Orc" />
+      <enumpair key="90" value="Faceless" />
+      <enumpair key="91" value="Face 9" />
+      <enumpair key="92" value="Face 10" />
+      <enumpair key="93" value="Face 9 Raised Jaw" />
+      <enumpair key="94" value="Face 10 Raised Jaw" />
+      <enumpair key="100" value="Kyrie" />
+      <enumpair key="101" value="Gilgamesh" />
+    </enumerable>
+    <enumerable key="GLASSESTYPE">
+      <enumpair key="5" value="Colorable Headband" />
+      <enumpair key="6" value="Circle Rimmed Glasses" />
+      <enumpair key="7" value="Hipster Glasses" />
+      <enumpair key="8" value="Hipster Glasses w/ Shades" />
+      <enumpair key="9" value="2Chan -Librarian- Glasses" />
+      <enumpair key="10" value="Square Frames" />
+      <enumpair key="11" value="Kamina Shades" />
+      <enumpair key="12" value="Type 3 Thinner" />
+      <enumpair key="13" value="Type 4 Thinner" />
+      <enumpair key="14" value="Short Square Frames" />
+      <enumpair key="15" value="Tall Square Frames" />
+      <enumpair key="16" value="Colorable Lenses Black Frame" />
+      <enumpair key="17" value="Colorable Lenses White Frame" />
+      <enumpair key="18" value="Hipster Glasses sans White Bits" />
+      <enumpair key="19" value="Hipster Glasses w/ Shades sans White Bits" />
+      <enumpair key="20" value="Otaku Glasses" />
+      <enumpair key="21" value="Opaque Glasses" />
+      <enumpair key="22" value="Aviators with Black Frames" />
+      <enumpair key="23" value="Aviators with White Frames" />
+      <enumpair key="24" value="Large Round Glasses" />
+      <enumpair key="25" value="Simple Glasses" />
+      <enumpair key="26" value="Reading Glasses" />
+      <enumpair key="28" value="Rectangular Type 4" />
+      <enumpair key="29" value="Tanaka Asuka" />
+      <enumpair key="30" value="Nagato Yuki" />
+      <enumpair key="31" value="Rectangular Type 1" />
+      <enumpair key="32" value="Orie's headband [Fixed Color]" />
+      <enumpair key="33" value="Orie's headband [Colorable]" />
+      <enumpair key="34" value="DoLLs Half-Circle" />
+      <enumpair key="35" value="DoLLs Round" />
+      <enumpair key="36" value="DoLLs Square" />
+      <enumpair key="37" value="2chan Thin Glasses 1" />
+      <enumpair key="38" value="2chan Thin Glasses 2" />
+      <enumpair key="39" value="2chan Thin Glasses 3" />
+      <enumpair key="41" value="Deal With It Glasses 3" />
+      <enumpair key="42" value="Monstrous 1" />
+      <enumpair key="43" value="Monstrous 2" />
+      <enumpair key="44" value="Monstrous 3" />
+      <enumpair key="45" value="Monstrous 4" />
+      <enumpair key="46" value="Monstrous 5" />
+    </enumerable>
+    <enumerable key="LIPSTICKCOLOR">
+      <enumpair key="8" value="ExtraLips 1" />
+      <enumpair key="9" value="ExtraLips 2" />
+      <enumpair key="10" value="ExtraLips 3" />
+      <enumpair key="11" value="ExtraLips 4" />
+      <enumpair key="12" value="ExtraLips 5" />
+      <enumpair key="13" value="Upper Lip 1" />
+      <enumpair key="14" value="Upper Lip 2" />
+      <enumpair key="15" value="Upper Lip 3" />
+      <enumpair key="16" value="Upper Lip 4" />
+      <enumpair key="17" value="Upper Lip 5" />
+      <enumpair key="18" value="Upper Lip 6" />
+      <enumpair key="19" value="Upper Lip 7" />
+      <enumpair key="20" value="Upper Lip 8" />
+      <enumpair key="21" value="TruLips HD + ExtraLips 1" />
+      <enumpair key="22" value="TruLips HD + ExtraLips 2" />
+      <enumpair key="23" value="TruLips HD + ExtraLips 3" />
+      <enumpair key="24" value="TruLips HD + ExtraLips 4" />
+      <enumpair key="25" value="TruLips HD + ExtraLips 5" />
+      <enumpair key="26" value="TruLips HD + ExtraLips 6" />
+      <enumpair key="27" value="TruLips HD + ExtraLips 7" />
+      <enumpair key="28" value="TruLips HD + ExtraLips 8" />
+      <enumpair key="29" value="TruLips HD + ExtraLips 8" />
+      <enumpair key="30" value="TruLips HD + ExtraLips 9" />
+      <enumpair key="31" value="TruLips HD + ExtraLips 10" />
+      <enumpair key="32" value="TruLips HD + ExtraLips 11" />
+      <enumpair key="33" value="TruLips HD + ExtraLips 12" />
+      <enumpair key="34" value="Tsurime 1" />
+      <enumpair key="35" value="Tsurime 2" />
+      <enumpair key="36" value="Tsurime 3" />
+      <enumpair key="37" value="Tsurime 4" />
+      <enumpair key="38" value="Tsurime 5" />
+      <enumpair key="39" value="Tsurime 6" />
+      <enumpair key="40" value="Tsurime 7" />
+      <enumpair key="41" value="Tsurime 8" />
+      <enumpair key="42" value="Full Lips Type A-1" />
+      <enumpair key="43" value="Full Lips Type A-2" />
+      <enumpair key="44" value="Full Lips Type A-3" />
+      <enumpair key="45" value="Full Lips Type A-4" />
+      <enumpair key="46" value="Full Lips Type A-5" />
+      <enumpair key="47" value="Full Lips Type A-6" />
+      <enumpair key="48" value="Full Lips Type A-7" />
+      <enumpair key="49" value="Full Lips Type A-8" />
+      <enumpair key="50" value="Full Lips Type B-1" />
+      <enumpair key="51" value="Full Lips Type B-2" />
+      <enumpair key="52" value="Full Lips Type B-3" />
+      <enumpair key="53" value="Full Lips Type B-4" />
+      <enumpair key="54" value="Full Lips Type B-5" />
+      <enumpair key="55" value="Full Lips Type B-6" />
+      <enumpair key="56" value="Full Lips Type B-7" />
+      <enumpair key="57" value="Full Lips Type B-8" />
+      <enumpair key="58" value="Full Lips Type C-1" />
+      <enumpair key="59" value="Full Lips Type C-2" />
+      <enumpair key="60" value="Full Lips Type C-3" />
+      <enumpair key="61" value="Full Lips Type C-4" />
+      <enumpair key="62" value="Full Lips Type C-5" />
+      <enumpair key="63" value="Full Lips Type C-6" />
+      <enumpair key="64" value="Full Lips Type C-7" />
+      <enumpair key="65" value="Full Lips Type C-8" />
+      <enumpair key="66" value="Full Lips Type X-1" />
+      <enumpair key="67" value="Full Lips Type X-2" />
+      <enumpair key="68" value="Full Lips Type X-3" />
+      <enumpair key="69" value="Full Lips Type X-4" />
+      <enumpair key="70" value="Full Lips Type X-5" />
+      <enumpair key="71" value="Full Lips Type X-6" />
+      <enumpair key="72" value="Full Lips Type X-7" />
+      <enumpair key="73" value="Full Lips Type X-8" />
+    </enumerable>
+  </enumerables>
+</dataset>

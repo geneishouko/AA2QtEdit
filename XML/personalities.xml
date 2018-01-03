@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dataset>
+  <enumerables>
+    <enumerable key="PERSONALITY">
+      <enumpair key="30" value="Cold (Male Aloof)" />
+      <enumpair key="31" value="AA1 Quiet" />
+      <enumpair key="33" value="AA1 Empress (Snooley)" />
+      <enumpair key="34" value="AA1 Big Sister" />
+      <enumpair key="35" value="Silent" />
+      <enumpair key="36" value="AA1 Empress" />
+      <enumpair key="37" value="AA1 Brave" />
+      <enumpair key="40" value="Robot" />
+      <enumpair key="42" value="Russian" />
+      <enumpair key="45" value="Salamanderman" />
+      <enumpair key="50" value="Servent" />
+      <enumpair key="52" value="Apricot" />
+      <enumpair key="53" value="Wise" />
+      <enumpair key="54" value="Graceful" />
+      <enumpair key="55" value="Trendy" />
+      <enumpair key="58" value="AA1 Ditzy" />
+      <enumpair key="59" value="AA1 Aloof" />
+      <enumpair key="60" value="AA1 Affable" />
+      <enumpair key="61" value="AA1 Calm" />
+      <enumpair key="62" value="AA1 Tense" />
+      <enumpair key="63" value="AA1 Rough" />
+      <enumpair key="64" value="AA1 Sweet" />
+      <enumpair key="65" value="AA1 Mistress" />
+      <enumpair key="66" value="AA1 Selfish" />
+      <enumpair key="67" value="Bekloppt" />
+      <enumpair key="68" value="AA1 Casual" />
+      <enumpair key="69" value="Open Joyful" />
+      <enumpair key="70" value="AA1 Pleasant" />
+      <enumpair key="71" value="Gynoid" />
+      <enumpair key="72" value="Open Quiet" />
+      <enumpair key="75" value="Cynical" />
+      <enumpair key="76" value="AA1 Manly" />
+      <enumpair key="77" value="AA1 Humble" />
+      <enumpair key="78" value="Succubus" />
+      <enumpair key="79" value="AA1 Violent" />
+      <enumpair key="80" value="Analytical" />
+      <enumpair key="81" value="Despair" />
+      <enumpair key="98" value="AA1 Cold" />
+      <enumpair key="99" value="AA1 Soft" />
+      <enumpair key="100" value="AA1 Eloquent" />
+      <enumpair key="101" value="AA1 Obscene" />
+      <enumpair key="102" value="AA1 Faithful" />
+      <enumpair key="103" value="Professor" />
+      <enumpair key="104" value="AA1 Handsome" />
+      <enumpair key="105" value="AA1 Dark" />
+      <enumpair key="112" value="Artsy" />
+      <enumpair key="113" value="Silent (M)" />
+      <enumpair key="114" value="Mute" />
+      <enumpair key="115" value="Mute+" />
+    </enumerable>
+  </enumerables>
+</dataset>
