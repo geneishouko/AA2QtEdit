@@ -28,6 +28,7 @@
 using namespace ClassEdit;
 
 QHash<QString, DataReader*> DataReader::s_readers;
+QHash<QString, DataEnumerable*> DataReader::s_enumerables;
 
 DataReader::DataReader(QIODevice *xmlDefinition)
 {
@@ -100,7 +101,7 @@ QVariant DataReader::read(QIODevice *data, DataBlock *db) const
     data->seek(db->offset());
 
     if (type == DataType::Enum) {
-        type = m_enumerables[db->metaKey()]->type();
+        type = s_enumerables[db->metaKey()]->type();
         size = db->dataSize();
     }
 
@@ -125,7 +126,7 @@ void DataReader::write(QIODevice *data, const QString &key, const QVariant &valu
     DataBlock *db = m_dataBlockMap[key];
     DataType type = db->type();
     if (type == DataType::Enum) {
-        type = m_enumerables[db->metaKey()]->type();
+        type = s_enumerables[db->metaKey()]->type();
     }
 
     int fieldSize = 0;
@@ -214,7 +215,7 @@ void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db) cons
         int innerSize = 0;
         DataType innerType = db->m_arrayInnerType;
         if (innerType == DataType::Enum)
-            innerType = m_enumerables[db->metaKey()]->type();
+            innerType = s_enumerables[db->metaKey()]->type();
         switch(innerType) {
             case DataType::Bool:
             case DataType::Byte:
@@ -291,7 +292,7 @@ void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db) cons
     else {
         DataType type = db->m_type;
         if (type == DataType::Enum) {
-            type = m_enumerables[db->metaKey()]->type();
+            type = s_enumerables[db->metaKey()]->type();
         }
         if (type == DataType::Bool || type == DataType::Byte)
             db->m_dataSize = 1;
@@ -363,6 +364,21 @@ bool DataReader::loadDefinitions(QIODevice *xmlDefinition)
     return !xml.error();
 }
 
+bool DataReader::loadExternalDefinitions(QIODevice *xmlDefinition)
+{
+    QXmlStreamReader xml(xmlDefinition);
+    xml.readNext();
+    if(xml.documentVersion() == "1.0") {
+        if(xml.readNextStartElement() && xml.name() == "dataset")
+            parseExternalDefinitions(xml);
+    }
+    else {
+        xml.raiseError(QObject::tr("The file is not an XML version 1.0 file."));
+    }
+
+    return !xml.error();
+}
+
 void DataReader::parseDefinitions(QXmlStreamReader &xml) {
     while(xml.readNextStartElement()) {
         if(xml.name() == "enumerables")
@@ -371,6 +387,16 @@ void DataReader::parseDefinitions(QXmlStreamReader &xml) {
             parseStructs(xml);
         else if (xml.name() == "datablocks")
             parseDatablocks(xml);
+        else
+            xml.skipCurrentElement();
+    }
+}
+
+void DataReader::parseExternalDefinitions(QXmlStreamReader &xml)
+{
+    while(xml.readNextStartElement()) {
+        if(xml.name() == "enumerables")
+            parseEnumerables(xml);
         else
             xml.skipCurrentElement();
     }
@@ -436,12 +462,12 @@ DataStruct *DataReader::getStruct(const QString &key) const
 
 DataEnumerable *DataReader::registerEnumerable(const QString &key, DataType type)
 {
-    DataEnumerableMap::iterator it = m_enumerables.find(key);
-    if (it != m_enumerables.end()) {
+    DataEnumerableMap::iterator it = s_enumerables.find(key);
+    if (it != s_enumerables.end()) {
         return *it;
     }
     DataEnumerable *newEnum = new DataEnumerable(type);
-    m_enumerables.insert(key, newEnum);
+    s_enumerables.insert(key, newEnum);
     return newEnum;
 }
 

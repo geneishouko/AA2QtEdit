@@ -16,9 +16,12 @@
 */
 
 #include "ui/mainwindow.h"
-#include <QApplication>
 
 #include "src/datareader.h"
+
+#include <QApplication>
+#include <QDir>
+#include <QFileInfo>
 
 int main(int argc, char *argv[])
 {
@@ -36,6 +39,19 @@ int main(int argc, char *argv[])
     ClassEdit::DataReader::getDataReader("playdata");
     ClassEdit::DataReader::getDataReader("headerdata");
     ClassEdit::DataReader::getDataReader("clothdata");
+
+    {
+        QDir dir(a.applicationDirPath());
+        QStringList filter;
+        filter << "*.xml";
+        QFileInfoList definitions = dir.entryInfoList(filter, QDir::Files, QDir::Time);
+        foreach (const QFileInfo &path, definitions) {
+            QFile xml(path.absoluteFilePath());
+            xml.open(QFile::ReadOnly);
+            ClassEdit::DataReader::loadExternalDefinitions(&xml);
+        }
+    }
+
     MainWindow w;
     w.show();
 
