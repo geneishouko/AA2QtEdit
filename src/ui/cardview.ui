@@ -57,7 +57,7 @@
         <item row="2" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Profile</string>
+           <string>P&amp;rofile</string>
           </property>
           <property name="buddy">
            <cstring>PROFILE_PROFILE</cstring>
@@ -153,6 +153,9 @@
       <property name="placeholderText">
        <string>Filter keys</string>
       </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item>
@@ -173,6 +176,9 @@
      <widget class="QLineEdit" name="textPlayKeyFilter">
       <property name="placeholderText">
        <string>Filter keys</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
