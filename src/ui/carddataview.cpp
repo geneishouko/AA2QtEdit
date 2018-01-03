@@ -25,6 +25,8 @@ using namespace ClassEdit;
 CardDataView::CardDataView(QWidget *parent) :
     QTreeView (parent)
 {
+    setEditTriggers(CurrentChanged);
+    setTabKeyNavigation(false);
     connect(this, &QAbstractItemView::clicked, this, &CardDataView::toggleCollapse);
 }
 

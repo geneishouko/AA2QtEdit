@@ -156,7 +156,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QTreeView" name="editDataView">
+     <widget class="ClassEdit::CardDataView" name="editDataView">
       <property name="rootIsDecorated">
        <bool>false</bool>
       </property>

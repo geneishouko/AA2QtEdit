@@ -23,6 +23,8 @@
 #include <QDir>
 #include <QFileInfo>
 
+#include <QtDebug>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -46,6 +48,7 @@ int main(int argc, char *argv[])
         filter << "*.xml";
         QFileInfoList definitions = dir.entryInfoList(filter, QDir::Files, QDir::Time);
         foreach (const QFileInfo &path, definitions) {
+            qDebug() << "load definitions" << path.completeBaseName();
             QFile xml(path.absoluteFilePath());
             xml.open(QFile::ReadOnly);
             ClassEdit::DataReader::loadExternalDefinitions(&xml);
