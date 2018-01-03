@@ -260,17 +260,6 @@ void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db) cons
                 for (int j = 0; j < blockCount; j++) {
                     blockList[j] = ds->blocks()[j];
                     blockList[j].m_address = curOffset;
-                    /*DataType btype = ds->blocks()[j].type();
-                    if (btype == DataType::Enum) {
-                        btype = m_enumerables[ds->blocks()[j].metaKey()]->type();
-                        if (btype == DataType::Bool || btype == DataType::Byte)
-                            blockList[j].m_dataSize = 1;
-                        else if (btype == DataType::Int16)
-                            blockList[j].m_dataSize = 2;
-                        else if (btype == DataType::Int32 || btype == DataType::Color)
-                            blockList[j].m_dataSize = 4;
-                    }*/
-
                     finalizeChildrenDataBlocks(data, &blockList[j]);
                     curOffset = blockList[j].nextOffset();
                 }
