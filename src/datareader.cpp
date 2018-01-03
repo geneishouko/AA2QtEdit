@@ -237,8 +237,15 @@ void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db) cons
             case DataType::Enum:
                 innerSize = db->m_dataSize != -1 ? db->m_dataSize : 1;
                 break;
-            default:
+            case DataType::String:
+            case DataType::EncodedString:
                 Q_ASSERT(innerSize);
+                break;
+            case DataType::Array:
+                // Can't have an array of arrays
+            case DataType::Invalid:
+                // This shoudln't exist
+                Q_ASSERT(false);
         }
         int curOffset = static_cast<int>(data->pos());
         for(int i = 0; i < arraySize; i++) {
