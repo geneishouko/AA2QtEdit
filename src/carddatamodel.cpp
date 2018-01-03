@@ -125,6 +125,12 @@ QVariant CardDataModel::data(const QModelIndex &index, int role) const
         if (value.type() == QVariant::Color)
             return value;
     }
+    else if (role == Dictionary::DataTypeRole) {
+        return getDictionaryForIndex(index)->dataType(index.row());
+    }
+    else if (role == Dictionary::MetaKeyRole) {
+        return getDictionaryForIndex(index)->metaKey(index.row());
+    }
     return QVariant();
 }
 

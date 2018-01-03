@@ -18,7 +18,10 @@
 #include "carddatadelegate.h"
 
 #include "coloritemeditor.h"
+#include "../datareader.h"
+#include "../dictionary.h"
 
+#include <QComboBox>
 #include <QPainter>
 
 using namespace ClassEdit;
@@ -31,10 +34,55 @@ CardDataDelegate::CardDataDelegate(QObject *parent) :
 
 QWidget *CardDataDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    QWidget *editor = QStyledItemDelegate::createEditor(parent, option, index);
-    ColorItemEditor *colorEditor = qobject_cast<ColorItemEditor*>(editor);
-    if (colorEditor) {
-        colorEditor->setFocus();
+    QWidget *editor = nullptr;
+    if (index.data(Dictionary::DataTypeRole) == DataType::Enum) {
+        QComboBox *cb = new QComboBox(parent);
+        cb->setEditable(true);
+        const DataEnumerable *enumerable = DataReader::getDataEnumerable(index.data(Dictionary::MetaKeyRole).toString());
+        int value = index.data(Qt::EditRole).toInt();
+        int i = 0;
+        bool enumFound = false;
+        for (QMap<qint32, QString>::ConstIterator it = enumerable->valueMap().begin(); it != enumerable->valueMap().end(); it++) {
+            cb->insertItem(i, it.value(), it.key());
+            if (value == it.key()) {
+                enumFound = true;
+                cb->setCurrentIndex(i);
+            }
+            i++;
+        }
+        if (!enumFound) {
+            cb->setCurrentIndex(-1);
+            cb->setCurrentText(QString::number(value, 10));
+        }
+        editor = cb;
+    }
+    else {
+        editor = QStyledItemDelegate::createEditor(parent, option, index);
     }
     return editor;
+}
+
+void CardDataDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+{
+    QComboBox *cb = qobject_cast<QComboBox*>(editor);
+    if (!cb)
+        QStyledItemDelegate::setEditorData(editor, index);
+}
+
+void CardDataDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
+{
+    QComboBox *cb = qobject_cast<QComboBox*>(editor);
+    if (cb) {
+        QVariant data = cb->currentData();
+        if (!data.isValid()) {
+            bool ok;
+            int number = cb->currentText().toInt(&ok);
+            if (ok)
+                data = number;
+        }
+        if (data.isValid())
+            model->setData(index, data);
+    }
+    else
+        QStyledItemDelegate::setModelData(editor, model, index);
 }

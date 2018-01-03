@@ -17,6 +17,12 @@ namespace ClassEdit {
     {
         Q_OBJECT
     public:
+
+        enum ModelRoles {
+            DataTypeRole = 0x0100,
+            MetaKeyRole = 0x0101,
+        };
+
         typedef QHash<QString,int> KeyIndex;
         typedef QSet<int> IndexSet;
 
@@ -58,6 +64,10 @@ namespace ClassEdit {
         inline void insert(const QString &key, const QVariant &value) {
             m_keyMap.insertMulti(key, count());
             append(value);
+        }
+
+        inline QString metaKey(int index) {
+            return m_dataBlockList.at(index)->metaKey();
         }
 
         inline int offset(int index) const {

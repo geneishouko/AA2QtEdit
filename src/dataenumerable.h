@@ -11,11 +11,20 @@ namespace ClassEdit {
     {
     public:
         DataEnumerable(const DataType &type);
+        int count() const {
+            return m_strings.size();
+        }
         inline QString name(qint32 value) const {
             return m_strings[value];
         }
-        DataType type() const;
         void registerStringValue(qint32 value, const QString &string);
+        DataType type() const;
+        qint32 value(int index) const {
+            return m_strings.keys().at(index);
+        }
+        const QMap<qint32, QString> &valueMap() const {
+            return m_strings;
+        }
 
     private:
         DataType m_type;
