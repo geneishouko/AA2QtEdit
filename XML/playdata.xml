@@ -20,7 +20,7 @@
       <enumpair key="1" value="Calm" />
       <enumpair key="2" value="Praise" />
       <enumpair key="3" value="Complain" />
-      <enumpair key="4" value="Apologise" />
+      <enumpair key="4" value="Apologize" />
       <enumpair key="5" value="Encourage Studies" />
       <enumpair key="6" value="Encourage Training" />
       <enumpair key="7" value="Encourage Club Stuff" />
@@ -48,7 +48,7 @@
       <enumpair key="29" value="Go Eat Out together" />
       <enumpair key="30" value="Go Sing Together" />
       <enumpair key="31" value="Study at Home Together" />
-      <enumpair key="32" value="Study at Home Together (Sex?)" />
+      <enumpair key="32" value="Study at Home Together (Sex)" />
       <enumpair key="33" value="Insult" />
       <enumpair key="34" value="Pick a Fight" />
       <enumpair key="35" value="Tell to Ignore..." />
@@ -98,13 +98,13 @@
       <enumpair key="79" value="Offer Lewd Promise" />
       <enumpair key="80" value="Reward Lewd Promise" />
       <enumpair key="81" value="TogEtHeR FOrEVeR" />
-      <enumpair key="82" value="We're having sex (forcibly?)" />
+      <enumpair key="82" value="Murder" />
       <enumpair key="83" value="Slap" />
       <enumpair key="84" value="Good Morning Kiss" />
       <enumpair key="85" value="Goodbye Kiss" />
       <enumpair key="86" value="Surprise Kiss" />
-      <enumpair key="87" value="Stop being Lovers" />
-      <enumpair key="88" value="Got Pregnant" />
+      <enumpair key="87" value="Break Up" />
+      <enumpair key="88" value="Declare Pregnancy" />
       <enumpair key="89" value="Admit to Cheating" />
       <enumpair key="90" value="Keep this a Secret" />
       <enumpair key="91" value="Stop following me" />
@@ -114,7 +114,7 @@
       <enumpair key="95" value="Someone went on a date" />
       <enumpair key="96" value="Someonw had sex" />
       <enumpair key="97" value="I don't want you to get near..." />
-      <enumpair key="98" value="Serves you right (Won fight?)" />
+      <enumpair key="98" value="Make fun of lovers' quarrel" />
       <enumpair key="99" value="Daily sex" />
       <enumpair key="102" value="Follow me (Sex)" />
       <enumpair key="103" value="Date Greeting" />
@@ -180,7 +180,6 @@
   <structs>
     <struct key="EVALUATION_DATA">
       <datablock key="SEAT_NUMBER" type="int32" />
-      <!-- Increases if Evaluation history is greater than 30? -->
       <datablock key="LOVE_POINTS" type="int32" />
       <datablock key="LIKE_POINTS" type="int32" />
       <datablock key="DISLIKE_POINTS" type="int32" />

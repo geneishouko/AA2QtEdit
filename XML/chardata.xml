@@ -12,28 +12,28 @@
       <enumpair key="0" value="Lively" />
       <enumpair key="1" value="Delicate" />
       <enumpair key="2" value="Cheerful" />
-      <enumpair key="3" value="Stoic" />
+      <enumpair key="3" value="Quiet" />
       <enumpair key="4" value="Playful" />
-      <enumpair key="5" value="Energetic" />
+      <enumpair key="5" value="Frisky" />
       <enumpair key="6" value="Kind" />
-      <enumpair key="7" value="Upbeat" />
-      <enumpair key="8" value="Normal" />
-      <enumpair key="9" value="Irritable" />
-      <enumpair key="10" value="Uptight" />
-      <enumpair key="11" value="Friendly" />
+      <enumpair key="7" value="Joyful" />
+      <enumpair key="8" value="Ordinary" />
+      <enumpair key="9" value="Irritated" />
+      <enumpair key="10" value="Harsh" />
+      <enumpair key="11" value="Sweet" />
       <enumpair key="12" value="Creepy" />
       <enumpair key="13" value="Reserved" />
       <enumpair key="14" value="Dignified" />
-      <enumpair key="15" value="Assertive" />
-      <enumpair key="16" value="Sensitive" />
-      <enumpair key="17" value="Virtuous" />
+      <enumpair key="15" value="Aloof" />
+      <enumpair key="16" value="Smart" />
+      <enumpair key="17" value="Genuine" />
       <enumpair key="18" value="Mature" />
       <enumpair key="19" value="Lazy" />
       <enumpair key="20" value="Manly" />
-      <enumpair key="21" value="Affectionate (M)" />
+      <enumpair key="21" value="Gentle (M)" />
       <enumpair key="22" value="Positive (M)" />
       <enumpair key="23" value="Otaku (M)" />
-      <enumpair key="24" value="Rough (M)" />
+      <enumpair key="24" value="Savage (M)" />
     </enumerable>
     <enumerable key="HEIGHT">
       <enumpair key="0" value="Short" />
@@ -41,7 +41,7 @@
       <enumpair key="2" value="Tall" />
     </enumerable>
     <enumerable key="FEMALEFIGURE">
-      <enumpair key="0" value="Slim" />
+      <enumpair key="0" value="Thin" />
       <enumpair key="1" value="Normal" />
       <enumpair key="2" value="Fat" />
     </enumerable>
@@ -399,38 +399,38 @@
     <datablock type="color" key="BODY_HAIR_COLOR" address="0x686" />
     <!-- Traits -->
     <datablock type="bool" key="TRAIT_EASYGOING" address="0x6A2" displayname="Easygoing" />
-    <datablock type="bool" key="TRAIT_LOYAL_FRIEND" address="0x6A3" displayname="Loyal Friend" />
-    <datablock type="bool" key="TRAIT_DISLIKE_MALES" address="0x6A4" displayname="Dislikes Males" />
-    <datablock type="bool" key="TRAIT_DISLIKE_FEMALES" address="0x6A5" displayname="Dislikes Females" />
+    <datablock type="bool" key="TRAIT_AFFABLE" address="0x6A3" displayname="Affable" />
+    <datablock type="bool" key="TRAIT_BAD_WITH_GUYS" address="0x6A4" displayname="Bad With Guys" />
+    <datablock type="bool" key="TRAIT_BAD_WITH_GIRLS" address="0x6A5" displayname="Bad With Girls" />
     <datablock type="bool" key="TRAIT_CHARMING" address="0x6A6" displayname="Charming" />
     <datablock type="bool" key="TRAIT_TSUNDERE" address="0x6A7" displayname="Tsundere" />
     <datablock type="bool" key="TRAIT_CHIVALROUS" address="0x6A8" displayname="Chivalrous" />
-    <datablock type="bool" key="TRAIT_GROUPIE" address="0x6A9" displayname="Groupie" />
+    <datablock type="bool" key="TRAIT_TRENDY" address="0x6A9" displayname="Trendy" />
     <datablock type="bool" key="TRAIT_OBEDIENT" address="0x6AA" displayname="Obedient" />
     <datablock type="bool" key="TRAIT_POSITIVE" address="0x6AB" displayname="Positive" />
     <datablock type="bool" key="TRAIT_SHY" address="0x6AC" displayname="Shy" />
     <datablock type="bool" key="TRAIT_JEALOUS" address="0x6AD" displayname="Jealous" />
-    <datablock type="bool" key="TRAIT_HYPERSENSITIVE" address="0x6AE" displayname="Hypersensitive" />
-    <datablock type="bool" key="TRAIT_LEWD" address="0x6AF" displayname="Lewd" />
-    <datablock type="bool" key="TRAIT_GENUINE" address="0x6B0" displayname="Genuine" />
+    <datablock type="bool" key="TRAIT_MELANCHOLY" address="0x6AE" displayname="Melancholy" />
+    <datablock type="bool" key="TRAIT_PERVERTED" address="0x6AF" displayname="Perverted" />
+    <datablock type="bool" key="TRAIT_SERIOUS" address="0x6B0" displayname="Serious" />
     <datablock type="bool" key="TRAIT_CALM" address="0x6B1" displayname="Calm" />
     <datablock type="bool" key="TRAIT_IMPULSIVE" address="0x6B2" displayname="Impulsive" />
-    <datablock type="bool" key="TRAIT_NAIVE" address="0x6B3" displayname="Naive" />
+    <datablock type="bool" key="TRAIT_ABSENTMINDED" address="0x6B3" displayname="Absentminded" />
     <datablock type="bool" key="TRAIT_VIOLENT" address="0x6B4" displayname="Violent" />
     <datablock type="bool" key="TRAIT_PASSIVE" address="0x6B5" displayname="Passive" />
     <datablock type="bool" key="TRAIT_MEDDLESOME" address="0x6B6" displayname="Meddlesome" />
     <datablock type="bool" key="TRAIT_CLASS_PREZ" address="0x6B7" displayname="Class Prez" />
     <datablock type="bool" key="TRAIT_CHATTY" address="0x6B8" displayname="Chatty" />
     <datablock type="bool" key="TRAIT_ALWAYS_HUNGRY" address="0x6B9" displayname="Always Hungry" />
-    <datablock type="bool" key="TRAIT_PASSIONATE" address="0x6BA" displayname="Passionate" />
+    <datablock type="bool" key="TRAIT_ROMANTIC" address="0x6BA" displayname="Romantic" />
     <datablock type="bool" key="TRAIT_SINGLEMINDED" address="0x6BB" displayname="Singleminded" />
     <datablock type="bool" key="TRAIT_INDECISIVE" address="0x6BC" displayname="Indecisive" />
     <datablock type="bool" key="TRAIT_COMPETITIVE" address="0x6BD" displayname="Competitive" />
-    <datablock type="bool" key="TRAIT_DECEPTIVE" address="0x6BE" displayname="Deceptive" />
+    <datablock type="bool" key="TRAIT_SCHEMING" address="0x6BE" displayname="Scheming" />
     <datablock type="bool" key="TRAIT_DILIGENT" address="0x6BF" displayname="Diligent" />
     <datablock type="bool" key="TRAIT_WILD" address="0x6C0" displayname="Wild" />
     <datablock type="bool" key="TRAIT_MASOCHIST" address="0x6C1" displayname="Masochist" />
-    <datablock type="bool" key="TRAIT_SWEATS_A_LOT" address="0x6C2" displayname="Sweats a Lot" />
+    <datablock type="bool" key="TRAIT_SWEATY" address="0x6C2" displayname="Sweaty" />
     <datablock type="bool" key="TRAIT_EVIL" address="0x6C3" displayname="Evil" />
     <datablock type="bool" key="TRAIT_DEAF" address="0x6C4" displayname="Deaf" />
     <datablock type="bool" key="TRAIT_EXPLOITABLE" address="0x6C5" displayname="Exploitable" />
@@ -443,9 +443,9 @@
 
     <!-- Preferences -->
     <datablock type="bool" key="PREFERENCE_KISSING" address="0x6C9" displayname="Kissing" />
-    <datablock type="bool" key="PREFERENCE_BREAST_CARESSING" address="0x6CA" displayname="Breast Caressing" />
-    <datablock type="bool" key="PREFERENCE_VAGINA_CARESSING" address="0x6CB" displayname="Vagina Caressing" />
-    <datablock type="bool" key="PREFERENCE_PENIS_CARESSING" address="0x6CC" displayname="Penis Caressing" />
+    <datablock type="bool" key="PREFERENCE_BREAST_GROPING" address="0x6CA" displayname="Breast Groping" />
+    <datablock type="bool" key="PREFERENCE_VAGINAL_PLAY" address="0x6CB" displayname="Vaginal Play" />
+    <datablock type="bool" key="PREFERENCE_PENILE_PLAY" address="0x6CC" displayname="Penile Play" />
     <datablock type="bool" key="PREFERENCE_CUNNILINGUS" address="0x6CD" displayname="Cunnilingus" />
     <datablock type="bool" key="PREFERENCE_FELLATIO" address="0x6CE" displayname="Fellatio" />
     <datablock type="bool" key="PREFERENCE_DOGGY_STYLE" address="0x6CF" displayname="Doggy Style" />
@@ -453,7 +453,7 @@
     <datablock type="bool" key="PREFERENCE_ANAL_PLAY" address="0x6D1" displayname="Anal Play" />
     <datablock type="bool" key="PREFERENCE_NO_CONDOM" address="0x6D2" displayname="No Condom" />
     <datablock type="bool" key="PREFERENCE_SWALLOWING" address="0x6D3" displayname="Swallowing" />
-    <datablock type="bool" key="PREFERENCE_CREAMPIE" address="0x6D4" displayname="Creampie" />
+    <datablock type="bool" key="PREFERENCE_CREAMPIES" address="0x6D4" displayname="Creampies" />
     <datablock type="bool" key="PREFERENCE_BUKKAKE" address="0x6D5" displayname="Bukkake" />
     <datablock type="bool" key="PREFERENCE_RESERVED1" address="0x6D6" readonly="true" displayname="Reserved" />
     <datablock type="bool" key="PREFERENCE_RESERVED2" address="0x6D7" readonly="true" displayname="Reserved" />
