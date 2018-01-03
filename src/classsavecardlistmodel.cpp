@@ -69,7 +69,7 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
     int cardOffset, cardEndOffset;
     int cardPlayDataOffset, cardPlayDataEndOffset = 0;
     int playSeat;
-    bool isMale;
+    //bool isMale;
 
     while (studentsCount > 0) {
         cardOffset = data.indexOf(pngHeader, pos);
@@ -89,7 +89,7 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
         buffer.seek(cardOffset - 4);
         buffer.read(reinterpret_cast<char*>(&playSeat), 4);
         card->setSeat(playSeat);
-        isMale = data[cardOffset - 5] == '\0';
+        //isMale = data[cardOffset - 5] == '\0';
         pos = cardPlayDataEndOffset;
         studentsCount--;
         qDebug() << "Card At" << cardOffset << "play data at" << cardPlayDataOffset;

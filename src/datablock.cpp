@@ -166,6 +166,7 @@ QString DataBlock::typeName() const
         case Dummy:
             return QObject::tr("Dummy");
     }
+    return QString();
 }
 
 QString DataBlock::metaKey() const
