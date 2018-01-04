@@ -79,7 +79,7 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, nullptr);
 
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
-    painter->drawPixmap(cardRect, card->getRoster());
+    painter->drawPixmap(cardRect, card->thumbnailPixmap());
     painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fullName());
     painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin * 4, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fileName());
     if (card->hasPendingChanges())

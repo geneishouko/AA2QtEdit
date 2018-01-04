@@ -39,7 +39,6 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path)
             continue;
         }
         cf->setParent(this);
-        cf->setModifiedTime(file.lastModified());
         cf->setModelIndex(m_cardList.size());
         QObject::connect(cf, &CardFile::changed, this, &FileSystemCardListModel::cardChanged);
         QObject::connect(cf, &CardFile::saved, this, &FileSystemCardListModel::cardSaved);
@@ -74,7 +73,7 @@ QVariant FileSystemCardListModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole)
         return card->fullName();
     else if (role == Qt::DecorationRole)
-        return card->getRoster();
+        return card->thumbnailPixmap();
     else if (role == CardFileRole) {
         return QVariant::fromValue<CardFile*>(card);
     }

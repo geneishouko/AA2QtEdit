@@ -170,8 +170,8 @@ void CardView::modelItemSelected(const QModelIndex &index)
     }
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
     ui->cardFace->setPixmap(card->portraitPixmap());
-    m_cardDataSortFilterModel->setSourceModel(card->getEditDataModel());
-    m_cardPlayDataSortFilterModel->setSourceModel(card->getPlayDataModel());
+    m_cardDataSortFilterModel->setSourceModel(card->editDataModel());
+    m_cardPlayDataSortFilterModel->setSourceModel(card->playDataModel());
     QHeaderView *header = ui->editDataView->header();
     if (header && header->count() >= 3) {
         header->setSectionResizeMode(0, QHeaderView::ResizeToContents);
@@ -307,7 +307,7 @@ void CardView::replaceFacePNG()
     if (m_card) {
         QFile file(FileDialog::getOpenFileName(FileDialog::ReplacePNG, "PNG Images (*.png)", "Select a PNG image", this));
         if (file.open(QFile::ReadOnly))
-            m_card->setFace(&file);
+            m_card->setPortrait(&file);
     }
 }
 
@@ -316,7 +316,7 @@ void CardView::replaceRosterPNG()
     if (m_card) {
         QFile file(FileDialog::getOpenFileName(FileDialog::ReplacePNG, "PNG Images (*.png)", "Select a PNG image", this));
         if (file.open(QFile::ReadOnly))
-            m_card->setRoster(&file);
+            m_card->setThumbnail(&file);
     }
 }
 

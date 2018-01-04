@@ -3,6 +3,8 @@
 
 #include "dictionary.h"
 
+#include "constants.h"
+
 #include <QAbstractItemModel>
 #include <QBuffer>
 #include <QDateTime>
@@ -29,7 +31,7 @@ namespace ClassEdit {
     class CardFile : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(CardDataModel* editDataModel READ getEditDataModel)
+        Q_PROPERTY(CardDataModel* editDataModel READ editDataModel)
 
     public:
         CardFile();
@@ -37,65 +39,98 @@ namespace ClassEdit {
         CardFile(QIODevice *file, qint64 startOffset, qint64 endOffset);
         ~CardFile();
 
-        void setParentModel(QAbstractItemModel *model);
-        void init(QIODevice *file, qint64 startOffset, qint64 endOffset);
-        int loadPlayData(QIODevice *file, int offset);
-        bool isValid() const;
-
-        QByteArray aauData() const;
-        int aauDataVersion() const;
-        QByteArray editData() const;
-
+        inline const QByteArray &aauData() const {
+            return m_aauData;
+        }
+        inline int aauDataVersion() const {
+            return m_aauDataVersion;
+        }
+        void commitChanges();
+        inline const QByteArray &editData() const {
+            return m_editData;
+        }
+        inline CardDataModel *editDataModel() const {
+            return m_editDataModel;
+        }
         inline Dictionary *editDictionary() {
             return m_editDataDictionary;
         }
-
-        QByteArray portraitData() const;
-        QByteArray thumbnailData() const;
-        QString fileName() const;
-        QString filePath() const;
-        CardDataModel *getEditDataModel() const;
-        CardDataModel *getPlayDataModel() const;
-        int getGender() const;
-        QPixmap portraitPixmap();
-        QPixmap getRoster();
-        inline int getModelIndex() const {
+        inline const QString &fileName() const {
+            return m_fileName;
+        }
+        inline const QString &filePath() const {
+            return m_filePath;
+        }
+        inline const QString &fullName() const {
+            return m_fullName;
+        }
+        inline int gender() const {
+            return m_gender;
+        }
+        inline bool hasPendingChanges() const {
+            return m_editDataDictionary->hasDirtyValues() || (m_playDataDictionary && m_playDataDictionary->hasDirtyValues());
+        }
+        void init(QIODevice *file, qint64 startOffset, qint64 endOffset);
+        inline bool isValid() const {
+            return m_isValid;
+        }
+        int loadPlayData(QIODevice *file, int offset);
+        inline int modelIndex() const {
             return m_modelIndex;
         }
-        QString fullName() const;
-        QDateTime modifiedTime() const;
+        inline const QDateTime &modifiedTime() const {
+            return m_modifiedTime;
+        }
+        inline CardDataModel *playDataModel() const {
+            return m_playDataModel;
+        }
+        inline QByteArray portraitData() const {
+            return m_editDataDictionary->value(PortraitPngKey).toByteArray();
+        }
+        const QPixmap &portraitPixmap();
         inline void resetPortraitPixmap() {
-            m_face = QPixmap();
+            m_portrait = QPixmap();
         }
         inline void resetThumbnailPixmap() {
-            m_roster = QPixmap();
+            m_thumbnail = QPixmap();
         }
-        int seat() const;
-        void setAAUnlimitedData(const QByteArray &data, int version);
-        void setClothes(const QString &slot, ClothData *cloth);
-        void setEditData(const QByteArray &data);
-        void setModelIndex(int index);
-        void setModifiedTime(const QDateTime &date);
-        void setSeat(int seat);
-        void setFace(const QByteArray &file);
-        void setFace(QIODevice *file);
-        void setRoster(const QByteArray &file);
-        void setRoster(QIODevice *file);
-
-        void updateQuickInfoGetters();
-        bool hasPendingChanges() const;
-        void commitChanges();
         void save();
         void saveToFile(const QString &file);
-        void writeToDevice(QIODevice *device, bool writePlayData = false, qint64 *editOffset = nullptr, qint64 *aaudOffset = nullptr);
+        inline int seat() const {
+            return m_seat;
+        }
+        inline void setAAUnlimitedData(const QByteArray &data, int version) {
+            m_aauData = data;
+            m_aauDataVersion = version;
+        }
+        void setClothes(const QString &slot, ClothData *cloth);
+        inline void setEditData(const QByteArray &data) {
+            m_editData = data;
+        }
+        inline void setModelIndex(int index) {
+            m_modelIndex = index;
+        }
+        void setPortrait(const QByteArray &file);
+        void setPortrait(QIODevice *file);
+        inline void setSeat(int seat) {
+            m_seat = seat;
+        }
+        void setThumbnail(const QByteArray &file);
+        void setThumbnail(QIODevice *file);
+        inline QByteArray thumbnailData() const {
+            return m_editDataDictionary->value(ThumbnailPngKey).toByteArray();
+        }
+        const QPixmap &thumbnailPixmap();
+        void updateQuickInfoGetters();
+        void writeToDevice(QIODevice *device, bool writePlayData = false, qint64 *editOffset = nullptr, qint64 *aaudOffset = nullptr) const;
 
     public slots:
-        //void setEditDataValue(const QString &key, const QVariant &value);
         void dictionaryChanged();
 
     signals:
         void changed(int index);
         void saved(int index);
+        void saveRequest(int index);
 
     private:
         QString m_filePath;
@@ -108,17 +143,15 @@ namespace ClassEdit {
         QByteArray m_aauData;
         qint32 m_aauDataVersion;
         DataReader *m_editDataReader;
-        DataReader *m_aauDataReader;
         DataReader *m_playDataReader;
         CardDataModel *m_editDataModel;
         CardDataModel *m_playDataModel;
-        QAbstractItemModel *m_parentModel;
 
         QString m_fullName;
         int m_gender;
         int m_seat;
-        QPixmap m_face;
-        QPixmap m_roster;
+        QPixmap m_portrait;
+        QPixmap m_thumbnail;
 
         int m_modelIndex;
         Dictionary *m_editDataDictionary;

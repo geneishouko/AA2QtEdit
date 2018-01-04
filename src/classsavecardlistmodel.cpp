@@ -80,10 +80,10 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
         cardPlayDataOffset = cardEndOffset;
         CardFile *card = new CardFile(&buffer, cardOffset, cardEndOffset);
         cardPlayDataEndOffset = card->loadPlayData(&buffer, cardPlayDataOffset);
-        card->setParentModel(this);
         card->setModelIndex(m_cardList.size());
-        QObject::connect(card, &CardFile::changed, this, &ClassSaveCardListModel::cardChanged);
-        QObject::connect(card, &CardFile::saved, this, &ClassSaveCardListModel::cardSaved);
+        connect(card, &CardFile::changed, this, &ClassSaveCardListModel::cardChanged);
+        connect(card, &CardFile::saved, this, &ClassSaveCardListModel::cardSaved);
+        connect(card, &CardFile::saveRequest, this, &ClassSaveCardListModel::submit);
         m_cardList << card;
 
         buffer.seek(cardOffset - 4);
@@ -114,7 +114,7 @@ QVariant ClassSaveCardListModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole)
         return card->fullName();
     else if (role == Qt::DecorationRole)
-        return card->getRoster();
+        return card->thumbnailPixmap();
     else if (role == CardFileRole) {
         return QVariant::fromValue<CardFile*>(card);
     }
@@ -131,7 +131,7 @@ bool ClassSaveCardListModel::saveToDisk()
     qDebug() << "Wrote"<<m_header.size()<<"header bytes";
     int gender, seat;
     foreach (CardFile *card, m_cardList) {
-        gender = card->getGender();
+        gender = card->gender();
         seat = card->seat();
         file.write(reinterpret_cast<char*>(&gender), 1);
         file.write(reinterpret_cast<char*>(&seat), 4);
@@ -165,7 +165,7 @@ void ClassSaveCardListModel::saveAll()
     for(QSet<CardFile*>::Iterator it = m_changedCardList.begin(); it != m_changedCardList.end(); it++) {
         (*it)->commitChanges();
         (*it)->updateQuickInfoGetters();
-        const QModelIndex &modelIndex = index((*it)->getModelIndex());
+        const QModelIndex &modelIndex = index((*it)->modelIndex());
         emit dataChanged(modelIndex, modelIndex);
     }
     m_changedCardList.clear();
