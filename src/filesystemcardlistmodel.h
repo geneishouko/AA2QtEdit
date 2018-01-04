@@ -1,39 +1,26 @@
 #ifndef FILESYSTEMCARDLIST_H
 #define FILESYSTEMCARDLIST_H
 
-#include <QAbstractListModel>
+#include "cardlistmodel.h"
+
 #include <QFileSystemWatcher>
-#include <QSet>
 
 namespace ClassEdit {
 
     class CardFile;
 
-    class FileSystemCardListModel : public QAbstractListModel
+    class FileSystemCardListModel : public CardListModel
     {
         Q_OBJECT
 
     public:
-        FileSystemCardListModel(const QString &path);
+        FileSystemCardListModel(const QString &path, QObject *parent = nullptr);
         ~FileSystemCardListModel();
 
-        CardFile *getCard(int index) const;
-
-        int rowCount(const QModelIndex &) const;
-        int columnCount(const QModelIndex &) const;
-        QVariant data(const QModelIndex &index, int role) const;
-
-    public slots:
-        void cardChanged(int index);
-        void cardSaved(int index);
+        bool save();
         void saveAll();
 
-    signals:
-        void cardsChanged(int count);
-
     private:
-        QList<CardFile*> m_cardList;
-        QSet<CardFile*> m_changedCardList;
         QFileSystemWatcher m_fswatcher;
     };
 

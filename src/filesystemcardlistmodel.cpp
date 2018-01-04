@@ -23,7 +23,8 @@
 
 using namespace ClassEdit;
 
-FileSystemCardListModel::FileSystemCardListModel(const QString &path)
+FileSystemCardListModel::FileSystemCardListModel(const QString &path, QObject *parent) :
+    CardListModel(parent)
 {
     m_fswatcher.addPath(path);
     QDir dir(path);
@@ -38,72 +39,24 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path)
             delete cf;
             continue;
         }
-        cf->setParent(this);
-        cf->setModelIndex(m_cardList.size());
-        QObject::connect(cf, &CardFile::changed, this, &FileSystemCardListModel::cardChanged);
-        QObject::connect(cf, &CardFile::saved, this, &FileSystemCardListModel::cardSaved);
-        m_cardList << cf;
+        addCard(cf);
     }
 }
 
 FileSystemCardListModel::~FileSystemCardListModel()
 {
-    foreach(CardFile *card, m_cardList)
-        delete card;
 }
 
-CardFile *FileSystemCardListModel::getCard(int index) const
+bool FileSystemCardListModel::save()
 {
-    return m_cardList[index];
-}
-
-int FileSystemCardListModel::rowCount(const QModelIndex &) const
-{
-    return m_cardList.size();
-}
-
-int FileSystemCardListModel::columnCount(const QModelIndex &) const
-{
-    return 1;
-}
-
-QVariant FileSystemCardListModel::data(const QModelIndex &index, int role) const
-{
-    CardFile *card = m_cardList[index.row()];
-    if (role == Qt::DisplayRole)
-        return card->fullName();
-    else if (role == Qt::DecorationRole)
-        return card->thumbnailPixmap();
-    else if (role == CardFileRole) {
-        return QVariant::fromValue<CardFile*>(card);
-    }
-    else if (role == CardModifiedTimeRole) {
-        return card->modifiedTime();
-    }
-    return QVariant();
-}
-
-void FileSystemCardListModel::cardChanged(int cardIndex)
-{
-    m_changedCardList << m_cardList[cardIndex];
-    emit cardsChanged(m_changedCardList.size());
-    const QModelIndex &modelIndex = index(cardIndex);
-    emit dataChanged(modelIndex, modelIndex);
-}
-
-void FileSystemCardListModel::cardSaved(int index)
-{
-    m_changedCardList.remove(m_cardList[index]);
-    emit cardsChanged(m_changedCardList.size());
+    return true;
 }
 
 void FileSystemCardListModel::saveAll()
 {
-    // CardFiles will emit saved, which will cause for this model to remove them from this set
-    // don't iterate, just check for empty set
-    while(!m_changedCardList.empty()) {
-        (*m_changedCardList.cbegin())->save();
+    CardList cards = modifiedCardList();
+    for (CardList::ConstIterator it = cards.begin(); it != cards.end(); it++) {
+        (*it)->save();
     }
-    emit cardsChanged(m_changedCardList.size());
 }
 

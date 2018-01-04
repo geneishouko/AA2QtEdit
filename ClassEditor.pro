@@ -50,7 +50,8 @@ SOURCES += src/main.cpp\
     src/ui/filedialog.cpp \
     src/ui/carddatadelegate.cpp \
     src/ui/coloritemeditor.cpp \
-    src/constants.cpp
+    src/constants.cpp \
+    src/cardlistmodel.cpp
 
 HEADERS  += src/ui/mainwindow.h \
     src/ui/cardlistview.h \
@@ -72,7 +73,8 @@ HEADERS  += src/ui/mainwindow.h \
     src/ui/filedialog.h \
     src/ui/carddatadelegate.h \
     src/ui/coloritemeditor.h \
-    src/constants.h
+    src/constants.h \
+    src/cardlistmodel.h
 
 FORMS    += src/ui/mainwindow.ui \
     src/ui/cardview.ui

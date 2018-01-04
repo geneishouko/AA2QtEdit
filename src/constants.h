@@ -4,6 +4,9 @@
 #include <QString>
 
 namespace ClassEdit {
+    class CardFile;
+    typedef QList<CardFile*> CardList;
+
     extern const QString ClothSlotUniformKey;
     extern const QString ClothSlotSportKey;
     extern const QString ClothSlotSwimsuitKey;
