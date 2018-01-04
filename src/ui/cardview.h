@@ -22,9 +22,6 @@ namespace ClassEdit {
         explicit CardView(QWidget *parent = nullptr);
         ~CardView();
 
-        void lineEditChanged(const QString &newText);
-        void updateDataControls();
-
     public slots:
         void characterDataItemSetCheckedState(QListWidgetItem *item, bool checked);
         void characterDataItemClicked(QListWidgetItem *item);
@@ -41,19 +38,21 @@ namespace ClassEdit {
         void importCard();
         void replaceFacePNG();
         void replaceRosterPNG();
-
-    signals:
-        void setEditDataValue(const QString &key, const QVariant &value);
+        void dictionaryEntryChanged(int index);
+        void dictionaryEntryWidgetChanged();
 
     protected:
-        bool eventFilter(QObject *watched, QEvent *event);
+        void registerDictionaryEntryWidget(QWidget *widget);
+        void updateDictionaryEntryWidgets();
+        void updateDictionaryEntryWidget(QWidget *widget, const QVariant &value);
 
     private:
         Ui::CardView *ui;
         QPointer<CardFile> m_card;
         QSortFilterProxyModel *m_cardDataSortFilterModel;
         QSortFilterProxyModel *m_cardPlayDataSortFilterModel;
-        int m_setText;
+        QSet<QString> m_dictionaryEntryLocker;
+        QHash<QString, QWidget*> m_dictionaryEntryWidgets;
     };
 
 }

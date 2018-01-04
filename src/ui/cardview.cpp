@@ -60,8 +60,7 @@ CardView::CardView(QWidget *parent) :
     ui(new Ui::CardView),
     m_card(nullptr),
     m_cardDataSortFilterModel(new QSortFilterProxyModel(this)),
-    m_cardPlayDataSortFilterModel(new QSortFilterProxyModel(this)),
-    m_setText(0)
+    m_cardPlayDataSortFilterModel(new QSortFilterProxyModel(this))
 {
     ui->setupUi(this);
     m_cardDataSortFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -74,9 +73,13 @@ CardView::CardView(QWidget *parent) :
     connect(ui->textMakerKeyFilter, &QLineEdit::textChanged, m_cardDataSortFilterModel, &QSortFilterProxyModel::setFilterFixedString);
     connect(ui->textPlayKeyFilter, &QLineEdit::textChanged, m_cardPlayDataSortFilterModel, &QSortFilterProxyModel::setFilterFixedString);
 
-    connect(ui->PROFILE_FAMILY_NAME, &QLineEdit::textEdited, this, &CardView::lineEditChanged);
-    connect(ui->PROFILE_FIRST_NAME, &QLineEdit::textEdited, this, &CardView::lineEditChanged);
-    ui->PROFILE_PROFILE->installEventFilter(this);
+    connect(ui->PROFILE_FAMILY_NAME, &QLineEdit::textEdited, this, &CardView::dictionaryEntryWidgetChanged);
+    connect(ui->PROFILE_FIRST_NAME, &QLineEdit::textEdited, this, &CardView::dictionaryEntryWidgetChanged);
+    connect(ui->PROFILE_PROFILE, &QPlainTextEdit::textChanged, this, &CardView::dictionaryEntryWidgetChanged);
+
+    registerDictionaryEntryWidget(ui->PROFILE_FIRST_NAME);
+    registerDictionaryEntryWidget(ui->PROFILE_FAMILY_NAME);
+    registerDictionaryEntryWidget(ui->PROFILE_PROFILE);
 
     connect(ui->characterDataSelectionList, &QListWidget::itemClicked, this, &CardView::characterDataItemClicked);
     connect(ui->selectAllImportsButton, &QPushButton::clicked, this, &CardView::characterDataItemsSelect);
@@ -101,19 +104,17 @@ CardView::~CardView()
     delete ui;
 }
 
-void CardView::lineEditChanged(const QString &newText)
+void CardView::updateDictionaryEntryWidgets()
 {
-    if (m_card) {
-        m_card->editDictionary()->set(sender()->objectName(), newText);
+    for (QHash<QString, QWidget*>::ConstIterator it = m_dictionaryEntryWidgets.begin(); it != m_dictionaryEntryWidgets.end(); it++) {
+        updateDictionaryEntryWidget(it.value(), m_card->editDictionary()->value(it.value()->objectName()));
     }
 }
 
-void CardView::updateDataControls()
+void CardView::updateDictionaryEntryWidget(QWidget *widget, const QVariant &value)
 {
-    ui->PROFILE_FAMILY_NAME->setText(m_card->editDictionary()->value(ui->PROFILE_FAMILY_NAME->objectName()).toString());
-    ui->PROFILE_FIRST_NAME->setText(m_card->editDictionary()->value(ui->PROFILE_FIRST_NAME->objectName()).toString());
-    if (!m_setText)
-        ui->PROFILE_PROFILE->setPlainText(m_card->editDictionary()->value(ui->PROFILE_PROFILE->objectName()).toString());
+    QMetaProperty property = widget->metaObject()->userProperty();
+    property.write(widget, value);
 }
 
 void CardView::characterDataItemSetCheckedState(QListWidgetItem *item, bool checked)
@@ -163,6 +164,8 @@ void CardView::characterDataEnableImportButton()
 
 void CardView::modelItemSelected(const QModelIndex &index)
 {
+    if (m_card)
+        m_card->editDictionary()->disconnect(this);
     if (!index.isValid()) {
         m_cardDataSortFilterModel->setSourceModel(nullptr);
         m_cardPlayDataSortFilterModel->setSourceModel(nullptr);
@@ -188,7 +191,8 @@ void CardView::modelItemSelected(const QModelIndex &index)
         playHeader->setSectionResizeMode(3, QHeaderView::Stretch);
     }
     m_card = card;
-    updateDataControls();
+    updateDictionaryEntryWidgets();
+    connect(m_card->editDictionary(), &Dictionary::changed, this, &CardView::dictionaryEntryChanged);
 }
 
 void CardView::modelItemUpdated(const QModelIndex &index)
@@ -196,7 +200,6 @@ void CardView::modelItemUpdated(const QModelIndex &index)
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
     if (m_card == card) {
         ui->cardFace->setPixmap(card->portraitPixmap());
-        updateDataControls();
     }
 }
 
@@ -321,16 +324,33 @@ void CardView::replaceRosterPNG()
     }
 }
 
-bool CardView::eventFilter(QObject *watched, QEvent *event)
+void CardView::dictionaryEntryChanged(int index)
 {
-    if (!m_card)
-        return false;
-    if (event->type() == QEvent::KeyPress) {
-        m_setText++;
+    if (m_card) {
+        QString key = m_card->editDictionary()->keyAt(index);
+        if (m_dictionaryEntryLocker.contains(key)) {
+            m_dictionaryEntryLocker.remove(key);
+            return;
+        }
+        QWidget *widget = m_dictionaryEntryWidgets.value(key, nullptr);
+        if (widget) {
+            updateDictionaryEntryWidget(widget, m_card->editDictionary()->at(index));
+        }
     }
-    else if (event->type() == QEvent::KeyRelease) {
-        m_card->editDictionary()->set(watched->objectName(), qobject_cast<QPlainTextEdit*>(watched)->toPlainText());
-        m_setText--;
+}
+
+void CardView::dictionaryEntryWidgetChanged()
+{
+    if (m_card) {
+        QObject *widget = sender();
+        QString dictionaryEntry = widget->objectName();
+        m_dictionaryEntryLocker.insert(dictionaryEntry);
+        QMetaProperty property = widget->metaObject()->userProperty();
+        m_card->editDictionary()->set(dictionaryEntry, property.read(widget));
     }
-    return false;
+}
+
+void CardView::registerDictionaryEntryWidget(QWidget *widget)
+{
+    m_dictionaryEntryWidgets.insert(widget->objectName(), widget);
 }
