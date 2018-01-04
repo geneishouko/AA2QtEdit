@@ -3,11 +3,15 @@
 
 #include "cardlistmodel.h"
 
+#include <QFileInfo>
 #include <QFileSystemWatcher>
+#include <QMutex>
+#include <QSet>
 
 namespace ClassEdit {
 
     class CardFile;
+    class FileSystemCardListModelLoader;
 
     class FileSystemCardListModel : public CardListModel
     {
@@ -17,11 +21,16 @@ namespace ClassEdit {
         FileSystemCardListModel(const QString &path, QObject *parent = nullptr);
         ~FileSystemCardListModel();
 
+        void finished();
         bool save();
         void saveAll();
+        bool takeFile(FileSystemCardListModelLoader *loader);
 
     private:
+        QSet<FileSystemCardListModelLoader*> m_threadPool;
         QFileSystemWatcher m_fswatcher;
+        QFileInfoList m_loadFileQueue;
+        mutable QMutex m_mutex;
     };
 
 }

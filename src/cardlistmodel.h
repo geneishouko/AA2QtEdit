@@ -17,7 +17,6 @@ namespace ClassEdit {
         CardListModel(QObject *parent = nullptr);
         ~CardListModel();
 
-        void addCard(CardFile *card);
         CardList &cardList() {
             return m_cardList;
         }
@@ -27,6 +26,7 @@ namespace ClassEdit {
         virtual int rowCount(const QModelIndex &) const;
 
     public slots:
+        void addCard(CardFile *card);
         void cardChanged(int index);
         void cardSaved(int index);
         void commitChanges();
@@ -35,6 +35,7 @@ namespace ClassEdit {
 
     signals:
         void cardsChanged(int count);
+        void notify(const QString &message, int timeout);
 
     private:
         CardList m_cardList;

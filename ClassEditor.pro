@@ -51,7 +51,8 @@ SOURCES += src/main.cpp\
     src/ui/carddatadelegate.cpp \
     src/ui/coloritemeditor.cpp \
     src/constants.cpp \
-    src/cardlistmodel.cpp
+    src/cardlistmodel.cpp \
+    src/filesystemcardlistmodelloader.cpp
 
 HEADERS  += src/ui/mainwindow.h \
     src/ui/cardlistview.h \
@@ -74,7 +75,8 @@ HEADERS  += src/ui/mainwindow.h \
     src/ui/carddatadelegate.h \
     src/ui/coloritemeditor.h \
     src/constants.h \
-    src/cardlistmodel.h
+    src/cardlistmodel.h \
+    src/filesystemcardlistmodelloader.h
 
 FORMS    += src/ui/mainwindow.ui \
     src/ui/cardview.ui

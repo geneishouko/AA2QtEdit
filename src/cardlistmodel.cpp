@@ -21,6 +21,7 @@ void CardListModel::addCard(CardFile *card)
     connect(card, &CardFile::saved, this, &CardListModel::cardSaved);
     connect(card, &CardFile::saveRequest, this, &CardListModel::submit);
     m_cardList << card;
+    emit notify(QString(tr("Loaded %1 cards").arg(m_cardList.size())), 5000);
 }
 
 void CardListModel::cardChanged(int cardIndex)

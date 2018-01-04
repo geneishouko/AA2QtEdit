@@ -86,6 +86,7 @@ void MainWindow::loadDirectory()
 
     QObject::connect(fs, &FileSystemCardListModel::cardsChanged, this, &MainWindow::cardsChanged);
     QObject::connect(ui->actionSave_All_Changes, &QAction::triggered, fs, &FileSystemCardListModel::saveAll);
+    QObject::connect(fs, &CardListModel::notify, statusBar(), &QStatusBar::showMessage);
 }
 
 void MainWindow::destroyCurrentModel()
@@ -106,6 +107,7 @@ void MainWindow::loadSaveFile()
     if (path.isEmpty())
         return;
     ClassSaveCardListModel *cs = new ClassSaveCardListModel();
+    QObject::connect(cs, &CardListModel::notify, statusBar(), &QStatusBar::showMessage);
     cs->loadFromFile(path);
     m_sortFilterModel->setSourceModel(cs);
     destroyCurrentModel();

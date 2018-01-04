@@ -18,8 +18,10 @@
 #include "filesystemcardlistmodel.h"
 
 #include "cardfile.h"
+#include "filesystemcardlistmodelloader.h"
 
 #include <QDir>
+#include <QMutexLocker>
 
 using namespace ClassEdit;
 
@@ -30,21 +32,27 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path, QObject *p
     QDir dir(path);
     QStringList filter;
     filter << "*.png";
-    QFileInfoList files = dir.entryInfoList(filter, QDir::Files, QDir::Time);
-
-    CardFile *cf;
-    foreach (const QFileInfo &file, files) {
-        cf = new CardFile(file);
-        if (!cf->isValid()) {
-            delete cf;
-            continue;
-        }
-        addCard(cf);
+    m_loadFileQueue = dir.entryInfoList(filter, QDir::Files, QDir::Time);
+    int maxThreads = QThread::idealThreadCount();
+    if (maxThreads > 4)
+        maxThreads = 4;
+    for (int i = 0; i < maxThreads; i++) {
+        FileSystemCardListModelLoader *thread = new FileSystemCardListModelLoader(this);
+        m_threadPool << thread;
+        thread->start();
     }
 }
 
 FileSystemCardListModel::~FileSystemCardListModel()
 {
+}
+
+void FileSystemCardListModel::finished()
+{
+    if (m_threadPool.isEmpty()) {
+        beginInsertRows(QModelIndex(), 0, cardList().size() - 1);
+        endInsertRows();
+    }
 }
 
 bool FileSystemCardListModel::save()
@@ -60,3 +68,14 @@ void FileSystemCardListModel::saveAll()
     }
 }
 
+bool FileSystemCardListModel::takeFile(FileSystemCardListModelLoader *loader)
+{
+    QMutexLocker locker(&m_mutex);
+    if (!m_loadFileQueue.isEmpty()) {
+        loader->load(m_loadFileQueue.takeLast());
+        return true;
+    }
+    m_threadPool.remove(loader);
+    finished();
+    return false;
+}
