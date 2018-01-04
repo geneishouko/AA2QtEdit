@@ -203,8 +203,8 @@ const QPixmap &CardFile::thumbnailPixmap()
 
 void CardFile::setClothes(const QString &slot, ClothData *cloth)
 {
-    QHash<QString, QVariant> values = cloth->getValues(slot);
-    for (QHash<QString, QVariant>::ConstIterator it = values.cbegin(); it != values.cend(); it++) {
+    QVariantMap values = cloth->getValues(slot);
+    for (QVariantMap::ConstIterator it = values.cbegin(); it != values.cend(); it++) {
         m_editDataDictionary->set(it.key(), it.value());
     }
 }

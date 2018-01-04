@@ -57,9 +57,9 @@ QVariant ClothData::getValue(const QString &key) const
     return m_dictionary.value(key);
 }
 
-QHash<QString,QVariant> ClothData::getValues(const QString &type) const
+QVariantMap ClothData::getValues(const QString &type) const
 {
-    QHash<QString,QVariant> list;
+    QVariantMap list;
     QString key;
     DataReader::DataBlockList &blockList = m_dataReader->m_dataBlocks;
     for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
