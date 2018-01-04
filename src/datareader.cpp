@@ -57,6 +57,11 @@ QVariant DataReader::read(QIODevice *data, DataType type, int dataSize) const
         QByteArray result = data->read(dataSize);
         if (type == DataType::EncodedString)
             result = decodeString(result);
+#ifdef Q_OS_WIN
+        else
+            //truncate null-terminators in Windows to remove mojibake
+            result.truncate(result.indexOf('\0', 0));
+#endif
         QTextStream dec(&result);
         dec.setCodec("Shift-JIS");
         ret = dec.readAll();
