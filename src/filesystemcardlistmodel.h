@@ -21,13 +21,15 @@ namespace ClassEdit {
         FileSystemCardListModel(const QString &path, QObject *parent = nullptr);
         ~FileSystemCardListModel();
 
-        void finished();
         bool save();
         void saveAll();
-        bool takeFile(FileSystemCardListModelLoader *loader);
+        QFileInfo takeFile();
+
+    public slots:
+        void finished();
 
     private:
-        QSet<FileSystemCardListModelLoader*> m_threadPool;
+        QSet<QObject*> m_threadPool;
         QFileSystemWatcher m_fswatcher;
         QFileInfoList m_loadFileQueue;
         mutable QMutex m_mutex;

@@ -91,8 +91,10 @@ void MainWindow::loadDirectory()
 
 void MainWindow::destroyCurrentModel()
 {
-    if (m_cardListModel)
+    if (m_cardListModel) {
         m_cardListModel->deleteLater();
+        m_cardListModel = nullptr;
+    }
     ui->cardView->modelItemSelected(QModelIndex());
 }
 

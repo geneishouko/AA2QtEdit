@@ -25,6 +25,9 @@ void FileSystemCardListModelLoader::load(const QFileInfo &file)
 
 void FileSystemCardListModelLoader::run()
 {
-    while (m_model->takeFile(this));
-    deleteLater();
+    QFileInfo file = m_model->takeFile();
+    while (file.isFile()) {
+        load(file);
+        file = m_model->takeFile();
+    }
 }

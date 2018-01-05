@@ -23,6 +23,13 @@ using namespace ClassEdit;
 Dictionary::Dictionary(QObject *parent) : QObject(parent), QList<QVariant>()
 {
     m_dataReader = nullptr;
+    m_deleteDataBlocks = false;
+}
+
+Dictionary::~Dictionary()
+{
+    if (m_deleteDataBlocks)
+        deleteDataBlocks();
 }
 
 void Dictionary::buildDisplayKeyList()
@@ -40,6 +47,12 @@ const DataReader *Dictionary::dataReader()
     if (parentDictionary)
         m_dataReader = parentDictionary->dataReader();
     return m_dataReader;
+}
+
+void Dictionary::deleteDataBlocks()
+{
+    for (QList<DataBlock*>::ConstIterator it = m_dataBlockList.begin(); it != m_dataBlockList.end(); ++it)
+        delete *it;
 }
 
 QString Dictionary::enumerable(int index)

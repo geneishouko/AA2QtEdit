@@ -27,7 +27,7 @@ namespace ClassEdit {
         typedef QSet<int> IndexSet;
 
         Dictionary(QObject *parent = nullptr);
-        virtual ~Dictionary() = default;
+        virtual ~Dictionary();
 
         void buildDisplayKeyList();
 
@@ -37,6 +37,8 @@ namespace ClassEdit {
             return m_dataBlockList.at(index)->type();
         }
 
+        void deleteDataBlocks();
+
         inline IndexSet::Iterator dirtyIndexBegin() {
             return m_dirtyValues.begin();
         }
@@ -45,7 +47,7 @@ namespace ClassEdit {
             return m_dirtyValues.end();
         }
 
-        inline QStringList displayKeyList() const {
+        inline QStringList &displayKeyList() {
             return m_displayKeyList;
         }
 
@@ -87,6 +89,10 @@ namespace ClassEdit {
             m_dataReader = reader;
         }
 
+        inline void setDeleteDataBlocksOnDestruction(bool destroy) {
+            m_deleteDataBlocks = destroy;
+        }
+
         inline void setParentDictionary(Dictionary *parent) {
             setParent(parent);
             connect(this, &Dictionary::changed, parent, &Dictionary::childChanged);
@@ -102,6 +108,7 @@ namespace ClassEdit {
         void changed(int index);
 
     private:
+        bool m_deleteDataBlocks;
         KeyIndex m_keyMap;
         QList<DataBlock*> m_dataBlockList;
         const DataReader *m_dataReader;

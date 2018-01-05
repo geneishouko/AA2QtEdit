@@ -38,7 +38,8 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path, QObject *p
         maxThreads = 4;
     for (int i = 0; i < maxThreads; i++) {
         FileSystemCardListModelLoader *thread = new FileSystemCardListModelLoader(this);
-        m_threadPool << thread;
+        connect(thread, &QThread::finished, this, &FileSystemCardListModel::finished);
+        m_threadPool << qobject_cast<QObject*>(thread);
         thread->start();
     }
 }
@@ -49,6 +50,9 @@ FileSystemCardListModel::~FileSystemCardListModel()
 
 void FileSystemCardListModel::finished()
 {
+    QObject *s = sender();
+    s->deleteLater();
+    m_threadPool.remove(s);
     if (m_threadPool.isEmpty()) {
         beginInsertRows(QModelIndex(), 0, cardList().size() - 1);
         endInsertRows();
@@ -68,14 +72,10 @@ void FileSystemCardListModel::saveAll()
     }
 }
 
-bool FileSystemCardListModel::takeFile(FileSystemCardListModelLoader *loader)
+QFileInfo FileSystemCardListModel::takeFile()
 {
     QMutexLocker locker(&m_mutex);
-    if (!m_loadFileQueue.isEmpty()) {
-        loader->load(m_loadFileQueue.takeLast());
-        return true;
-    }
-    m_threadPool.remove(loader);
-    finished();
-    return false;
+    if (!m_loadFileQueue.isEmpty())
+        return m_loadFileQueue.takeLast();
+    return QFileInfo();
 }

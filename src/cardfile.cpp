@@ -182,6 +182,7 @@ int CardFile::loadPlayData(QIODevice *file, int offset)
     m_playDataIO.setBuffer(&m_playData);
     m_playDataIO.open(QIODevice::ReadWrite);
     m_playDataDictionary = m_playDataReader->buildDictionary(&m_playDataIO, blockList);
+    m_playDataDictionary->setDeleteDataBlocksOnDestruction(true);
     m_playDataDictionary->setParent(this);
     m_playDataModel = new CardDataModel(m_playDataDictionary);
     return static_cast<int>(playDataEnd);
