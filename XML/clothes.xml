@@ -209,16 +209,11 @@
 	  <enumpair key="211" value="Long Sleeved Tie RP Uniform Tucked [Pantyhose]" />
 	  <enumpair key="212" value="Tie Open RP" />
 	  <enumpair key="213" value="Tie Open RP [Pantyhose]" />
-	  <enumpair key="214" value="N/A" />
-	  <enumpair key="215" value="N/A" />
 	  <enumpair key="216" value="H5 Nun" />
 	  <enumpair key="217" value="Blazer Sweater Vest" />
 	  <enumpair key="218" value="Blazer Sweater Vest [Pantyhose]" />
-	  <enumpair key="219" value="N/A" />
 	  <enumpair key="220" value="Nurse" />
 	  <enumpair key="221" value="One Room, Yui (sweater w/ skirt)" />
-	  <enumpair key="222" value="N/A" />
-	  <enumpair key="223" value="N/A" />
 	  <enumpair key="224" value="2chan Angel Armor" />
 	  <enumpair key="225" value="2chan Demon Armor" />
 	  <enumpair key="226" value="Nekomanma Gothic 1 [reslot]" />
@@ -228,28 +223,20 @@
 	  <enumpair key="230" value="Nekomanma Pirate [reslot]" />
 	  <enumpair key="231" value="Gothic Dress (Reslot from 69)" />
 	  <enumpair key="232" value="Yu-Gi-Oh, Dark Magician Girl/Black Magician Girl" />
-	  <enumpair key="233" value="N/A" />
 	  <enumpair key="234" value="Lingerie (no gloves)" />
 	  <enumpair key="235" value="Lingerie" />
 	  <enumpair key="236" value="PPD Military Uniform*" />
 	  <enumpair key="237" value="2chan Wedding Dress (Reslot)" />
 	  <enumpair key="238" value="KanColle, Kongou/Bongo/Haruna" />
-	  <enumpair key="239" value="N/A" />
-	  <enumpair key="240" value="N/A" />
 	  <enumpair key="241" value="Nurse outfit (Reslot)" />
-	  <enumpair key="242" value="N/A" />
 	  <enumpair key="243" value="Attack on Titan/Shingeki no Kyojin" />
-	  <enumpair key="244" value="N/A" />
-	  <enumpair key="245" value="N/A" />
 	  <enumpair key="246" value="Touhou, Nue" />
 	  <enumpair key="247" value="Lab Coat" />
 	  <enumpair key="248" value="Lab Coat [pantyhose]" />
-	  <enumpair key="249" value="N/A" />
 	  <enumpair key="250" value="Fancy Dress" />
 	  <enumpair key="251" value="Date a Live, Kurumi" />
 	  <enumpair key="252" value="Dark Souls, Quelaag OR Date a Live, Tohka" />
 	  <enumpair key="253" value="Dark Souls, The Fair Lady" />
-	  <enumpair key="254" value="N/A **PUT QUELAAG HERE**" />
 	  <enumpair key="255" value="Touhou, 3-pack Flandre/Nue/Utsuho" />
     </enumerable>
 	<enumerable key="CLOTHES_M">
@@ -261,40 +248,10 @@
 	  <enumpair key="9" value="Open Blazer [recolorable]" />
 	  <enumpair key="10" value="Hawaiian [Blue]" />
 	  <enumpair key="11" value="Hawaiian [Red]" />
-	  <enumpair key="12" value="N/A" />
-	  <enumpair key="13" value="N/A" />
-	  <enumpair key="14" value="N/A" />
 	  <enumpair key="15" value="Colorable Bodysuit" />
-	  <enumpair key="16" value="N/A" />
 	  <enumpair key="17" value="Black Bodysuit" />
-	  <enumpair key="18" value="N/A" />
-	  <enumpair key="19" value="N/A" />
-	  <enumpair key="20" value="N/A" />
-	  <enumpair key="21" value="N/A" />
-	  <enumpair key="22" value="N/A" />
 	  <enumpair key="23" value="Dress Shirt [Kantoku+tie]" />
 	  <enumpair key="24" value="Gilgamesh" />
-	  <enumpair key="25" value="N/A" />
-	  <enumpair key="26" value="N/A" />
-	  <enumpair key="27" value="N/A" />
-	  <enumpair key="28" value="N/A" />
-	  <enumpair key="29" value="N/A" />
-	  <enumpair key="30" value="N/A" />
-	  <enumpair key="31" value="N/A" />
-	  <enumpair key="32" value="N/A" />
-	  <enumpair key="33" value="N/A" />
-	  <enumpair key="34" value="N/A" />
-	  <enumpair key="35" value="N/A" />
-	  <enumpair key="36" value="N/A" />
-	  <enumpair key="37" value="N/A" />
-	  <enumpair key="38" value="N/A" />
-	  <enumpair key="39" value="N/A" />
-	  <enumpair key="40" value="N/A" />
-	  <enumpair key="41" value="N/A" />
-	  <enumpair key="42" value="N/A" />
-	  <enumpair key="43" value="N/A" />
-	  <enumpair key="44" value="N/A" />
-	  <enumpair key="45" value="N/A" />
 	  <enumpair key="46" value="Shemale Sailor Uniform" />
 	  <enumpair key="47" value="Shemale Bloomers Uniform" />
 	  <enumpair key="48" value="Shemale School Swimsuit" />
@@ -305,49 +262,11 @@
 	  <enumpair key="53" value="Dragonball Z, Vegeta Bad Man Shirt" />
 	  <enumpair key="54" value="Orc Body" />
 	  <enumpair key="55" value="PPD Long Jacket" />
-	  <enumpair key="56" value="N/A" />
-	  <enumpair key="57" value="N/A" />
 	  <enumpair key="58" value="PPD Rave" />
 	  <enumpair key="59" value="PPD Laborer" />
 	  <enumpair key="60" value="PPD Slave" />
 	  <enumpair key="61" value="PPD Bunny Hoodie" />
 	  <enumpair key="62" value="PPD Waiter" />
-	  <enumpair key="63" value="N/A" />
-	  <enumpair key="64" value="N/A" />
-	  <enumpair key="65" value="N/A" />
-	  <enumpair key="66" value="N/A" />
-	  <enumpair key="67" value="N/A" />
-	  <enumpair key="68" value="N/A" />
-	  <enumpair key="69" value="N/A" />
-	  <enumpair key="70" value="N/A" />
-	  <enumpair key="71" value="N/A" />
-	  <enumpair key="72" value="N/A" />
-	  <enumpair key="73" value="N/A" />
-	  <enumpair key="74" value="N/A" />
-	  <enumpair key="75" value="N/A" />
-	  <enumpair key="76" value="N/A" />
-	  <enumpair key="77" value="N/A" />
-	  <enumpair key="78" value="N/A" />
-	  <enumpair key="79" value="N/A" />
-	  <enumpair key="80" value="N/A" />
-	  <enumpair key="81" value="N/A" />
-	  <enumpair key="82" value="N/A" />
-	  <enumpair key="83" value="N/A" />
-	  <enumpair key="84" value="N/A" />
-	  <enumpair key="85" value="N/A" />
-	  <enumpair key="86" value="N/A" />
-	  <enumpair key="87" value="N/A" />
-	  <enumpair key="88" value="N/A" />
-	  <enumpair key="89" value="N/A" />
-	  <enumpair key="90" value="N/A" />
-	  <enumpair key="91" value="N/A" />
-	  <enumpair key="92" value="N/A" />
-	  <enumpair key="93" value="N/A" />
-	  <enumpair key="94" value="N/A" />
-	  <enumpair key="95" value="N/A" />
-	  <enumpair key="96" value="N/A" />
-	  <enumpair key="97" value="N/A" />
-	  <enumpair key="98" value="N/A" />
 	  <enumpair key="99" value="Open Blazer [Black, no tie, Karma]" />
 	  <enumpair key="100" value="Open Blazer [White]" />
 	  <enumpair key="101" value="Open Blazer [Black]" />
@@ -362,149 +281,12 @@
 	  <enumpair key="110" value="Open Blazer [Jojo's Bizarre Adventure, Jonathan Joestar]" />
 	  <enumpair key="111" value="Jojo's Bizarre Adventure, DIO" />
 	  <enumpair key="112" value="Jojo's Bizarre Adventure, Kujo Jotaro" />
-	  <enumpair key="113" value="N/A" />
-	  <enumpair key="114" value="N/A" />
-	  <enumpair key="115" value="N/A" />
 	  <enumpair key="116" value="Open Blazer [Shiba Tatsuya]" />
 	  <enumpair key="117" value="Open Blazer [Silent Hill, James Sunderland]" />
 	  <enumpair key="118" value="Danganronpa, Naegi Makoto" />
-	  <enumpair key="119" value="N/A" />
 	  <enumpair key="120" value="Dragonball Z, Perfect Cell" />
-	  <enumpair key="121" value="N/A" />
-	  <enumpair key="122" value="N/A" />
-	  <enumpair key="123" value="N/A" />
-	  <enumpair key="124" value="N/A" />
-	  <enumpair key="125" value="N/A" />
-	  <enumpair key="126" value="N/A" />
-	  <enumpair key="127" value="N/A" />
-	  <enumpair key="128" value="N/A" />
-	  <enumpair key="129" value="N/A" />
-	  <enumpair key="130" value="N/A" />
-	  <enumpair key="131" value="N/A" />
-	  <enumpair key="132" value="N/A" />
-	  <enumpair key="133" value="N/A" />
-	  <enumpair key="134" value="N/A" />
-	  <enumpair key="135" value="N/A" />
-	  <enumpair key="136" value="N/A" />
-	  <enumpair key="137" value="N/A" />
-	  <enumpair key="138" value="N/A" />
-	  <enumpair key="139" value="N/A" />
-	  <enumpair key="140" value="N/A" />
-	  <enumpair key="141" value="N/A" />
-	  <enumpair key="142" value="N/A" />
-	  <enumpair key="143" value="N/A" />
-	  <enumpair key="144" value="N/A" />
-	  <enumpair key="145" value="N/A" />
-	  <enumpair key="146" value="N/A" />
-	  <enumpair key="147" value="N/A" />
-	  <enumpair key="148" value="N/A" />
-	  <enumpair key="149" value="N/A" />
-	  <enumpair key="150" value="N/A" />
-	  <enumpair key="151" value="N/A" />
-	  <enumpair key="152" value="N/A" />
-	  <enumpair key="153" value="N/A" />
-	  <enumpair key="154" value="N/A" />
-	  <enumpair key="155" value="N/A" />
-	  <enumpair key="156" value="N/A" />
-	  <enumpair key="157" value="N/A" />
-	  <enumpair key="158" value="N/A" />
-	  <enumpair key="159" value="N/A" />
-	  <enumpair key="160" value="N/A" />
-	  <enumpair key="161" value="N/A" />
-	  <enumpair key="162" value="N/A" />
-	  <enumpair key="163" value="N/A" />
-	  <enumpair key="164" value="N/A" />
-	  <enumpair key="165" value="N/A" />
-	  <enumpair key="166" value="N/A" />
-	  <enumpair key="167" value="N/A" />
-	  <enumpair key="168" value="N/A" />
-	  <enumpair key="169" value="N/A" />
-	  <enumpair key="170" value="N/A" />
-	  <enumpair key="171" value="N/A" />
-	  <enumpair key="172" value="N/A" />
-	  <enumpair key="173" value="N/A" />
-	  <enumpair key="174" value="N/A" />
-	  <enumpair key="175" value="N/A" />
-	  <enumpair key="176" value="N/A" />
-	  <enumpair key="177" value="N/A" />
-	  <enumpair key="178" value="N/A" />
-	  <enumpair key="179" value="N/A" />
-	  <enumpair key="180" value="N/A" />
-	  <enumpair key="181" value="N/A" />
-	  <enumpair key="182" value="N/A" />
-	  <enumpair key="183" value="N/A" />
-	  <enumpair key="184" value="N/A" />
-	  <enumpair key="185" value="N/A" />
-	  <enumpair key="186" value="N/A" />
-	  <enumpair key="187" value="N/A" />
-	  <enumpair key="188" value="N/A" />
-	  <enumpair key="189" value="N/A" />
-	  <enumpair key="190" value="N/A" />
-	  <enumpair key="191" value="N/A" />
-	  <enumpair key="192" value="N/A" />
-	  <enumpair key="193" value="N/A" />
-	  <enumpair key="194" value="N/A" />
-	  <enumpair key="195" value="N/A" />
-	  <enumpair key="196" value="N/A" />
-	  <enumpair key="197" value="N/A" />
-	  <enumpair key="198" value="N/A" />
-	  <enumpair key="199" value="N/A" />
 	  <enumpair key="200" value="Open Blazer [White]" />
-	  <enumpair key="201" value="N/A" />
-	  <enumpair key="202" value="N/A" />
-	  <enumpair key="203" value="N/A" />
-	  <enumpair key="204" value="N/A" />
-	  <enumpair key="205" value="N/A" />
-	  <enumpair key="206" value="N/A" />
-	  <enumpair key="207" value="N/A" />
-	  <enumpair key="208" value="N/A" />
-	  <enumpair key="209" value="N/A" />
 	  <enumpair key="210" value="Kyrie Blazer [Purple and whimsical]" />
-	  <enumpair key="211" value="N/A" />
-	  <enumpair key="212" value="N/A" />
-	  <enumpair key="213" value="N/A" />
-	  <enumpair key="214" value="N/A" />
-	  <enumpair key="215" value="N/A" />
-	  <enumpair key="216" value="N/A" />
-	  <enumpair key="217" value="N/A" />
-	  <enumpair key="218" value="N/A" />
-	  <enumpair key="219" value="N/A" />
-	  <enumpair key="220" value="N/A" />
-	  <enumpair key="221" value="N/A" />
-	  <enumpair key="222" value="N/A" />
-	  <enumpair key="223" value="N/A" />
-	  <enumpair key="224" value="N/A" />
-	  <enumpair key="225" value="N/A" />
-	  <enumpair key="226" value="N/A" />
-	  <enumpair key="227" value="N/A" />
-	  <enumpair key="228" value="N/A" />
-	  <enumpair key="229" value="N/A" />
-	  <enumpair key="230" value="N/A" />
-	  <enumpair key="231" value="N/A" />
-	  <enumpair key="232" value="N/A" />
-	  <enumpair key="233" value="N/A" />
-	  <enumpair key="234" value="N/A" />
-	  <enumpair key="235" value="N/A" />
-	  <enumpair key="236" value="N/A" />
-	  <enumpair key="237" value="N/A" />
-	  <enumpair key="238" value="N/A" />
-	  <enumpair key="239" value="N/A" />
-	  <enumpair key="240" value="N/A" />
-	  <enumpair key="241" value="N/A" />
-	  <enumpair key="242" value="N/A" />
-	  <enumpair key="243" value="N/A" />
-	  <enumpair key="244" value="N/A" />
-	  <enumpair key="245" value="N/A" />
-	  <enumpair key="246" value="N/A" />
-	  <enumpair key="247" value="N/A" />
-	  <enumpair key="248" value="N/A" />
-	  <enumpair key="249" value="N/A" />
-	  <enumpair key="250" value="N/A" />
-	  <enumpair key="251" value="N/A" />
-	  <enumpair key="252" value="N/A" />
-	  <enumpair key="253" value="N/A" />
-	  <enumpair key="254" value="N/A" />
-	  <enumpair key="255" value="N/A" />
     </enumerable>
   </enumerables>
 </dataset>
