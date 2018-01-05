@@ -421,7 +421,10 @@ void CardView::dictionaryEntryWidgetChanged()
         QString dictionaryEntry = widget->objectName();
         m_dictionaryEntryLocker.insert(dictionaryEntry);
         QMetaProperty property = widget->metaObject()->userProperty();
-        m_card->editDictionary()->set(dictionaryEntry, property.read(widget));
+        QVariant value = property.read(widget);
+        if (qobject_cast<QPlainTextEdit*>(widget))
+            value = value.toString().replace("\n", "\r\n");
+        m_card->editDictionary()->set(dictionaryEntry, value);
     }
 }
 
