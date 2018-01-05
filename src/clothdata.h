@@ -15,6 +15,8 @@ namespace ClassEdit {
 
         static ClothData *fromCardData(const QString &type, CardFile *card);
         static ClothData *fromClothFile(const QString &file);
+        static ClothData *fromByteArray(const QByteArray &byteArray);
+        static ClothData *fromDevice(QIODevice *device);
 
         QVariant getValue(const QString &key) const;
         QVariantMap getValues(const QString &key) const;

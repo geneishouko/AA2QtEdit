@@ -399,11 +399,18 @@
       <item>
        <widget class="QGroupBox" name="groupBox_2">
         <property name="title">
-         <string>Import .cloth file as</string>
+         <string>Cloth Tools</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1,1,1,1">
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Slot:</string>
+             </property>
+            </widget>
+           </item>
            <item>
             <widget class="QCheckBox" name="checkClothSlot1">
              <property name="text">
@@ -444,17 +451,25 @@
             </widget>
            </item>
            <item>
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+            <widget class="QPushButton" name="exportClothButton">
+             <property name="text">
+              <string>Export</string>
              </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="copyClothButton">
+             <property name="text">
+              <string>Copy</string>
              </property>
-            </spacer>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pasteClothButton">
+             <property name="text">
+              <string>Paste</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -647,6 +662,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>copyClothButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CardView</receiver>
+   <slot>copyCloth()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>241</x>
+     <y>405</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pasteClothButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CardView</receiver>
+   <slot>pasteCloth()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>331</x>
+     <y>405</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>exportClothButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CardView</receiver>
+   <slot>exportCloth()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>151</x>
+     <y>405</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>modelItemActivated(QModelIndex)</slot>
@@ -657,5 +720,8 @@
   <slot>exportCard()</slot>
   <slot>exportPortrait()</slot>
   <slot>exportThumbnail()</slot>
+  <slot>exportCloth()</slot>
+  <slot>copyCloth()</slot>
+  <slot>pasteCloth()</slot>
  </slots>
 </ui>

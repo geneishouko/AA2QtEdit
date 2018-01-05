@@ -19,7 +19,7 @@
 #include "datareader.h"
 #include "dictionary.h"
 
-#include <QHash>
+#include <QBuffer>
 
 using namespace ClassEdit;
 
@@ -41,13 +41,25 @@ ClothData *ClothData::fromCardData(const QString &type, CardFile *card)
 
 ClothData *ClothData::fromClothFile(const QString &path)
 {
-    ClothData *data = new ClothData;
     QFile file(path);
-    if (file.open(QIODevice::ReadOnly)) {
-        DataReader::DataBlockList &blockList = data->m_dataReader->m_dataBlocks;
-        for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
-            data->m_dictionary.insert((*it)->key(), data->m_dataReader->read(&file, (*it)->key()));
-        }
+    file.open(QIODevice::ReadOnly);
+    return fromDevice(&file);
+}
+
+ClothData *ClothData::fromByteArray(const QByteArray &byteArray)
+{
+    QBuffer buffer;
+    buffer.setData(byteArray);
+    buffer.open(QBuffer::ReadOnly);
+    return fromDevice(&buffer);
+}
+
+ClothData *ClothData::fromDevice(QIODevice *device)
+{
+    ClothData *data = new ClothData;
+    DataReader::DataBlockList &blockList = data->m_dataReader->m_dataBlocks;
+    for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
+        data->m_dictionary.insert((*it)->key(), data->m_dataReader->read(device, (*it)->key()));
     }
     return data;
 }
@@ -80,6 +92,7 @@ QByteArray ClothData::toClothFile() const
     if (m_dictionary.isEmpty())
         return data;
     QBuffer buffer(&data);
+    buffer.open(QBuffer::WriteOnly);
     foreach(DataBlock *db, m_dataReader->m_dataBlocks) {
         buffer.seek(db->offset());
         m_dataReader->write(&buffer, db->key(), m_dictionary.value(db->key()));

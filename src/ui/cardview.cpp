@@ -26,6 +26,7 @@
 #include "coloritemeditor.h"
 #include "filedialog.h"
 
+#include <QClipboard>
 #include <QHeaderView>
 #include <QLineEdit>
 #include <QMessageBox>
@@ -216,6 +217,80 @@ void CardView::importCloth()
         if (ui->checkClothSlot4->isChecked())
             m_card->setClothes(ClothSlotClubKey, cloth);
         delete cloth;
+    }
+}
+
+void CardView::exportCloth()
+{
+    auto writeClothFile = [](CardFile *card, const QString &slot, const QString &caption, QWidget *widget) {
+        QString path = FileDialog::getSaveFileName(FileDialog::ImportCloth, tr("Cloth (*.cloth)"), caption, widget);
+        if (!path.isEmpty()) {
+            ClothData *cloth = ClothData::fromCardData(slot, card);
+            QSaveFile file(path);
+            file.open(QSaveFile::WriteOnly);
+            file.write(cloth->toClothFile());
+            file.commit();
+            delete cloth;
+        }
+    };
+
+    if (m_card) {
+        if (ui->checkClothSlot1->isChecked()) {
+            writeClothFile(m_card, ClothSlotUniformKey, tr("Save Uniform Outfit"), this);
+        }
+        if (ui->checkClothSlot2->isChecked()) {
+            writeClothFile(m_card, ClothSlotSportKey, tr("Save Sports Outfit"), this);
+        }
+        if (ui->checkClothSlot3->isChecked()) {
+            writeClothFile(m_card, ClothSlotSwimsuitKey, tr("Save Swimsuit Outfit"), this);
+        }
+        if (ui->checkClothSlot4->isChecked()) {
+            writeClothFile(m_card, ClothSlotClubKey, tr("Save Club Outfit"), this);
+        }
+    }
+}
+
+void CardView::copyCloth()
+{
+    if (m_card) {
+        ClothData *cloth = nullptr;
+        if (ui->checkClothSlot1->isChecked()) {
+            cloth = ClothData::fromCardData(ClothSlotUniformKey, m_card);
+        }
+        else if (ui->checkClothSlot2->isChecked()) {
+            cloth = ClothData::fromCardData(ClothSlotSportKey, m_card);
+        }
+        else if (ui->checkClothSlot3->isChecked()) {
+            cloth = ClothData::fromCardData(ClothSlotSwimsuitKey, m_card);
+        }
+        else if (ui->checkClothSlot4->isChecked()) {
+            cloth = ClothData::fromCardData(ClothSlotClubKey, m_card);
+        }
+        if (cloth) {
+            QClipboard *clipboard= QApplication::clipboard();
+            clipboard->setText(QString::fromLatin1(cloth->toClothFile().toBase64()));
+        }
+    }
+}
+
+void CardView::pasteCloth()
+{
+    if (m_card) {
+        QClipboard *clipboard= QApplication::clipboard();
+        QByteArray data = QByteArray::fromBase64(clipboard->text().toLatin1());
+        ClothData *cloth = ClothData::fromByteArray(data);
+        if (ui->checkClothSlot1->isChecked()) {
+            m_card->setClothes(ClothSlotUniformKey, cloth);
+        }
+        if (ui->checkClothSlot2->isChecked()) {
+            m_card->setClothes(ClothSlotSportKey, cloth);
+        }
+        if (ui->checkClothSlot3->isChecked()) {
+            m_card->setClothes(ClothSlotSwimsuitKey, cloth);
+        }
+        if (ui->checkClothSlot4->isChecked()) {
+            m_card->setClothes(ClothSlotClubKey, cloth);
+        }
     }
 }
 

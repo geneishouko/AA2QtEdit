@@ -31,11 +31,14 @@ namespace ClassEdit {
         void characterDataEnableImportButton();
         void modelItemSelected(const QModelIndex &index);
         void modelItemUpdated(const QModelIndex &index);
+        void importCard();
         void exportCard();
         void exportPortrait();
         void exportThumbnail();
         void importCloth();
-        void importCard();
+        void exportCloth();
+        void copyCloth();
+        void pasteCloth();
         void replaceFacePNG();
         void replaceRosterPNG();
         void dictionaryEntryChanged(int index);
@@ -53,6 +56,7 @@ namespace ClassEdit {
         QSortFilterProxyModel *m_cardPlayDataSortFilterModel;
         QSet<QString> m_dictionaryEntryLocker;
         QHash<QString, QWidget*> m_dictionaryEntryWidgets;
+        QVariantMap m_clothClipboard;
     };
 
 }
