@@ -42,6 +42,8 @@ namespace ClassEdit {
         }
         void write(QIODevice *data, const QString &key, const QVariant &value) const;
         void write(QIODevice *data, DataType type, const QVariant &value, int fieldSize) const;
+        void writeDictionary(QIODevice *data, Dictionary *dictionary) const;
+        void writeDictionaryArray(QIODevice *data, Dictionary *dictionary, DataBlock *db) const;
         DataBlockList finalizeDataBlocks(QIODevice *data) const;
         void finalizeDataBlockOffset(DataBlock *db, qint64 offset) const;
         void finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db) const;

@@ -260,6 +260,8 @@ void CardFile::commitChanges()
         m_editDataReader->write(&m_editDataIO, db->key(), m_editDataDictionary->value(db->key()));
     }
     m_editDataDictionary->resetDirtyValues();
+    m_playDataIO.seek(0);
+    m_playDataReader->writeDictionary(&m_playDataIO, m_playDataDictionary);
 }
 
 void CardFile::saveToFile(const QString &file)

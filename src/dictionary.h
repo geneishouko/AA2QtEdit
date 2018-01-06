@@ -31,6 +31,10 @@ namespace ClassEdit {
 
         void buildDisplayKeyList();
 
+        inline const QList<DataBlock*> &dataBlocks() const {
+            return m_dataBlockList;
+        }
+
         const DataReader *dataReader();
 
         inline DataType dataType(int index) const {

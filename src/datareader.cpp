@@ -95,6 +95,9 @@ QVariant DataReader::read(QIODevice *data, DataType type, int dataSize) const
         data->read(reinterpret_cast<char*>(&c), 4);
         ret = QColor::fromRgba(c);
     }
+    else if (type == DataType::Dummy) {
+        ret = data->read(dataSize);
+    }
 
     return ret;
 }
@@ -148,6 +151,13 @@ void DataReader::write(QIODevice *data, const QString &key, const QVariant &valu
 
 void DataReader::write(QIODevice *data, DataType type, const QVariant &value, int fieldSize) const
 {
+    // Enum type must be resolved by this point
+    Q_ASSERT(type != DataType::Enum);
+
+#ifdef QT_DEBUG
+    qint64 pos = data->pos();
+#endif
+
     if (type == DataType::String || type == DataType::EncodedString) {
         QString string = value.toString();
         QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
@@ -183,6 +193,63 @@ void DataReader::write(QIODevice *data, DataType type, const QVariant &value, in
         quint32 c = color.rgba();
         data->write(reinterpret_cast<char*>(&c), 4);
     }
+    else if (type == DataType::Dummy) {
+        data->write(value.toByteArray());
+    }
+
+#ifdef QT_DEBUG
+    //qDebug() << "Wrote at" << QString::number(pos, 16) << "now at" << QString::number(data->pos(), 16);
+    Q_ASSERT(pos != data->pos());
+#endif
+}
+
+void DataReader::writeDictionary(QIODevice *data, Dictionary *dictionary) const
+{
+    const DataBlockList &dataBlocks = dictionary->dataBlocks();
+    int size = dataBlocks.size();
+    for (int i = 0; i < size; i++) {
+        DataType blockType = dataBlocks[i]->type();
+        if (blockType == DataType::Array) {
+            Dictionary *subDictionary = dictionary->at(i).value<Dictionary*>();
+            writeDictionaryArray(data, subDictionary, dataBlocks[i]);
+        }
+        else if (blockType == DataType::Struct) {
+            Dictionary *subDictionary = dictionary->at(i).value<Dictionary*>();
+            writeDictionary(data, subDictionary);
+        }
+        else {
+            if (blockType == DataType::Enum) {
+                blockType = s_enumerables[dataBlocks[i]->metaKey()]->type();
+            }
+            write(data, blockType, dictionary->at(i), dataBlocks[i]->dataSize());
+        }
+    }
+}
+
+void DataReader::writeDictionaryArray(QIODevice *data, Dictionary *dictionary, DataBlock *db) const
+{
+    DataType headerType = db->m_arrayHeaderType;
+    DataType innerType = db->m_arrayInnerType;
+    int size = db->m_arraySize;
+    if (size < 0) {
+        size = dictionary->size();
+        write(data, headerType, size, 0);
+    }
+    if (!size)
+        return;
+    if (innerType == DataType::Enum) {
+        innerType = s_enumerables[db->metaKey()]->type();
+    }
+    if (innerType == DataType::Struct) {
+        for (int i = 0; i < size; i++)
+            writeDictionary(data, dictionary->at(i).value<Dictionary*>());
+    }
+    else {
+        DataBlock *firstBlock = dictionary->dataBlocks().first();
+        for (int i = 0; i < size; i++)
+            write(data, innerType, dictionary->at(i), firstBlock->dataSize());
+    }
+
 }
 
 DataReader::DataBlockList DataReader::finalizeDataBlocks(QIODevice *data) const
