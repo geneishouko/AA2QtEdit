@@ -167,9 +167,9 @@ void CardView::modelItemSelected(const QModelIndex &index)
 {
     if (m_card)
         m_card->editDictionary()->disconnect(this);
+    m_cardDataSortFilterModel->setSourceModel(nullptr);
+    m_cardPlayDataSortFilterModel->setSourceModel(nullptr);
     if (!index.isValid()) {
-        m_cardDataSortFilterModel->setSourceModel(nullptr);
-        m_cardPlayDataSortFilterModel->setSourceModel(nullptr);
         m_card = nullptr;
         return;
     }
