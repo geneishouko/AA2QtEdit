@@ -21,8 +21,11 @@
 #include "../cardfile.h"
 #include "../classsavecardlistmodel.h"
 #include "../filesystemcardlistmodel.h"
+#include "../settings.h"
 #include "filedialog.h"
+#include "preferences.h"
 
+#include <QCloseEvent>
 #include <QFileDialog>
 #include <QLabel>
 #include <QListView>
@@ -44,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->cardListView->setModel(m_sortFilterModel);
     QWidget *separator = new QWidget(this);
     separator->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    ui->mainToolBar->insertWidget(ui->actionQuit, separator);
+    ui->mainToolBar->insertWidget(ui->actionPreferences, separator);
     QObject::connect(m_sortFilterModel, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), ui->cardView, SLOT(modelItemUpdated(QModelIndex)));
     QObject::connect(ui->cardListView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), ui->cardView, SLOT(modelItemSelected(QModelIndex)));
     m_sortFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -61,11 +64,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->sortOrder->setCurrentIndex(1);
     connect(ui->sortBy, SIGNAL(currentIndexChanged(int)), this, SLOT(setSortKeyRole()));
     connect(ui->sortOrder, SIGNAL(currentIndexChanged(int)), this, SLOT(setSortOrder()));
+    connect(ui->actionPreferences, &QAction::triggered, this, &MainWindow::preferences);
     ui->textFilter->setFocus();
+    readSettings();
 }
 
 MainWindow::~MainWindow()
 {
+    writeSettings();
     delete ui;
 }
 
@@ -76,7 +82,7 @@ void MainWindow::cardsChanged(int count)
 
 void MainWindow::loadDirectory()
 {
-    QString path = QFileDialog::getExistingDirectory();
+    QString path = FileDialog::getExistingDirectory(FileDialog::CardFolder, tr("Select Folder"), this);
     if (path.isEmpty())
         return;
     FileSystemCardListModel *fs = new FileSystemCardListModel(path);
@@ -96,6 +102,16 @@ void MainWindow::destroyCurrentModel()
         m_cardListModel = nullptr;
     }
     ui->cardView->modelItemSelected(QModelIndex());
+}
+
+void MainWindow::preferences()
+{
+    Preferences *p = new Preferences;
+    if (p->exec()) {
+        QString path = p->fileDialogStartPath();
+        FileDialog::setStartPath(path);
+    }
+    p->deleteLater();
 }
 
 void MainWindow::quit()
@@ -127,4 +143,22 @@ void MainWindow::setSortKeyRole()
 void MainWindow::setSortOrder()
 {
     m_sortFilterModel->sort(0, static_cast<Qt::SortOrder>(ui->sortOrder->currentData().toInt()));
+}
+
+void MainWindow::readSettings()
+{
+    QSettings settings;
+    settings.beginGroup("MainWindow");
+    resize(settings.value("size", QSize(960, 640)).toSize());
+    move(settings.value("pos", QPoint(200, 200)).toPoint());
+    settings.endGroup();
+}
+
+void MainWindow::writeSettings()
+{
+    QSettings settings;
+    settings.beginGroup("MainWindow");
+    settings.setValue("size", size());
+    settings.setValue("pos", pos());
+    settings.endGroup();
 }

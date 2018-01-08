@@ -119,6 +119,7 @@
    <addaction name="actionLoad_Save_File"/>
    <addaction name="actionLoad_Directory"/>
    <addaction name="actionSave_All_Changes"/>
+   <addaction name="actionPreferences"/>
    <addaction name="actionQuit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -130,6 +131,12 @@
    <property name="text">
     <string>&amp;Load Save File</string>
    </property>
+   <property name="toolTip">
+    <string>Load Save File (Control + O)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionLoad_Directory">
    <property name="icon">
@@ -140,7 +147,10 @@
     <string>Load &amp;Folder</string>
    </property>
    <property name="toolTip">
-    <string>Load Folder</string>
+    <string>Load Folder (Control + Shift + O)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
    </property>
   </action>
   <action name="actionSave_All_Changes">
@@ -154,6 +164,12 @@
    <property name="text">
     <string>Save All Changes</string>
    </property>
+   <property name="toolTip">
+    <string>Save All Changes (Control+ Shift + S)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
   </action>
   <action name="actionQuit">
    <property name="icon">
@@ -162,6 +178,24 @@
    </property>
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit (Control + Q)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="icon">
+    <iconset resource="../../icons/icons.qrc">
+     <normaloff>:/icon/settings.svg</normaloff>:/icon/settings.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+   <property name="toolTip">
+    <string>Preferences (Control + P)</string>
    </property>
   </action>
  </widget>

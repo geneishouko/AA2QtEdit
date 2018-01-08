@@ -17,26 +17,44 @@
 
 #include "filedialog.h"
 
+#include "../settings.h"
+
 using namespace ClassEdit;
 
-static QHash<int,QString> m_selectionHistory;
+static QVector<QString> s_selectionHistory;
 
 QString FileDialog::getOpenFileName(Context context, const QString &filter, const QString &caption, QWidget *parent)
 {
-    QString ret = QFileDialog::getOpenFileName(parent, caption, m_selectionHistory[context], filter);
+    QString ret = QFileDialog::getOpenFileName(parent, caption, s_selectionHistory[context], filter);
     if (!ret.isEmpty()) {
         QFileInfo info(ret);
-        m_selectionHistory[context] = info.dir().path();
+        s_selectionHistory[context] = info.dir().path();
     }
     return ret;
 }
 
 QString FileDialog::getSaveFileName(FileDialog::Context context, const QString &filter, const QString &caption, QWidget *parent)
 {
-    QString ret = QFileDialog::getSaveFileName(parent, caption, m_selectionHistory[context], filter);
+    QString ret = QFileDialog::getSaveFileName(parent, caption, s_selectionHistory[context], filter);
     if (!ret.isEmpty()) {
         QFileInfo info(ret);
-        m_selectionHistory[context] = info.dir().path();
+        s_selectionHistory[context] = info.dir().path();
+    }
+    return ret;
+}
+
+void FileDialog::setStartPath(const QString &path)
+{
+    s_selectionHistory = QVector<QString>(ContextCount, path);
+    settings()->setFileDialogStartPath(path);
+}
+
+QString FileDialog::getExistingDirectory(FileDialog::Context context, const QString &caption, QWidget *parent)
+{
+    QString ret = QFileDialog::getExistingDirectory(parent, caption, s_selectionHistory[context]);
+    if (!ret.isEmpty()) {
+        QFileInfo info(ret);
+        s_selectionHistory[context] = info.dir().path();
     }
     return ret;
 }

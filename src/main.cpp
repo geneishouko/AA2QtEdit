@@ -18,10 +18,12 @@
 #include "ui/mainwindow.h"
 
 #include "src/datareader.h"
+#include "src/ui/filedialog.h"
 
 #include <QApplication>
 #include <QDir>
 #include <QFileInfo>
+#include <QSettings>
 
 #include <QtDebug>
 
@@ -36,6 +38,10 @@ int main(int argc, char *argv[])
     icon.addFile(":/icon/application-icon_64x64.png");
     a.setWindowIcon(icon);
 #endif
+
+    QCoreApplication::setOrganizationName("aa2g");
+    QCoreApplication::setOrganizationDomain("aa2g.vg.4chan.org");
+    QCoreApplication::setApplicationName("AA2QtEdit");
 
     ClassEdit::DataReader::getDataReader("chardata");
     ClassEdit::DataReader::getDataReader("playdata");
@@ -53,6 +59,11 @@ int main(int argc, char *argv[])
             xml.open(QFile::ReadOnly);
             ClassEdit::DataReader::loadExternalDefinitions(&xml);
         }
+
+        QSettings settings;
+        settings.beginGroup("General");
+        ClassEdit::FileDialog::setStartPath(settings.value("FileDialogStartPath", QString()).toString());
+        settings.endGroup();
     }
 
     MainWindow w;

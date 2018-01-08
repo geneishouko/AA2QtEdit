@@ -52,7 +52,9 @@ SOURCES += src/main.cpp\
     src/ui/coloritemeditor.cpp \
     src/constants.cpp \
     src/cardlistmodel.cpp \
-    src/filesystemcardlistmodelloader.cpp
+    src/filesystemcardlistmodelloader.cpp \
+    src/ui/preferences.cpp \
+    src/settings.cpp
 
 HEADERS  += src/ui/mainwindow.h \
     src/ui/cardlistview.h \
@@ -76,10 +78,13 @@ HEADERS  += src/ui/mainwindow.h \
     src/ui/coloritemeditor.h \
     src/constants.h \
     src/cardlistmodel.h \
-    src/filesystemcardlistmodelloader.h
+    src/filesystemcardlistmodelloader.h \
+    src/ui/preferences.h \
+    src/settings.h
 
 FORMS    += src/ui/mainwindow.ui \
-    src/ui/cardview.ui
+    src/ui/cardview.ui \
+    src/ui/preferences.ui
 
 RESOURCES += \
     XML/datadef.qrc \

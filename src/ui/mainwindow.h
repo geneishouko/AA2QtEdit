@@ -22,9 +22,12 @@ public slots:
     void loadSaveFile();
     void loadDirectory();
     void destroyCurrentModel();
+    void preferences();
     void quit();
+    void readSettings();
     void setSortKeyRole();
     void setSortOrder();
+    void writeSettings();
 
 private:
     Ui::MainWindow *ui;

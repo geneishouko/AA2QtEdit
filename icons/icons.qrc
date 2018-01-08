@@ -8,5 +8,7 @@
         <file>application-icon_48x48.png</file>
         <file>application-icon_32x32.png</file>
         <file>application-icon_16x16.png</file>
+        <file>settings.svg</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

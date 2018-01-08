@@ -23,7 +23,7 @@
    <attribute name="title">
     <string>General</string>
    </attribute>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>

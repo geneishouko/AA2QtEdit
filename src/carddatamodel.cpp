@@ -62,7 +62,7 @@ Qt::ItemFlags CardDataModel::flags(const QModelIndex &index) const
     QVariant value = getEntryForIndex(index);
     Dictionary *dictionary = value.value<Dictionary*>();
     Qt::ItemFlags f = Qt::NoItemFlags;
-    if (!dictionary && value.type() != QVariant::Invalid)
+    if (!dictionary && value.type() != QVariant::Invalid && value.type() != QVariant::ByteArray)
         f |= Qt::ItemNeverHasChildren | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
     if (value.type() == QVariant::Bool)
         f |= Qt::ItemIsUserCheckable;
@@ -98,15 +98,26 @@ QVariant CardDataModel::data(const QModelIndex &index, int role) const
             return dictionary->keyAt(index.row());
 
             case ValueHeader:
-            if (dataType == DataType::Array || dataType == DataType::Struct) {
+            switch (dataType) {
+            case DataType::Array:
+            case DataType::Struct: {
                 Dictionary *dictionary = value.value<Dictionary*>();
                 return tr("(%1 items)", nullptr, dictionary->count()).arg(dictionary->count());
             }
-            if (dataType == DataType::Enum) {
+            case DataType::Enum:
                 return dictionary->enumerable(index.row());
-            }
-            if (value.type() != QVariant::Bool)
+            case DataType::Byte:
+            case DataType::Int16:
+            case DataType::Int32:
+            case DataType::Color:
+            case DataType::String:
+            case DataType::EncodedString:
                 return value;
+            case DataType::Bool:
+            case DataType::Dummy:
+            case DataType::Invalid:
+                return QVariant();
+            }
         }
     }
     else if (role == Qt::CheckStateRole) {

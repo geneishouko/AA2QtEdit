@@ -13,12 +13,16 @@ namespace ClassEdit {
             ImportCloth,
             ExtractCard,
             ReplaceCard,
-            ReplacePNG
+            ReplacePNG,
+            StartPath,
+            ContextCount
         };
 
+        QString getExistingDirectory(Context context, const QString &caption = QString(), QWidget *parent = nullptr);
         QString getOpenFileName(Context context, const QString &filter, const QString &caption, QWidget *parent = nullptr);
         QString getSaveFileName(Context context, const QString &filter, const QString &caption, QWidget *parent = nullptr);
-    };
+        void setStartPath(const QString &path);
+    }
 
 }
 
