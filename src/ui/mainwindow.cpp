@@ -106,7 +106,7 @@ void MainWindow::destroyCurrentModel()
 
 void MainWindow::preferences()
 {
-    Preferences *p = new Preferences;
+    Preferences *p = new Preferences(this);
     if (p->exec()) {
         QString path = p->fileDialogStartPath();
         FileDialog::setStartPath(path);
