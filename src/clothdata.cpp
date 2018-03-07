@@ -36,6 +36,7 @@ ClothData *ClothData::fromCardData(const QString &type, CardFile *card)
     for (DataReader::DataBlockList::const_iterator it = blockList.constBegin(); it != blockList.constEnd(); it++) {
         data->m_dictionary.insert((*it)->key(), card->editDictionary()->value((*it)->key().replace("CLOTH", type)));
     }
+    data->m_dictionary.insert("CLOTH_GENDER", card->gender());
     return data;
 }
 
