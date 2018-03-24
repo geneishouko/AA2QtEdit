@@ -119,6 +119,7 @@
    <addaction name="actionLoad_Save_File"/>
    <addaction name="actionLoad_Directory"/>
    <addaction name="actionSave_All_Changes"/>
+   <addaction name="actionEdit_Class_Save"/>
    <addaction name="actionPreferences"/>
    <addaction name="actionQuit"/>
   </widget>
@@ -198,6 +199,18 @@
     <string>Preferences (Control + P)</string>
    </property>
   </action>
+  <action name="actionEdit_Class_Save">
+   <property name="icon">
+    <iconset resource="../../icons/icons.qrc">
+     <normaloff>:/icon/class.svg</normaloff>:/icon/class.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Edit Class</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit Class</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -268,11 +281,28 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionEdit_Class_Save</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>editClassSave()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>479</x>
+     <y>349</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>loadSaveFile()</slot>
   <slot>loadDirectory()</slot>
   <slot>itemActivated(QModelIndex)</slot>
   <slot>quit()</slot>
+  <slot>editClassSave()</slot>
  </slots>
 </ui>

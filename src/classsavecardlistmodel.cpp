@@ -57,10 +57,11 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
     file.seek(0);
     m_header.resize(headerSize);
     file.read(m_header.data(), headerSize);
-    for (DataReader::DataBlockList::const_iterator it = m_classData.constBegin(); it != m_classData.constEnd(); it++) {
+    /*for (DataReader::DataBlockList::const_iterator it = m_classData.constBegin(); it != m_classData.constEnd(); it++) {
         m_headerDictionary.insert((*it)->key(), m_classHeaderReader->read(&buffer, (*it)));
-    }
-    int studentsCount = m_headerDictionary.value("HEADER_BOYS").toInt() + m_headerDictionary.value("HEADER_GIRLS").toInt();
+    }*/
+    m_headerDictionary = m_classHeaderReader->buildDictionary(&buffer, m_classData);
+    int studentsCount = m_headerDictionary->value("HEADER_BOYS").toInt() + m_headerDictionary->value("HEADER_GIRLS").toInt();
 
     // read characters
     int pos = 0;
@@ -119,4 +120,12 @@ void ClassSaveCardListModel::saveAll()
 {
     CardListModel::commitChanges();
     save();
+}
+
+void ClassSaveCardListModel::writeHeader()
+{
+    QBuffer buffer;
+    buffer.setBuffer(&m_header);
+    buffer.open(QBuffer::WriteOnly);
+    m_classHeaderReader->writeDictionary(&buffer, m_headerDictionary);
 }

@@ -13,6 +13,7 @@ namespace ClassEdit {
     extern const QString ClothSlotClubKey;
     extern const QString PortraitPngKey;
     extern const QString ThumbnailPngKey;
+    extern const QString AAUDataKey;
     extern const qint32 EditDataLength;
 }
 

@@ -22,14 +22,21 @@ namespace ClassEdit {
         explicit ClassSaveCardListModel(QObject *parent = nullptr);
         ~ClassSaveCardListModel();
 
+        inline QByteArray &footer() {
+            return m_footer;
+        }
+        inline Dictionary *headerDictionary() {
+            return m_headerDictionary;
+        }
         void loadFromFile(const QString& path);
         bool save();
         void saveAll();
+        void writeHeader();
 
     private:
         QString m_filePath;
         DataReader *m_classHeaderReader;
-        Dictionary m_headerDictionary;
+        Dictionary *m_headerDictionary;
         DataReader::DataBlockList m_classData;
 
         QByteArray m_header;

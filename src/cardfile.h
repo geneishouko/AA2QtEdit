@@ -39,8 +39,8 @@ namespace ClassEdit {
         CardFile(QIODevice *file, qint64 startOffset, qint64 endOffset);
         ~CardFile();
 
-        inline const QByteArray &aauData() const {
-            return m_aauData;
+        inline const QByteArray aauData() const {
+            return m_editDataDictionary->value(AAUDataKey).toByteArray();
         }
         inline int aauDataVersion() const {
             return m_aauDataVersion;
@@ -100,7 +100,8 @@ namespace ClassEdit {
             return m_seat;
         }
         inline void setAAUnlimitedData(const QByteArray &data, int version) {
-            m_aauData = data;
+            m_editDataDictionary->set(AAUDataKey, data);
+            //m_aauData = data;
             m_aauDataVersion = version;
         }
         void setClothes(const QString &slot, ClothData *cloth);
@@ -140,7 +141,7 @@ namespace ClassEdit {
         QByteArray m_playData;
         QBuffer m_editDataIO;
         QBuffer m_playDataIO;
-        QByteArray m_aauData;
+        //QByteArray m_aauData;
         qint32 m_aauDataVersion;
         DataReader *m_editDataReader;
         DataReader *m_playDataReader;

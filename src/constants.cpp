@@ -4,6 +4,7 @@ using namespace ClassEdit;
 
 extern const QString ClassEdit::PortraitPngKey("FACE_PNG_DATA");
 extern const QString ClassEdit::ThumbnailPngKey("ROSTER_PNG_DATA");
+extern const QString ClassEdit::AAUDataKey("AAU_DATA");
 extern const QString ClassEdit::ClothSlotUniformKey("UNIFORM");
 extern const QString ClassEdit::ClothSlotSportKey("SPORT");
 extern const QString ClassEdit::ClothSlotSwimsuitKey("SWIMSUIT");

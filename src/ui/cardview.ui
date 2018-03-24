@@ -112,14 +112,14 @@
          <item>
           <widget class="QPushButton" name="replaceFaceButton">
            <property name="text">
-            <string>Replace Portrait from PNG</string>
+            <string>Replace Card Face from PNG</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="replaceRosterButton">
            <property name="text">
-            <string>Replace Thumbnail from PNG</string>
+            <string>Replace Roster from PNG</string>
            </property>
           </widget>
          </item>
@@ -226,7 +226,7 @@
           <widget class="QListWidget" name="characterDataSelectionList">
            <item>
             <property name="text">
-             <string>Portrait</string>
+             <string>Card Face</string>
             </property>
             <property name="checkState">
              <enum>Checked</enum>
@@ -237,7 +237,7 @@
            </item>
            <item>
             <property name="text">
-             <string>Thumbnail</string>
+             <string>Roster</string>
             </property>
             <property name="checkState">
              <enum>Checked</enum>
@@ -494,14 +494,14 @@
            <item>
             <widget class="QPushButton" name="exportPortraitButton">
              <property name="text">
-              <string>Portrait</string>
+              <string>Card Face</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="exportThumbailButton">
              <property name="text">
-              <string>Thumbnail</string>
+              <string>Roster</string>
              </property>
             </widget>
            </item>

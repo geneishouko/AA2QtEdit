@@ -24,6 +24,7 @@
 #include "../settings.h"
 #include "filedialog.h"
 #include "preferences.h"
+#include "classsavedata.h"
 
 #include <QCloseEvent>
 #include <QFileDialog>
@@ -93,6 +94,17 @@ void MainWindow::loadDirectory()
     QObject::connect(fs, &FileSystemCardListModel::cardsChanged, this, &MainWindow::cardsChanged);
     QObject::connect(ui->actionSave_All_Changes, &QAction::triggered, fs, &FileSystemCardListModel::saveAll);
     QObject::connect(fs, &CardListModel::notify, statusBar(), &QStatusBar::showMessage);
+}
+
+void MainWindow::editClassSave()
+{
+    ClassSaveCardListModel *model = qobject_cast<ClassSaveCardListModel*>(m_cardListModel);
+    if (model) {
+        ClassSaveData *editClass = new ClassSaveData(this);
+        editClass->setClassData(model);
+        editClass->exec();
+        editClass->deleteLater();
+    }
 }
 
 void MainWindow::destroyCurrentModel()

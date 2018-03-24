@@ -14,7 +14,7 @@ win32 {
     QMAKE_TARGET_COMPANY = aa2g
     QMAKE_TARGET_COPYRIGHT = AA2QtEdit is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
     RC_ICONS += icons/application-icon.ico
-    VERSION = 1.6.2.0
+    VERSION = 1.7.0.0
 }
 
 # The following define makes your compiler emit warnings if you use
@@ -54,7 +54,8 @@ SOURCES += src/main.cpp\
     src/cardlistmodel.cpp \
     src/filesystemcardlistmodelloader.cpp \
     src/ui/preferences.cpp \
-    src/settings.cpp
+    src/settings.cpp \
+    src/ui/classsavedata.cpp
 
 HEADERS  += src/ui/mainwindow.h \
     src/ui/cardlistview.h \
@@ -80,11 +81,13 @@ HEADERS  += src/ui/mainwindow.h \
     src/cardlistmodel.h \
     src/filesystemcardlistmodelloader.h \
     src/ui/preferences.h \
-    src/settings.h
+    src/settings.h \
+    src/ui/classsavedata.h
 
 FORMS    += src/ui/mainwindow.ui \
     src/ui/cardview.ui \
-    src/ui/preferences.ui
+    src/ui/preferences.ui \
+    src/ui/classsavedata.ui
 
 RESOURCES += \
     XML/datadef.qrc \

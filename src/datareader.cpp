@@ -57,7 +57,7 @@ QVariant DataReader::read(QIODevice *data, DataType type, int dataSize) const
         QByteArray result = data->read(dataSize);
         if (type == DataType::EncodedString)
             result = decodeString(result);
-#ifdef Q_OS_WIN
+#if 1
         else
             //truncate null-terminators in Windows to remove mojibake
             result.truncate(result.indexOf('\0', 0));
@@ -198,7 +198,7 @@ void DataReader::write(QIODevice *data, DataType type, const QVariant &value, in
     }
 
 #ifdef QT_DEBUG
-    //qDebug() << "Wrote at" << QString::number(pos, 16) << "now at" << QString::number(data->pos(), 16);
+    qDebug() << "Wrote at" << QString::number(pos, 16) << "now at" << QString::number(data->pos(), 16);
     Q_ASSERT(pos != data->pos());
 #endif
 }

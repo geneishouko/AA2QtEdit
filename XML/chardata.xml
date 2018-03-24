@@ -355,8 +355,8 @@
     <datablock type="byte" key="BODY_PUBIC_HAIR_OPACITY" address="0x43D" minvalue="0" maxvalue="255" />
     <datablock type="color" key="BODY_PUBIC_HAIR_COLOR" address="0x43E" />
     <datablock type="byte" key="BODY_NIPPLE_SIZE" address="0x430" minvalue="0" maxvalue="255" warnvalue="100" />
-    <datablock type="enum" key="BODY_NIPPLE_TYPE" address="0x442" metakey="NIPPLETYPE" />
-    <datablock type="enum" key="BODY_NIPPLE_COLOR" address="0x443" metakey="NIPPLECOLOR" />
+    <datablock type="byte" key="BODY_NIPPLE_TYPE" address="0x442" minvalue="0" maxvalue="255" />
+    <datablock type="byte" key="BODY_NIPPLE_COLOR" address="0x443" minvalue="0" maxvalue="255" />
     <datablock type="byte" key="BODY_NIPPLE_OPACITY" address="0x444" minvalue="0" maxvalue="255" />
     <datablock type="enum" key="BODY_TAN_MARK" address="0x445" metakey="TANMARKS" />
     <datablock type="byte" key="BODY_TAN_OPACITY" address="0x446" minvalue="0" maxvalue="255" />

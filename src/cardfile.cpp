@@ -72,7 +72,7 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     qint32 cardRosterLength;
     qint32 editDataOffset;
     qint32 aauDataOffset;
-    qint32 m_aauDataLength = 0;
+    qint32 aauDataLength = 0;
 
     QDataStream in(file);
     in.setByteOrder(QDataStream::LittleEndian);
@@ -121,7 +121,7 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
         in >> chunkId;
         if (chunkId == aauChunkId) {
             aauDataOffset = static_cast<qint32>(file->pos()) - 8;
-            m_aauDataLength = chunkLength + 12;
+            aauDataLength = chunkLength + 12;
             break;
         }
         else if (chunkId == endChunkId) {
@@ -157,9 +157,11 @@ void CardFile::init(QIODevice *file, qint64 startOffset, qint64 endOffset)
     m_editDataDictionary->insert(ThumbnailPngKey, PngImage::getPngData(file));
 
     if (m_aauDataVersion >= 2) {
-        m_aauData.resize(m_aauDataLength);
+        QByteArray aauData;
+        aauData.resize(aauDataLength);
         file->seek(aauDataOffset);
-        file->read(m_aauData.data(), m_aauDataLength);
+        file->read(aauData.data(), aauDataLength);
+        m_editDataDictionary->set(AAUDataKey, aauData);
     }
 
     m_editDataModel = new CardDataModel(m_editDataDictionary);
@@ -221,7 +223,7 @@ void CardFile::setPortrait(const QByteArray &file)
 void CardFile::setPortrait(QIODevice *file)
 {
     m_portrait = QPixmap();
-    m_editDataDictionary->set(ThumbnailPngKey, PngImage::getPngData(file));
+    m_editDataDictionary->set(PortraitPngKey, PngImage::getPngData(file));
 }
 
 void CardFile::setThumbnail(const QByteArray &file)
@@ -235,7 +237,7 @@ void CardFile::setThumbnail(const QByteArray &file)
 void CardFile::setThumbnail(QIODevice *file)
 {
     m_thumbnail = QPixmap();
-    m_editDataDictionary->set(PortraitPngKey, PngImage::getPngData(file));
+    m_editDataDictionary->set(ThumbnailPngKey, PngImage::getPngData(file));
 }
 
 void CardFile::updateQuickInfoGetters()
@@ -345,7 +347,7 @@ void CardFile::writeToDevice(QIODevice *device, bool writePlayData, qint64 *edit
         device->seek(device->pos() - 12); // nuke IEND block
         if (aaudOffset)
             *aaudOffset = device->pos();
-        device->write(m_aauData);
+        device->write(m_editDataDictionary->value(AAUDataKey).toByteArray());
         device->write("\x00\x00\x00\x00""IEND""\xae\x42\x60\x82", 12);
     }
 

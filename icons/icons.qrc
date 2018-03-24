@@ -9,6 +9,7 @@
         <file>application-icon_32x32.png</file>
         <file>application-icon_16x16.png</file>
         <file>settings.svg</file>
+        <file>class.svg</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
