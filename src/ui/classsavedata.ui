@@ -3,7 +3,7 @@
  <class>ClassSaveData</class>
  <widget class="QDialog" name="ClassSaveData">
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Edit Class</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
