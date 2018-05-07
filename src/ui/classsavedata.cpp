@@ -98,7 +98,7 @@ void ClassSaveData::setClassData(ClassSaveCardListModel *data)
     auto setTextFields = [](QLineEdit *lineEdit, const QVariant &text) {
         lineEdit->setText(text.toString());
     };
-    auto setClubFields = [clubTypeModel](QLineEdit *lineEdit, QComboBox *comboBox, Dictionary *club) {
+    auto setClubFields = [](QLineEdit *lineEdit, QComboBox *comboBox, Dictionary *club) {
         lineEdit->setText(club->value("CLUB_NAME").toString());
         comboBox->setModel(clubTypeModel);
         comboBox->setCurrentIndex(club->value("CLUB_TYPE").toInt());
