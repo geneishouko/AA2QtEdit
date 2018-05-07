@@ -40,14 +40,14 @@ void ClassSaveData::accept()
     setInt(dictionary, "HEADER_SECS", ui->textTime3->text());
 
     setInt(dictionary, "HEADER_DAYS", ui->textGameDay->text());
-    dictionary->set("HEADER_GAMEWEEKDAY", ui->comboGameWeekDay->currentData().toInt());
+    dictionary->set("HEADER_GAMEWEEKDAY", ui->comboGameWeekDay->currentIndex());
 
     Dictionary* clubList = dictionary->value("HEADER_CLUBS").value<Dictionary*>();
     clubList->at(0).value<Dictionary*>()->set("CLUB_TYPE", ui->comboClub1->currentIndex());
     clubList->at(0).value<Dictionary*>()->set("CLUB_NAME", ui->textClub1->text());
     clubList->at(1).value<Dictionary*>()->set("CLUB_TYPE", ui->comboClub2->currentIndex());
     clubList->at(1).value<Dictionary*>()->set("CLUB_NAME", ui->textClub2->text());
-    clubList->at(2).value<Dictionary*>()->set("CLUB_TYPE", ui->comboClub4->currentIndex());
+    clubList->at(2).value<Dictionary*>()->set("CLUB_TYPE", ui->comboClub3->currentIndex());
     clubList->at(2).value<Dictionary*>()->set("CLUB_NAME", ui->textClub3->text());
     clubList->at(3).value<Dictionary*>()->set("CLUB_TYPE", ui->comboClub4->currentIndex());
     clubList->at(3).value<Dictionary*>()->set("CLUB_NAME", ui->textClub4->text());
