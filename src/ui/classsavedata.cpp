@@ -39,7 +39,7 @@ void ClassSaveData::accept()
     setInt(dictionary, "HEADER_MINS", ui->textTime2->text());
     setInt(dictionary, "HEADER_SECS", ui->textTime3->text());
 
-    setInt(dictionary, "HEADER_DAYS", ui->textGameDay->text());
+    setInt(dictionary, "HEADER_GAMEDAYS", ui->textGameDay->text());
     dictionary->set("HEADER_GAMEWEEKDAY", ui->comboGameWeekDay->currentIndex());
 
     Dictionary* clubList = dictionary->value("HEADER_CLUBS").value<Dictionary*>();
