@@ -63,7 +63,7 @@ QByteArray PngImage::getPngData(QIODevice *buffer)
         bytesRead = in.readRawData(header, chunkTagSize);
         if (bytesRead == chunkTagSize && qstrcmp(header, aauHeader) && qstrcmp(header, endHeader)) {
             if (qstrcmp(header,phyHeader) == 0) {
-                buffer->skip(size + chunkTagSize);
+                buffer->read(size + chunkTagSize);
                 continue;
             }
             buffer->seek(pos);
