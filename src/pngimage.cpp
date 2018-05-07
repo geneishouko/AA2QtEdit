@@ -31,9 +31,13 @@ QByteArray PngImage::getPngData(QIODevice *buffer)
     static const char *hdrHeader = "IHDR";
     static const char *endHeader = "IEND";
     static const char *aauHeader = "aaUd";
+    static const char *phyHeader = "pHYs";
     static const char *endBlock= "\x00\x00\x00\x00""IEND""\xae\x42\x60\x82";
     static const int chunkHeaderSize = 8;
     static const int chunkTagSize = 4;
+    QByteArray pngData;
+    pngData.reserve(1024*1024);
+
     qint64 startPos = buffer->pos();
     char header[9];
     header[8] = 0;
@@ -42,30 +46,36 @@ QByteArray PngImage::getPngData(QIODevice *buffer)
     if (bytesRead != chunkHeaderSize || qstrcmp(header, pngHeader))
         return 0;
     header[4] = 0;
-    int size, skip;
+    int size;
     QDataStream in(buffer);
     in >> size;
     bytesRead = in.readRawData(header, chunkTagSize);
     if (bytesRead != chunkTagSize || qstrcmp(header, hdrHeader))
         return 0;
-    pos = buffer->pos();
-    skip = size + chunkTagSize;
-    while (skip > 0) {
-        bytesRead = in.skipRawData(skip); // skip chunk content + crc block
-        if (bytesRead != skip)
-            return 0;
+
+    buffer->seek(startPos);
+    size += chunkHeaderSize + chunkTagSize * 3;
+    pngData.append(buffer->read(size));
+
+    while (true) {
         pos = buffer->pos();
-        skip = 0;
         in >> size;
         bytesRead = in.readRawData(header, chunkTagSize);
-        if (bytesRead == chunkTagSize && qstrcmp(header, aauHeader) && qstrcmp(header, endHeader))
-            skip = size + chunkTagSize;
+        if (bytesRead == chunkTagSize && qstrcmp(header, aauHeader) && qstrcmp(header, endHeader)) {
+            if (qstrcmp(header,phyHeader) == 0) {
+                buffer->skip(size + chunkTagSize);
+                continue;
+            }
+            buffer->seek(pos);
+            QByteArray data = buffer->read(chunkTagSize * 3 + size);
+            if (data.size() != chunkTagSize * 3 + size)
+                return 0;
+            pngData.append(data);
+        }
+        else {
+            break;
+        }
     }
-    bytesRead = pos - startPos;
-    QByteArray pngData;
-    pngData.resize(static_cast<int>(bytesRead));
-    buffer->seek(startPos);
-    buffer->read(pngData.data(), bytesRead);
     pngData.append(endBlock, 12);
     return pngData;
 }
