@@ -56,6 +56,9 @@ void FileSystemCardListModel::finished()
     if (m_threadPool.isEmpty()) {
         beginInsertRows(QModelIndex(), 0, cardList().size() - 1);
         endInsertRows();
+        if (FileSystemCardListModelLoader::error()) {
+            emit(notify(tr("Not enough system memory to load all cards!"), 0));
+        }
     }
 }
 

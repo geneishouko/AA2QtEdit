@@ -16,6 +16,9 @@ namespace ClassEdit {
     public:
         FileSystemCardListModelLoader(FileSystemCardListModel *parent = nullptr);
 
+        inline static bool error() {
+            return m_badalloc;
+        }
         void load(const QFileInfo &file);
         virtual void run();
 
@@ -24,6 +27,7 @@ namespace ClassEdit {
 
     private:
         FileSystemCardListModel *m_model;
+        static bool m_badalloc;
     };
 
 }

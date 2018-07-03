@@ -5,6 +5,8 @@
 
 using namespace ClassEdit;
 
+bool FileSystemCardListModelLoader::m_badalloc = false;
+
 FileSystemCardListModelLoader::FileSystemCardListModelLoader(FileSystemCardListModel *parent):
     QThread(parent),
     m_model(parent)
@@ -26,8 +28,14 @@ void FileSystemCardListModelLoader::load(const QFileInfo &file)
 void FileSystemCardListModelLoader::run()
 {
     QFileInfo file = m_model->takeFile();
-    while (file.isFile()) {
-        load(file);
+    while (!m_badalloc && file.isFile()) {
+        try {
+            load(file);
+        }
+        catch (std::bad_alloc) {
+            m_badalloc = true;
+            break;
+        }
         file = m_model->takeFile();
     }
 }

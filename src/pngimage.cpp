@@ -36,7 +36,7 @@ QByteArray PngImage::getPngData(QIODevice *buffer)
     static const int chunkHeaderSize = 8;
     static const int chunkTagSize = 4;
     QByteArray pngData;
-    pngData.reserve(1024*1024);
+    pngData.reserve(200*1000);
 
     qint64 startPos = buffer->pos();
     char header[9];
@@ -77,6 +77,7 @@ QByteArray PngImage::getPngData(QIODevice *buffer)
         }
     }
     pngData.append(endBlock, 12);
+    pngData.squeeze();
     return pngData;
 }
 
