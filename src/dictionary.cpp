@@ -71,6 +71,18 @@ QVariantMap Dictionary::filterByPrefix(const QString &prefix) const
     return dict;
 }
 
+void Dictionary::resetDirtyValues()
+{
+    auto it = m_dirtyValues.begin();
+    while (it != m_dirtyValues.end()) {
+        Dictionary *d = at(*it).value<Dictionary*>();
+        if (d)
+            d->resetDirtyValues();
+        it = m_dirtyValues.erase(it);
+    }
+    Q_ASSERT(!m_dirtyValues.size());
+}
+
 void Dictionary::set(int index, const QVariant value)
 {
     if (value == at(index))
@@ -131,5 +143,6 @@ void Dictionary::childChanged()
     Dictionary *child = qobject_cast<Dictionary*>(sender());
     Q_ASSERT(child);
     int index = indexOf(QVariant::fromValue(child));
+    m_dirtyValues << index;
     emit changed(index);
 }

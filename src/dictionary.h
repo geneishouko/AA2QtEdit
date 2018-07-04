@@ -80,9 +80,7 @@ namespace ClassEdit {
             return m_dataBlockList.at(index)->offset();
         }
 
-        inline void resetDirtyValues() {
-            m_dirtyValues.clear();
-        }
+        void resetDirtyValues();
 
         void set(int index, const QVariant value);
         void set(const QString &key, QVariant value);

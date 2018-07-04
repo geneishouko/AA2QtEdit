@@ -186,6 +186,7 @@ int CardFile::loadPlayData(QIODevice *file, int offset)
     m_playDataDictionary = m_playDataReader->buildDictionary(&m_playDataIO, blockList);
     m_playDataDictionary->setDeleteDataBlocksOnDestruction(true);
     m_playDataDictionary->setParent(this);
+    connect(m_playDataDictionary, &Dictionary::changed, this, &CardFile::dictionaryChanged);
     m_playDataModel = new CardDataModel(m_playDataDictionary);
     return static_cast<int>(playDataEnd);
 }
@@ -265,6 +266,7 @@ void CardFile::commitChanges()
     if (m_playDataDictionary) {
         m_playDataIO.seek(0);
         m_playDataReader->writeDictionary(&m_playDataIO, m_playDataDictionary);
+        m_playDataDictionary->resetDirtyValues();
     }
 }
 
