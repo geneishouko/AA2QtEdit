@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mainToolBar->insertWidget(ui->actionPreferences, separator);
     QObject::connect(m_sortFilterModel, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), ui->cardView, SLOT(modelItemUpdated(QModelIndex)));
     QObject::connect(ui->cardListView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), ui->cardView, SLOT(modelItemSelected(QModelIndex)));
+    QObject::connect(ui->cardListView, &CardListView::droppedFiles, this, &MainWindow::loadDroppedFiles);
     m_sortFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortRole(CardModifiedTimeRole);
@@ -87,6 +88,18 @@ void MainWindow::loadDirectory()
     if (path.isEmpty())
         return;
     FileSystemCardListModel *fs = new FileSystemCardListModel(path);
+    m_sortFilterModel->setSourceModel(fs);
+    destroyCurrentModel();
+    m_cardListModel = fs;
+
+    QObject::connect(fs, &FileSystemCardListModel::cardsChanged, this, &MainWindow::cardsChanged);
+    QObject::connect(ui->actionSave_All_Changes, &QAction::triggered, fs, &FileSystemCardListModel::saveAll);
+    QObject::connect(fs, &CardListModel::notify, statusBar(), &QStatusBar::showMessage);
+}
+
+void MainWindow::loadDroppedFiles(QStringList files)
+{
+    FileSystemCardListModel *fs = new FileSystemCardListModel(files);
     m_sortFilterModel->setSourceModel(fs);
     destroyCurrentModel();
     m_cardListModel = fs;

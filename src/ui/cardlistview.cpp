@@ -19,6 +19,7 @@
 
 #include "cardlistdelegate.h"
 
+#include <QMimeData>
 #include <QMouseEvent>
 
 using namespace ClassEdit;
@@ -30,6 +31,7 @@ CardListView::CardListView(QWidget *parent) :
     setMouseTracking(true);
     m_delegate = new CardListDelegate(this);
     setItemDelegate(m_delegate);
+    setAcceptDrops(true);
 }
 
 void CardListView::mouseMoveEvent(QMouseEvent *event)
@@ -39,4 +41,25 @@ void CardListView::mouseMoveEvent(QMouseEvent *event)
         return;
     if (m_delegate->needsUpdate(event->pos()))
         update(itemIndex);
+}
+
+void CardListView::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (event->mimeData()->hasUrls())
+        event->accept();
+}
+
+void CardListView::dragMoveEvent(QDragMoveEvent *)
+{
+}
+
+void CardListView::dropEvent(QDropEvent *event)
+{
+    event->accept();
+    QStringList files;
+    foreach(const QUrl &url, event->mimeData()->urls()) {
+        files << url.toLocalFile();
+    }
+    emit droppedFiles(files);
+    //emit droppedFiles(QUrl::toStringList(event->mimeData()->urls()));
 }

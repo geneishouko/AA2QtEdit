@@ -21,6 +21,7 @@ public slots:
     void cardsChanged(int count);
     void loadSaveFile();
     void loadDirectory();
+    void loadDroppedFiles(QStringList files);
     void editClassSave();
     void destroyCurrentModel();
     void preferences();

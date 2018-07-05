@@ -14,7 +14,7 @@ win32 {
     QMAKE_TARGET_COMPANY = aa2g
     QMAKE_TARGET_COPYRIGHT = AA2QtEdit is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
     RC_ICONS += icons/application-icon.ico
-    VERSION = 1.7.3.0
+    VERSION = 1.8.0.0
 }
 
 # The following define makes your compiler emit warnings if you use

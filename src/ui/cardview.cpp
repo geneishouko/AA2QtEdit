@@ -167,8 +167,6 @@ void CardView::modelItemSelected(const QModelIndex &index)
 {
     if (m_card)
         m_card->editDictionary()->disconnect(this);
-    m_cardDataSortFilterModel->setSourceModel(nullptr);
-    m_cardPlayDataSortFilterModel->setSourceModel(nullptr);
     if (!index.isValid()) {
         m_card = nullptr;
         return;
@@ -177,6 +175,8 @@ void CardView::modelItemSelected(const QModelIndex &index)
     ui->cardFace->setPixmap(card->portraitPixmap());
     m_cardDataSortFilterModel->setSourceModel(card->editDataModel());
     m_cardPlayDataSortFilterModel->setSourceModel(card->playDataModel());
+    m_cardDataSortFilterModel->invalidate();
+    m_cardPlayDataSortFilterModel->invalidate();
     QHeaderView *header = ui->editDataView->header();
     if (header && header->count() >= 3) {
         header->setSectionResizeMode(0, QHeaderView::ResizeToContents);

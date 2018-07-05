@@ -18,6 +18,7 @@ namespace ClassEdit {
         Q_OBJECT
 
     public:
+        FileSystemCardListModel(const QStringList &fileList, QObject *parent = nullptr);
         FileSystemCardListModel(const QString &path, QObject *parent = nullptr);
         ~FileSystemCardListModel();
 

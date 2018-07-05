@@ -25,6 +25,19 @@
 
 using namespace ClassEdit;
 
+FileSystemCardListModel::FileSystemCardListModel(const QStringList &fileList, QObject *parent) :
+    CardListModel(parent)
+{
+    foreach (const QString &file, fileList) {
+        CardFile *card= new CardFile(file);
+        if (!card->isValid()) {
+            delete card;
+            continue;
+        }
+        addCard(card);
+    }
+}
+
 FileSystemCardListModel::FileSystemCardListModel(const QString &path, QObject *parent) :
     CardListModel(parent)
 {
