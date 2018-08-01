@@ -14,7 +14,7 @@ AA2QtEdit is free software: you can redistribute it and/or modify
 
 ## Download
 
-See the releases page for the latest and other downloads.
+See the [releases page](https://github.com/geneishouko/AA2QtEdit/releases) for the latest and other downloads.
 
 ## Build
 
