@@ -17,7 +17,7 @@
     <enumerable key="WEEKDAY" type="byte">
       <enumpair key="0" value="Sunday" />
       <enumpair key="1" value="Monday" />
-      <enumpair key="2" value="Tueday" />
+      <enumpair key="2" value="Tuesday" />
       <enumpair key="3" value="Wednesday" />
       <enumpair key="4" value="Thursday" />
       <enumpair key="5" value="Friday" />
