@@ -40,7 +40,7 @@ CardFile::CardFile()
     m_editDataModel = nullptr;
     m_playDataModel = nullptr;
     m_playDataDictionary = nullptr;
-    m_seat = 0;
+    m_seat = -1;
     m_isValid = true;
 }
 

@@ -80,7 +80,11 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
     painter->drawPixmap(cardRect, card->thumbnailPixmap());
-    painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fullName());
+    if (card->seat() < 0)
+        painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fullName());
+    else
+        painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine,
+                          QString("[%1] %2").arg(card->seat() + 1).arg(card->fullName()));
     painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin * 4, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fileName());
     if (card->hasPendingChanges())
         style->drawControl(QStyle::CE_PushButton, &saveButtonOption, painter, nullptr);
