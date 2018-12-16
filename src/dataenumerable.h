@@ -15,7 +15,8 @@ namespace ClassEdit {
             return m_strings.size();
         }
         inline QString name(qint32 value) const {
-            return m_strings[value];
+            auto it = m_strings.find(value);
+            return it != m_strings.end() ? it.value() : QString::number(value, 10);
         }
         void registerStringValue(qint32 value, const QString &string);
         DataType type() const;
