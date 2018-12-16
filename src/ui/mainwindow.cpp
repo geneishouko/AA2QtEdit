@@ -56,7 +56,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortRole(CardModifiedTimeRole);
     m_sortFilterModel->sort(0, Qt::DescendingOrder);
-    m_sortFilterModel->setDynamicSortFilter(false);
     connect(ui->textFilter, &QLineEdit::textChanged, m_sortFilterModel, &QSortFilterProxyModel::setFilterFixedString);
     ui->sortBy->addItem("Modified Time", CardModifiedTimeRole);
     ui->sortBy->addItem("Name", Qt::DisplayRole);
@@ -87,9 +86,13 @@ void MainWindow::loadDirectory()
     QString path = FileDialog::getExistingDirectory(FileDialog::CardFolder, tr("Select Folder"), this);
     if (path.isEmpty())
         return;
+    destroyCurrentModel();
+    if (ui->sortBy->currentData().toInt() == CardSeatRole) {
+        ui->sortBy->setCurrentIndex(0); //Modified Time
+        ui->sortOrder->setCurrentIndex(1); // Descendant
+    }
     FileSystemCardListModel *fs = new FileSystemCardListModel(path);
     m_sortFilterModel->setSourceModel(fs);
-    destroyCurrentModel();
     m_cardListModel = fs;
 
     QObject::connect(fs, &FileSystemCardListModel::cardsChanged, this, &MainWindow::cardsChanged);
@@ -99,9 +102,13 @@ void MainWindow::loadDirectory()
 
 void MainWindow::loadDroppedFiles(QStringList files)
 {
+    destroyCurrentModel();
+    if (ui->sortBy->currentData().toInt() == CardSeatRole) {
+        ui->sortBy->setCurrentIndex(0); //Modified Time
+        ui->sortOrder->setCurrentIndex(1); // Descendant
+    }
     FileSystemCardListModel *fs = new FileSystemCardListModel(files);
     m_sortFilterModel->setSourceModel(fs);
-    destroyCurrentModel();
     m_cardListModel = fs;
 
     QObject::connect(fs, &FileSystemCardListModel::cardsChanged, this, &MainWindow::cardsChanged);
@@ -123,6 +130,7 @@ void MainWindow::editClassSave()
 void MainWindow::destroyCurrentModel()
 {
     if (m_cardListModel) {
+        m_sortFilterModel->setSourceModel(nullptr);
         ui->cardView->invalidateProxyModels();
         m_cardListModel->deleteLater();
         m_cardListModel = nullptr;
@@ -150,11 +158,15 @@ void MainWindow::loadSaveFile()
     QString path = FileDialog::getOpenFileName(FileDialog::ClassSave, "Class saves (*.sav)", "Open a class save", this);
     if (path.isEmpty())
         return;
+    destroyCurrentModel();
+    if (ui->sortBy->currentData().toInt() == CardModifiedTimeRole) {
+        ui->sortBy->setCurrentIndex(2); // Seat
+        ui->sortOrder->setCurrentIndex(0); // Ascendant
+    }
     ClassSaveCardListModel *cs = new ClassSaveCardListModel();
     QObject::connect(cs, &CardListModel::notify, statusBar(), &QStatusBar::showMessage);
     cs->loadFromFile(path);
     m_sortFilterModel->setSourceModel(cs);
-    destroyCurrentModel();
     m_cardListModel = cs;
 
     QObject::connect(cs, &ClassSaveCardListModel::cardsChanged, this, &MainWindow::cardsChanged);
