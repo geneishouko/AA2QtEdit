@@ -31,6 +31,7 @@ namespace ClassEdit {
         void characterDataEnableImportButton();
         void modelItemSelected(const QModelIndex &index);
         void modelItemUpdated(const QModelIndex &index);
+        void invalidateProxyModels();
         void importCard();
         void exportCard();
         void exportPortrait();

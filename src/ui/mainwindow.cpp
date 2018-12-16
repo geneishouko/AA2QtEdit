@@ -123,6 +123,7 @@ void MainWindow::editClassSave()
 void MainWindow::destroyCurrentModel()
 {
     if (m_cardListModel) {
+        ui->cardView->invalidateProxyModels();
         m_cardListModel->deleteLater();
         m_cardListModel = nullptr;
     }

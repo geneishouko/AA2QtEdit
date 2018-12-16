@@ -204,6 +204,13 @@ void CardView::modelItemUpdated(const QModelIndex &index)
     }
 }
 
+// source model switch crash workaround
+void CardView::invalidateProxyModels()
+{
+    m_cardDataSortFilterModel->setSourceModel(nullptr);
+    m_cardPlayDataSortFilterModel->setSourceModel(nullptr);
+}
+
 void CardView::importCloth()
 {
     if (m_card) {
