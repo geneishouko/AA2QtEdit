@@ -76,6 +76,13 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     QPoint nameBaseLine(90, rect.top() + 4 + option.fontMetrics.ascent());
 
     painter->save();
+    QBrush currentBrush = painter->brush();
+    QPen currentPen = painter->pen();
+    painter->setBrush(Qt::lightGray);
+    painter->setPen(Qt::NoPen);
+    painter->drawRect(cardRect.adjusted(-2, 2, -2, 2));
+    painter->setBrush(currentBrush);
+    painter->setPen(currentPen);
     style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, nullptr);
 
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
@@ -88,6 +95,8 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin * 4, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fileName());
     if (card->hasPendingChanges())
         style->drawControl(QStyle::CE_PushButton, &saveButtonOption, painter, nullptr);
+    painter->setBrush(Qt::NoBrush);
+    painter->drawRect(cardRect);
     painter->restore();
 }
 
