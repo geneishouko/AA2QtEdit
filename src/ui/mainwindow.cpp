@@ -102,6 +102,11 @@ void MainWindow::loadDirectory()
 
 void MainWindow::loadDroppedFiles(QStringList files)
 {
+    QString first = files.first();
+    if (first.endsWith(".sav")) {
+        loadSaveFile(first);
+        return;
+    }
     destroyCurrentModel();
     if (ui->sortBy->currentData().toInt() == CardSeatRole) {
         ui->sortBy->setCurrentIndex(0); //Modified Time
@@ -153,9 +158,10 @@ void MainWindow::quit()
     qApp->quit();
 }
 
-void MainWindow::loadSaveFile()
+void MainWindow::loadSaveFile(QString path)
 {
-    QString path = FileDialog::getOpenFileName(FileDialog::ClassSave, "Class saves (*.sav)", "Open a class save", this);
+    if (path.isNull())
+        path = FileDialog::getOpenFileName(FileDialog::ClassSave, "Class saves (*.sav)", "Open a class save", this);
     if (path.isEmpty())
         return;
     destroyCurrentModel();

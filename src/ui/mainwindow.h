@@ -19,7 +19,7 @@ public:
 
 public slots:
     void cardsChanged(int count);
-    void loadSaveFile();
+    void loadSaveFile(QString path = QString());
     void loadDirectory();
     void loadDroppedFiles(QStringList files);
     void editClassSave();
