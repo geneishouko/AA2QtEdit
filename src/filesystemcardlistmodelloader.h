@@ -20,6 +20,9 @@ namespace ClassEdit {
             return m_badalloc;
         }
         void load(const QFileInfo &file);
+        static void reset() {
+            m_badalloc = false;
+        }
         virtual void run();
 
     signals:

@@ -53,7 +53,9 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path, QObject *p
         FileSystemCardListModelLoader *thread = new FileSystemCardListModelLoader(this);
         connect(thread, &QThread::finished, this, &FileSystemCardListModel::finished);
         m_threadPool << qobject_cast<QObject*>(thread);
-        thread->start();
+    }
+    for (auto it = m_threadPool.begin(); it != m_threadPool.end(); ++it) {
+        qobject_cast<QThread*>(*it)->start();
     }
 }
 
@@ -63,6 +65,7 @@ FileSystemCardListModel::~FileSystemCardListModel()
 
 void FileSystemCardListModel::finished()
 {
+    QMutexLocker locker(&m_mutex);
     QObject *s = sender();
     s->deleteLater();
     m_threadPool.remove(s);
@@ -71,6 +74,7 @@ void FileSystemCardListModel::finished()
         endInsertRows();
         if (FileSystemCardListModelLoader::error()) {
             emit(notify(tr("Not enough system memory to load all cards!"), 0));
+            FileSystemCardListModelLoader::reset();
         }
     }
 }
