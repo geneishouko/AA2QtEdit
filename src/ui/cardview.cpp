@@ -375,7 +375,7 @@ void CardView::importCard()
         if (selection.contains(CharacterDataSuitClub))
             m_card->editDictionary()->set(card.editDictionary()->filterByPrefix("CLUB"));
         if (selection.contains(CharacterDataPortrait)) {
-            m_card->resetPortraitPixmap();
+            //m_card->resetPortraitPixmap();
             m_card->editDictionary()->set(card.editDictionary()->filterByPrefix("FACE_PNG_DATA"));
         }
         if (selection.contains(CharacterDataThumbnail)) {

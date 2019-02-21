@@ -32,7 +32,7 @@ void FileSystemCardListModelLoader::run()
         try {
             load(file);
         }
-        catch (std::bad_alloc) {
+        catch (std::bad_alloc&) {
             m_badalloc = true;
             break;
         }

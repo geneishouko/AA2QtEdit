@@ -87,10 +87,10 @@ namespace ClassEdit {
         inline QByteArray portraitData() const {
             return m_editDataDictionary->value(PortraitPngKey).toByteArray();
         }
-        const QPixmap &portraitPixmap();
-        inline void resetPortraitPixmap() {
-            m_portrait = QPixmap();
-        }
+        QPixmap portraitPixmap();
+        //inline void resetPortraitPixmap() {
+        //    m_portrait = QPixmap();
+        //}
         inline void resetThumbnailPixmap() {
             m_thumbnail = QPixmap();
         }
@@ -121,7 +121,7 @@ namespace ClassEdit {
         inline QByteArray thumbnailData() const {
             return m_editDataDictionary->value(ThumbnailPngKey).toByteArray();
         }
-        const QPixmap &thumbnailPixmap();
+        QPixmap thumbnailPixmap();
         void updateQuickInfoGetters();
         void writeToDevice(QIODevice *device, bool writePlayData = false, qint64 *editOffset = nullptr, qint64 *aaudOffset = nullptr) const;
 
@@ -151,7 +151,7 @@ namespace ClassEdit {
         QString m_fullName;
         int m_gender;
         int m_seat;
-        QPixmap m_portrait;
+        //QPixmap m_portrait;
         QPixmap m_thumbnail;
 
         int m_modelIndex;

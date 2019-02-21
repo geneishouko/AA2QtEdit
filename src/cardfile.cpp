@@ -191,14 +191,15 @@ int CardFile::loadPlayData(QIODevice *file, int offset)
     return static_cast<int>(playDataEnd);
 }
 
-const QPixmap &CardFile::portraitPixmap()
+QPixmap CardFile::portraitPixmap()
 {
-    if (m_portrait.isNull())
-        m_portrait = PngImage::toPixmap(portraitData());
-    return m_portrait;
+    //if (m_portrait.isNull())
+    //    m_portrait = PngImage::toPixmap(portraitData());
+    //return m_portrait;
+    return PngImage::toPixmap(portraitData());
 }
 
-const QPixmap &CardFile::thumbnailPixmap()
+QPixmap CardFile::thumbnailPixmap()
 {
     if (m_thumbnail.isNull())
         m_thumbnail= PngImage::toPixmap(thumbnailData());
@@ -223,7 +224,7 @@ void CardFile::setPortrait(const QByteArray &file)
 
 void CardFile::setPortrait(QIODevice *file)
 {
-    m_portrait = QPixmap();
+    //m_portrait = QPixmap();
     m_editDataDictionary->set(PortraitPngKey, PngImage::getPngData(file));
 }
 
