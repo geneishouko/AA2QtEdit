@@ -23,6 +23,7 @@ namespace ClassEdit {
         ~FileSystemCardListModel();
 
         bool save();
+        bool save(const QModelIndex &);
         void saveAll();
         QFileInfo takeFile();
 

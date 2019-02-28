@@ -18,10 +18,12 @@
 #include "cardlistdelegate.h"
 
 #include "../cardfile.h"
+#include "../cardlistmodel.h"
 
 #include <QApplication>
 #include <QMouseEvent>
 #include <QPainter>
+#include <QSortFilterProxyModel>
 
 using namespace ClassEdit;
 
@@ -38,14 +40,14 @@ CardListDelegate::CardListDelegate(QObject *parent) :
 
 }
 
-bool CardListDelegate::editorEvent(QEvent *event, QAbstractItemModel */* model */, const QStyleOptionViewItem &option, const QModelIndex &index)
+bool CardListDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
 
     if (event->type() == QEvent::MouseButtonRelease) {
         QMouseEvent *mouseEvent = reinterpret_cast<QMouseEvent*>(event);
         if (card->hasPendingChanges() && saveButtonRect(option.rect).contains(mouseEvent->pos())) {
-            card->save();
+            static_cast<CardListModel*>((static_cast<QSortFilterProxyModel*>(model))->sourceModel())->save(index);
             return true;
         }
     }

@@ -88,7 +88,6 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
         pos = cardPlayDataEndOffset;
         studentsCount--;
         // qDebug() << "Card At" << cardOffset << "play data at" << cardPlayDataOffset;
-        connect(card, &CardFile::saveRequest, this, &CardListModel::save);
     }
 
     qint64 footerSize = data.size() - cardPlayDataEndOffset;
@@ -116,10 +115,26 @@ bool ClassSaveCardListModel::save()
     return file.commit();
 }
 
+bool ClassSaveCardListModel::save(const QModelIndex &index)
+{
+    CardFile *card = index.data(CardFileRole).value<CardFile*>();
+    card->commitChanges();
+    if (save()) {
+        cardSaved(card->modelIndex());
+        return true;
+    }
+    return false;
+}
+
 void ClassSaveCardListModel::saveAll()
 {
     CardListModel::commitChanges();
-    save();
+    if (save()) {
+        CardList cards = modifiedCardList();
+        for (CardList::ConstIterator it = cards.begin(); it != cards.end(); it++) {
+            cardSaved((*it)->modelIndex());
+        }
+    }
 }
 
 void ClassSaveCardListModel::writeHeader()

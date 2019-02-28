@@ -94,8 +94,7 @@ namespace ClassEdit {
         inline void resetThumbnailPixmap() {
             m_thumbnail = QPixmap();
         }
-        void save();
-        void saveToFile(const QString &file);
+        bool saveToFile(const QString &file);
         inline int seat() const {
             return m_seat;
         }
@@ -130,8 +129,6 @@ namespace ClassEdit {
 
     signals:
         void changed(int index);
-        void saved(int index);
-        void saveRequest(int index);
 
     private:
         QString m_filePath;

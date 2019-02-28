@@ -18,8 +18,6 @@ void CardListModel::addCard(CardFile *card)
     card->setParent(this);
     card->setModelIndex(m_cardList.size());
     connect(card, &CardFile::changed, this, &CardListModel::cardChanged);
-    connect(card, &CardFile::saved, this, &CardListModel::cardSaved);
-    connect(card, &CardFile::saveRequest, this, &CardListModel::submit);
     m_cardList << card;
     emit notify(QString(tr("Loaded %1 cards").arg(m_cardList.size())), 5000);
 }
@@ -42,12 +40,14 @@ void CardListModel::commitChanges()
 {
     foreach(CardFile *card, m_modifiedCardList) {
         card->commitChanges();
-        card->updateQuickInfoGetters();
         const QModelIndex &modelIndex = index(card->modelIndex());
         emit dataChanged(modelIndex, modelIndex);
     }
-    m_modifiedCardList.clear();
-    emit cardsChanged(m_modifiedCardList.size());
+}
+
+void CardListModel::failedSave()
+{
+    emit notify(tr("Failed to save file"), 5000);
 }
 
 QVariant CardListModel::data(const QModelIndex &index, int role) const

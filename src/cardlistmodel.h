@@ -30,7 +30,9 @@ namespace ClassEdit {
         void cardChanged(int index);
         void cardSaved(int index);
         void commitChanges();
+        void failedSave();
         virtual bool save() = 0;
+        virtual bool save(const QModelIndex &) = 0;
         virtual void saveAll() = 0;
 
     signals:

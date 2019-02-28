@@ -30,6 +30,7 @@ namespace ClassEdit {
         }
         void loadFromFile(const QString& path);
         bool save();
+        bool save(const QModelIndex &);
         void saveAll();
         void writeHeader();
 

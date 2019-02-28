@@ -84,11 +84,22 @@ bool FileSystemCardListModel::save()
     return true;
 }
 
+bool FileSystemCardListModel::save(const QModelIndex &index)
+{
+    CardFile *card = index.data(CardFileRole).value<CardFile*>();
+    card->commitChanges();
+    if (card->saveToFile(card->filePath())) {
+        cardSaved(card->modelIndex());
+        return true;
+    }
+    return false;
+}
+
 void FileSystemCardListModel::saveAll()
 {
     CardList cards = modifiedCardList();
     for (CardList::ConstIterator it = cards.begin(); it != cards.end(); it++) {
-        (*it)->save();
+        save(index((*it)->modelIndex()));
     }
 }
 

@@ -269,9 +269,10 @@ void CardFile::commitChanges()
         m_playDataReader->writeDictionary(&m_playDataIO, m_playDataDictionary);
         m_playDataDictionary->resetDirtyValues();
     }
+    updateQuickInfoGetters();
 }
 
-void CardFile::saveToFile(const QString &file)
+bool CardFile::saveToFile(const QString &file)
 {
     QSaveFile save(file);
     save.open(QFile::WriteOnly);
@@ -280,8 +281,7 @@ void CardFile::saveToFile(const QString &file)
 
     // Appended AAU blobs only from AAU data ver 3
     if (m_aauDataVersion < 3) {
-        save.commit();
-        return;
+        return save.commit();
     }
 
     int blobDelta, aaudDelta, editDelta;
@@ -297,8 +297,7 @@ void CardFile::saveToFile(const QString &file)
     originalFile.read(magic, 8);
     if (qstrcmp(magic, footerModcardMagic)) {
         originalFile.close();
-        save.commit();
-        return;
+        return save.commit();
     }
 
     originalFile.read(reinterpret_cast<char*>(&blobDelta), 4);
@@ -327,19 +326,7 @@ void CardFile::saveToFile(const QString &file)
     save.write(reinterpret_cast<char*>(&aaudDelta), 4);
     save.write(reinterpret_cast<char*>(&editDelta), 4);
 
-    qDebug() << "Saved modcard" << save.commit();
-}
-
-void CardFile::save()
-{
-    commitChanges();
-    updateQuickInfoGetters();
-    if (m_filePath.isEmpty()) // If this CardFile was read from a class save
-        emit(saveRequest(m_modelIndex));
-    else
-        saveToFile(m_filePath);
-    emit changed(m_modelIndex);
-    emit saved(m_modelIndex);
+    return save.commit();
 }
 
 void CardFile::writeToDevice(QIODevice *device, bool writePlayData, qint64 *editOffset, qint64 *aaudOffset) const
