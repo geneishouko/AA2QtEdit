@@ -91,6 +91,7 @@ bool FileSystemCardListModel::save(const QModelIndex &index)
         cardSaved(card->modelIndex());
         return true;
     }
+    failedSave();
     return false;
 }
 
