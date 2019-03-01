@@ -56,10 +56,9 @@ void CardListView::dragMoveEvent(QDragMoveEvent *)
 void CardListView::dropEvent(QDropEvent *event)
 {
     event->accept();
-    QStringList files;
+    QFileInfoList files;
     foreach(const QUrl &url, event->mimeData()->urls()) {
         files << url.toLocalFile();
     }
     emit droppedFiles(files);
-    //emit droppedFiles(QUrl::toStringList(event->mimeData()->urls()));
 }

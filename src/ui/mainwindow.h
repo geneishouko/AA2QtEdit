@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include <QFileInfo>
 #include <QSortFilterProxyModel>
 
 namespace Ui {
@@ -21,7 +22,7 @@ public slots:
     void cardsChanged(int count);
     void loadSaveFile(QString path = QString());
     void loadDirectory();
-    void loadDroppedFiles(QStringList files);
+    void loadDroppedFiles(QFileInfoList files);
     void editClassSave();
     void destroyCurrentModel();
     void preferences();

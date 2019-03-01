@@ -25,17 +25,11 @@
 
 using namespace ClassEdit;
 
-FileSystemCardListModel::FileSystemCardListModel(const QStringList &fileList, QObject *parent) :
+FileSystemCardListModel::FileSystemCardListModel(const QFileInfoList &fileList, QObject *parent) :
     CardListModel(parent)
 {
-    foreach (const QString &file, fileList) {
-        CardFile *card= new CardFile(file);
-        if (!card->isValid()) {
-            delete card;
-            continue;
-        }
-        addCard(card);
-    }
+    m_loadFileQueue = fileList;
+    loadCards();
 }
 
 FileSystemCardListModel::FileSystemCardListModel(const QString &path, QObject *parent) :
@@ -46,6 +40,15 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path, QObject *p
     QStringList filter;
     filter << "*.png";
     m_loadFileQueue = dir.entryInfoList(filter, QDir::Files, QDir::Time);
+    loadCards();
+}
+
+FileSystemCardListModel::~FileSystemCardListModel()
+{
+}
+
+void FileSystemCardListModel::loadCards()
+{
     int maxThreads = QThread::idealThreadCount();
     if (maxThreads > 4)
         maxThreads = 4;
@@ -57,10 +60,6 @@ FileSystemCardListModel::FileSystemCardListModel(const QString &path, QObject *p
     for (auto it = m_threadPool.begin(); it != m_threadPool.end(); ++it) {
         qobject_cast<QThread*>(*it)->start();
     }
-}
-
-FileSystemCardListModel::~FileSystemCardListModel()
-{
 }
 
 void FileSystemCardListModel::finished()

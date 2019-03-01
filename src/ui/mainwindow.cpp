@@ -100,9 +100,9 @@ void MainWindow::loadDirectory()
     QObject::connect(fs, &CardListModel::notify, statusBar(), &QStatusBar::showMessage);
 }
 
-void MainWindow::loadDroppedFiles(QStringList files)
+void MainWindow::loadDroppedFiles(QFileInfoList files)
 {
-    QString first = files.first();
+    QString first = files.first().fileName();
     if (first.endsWith(".sav")) {
         loadSaveFile(first);
         return;

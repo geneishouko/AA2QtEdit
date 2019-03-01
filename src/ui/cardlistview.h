@@ -3,6 +3,8 @@
 
 #include <QListView>
 
+#include <QFileInfo>
+
 namespace ClassEdit {
 
     class CardListDelegate;
@@ -21,7 +23,7 @@ namespace ClassEdit {
         void dropEvent(QDropEvent *event);
 
     signals:
-        void droppedFiles(QStringList);
+        void droppedFiles(QFileInfoList);
 
     private:
         CardListDelegate *m_delegate;
