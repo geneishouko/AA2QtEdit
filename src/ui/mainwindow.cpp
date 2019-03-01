@@ -102,7 +102,7 @@ void MainWindow::loadDirectory()
 
 void MainWindow::loadDroppedFiles(QFileInfoList files)
 {
-    QString first = files.first().fileName();
+    QString first = files.first().filePath();
     if (first.endsWith(".sav")) {
         loadSaveFile(first);
         return;
