@@ -25,7 +25,8 @@ namespace ClassEdit {
         CardFileRole = 0x100,
         CardNameRole = 0x110,
         CardModifiedTimeRole = 0x111,
-        CardSeatRole = 0x112
+        CardSeatRole = 0x112,
+        CardHasModifications = 0x113,
     };
 
     class CardFile : public QObject
@@ -66,9 +67,6 @@ namespace ClassEdit {
         }
         inline int gender() const {
             return m_gender;
-        }
-        inline bool hasPendingChanges() const {
-            return m_editDataDictionary->hasDirtyValues() || (m_playDataDictionary && m_playDataDictionary->hasDirtyValues());
         }
         void init(QIODevice *file, qint64 startOffset, qint64 endOffset);
         inline bool isValid() const {

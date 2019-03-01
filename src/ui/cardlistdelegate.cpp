@@ -42,12 +42,11 @@ CardListDelegate::CardListDelegate(QObject *parent) :
 
 bool CardListDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    CardFile *card = index.data(CardFileRole).value<CardFile*>();
-
     if (event->type() == QEvent::MouseButtonRelease) {
+        bool hasPendingChanges = index.data(CardHasModifications).toBool();
         QMouseEvent *mouseEvent = reinterpret_cast<QMouseEvent*>(event);
-        if (card->hasPendingChanges() && saveButtonRect(option.rect).contains(mouseEvent->pos())) {
-            static_cast<CardListModel*>((static_cast<QSortFilterProxyModel*>(model))->sourceModel())->save(index);
+        if (hasPendingChanges && saveButtonRect(option.rect).contains(mouseEvent->pos())) {
+            static_cast<CardListModel*>(static_cast<QSortFilterProxyModel*>(model)->sourceModel())->save(index);
             return true;
         }
     }
@@ -88,6 +87,7 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, nullptr);
 
     CardFile *card = index.data(CardFileRole).value<CardFile*>();
+    bool hasPendingChanges = index.data(CardHasModifications).toBool();
     painter->drawPixmap(cardRect, card->thumbnailPixmap());
     if (card->seat() < 0)
         painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fullName());
@@ -95,7 +95,7 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine,
                           QString("[%1] %2").arg(card->seat() + 1).arg(card->fullName()));
     painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin * 4, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fileName());
-    if (card->hasPendingChanges())
+    if (hasPendingChanges)
         style->drawControl(QStyle::CE_PushButton, &saveButtonOption, painter, nullptr);
     painter->setBrush(Qt::NoBrush);
     painter->drawRect(cardRect);

@@ -64,6 +64,8 @@ QVariant CardListModel::data(const QModelIndex &index, int role) const
             return card->modifiedTime();
         case CardSeatRole:
             return card->seat();
+        case CardHasModifications:
+            return m_modifiedCardList.contains(card);
     }
     return QVariant();
 }
