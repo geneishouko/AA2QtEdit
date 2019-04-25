@@ -107,7 +107,7 @@ CardView::~CardView()
 
 void CardView::updateDictionaryEntryWidgets()
 {
-    for (QHash<QString, QWidget*>::ConstIterator it = m_dictionaryEntryWidgets.begin(); it != m_dictionaryEntryWidgets.end(); it++) {
+    for (QHash<QString, QWidget*>::ConstIterator it = m_dictionaryEntryWidgets.constBegin(); it != m_dictionaryEntryWidgets.constEnd(); it++) {
         updateDictionaryEntryWidget(it.value(), m_card->editDictionary()->value(it.value()->objectName()));
     }
 }

@@ -51,7 +51,7 @@ const DataReader *Dictionary::dataReader()
 
 void Dictionary::deleteDataBlocks()
 {
-    for (QList<DataBlock*>::ConstIterator it = m_dataBlockList.begin(); it != m_dataBlockList.end(); ++it)
+    for (QList<DataBlock*>::ConstIterator it = m_dataBlockList.constBegin(); it != m_dataBlockList.constEnd(); ++it)
         delete *it;
 }
 

@@ -132,7 +132,7 @@ void ClassSaveCardListModel::saveAll()
     CardListModel::commitChanges();
     if (save()) {
         CardList cards = modifiedCardList();
-        for (CardList::ConstIterator it = cards.begin(); it != cards.end(); it++) {
+        for (CardList::ConstIterator it = cards.constBegin(); it != cards.constEnd(); it++) {
             cardSaved((*it)->modelIndex());
         }
     }

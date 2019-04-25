@@ -72,7 +72,7 @@ void FileSystemCardListModel::finished()
         beginInsertRows(QModelIndex(), 0, cardList().size() - 1);
         endInsertRows();
         if (FileSystemCardListModelLoader::error()) {
-            emit(notify(tr("Not enough system memory to load all cards!"), 0));
+            emit notify(tr("Not enough system memory to load all cards!"), 0);
             FileSystemCardListModelLoader::reset();
         }
     }
@@ -98,7 +98,7 @@ bool FileSystemCardListModel::save(const QModelIndex &index)
 void FileSystemCardListModel::saveAll()
 {
     CardList cards = modifiedCardList();
-    for (CardList::ConstIterator it = cards.begin(); it != cards.end(); it++) {
+    for (CardList::ConstIterator it = cards.constBegin(); it != cards.constEnd(); it++) {
         save(index((*it)->modelIndex()));
     }
 }

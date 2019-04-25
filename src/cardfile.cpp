@@ -246,8 +246,8 @@ void CardFile::updateQuickInfoGetters()
 {
     m_gender = m_editDataDictionary->value("PROFILE_GENDER").toInt();
     m_fullName = QString("%1 %2")
-            .arg(m_editDataDictionary->value("PROFILE_FAMILY_NAME").toString())
-            .arg(m_editDataDictionary->value("PROFILE_FIRST_NAME").toString()).trimmed();
+            .arg(m_editDataDictionary->value("PROFILE_FAMILY_NAME").toString(),
+                 m_editDataDictionary->value("PROFILE_FIRST_NAME").toString()).trimmed();
 }
 
 void CardFile::commitChanges()

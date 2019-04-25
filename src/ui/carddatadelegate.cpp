@@ -42,7 +42,7 @@ QWidget *CardDataDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
         int value = index.data(Qt::EditRole).toInt();
         int i = 0;
         bool enumFound = false;
-        for (QMap<qint32, QString>::ConstIterator it = enumerable->valueMap().begin(); it != enumerable->valueMap().end(); it++) {
+        for (QMap<qint32, QString>::ConstIterator it = enumerable->valueMap().constBegin(); it != enumerable->valueMap().constEnd(); it++) {
             cb->insertItem(i, it.value(), it.key());
             if (value == it.key()) {
                 enumFound = true;

@@ -325,12 +325,13 @@ void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db) cons
                 db->m_children[i].m_type = DataType::Struct;
                 db->m_children[i].m_address = curOffset;
                 DataStruct *ds = getStruct(db->metaKey());
+                auto blocks = ds->blocks();
 
-                int blockCount = ds->blocks().size();
+                int blockCount = blocks.size();
                 QVector<DataBlock> &blockList = db->m_children[i].m_children;
                 blockList.resize(blockCount);
                 for (int j = 0; j < blockCount; j++) {
-                    blockList[j] = ds->blocks()[j];
+                    blockList[j] = blocks[j];
                     blockList[j].m_address = curOffset;
                     finalizeChildrenDataBlocks(data, &blockList[j]);
                     curOffset = blockList[j].nextOffset();
@@ -348,10 +349,12 @@ void DataReader::finalizeChildrenDataBlocks(QIODevice *data, DataBlock *db) cons
     }
     else if (db->m_type == DataType::Struct) {
         DataStruct *ds = getStruct(db->metaKey());
+        auto blocks = ds->blocks();
+        int blockCount = blocks.size();
         int curOffset = db->offset();
-        db->m_children.resize(ds->blocks().size());
-        for (int j = 0; j < ds->blocks().size(); j++) {
-            db->m_children[j] = ds->blocks()[j];
+        db->m_children.resize(blockCount);
+        for (int j = 0; j < blockCount; j++) {
+            db->m_children[j] = blocks[j];
             db->m_children[j].m_address = curOffset;
             finalizeChildrenDataBlocks(data, &db->m_children[j]);
             curOffset = db->m_children[j].nextOffset();
