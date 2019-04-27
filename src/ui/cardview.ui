@@ -412,28 +412,31 @@
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="checkClothSlot1">
+            <widget class="QRadioButton" name="checkClothSlot1">
              <property name="text">
               <string>Uniform</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="checkClothSlot2">
+            <widget class="QRadioButton" name="checkClothSlot2">
              <property name="text">
               <string>Sports</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="checkClothSlot3">
+            <widget class="QRadioButton" name="checkClothSlot3">
              <property name="text">
               <string>Swimsuit</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="checkClothSlot4">
+            <widget class="QRadioButton" name="checkClothSlot4">
              <property name="text">
               <string>Club</string>
              </property>
