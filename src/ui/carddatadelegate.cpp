@@ -37,6 +37,7 @@ QWidget *CardDataDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     QWidget *editor = nullptr;
     if (index.data(Dictionary::DataTypeRole) == DataType::Enum) {
         QComboBox *cb = new QComboBox(parent);
+        cb->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
         cb->setEditable(true);
         const DataEnumerable *enumerable = DataReader::getDataEnumerable(index.data(Dictionary::MetaKeyRole).toString());
         int value = index.data(Qt::EditRole).toInt();
