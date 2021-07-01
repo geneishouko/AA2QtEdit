@@ -402,10 +402,10 @@
     <datablock type="byte" key="BODY_SIDE_HAIR_LENGTH" address="0x67F" minvalue="0" maxvalue="255" />
     <datablock type="byte" key="BODY_BACK_HAIR_LENGTH" address="0x680" minvalue="0" maxvalue="255" />
     <datablock type="byte" key="BODY_EXTENSION_HAIR_LENGTH" address="0x681" minvalue="0" maxvalue="255" />
-    <datablock type="bool" key="BODY_FRONT_HAIR_FLIP" address="0x682" />
-    <datablock type="bool" key="BODY_SIDE_HAIR_FLIP" address="0x683" />
-    <datablock type="bool" key="BODY_BACK_HAIR_FLIP" address="0x684" />
-    <datablock type="bool" key="BODY_EXTENSION_HAIR_FLIP" address="0x685" />
+    <datablock type="byte" key="BODY_FRONT_HAIR_FLIP" address="0x682" />
+    <datablock type="byte" key="BODY_SIDE_HAIR_FLIP" address="0x683" />
+    <datablock type="byte" key="BODY_BACK_HAIR_FLIP" address="0x684" />
+    <datablock type="byte" key="BODY_EXTENSION_HAIR_FLIP" address="0x685" />
     <datablock type="color" key="BODY_HAIR_COLOR" address="0x686" />
     <!-- Traits -->
     <datablock type="bool" key="TRAIT_EASYGOING" address="0x6A2" displayname="Easygoing" />
