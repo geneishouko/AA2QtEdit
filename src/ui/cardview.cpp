@@ -214,7 +214,10 @@ void CardView::invalidateProxyModels()
 void CardView::importCloth()
 {
     if (m_card) {
-        ClothData *cloth = ClothData::fromClothFile(FileDialog::getOpenFileName(FileDialog::ImportCloth, "Cloth (*.cloth)", "", this));
+        QString file = FileDialog::getOpenFileName(FileDialog::ImportCloth, "Cloth (*.cloth)", "", this);
+        if (file.isEmpty())
+            return;
+        ClothData *cloth = ClothData::fromClothFile(file);
         if (ui->checkClothSlot1->isChecked())
             m_card->setClothes(ClothSlotUniformKey, cloth);
         if (ui->checkClothSlot2->isChecked())
