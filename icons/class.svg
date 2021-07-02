@@ -1,25 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg width="32" version="1.1" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 0 32 32" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
- <defs id="defs5455">
-  <linearGradient inkscape:collect="always" id="linearGradient4273">
-   <stop style="stop-color:#343b40" id="stop4275"/>
-   <stop offset="1" style="stop-color:#555e63" id="stop4277"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" version="1.1" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <linearGradient id="linearGradient3085" x1="434.57" x2="384.57" y1="543.8" y2="503.8" gradientTransform="matrix(.66667 0 0 .7 128.19 165.14)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#343b40" offset="0"/>
+   <stop stop-color="#555e63" offset="1"/>
   </linearGradient>
-  <linearGradient inkscape:collect="always" id="linearGradient4152-0">
-   <stop style="stop-color:#bd8d48" id="stop4154-0"/>
-   <stop offset="1" style="stop-color:#e8b971" id="stop4156-8"/>
+  <linearGradient id="linearGradient3087" x2="0" y1="44" y2="4" gradientTransform="matrix(.66667 0 0 .7 384.57 515)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#bd8d48" offset="0"/>
+   <stop stop-color="#e8b971" offset="1"/>
   </linearGradient>
-  <linearGradient inkscape:collect="always" xlink:href="#linearGradient4273" id="linearGradient3085" y1="543.79797" x1="434.57144" y2="503.798" gradientUnits="userSpaceOnUse" x2="384.57144" gradientTransform="matrix(0.66666621 0 0 0.70000019 128.19065 165.13928)"/>
-  <linearGradient inkscape:collect="always" xlink:href="#linearGradient4152-0" id="linearGradient3087" y1="43.999973" y2="4" gradientUnits="userSpaceOnUse" x2="0" gradientTransform="matrix(0.66666621 0 0 0.69999959 384.57143 514.998)"/>
  </defs>
- <metadata id="metadata5458"/>
- <g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1" transform="matrix(1 0 0 1 -384.57143 -515.798)">
-  <rect width="31.999987" x="384.57144" y="517.79803" height="28" style="fill:url(#linearGradient3085);stroke-width:0.666666" id="rect4567"/>
-  <path inkscape:connector-curvature="0" style="fill:url(#linearGradient3087);stroke-width:0.666666" id="rect4778" d="m 384.57143,517.798 0,1.4 0,26.59998 1.33333,0 30.66665,0 3e-5,-2.09998 -3e-5,-24.5 0,-1.4 -1.33334,0 -29.33331,0 z m 2.00004,2 27.99996,0 0,24 -27.99996,0 z"/>
-  <path inkscape:connector-curvature="0" style="fill:#aa7f41;fill-opacity:0.498039;color:#000000;stroke-width:0.666666" id="rect4553" d="m 386.57147,519.75255 0,24.04545 0,0 27.99996,0 0,0 0,-24.04545 0,0 z m 0.99996,1.04545 26,0 0,22 -26,0 z"/>
-  <rect width="3.99996" x="403.57144" y="541.79803" height="0.99999" style="fill:#007ad9;color:#000000;stroke-width:0.666666" id="rect4568"/>
-  <rect width="3.999988" x="408.57141" y="541.79803" height="1.00001" style="fill:#d6d6d6;color:#000000;stroke-width:0.666666" id="rect4570"/>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-384.57 -515.8)" stroke-width=".66667">
+  <rect x="384.57" y="517.8" width="32" height="28" fill="url(#linearGradient3085)"/>
+  <path d="m384.57 517.8v28h32l3e-5-2.1-3e-5-24.5v-1.4h-30.667zm2 2h28v24h-28z" fill="url(#linearGradient3087)"/>
+  <path d="m386.57 519.75v24.045h28v-24.045zm.99996 1.0454h26v22h-26z" color="#000000" fill="#aa7f41" fill-opacity=".49804"/>
+  <rect x="403.57" y="541.8" width="4" height=".99999" color="#000000" fill="#007ad9"/>
+  <rect x="408.57" y="541.8" width="4" height="1" color="#000000" fill="#d6d6d6"/>
  </g>
 </svg>
