@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dataset>
+  <enumerables>
+    <enumerable key="CLOTHES_F">
+      <enumpair key="8" value="[8] Long Sleeved Sailor Uniform" />
+      <enumpair key="9" value="[9] NoPantsu Sailor Uniform [Nail Polish]" />
+      <enumpair key="10" value="[10] Puffy Sleeved Sailor Uniform [Long Skirt]" />
+      <enumpair key="11" value="[11] Track Outfit" />
+      <enumpair key="12" value="[12] Spats Outfit" />
+      <enumpair key="13" value="[13] Long Sleeved Sailor Uniform [Pantyhose]" />
+      <enumpair key="14" value="[14] NoPantsu Blazer Uniform [Nail Polish]" />
+      <enumpair key="15" value="[15] Blazer Uniform [Pantyhose]" />
+      <enumpair key="16" value="[16] Leotard" />
+      <enumpair key="17" value="[17] Long Sleeved Sukumizu Sailor Uniform" />
+      <enumpair key="18" value="[18] Bottomless Sailor Uniform" />
+      <enumpair key="19" value="[19] Teacher Blazer [Tight Skirt - Pantyhose]" />
+      <enumpair key="20" value="[20] Short Sleeved Sukumizu Sailor Uniform" />
+      <enumpair key="21" value="[21] Bottomless Bloomers" />
+      <enumpair key="22" value="[22] Bikini I" />
+      <enumpair key="23" value="[23] Cheerleader Outfit [Nail Polish - Short Skirt]" />
+      <enumpair key="24" value="[24] Sailor Uniform [Tight Skirt]" />
+      <enumpair key="25" value="[25] Blazer Uniform [Tight Skirt]" />
+      <enumpair key="26" value="[26] Topless Underwear" />
+      <enumpair key="27" value="[27] Teacher Suit [Sailor Skirt]" />
+      <enumpair key="28" value="[28] Full Bodysuit" />
+      <enumpair key="29" value="[29] Leggings Outfit" />
+      <enumpair key="30" value="[30] Sailor Uniform [Append I Pantsu]" />
+      <enumpair key="31" value="[31] Bloomers [Append I Pantsu]" />
+      <enumpair key="32" value="[32] Teacher Suit [Append I Pantsu]" />
+      <enumpair key="33" value="[33] NoPantsu Sweater Uniform [Nail Polish]" />
+      <enumpair key="34" value="[34] Underwear [Append II]" />
+      <enumpair key="35" value="[35] Sweater Uniform [Pantyhose]" />
+      <enumpair key="36" value="[36] Bikini II" />
+      <enumpair key="37" value="[37] Tight Dress A [High Heels]" />
+      <enumpair key="38" value="[38] Tight Dress B [High Heels]" />
+      <enumpair key="39" value="[39] Bunny Suit [High Heels]" />
+      <enumpair key="40" value="[40] Blazer Uniform [Nail Polish - Short Skirt]" />
+      <enumpair key="41" value="[41] Bloomers [Nail Polish - Short Skirt - Append I Pantsu]" />
+      <enumpair key="42" value="[42] Bikini I [Nail Polish]" />
+      <enumpair key="43" value="[43] Thong" />
+      <enumpair key="44" value="[44] Cosplay Club" />
+      <enumpair key="45" value="[45] Sweater Uniform [Tight Skirt - Pantyhose]" />
+      <enumpair key="46" value="[46] NoPantsu Blazer Uniform [Nail Polish - Short Skirt]" />
+      <enumpair key="47" value="[47] Sailor Uniform [Pantyhose]" />
+      <enumpair key="48" value="[48] High-Cut Swimsuit" />
+      <enumpair key="49" value="[49] Short Sailor Uniform [Nail Polish]" />
+      <enumpair key="50" value="[50] NoPantsu Short Sailor Uniform [Nail Polish]" />
+      <enumpair key="51" value="[51] Casual Outfit [Nail Polish]" />
+      <enumpair key="52" value="[52] Casual Outfit [Pantyhose - Nail Polish]" />
+      <enumpair key="53" value="[53] NoPantsu Casual Outfit [Nail Polish]" />
+      <enumpair key="54" value="[54] Bikini + Hotpants [Nail Polish]" />
+      <enumpair key="55" value="[55] Sailor Uniform [Append II Pantsu]" />
+      <enumpair key="56" value="[56] Blazer Uniform [Append II Pantsu]" />
+      <enumpair key="57" value="[57] Slave Outfit [Piercings]" />
+      <enumpair key="58" value="[58] Nude [Piercings]" />
+      <enumpair key="59" value="[59] Sailor Uniform [Spats]" />
+      <enumpair key="60" value="[60] Blazer Uniform [Spats]" />
+      <enumpair key="61" value="[61] Sweater Uniform [Spats]" />
+      <enumpair key="62" value="[62] Jersey Outfit" />
+      <enumpair key="63" value="[63] Jersey Outfit [Spats]" />
+      <enumpair key="64" value="[64] Maid Outfit" />
+      <enumpair key="65" value="[65] Maid Outfit [Pantyhose - High Heels]" />
+      <enumpair key="66" value="[66] Blazer Uniform [Tie]" />
+      <enumpair key="67" value="[67] Blazer Uniform [Pantyhose - Tie]" />
+      <enumpair key="68" value="[68] NoPantsu Blazer Uniform [Nail Polish - Tie]" />
+      <enumpair key="69" value="[69] Teacher Blazer [Tight Skirt - Pantyhose - Tie]" />
+      <enumpair key="70" value="[70] Blazer Uniform [Append II Pantsu - Tie]" />
+      <enumpair key="71" value="[71] Sailor Uniform [Scarf]" />
+      <enumpair key="72" value="[72] Sailor Uniform [Pantyhose - Scarf]" />
+      <enumpair key="73" value="[73] Sweater Uniform [Ribbon]" />
+      <enumpair key="74" value="[74] Sweater Uniform [Pantyhose - Ribbon]" />
+      <enumpair key="75" value="[75] Bl azer Uniform [Tie - Spats]" />
+      <enumpair key="76" value="[76] Jersey Outfit [Swimsuit]" />
+      <enumpair key="77" value="[77] Sweater Uniform [NoTie]" />
+      <enumpair key="78" value="[78] Sweater Uniform [Pantyhose - NoTie]" />
+      <enumpair key="79" value="[79] Sweater Uniform [Backpack - NoTie]" />
+      <enumpair key="80" value="[80] Sweater Uniform [Backpack - Pantyhose - NoTie]" />
+      <enumpair key="81" value="[81] Tight Dress A [Gloves - High Heels]" />
+      <enumpair key="82" value="[82] Tight Dress B [Gloves - High Heels]" />
+      <enumpair key="83" value="[83] Bunny Suit [Gloves - High Heels]" />
+      <enumpair key="84" value="[84] Maid Outfit [Gloves]" />
+      <enumpair key="85" value="[85] Maid Outfit [Gloves - Pantyhose - High Heels]" />
+      <enumpair key="86" value="[86] Blazer Uniform [Gloves]" />
+      <enumpair key="87" value="[87] Blazer Uniform [Gloves - Pantyhose]" />
+      <enumpair key="88" value="[88] Blazer Uniform [Gloves - Tie]" />
+      <enumpair key="89" value="[89] Blazer Uniform [Gloves - Pantyhose - Tie]" />
+      <enumpair key="90" value="[90] Teacher Blazer [Gloves - Tight Skirt - Pantyhose - Tie]" />
+      <enumpair key="91" value="[91] Teacher Blazer [Gloves - Tight Skirt - Pantyhose - NoRibbon]" />
+      <enumpair key="92" value="[92] HEXA Gyaru" />
+      <enumpair key="93" value="[93] Nude [Gloves]" />
+      <enumpair key="94" value="[94] Underwear Only [Gloves]" />
+      <enumpair key="95" value="[95] Sweater Sailor" />
+      <enumpair key="96" value="[96] Sweater Sailor [Pantyhose]" />
+      <enumpair key="97" value="[97] Long Sleeved Sweater Uniform" />
+      <enumpair key="98" value="[98] Long Sleeved Sweater Uniform [Pantyhose]" />
+      <enumpair key="99" value="[99] Long Sleeved Teacher Sweater Uniform [Pantyhose - Tight Skirt]" />
+      <enumpair key="100" value="[100] Long Sleeved Sweater Uniform [Ribbon]" />
+      <enumpair key="101" value="[101] Long Sleeved Sweater Uniform [Pantyhose - Ribbon]" />
+      <enumpair key="102" value="[102] Short Shirt" />
+      <enumpair key="103" value="[103] Yoga Pants + Short Shirt" />
+      <enumpair key="104" value="[104] Yoga Pants + Bikini" />
+      <enumpair key="105" value="[105] Volleyball Outfit" />
+      <enumpair key="106" value="[106] [Yoga Pants + Jersey]" />
+      <enumpair key="107" value="[107] [Yoga Pants + Tank Top]" />
+      <enumpair key="108" value="[108] RP Uniform Tucked" />
+      <enumpair key="109" value="[109] RP Uniform Tucked [Pantyhose]" />
+      <enumpair key="110" value="[110] RP Uniform Tucked [Spats]" />
+      <enumpair key="111" value="[111] RP Uniform Untucked" />
+      <enumpair key="112" value="[112] RP Uniform Untucked [Pantyhose]" />
+      <enumpair key="113" value="[113] RP Uniform Untucked [Spats]" />
+      <enumpair key="114" value="[114] Long Sleeved Shirt" />
+      <enumpair key="115" value="[115] Long Sleeved Shirt [Pantyhose]" />
+      <enumpair key="116" value="[116] JG2Suita's T-Shirt" />
+      <enumpair key="117" value="[117] Bikini III [Variant I]" />
+      <enumpair key="118" value="[118] Bikini III [Variant II]" />
+      <enumpair key="119" value="[119] Bikini III [Variant III]" />
+      <enumpair key="120" value="[120] Frill Blazer Uniform [Tie - Laces]" />
+      <enumpair key="121" value="[121] Frill Blazer Uniform [Small Ribbon]" />
+      <enumpair key="122" value="[122] Frill Blazer Uniform [Small Ribbon - Laces]" />
+      <enumpair key="123" value="[123] Blazer Uniform [Scarf]" />
+      <enumpair key="124" value="[124] Maid Outfit [Laces]" />
+      <enumpair key="125" value="[125] Maid Outfit [Gloves - Laces]" />
+      <enumpair key="126" value="[126] Long Sleeved RP Uniform Tucked" />
+      <enumpair key="127" value="[127] Long Sleeved RP Uniform Tucked [+ Pantyhose]" />
+      <enumpair key="128" value="[128] Long Sleeved RP Uniform Untucked" />
+      <enumpair key="129" value="[129] Long Sleeved RP Uniform Untucked [+ Pantyhose]" />
+      <enumpair key="130" value="[130] Long Sleeved RP Half-Dressed" />
+      <enumpair key="131" value="[131] Long Sleeved RP Half-Dressed [+ Pantyhose]" />
+      <enumpair key="132" value="[132] RP Uniform [untucked, no ribbon]" />
+      <enumpair key="133" value="[133] Swimsuit [Fairy Wings]" />
+      <enumpair key="134" value="[134] Puffy Sailor [Fairy Wings]" />
+      <enumpair key="135" value="[135] T-shirt + Hotpants" />
+      <enumpair key="136" value="[136] Sailor Shorts [Comfy, Easy to Wear]" />
+      <enumpair key="137" value="[137] Blazer Uniform [Tie, Devil Wings]" />
+      <enumpair key="138" value="[138] Himo [Angel Wings]" />
+      <enumpair key="139" value="[139] Himo2 [Devil Wings]" />
+      <enumpair key="140" value="[140] Gym Outfit [Angel Wings]" />
+      <enumpair key="141" value="[141] Gym Outfit [Devil Wings]" />
+      <enumpair key="142" value="[142] Panties-Only [Angel Wings]" />
+      <enumpair key="143" value="[143] Swimsuit [Angel Wings]" />
+      <enumpair key="144" value="[144] Swimsuit [Devil Wings]" />
+      <enumpair key="145" value="[145] Nude [Angel Wings]" />
+      <enumpair key="146" value="[146] Puffy Sailor [Angel Wings]" />
+      <enumpair key="147" value="[147] Puffy Sailor [Devil Wings]" />
+      <enumpair key="148" value="[148] Open Blazer - Junko [Nail Polish - Short Skirt]" />
+      <enumpair key="149" value="[149] JG2Suita's Open Blazer" />
+      <enumpair key="150" value="[150] Zzz's Highcut Kyoei" />
+      <enumpair key="151" value="[151] Zzz's Sling Bikini Himo 1" />
+      <enumpair key="152" value="[152] Zzz's Sling Bikini Himo 2" />
+      <enumpair key="153" value="[153] Blazer Uniform [Small Ribbon]" />
+      <enumpair key="154" value="[154] Blazer Uniform [Pantyhose - Small Ribbon]" />
+      <enumpair key="155" value="[155] Zzz's Sailor Scarf" />
+      <enumpair key="156" value="[156] Zzz's Long Sleeve Sailor Scarf" />
+      <enumpair key="157" value="[157] Female Open Blazer [no dress shirt]" />
+      <enumpair key="158" value="[158] Closed Blazer [no dress shirt]" />
+      <enumpair key="159" value="[159] 2chan Pregnant Body" />
+      <enumpair key="160" value="[160] Zzz's Tex (Felicia/Kenichi/Leaves)" />
+      <enumpair key="161" value="[161] Uppervolta Bodysuit (Reslot)" />
+      <enumpair key="162" value="[162] 2chan China Dress (Reslot)" />
+      <enumpair key="163" value="[163] Uppervolta Bodysuit 2 (Reslot)" />
+      <enumpair key="164" value="[164] Kantoku Uniform [RP+tie]" />
+      <enumpair key="165" value="[165] Kantoku Uniform [RP+tie+no panties]" />
+      <enumpair key="166" value="[166] Sweatervest [+Wedding Ring] OR Sweatervest [Long Sleeved+Wedding Ring]" />
+      <enumpair key="167" value="[167] Blazer Uniform [Tie + Wedding Ring]" />
+      <enumpair key="168" value="[168] Tight Dress A [Gloves + Wedding Ring]" />
+      <enumpair key="169" value="[169] Gothic Open Blazer [cross necklace]" />
+      <enumpair key="170" value="[170] JS3F's Sailor One Piece (Reslot)" />
+      <enumpair key="171" value="[171] 2chan Bunny Suit (Reslot)" />
+      <enumpair key="172" value="[172] 2chan PPD Bikini (Reslot from 32)" />
+      <enumpair key="173" value="[173] PPD Towel" />
+      <enumpair key="174" value="[174] JS3F's PPD China Dress" />
+      <enumpair key="175" value="[175] Danganronpa, Celestia [Frilly Blazer]" />
+      <enumpair key="176" value="[176] RP [Untucked + Tie]" />
+      <enumpair key="177" value="[177] RP [Tucked + Tie]" />
+      <enumpair key="178" value="[178] Metallic Goth Lolita Outfit from Uppervolta (new slot)" />
+      <enumpair key="179" value="[179] JS3F's Silent Majority (reslot)" />
+      <enumpair key="180" value="[180] Naked Apron [Modest]" />
+      <enumpair key="181" value="[181] Naked Apron [Bandaid/Pasties/Bikini]" />
+      <enumpair key="182" value="[182] Ika's Gyaru 1 [reslot]" />
+      <enumpair key="183" value="[183] Ika's Gyaru 2 [reslot]" />
+      <enumpair key="184" value="[184] Ika's Gyaru 3 [reslot]" />
+      <enumpair key="185" value="[185] Ika's Summer Teacher [reslot]" />
+      <enumpair key="186" value="[186] Ika's Summer teacher [NoPan+NoBra] [reslot]" />
+      <enumpair key="187" value="[187] Ika's Policegirl [reslot]" />
+      <enumpair key="188" value="[188] Ika's Shimakaze [reslot]" />
+      <enumpair key="189" value="[189] Sourou's Bodysuit (Reslot)" />
+      <enumpair key="190" value="[190] Sourou's Camisole 1 (Reslot)" />
+      <enumpair key="191" value="[191] Sourou's Camisole 2 (Reslot)" />
+      <enumpair key="192" value="[192] Sourou's Camisole 3 (Reslot)" />
+      <enumpair key="193" value="[193] Open RP" />
+      <enumpair key="194" value="[194] Open RP [+Pantyhose]" />
+      <enumpair key="195" value="[195] Arc's Sweater 2" />
+      <enumpair key="196" value="[196] Arc's Sweater 2 [Pantyhose]" />
+      <enumpair key="197" value="[197] Sourou's Sundress (Reslot) [reserved]" />
+      <enumpair key="198" value="[198] Sourou's Sundress [Pantyhose, reserved]" />
+      <enumpair key="199" value="[199] Tohsaka Rin [Socks]" />
+      <enumpair key="200" value="[200] Tohsaka Rin [Pantyhose]" />
+      <enumpair key="201" value="[201] Tohsaka Rin [Thighhighs]" />
+      <enumpair key="202" value="[202] 2chan Magical Girl" />
+      <enumpair key="203" value="[203] 2chan PPD Kimono/Yukata 1" />
+      <enumpair key="204" value="[204] 2chan PPD Kimono/Yukata 2" />
+      <enumpair key="205" value="[205] 2chan Miko Shrine Maiden" />
+      <enumpair key="206" value="[206] Open Sweater" />
+      <enumpair key="207" value="[207] Open Sweater [Pantyhose]" />
+      <enumpair key="208" value="[208] Open Sweater Vest" />
+      <enumpair key="209" value="[209] Open Sweater Vest [Pantyhose]" />
+      <enumpair key="210" value="[210] Long Sleeved Tie RP Uniform Tucked" />
+      <enumpair key="211" value="[211] Long Sleeved Tie RP Uniform Tucked [Pantyhose]" />
+      <enumpair key="212" value="[212] Tie Open RP" />
+      <enumpair key="213" value="[213] Tie Open RP [Pantyhose]" />
+      <enumpair key="216" value="[216] H5 Nun" />
+      <enumpair key="217" value="[217] Blazer Sweater Vest" />
+      <enumpair key="218" value="[218] Blazer Sweater Vest [Pantyhose]" />
+      <enumpair key="220" value="[220] Nurse" />
+      <enumpair key="221" value="[221] One Room, Yui (sweater w/ skirt)" />
+      <enumpair key="224" value="[224] 2chan Angel Armor" />
+      <enumpair key="225" value="[225] 2chan Demon Armor" />
+      <enumpair key="226" value="[226] Nekomanma Gothic 1 [reslot]" />
+      <enumpair key="227" value="[227] Nekomanma Gothic 2 [reslot]" />
+      <enumpair key="228" value="[228] Nekomanma Gothic 3 [reslot]" />
+      <enumpair key="229" value="[229] Nekomanma Gothic 4 [reslot]" />
+      <enumpair key="230" value="[230] Nekomanma Pirate [reslot]" />
+      <enumpair key="231" value="[231] Gothic Dress (Reslot from 69)" />
+      <enumpair key="232" value="[232] Yu-Gi-Oh, Dark Magician Girl/Black Magician Girl" />
+      <enumpair key="234" value="[234] Lingerie (no gloves)" />
+      <enumpair key="235" value="[235] Lingerie" />
+      <enumpair key="236" value="[236] PPD Military Uniform*" />
+      <enumpair key="237" value="[237] 2chan Wedding Dress (Reslot)" />
+      <enumpair key="238" value="[238] KanColle, Kongou/Bongo/Haruna" />
+      <enumpair key="241" value="[241] Nurse outfit (Reslot)" />
+      <enumpair key="243" value="[243] Attack on Titan/Shingeki no Kyojin" />
+      <enumpair key="246" value="[246] Touhou, Nue" />
+      <enumpair key="247" value="[247] Lab Coat" />
+      <enumpair key="248" value="[248] Lab Coat [pantyhose]" />
+      <enumpair key="250" value="[250] Fancy Dress" />
+      <enumpair key="251" value="[251] Date a Live, Kurumi" />
+      <enumpair key="252" value="[252] Dark Souls, Quelaag OR Date a Live, Tohka" />
+      <enumpair key="253" value="[253] Dark Souls, The Fair Lady" />
+      <enumpair key="255" value="[255] Touhou, 3-pack Flandre/Nue/Utsuho" />
+    </enumerable>
+    <enumerable key="CLOTHES_M">
+      <enumpair key="4" value="[4] Gakuran" />
+      <enumpair key="5" value="[5] Yankee" />
+      <enumpair key="6" value="[6] No Pants Standard Uniform" />
+      <enumpair key="7" value="[7] No Pants Tracksuit" />
+      <enumpair key="8" value="[8] Open Blazer [original - jg2suita]" />
+      <enumpair key="9" value="[9] Open Blazer [recolorable]" />
+      <enumpair key="10" value="[10] Hawaiian [Blue]" />
+      <enumpair key="11" value="[11] Hawaiian [Red]" />
+      <enumpair key="15" value="[15] Colorable Bodysuit" />
+      <enumpair key="17" value="[17] Black Bodysuit" />
+      <enumpair key="23" value="[23] Dress Shirt [Kantoku+tie]" />
+      <enumpair key="24" value="[24] Gilgamesh" />
+      <enumpair key="46" value="[46] Shemale Sailor Uniform" />
+      <enumpair key="47" value="[47] Shemale Bloomers Uniform" />
+      <enumpair key="48" value="[48] Shemale School Swimsuit" />
+      <enumpair key="49" value="[49] Shemale Teacher Uniform OR Hawaiian [Red, HH]" />
+      <enumpair key="50" value="[50] Shemale 2chan Bodysuit" />
+      <enumpair key="51" value="[51] Shemale 2chan Bodysuit N" />
+      <enumpair key="52" value="[52] Shemale 2chan China Dress" />
+      <enumpair key="53" value="[53] Dragonball Z, Vegeta Bad Man Shirt" />
+      <enumpair key="54" value="[54] Orc Body" />
+      <enumpair key="55" value="[55] PPD Long Jacket" />
+      <enumpair key="58" value="[58] PPD Rave" />
+      <enumpair key="59" value="[59] PPD Laborer" />
+      <enumpair key="60" value="[60] PPD Slave" />
+      <enumpair key="61" value="[61] PPD Bunny Hoodie" />
+      <enumpair key="62" value="[62] PPD Waiter" />
+      <enumpair key="99" value="[99] Open Blazer [Black, no tie, Karma]" />
+      <enumpair key="100" value="[100] Open Blazer [White]" />
+      <enumpair key="101" value="[101] Open Blazer [Black]" />
+      <enumpair key="102" value="[102] Open Blazer [Lupin III red]" />
+      <enumpair key="103" value="[103] Open Blazer [Zebra Stripes + Purple Shirt]" />
+      <enumpair key="104" value="[104] Open Blazer [Leopard Print]" />
+      <enumpair key="105" value="[105] Open Blazer [Gundam Build Fighters, Meijin]" />
+      <enumpair key="106" value="[106] Open Blazer [Adachi]" />
+      <enumpair key="107" value="[107] Open Blazer [Persona 4 protagonist]" />
+      <enumpair key="108" value="[108] Open Blazer [Persona 3 protagonist]" />
+      <enumpair key="109" value="[109] Open Blazer [Jojo's Bizarre Adventure, Dio Brando]" />
+      <enumpair key="110" value="[110] Open Blazer [Jojo's Bizarre Adventure, Jonathan Joestar]" />
+      <enumpair key="111" value="[111] Jojo's Bizarre Adventure, DIO" />
+      <enumpair key="112" value="[112] Jojo's Bizarre Adventure, Kujo Jotaro" />
+      <enumpair key="116" value="[116] Open Blazer [Shiba Tatsuya]" />
+      <enumpair key="117" value="[117] Open Blazer [Silent Hill, James Sunderland]" />
+      <enumpair key="118" value="[118] Danganronpa, Naegi Makoto" />
+      <enumpair key="120" value="[120] Dragonball Z, Perfect Cell" />
+      <enumpair key="200" value="[200] Open Blazer [White]" />
+      <enumpair key="210" value="[210] Kyrie Blazer [Purple and whimsical]" />
+    </enumerable>
+  </enumerables>
+</dataset>

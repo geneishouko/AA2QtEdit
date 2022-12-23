@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>application-icon_64x64.png</file>
+        <file>application-icon_48x48.png</file>
+        <file>application-icon_32x32.png</file>
+        <file>application-icon_16x16.png</file>
+        <file alias="window-close.png">48/window-close.png</file>
+        <file alias="settings.png">48/settings.png</file>
+        <file alias="save-all.png">48/save-all.png</file>
+        <file alias="game.png">48/game.png</file>
+        <file alias="folder-people.png">48/folder-people.png</file>
+        <file alias="class.png">48/class.png</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>

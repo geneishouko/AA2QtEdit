@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/XML">
+        <file>chardata.xml</file>
+        <file>clothdata.xml</file>
+        <file>headerdata.xml</file>
+        <file>playdata.xml</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- DO NOT CHANGE THE CONTENTS OF THIS FILE, DOING SO CAN MAKE THE EDITOR STOP WORKING -->
+<!-- Xml Document Distributed with ReiEditAA2 -->
+<dataset>
+  <enumerables>
+    <enumerable key="EVALUATION_STATUS" type="int32">
+      <enumpair key="0" value="Lots" />
+      <enumpair key="1" value="Some" />
+      <enumpair key="2" value="Very Little" />
+    </enumerable>
+    <enumerable key="EVALUATION_RANK" type="int32">
+      <enumpair key="0" value="Love" />
+      <enumpair key="1" value="Like" />
+      <enumpair key="2" value="Dislike" />
+      <enumpair key="3" value="Hate" />
+    </enumerable>
+    <enumerable key="ACTION_KEY" type="int32">
+      <enumpair key="0" value="Encourage" />
+      <enumpair key="1" value="Calm" />
+      <enumpair key="2" value="Praise" />
+      <enumpair key="3" value="Complain" />
+      <enumpair key="4" value="Apologize" />
+      <enumpair key="5" value="Encourage Studies" />
+      <enumpair key="6" value="Encourage Training" />
+      <enumpair key="7" value="Encourage Club Stuff" />
+      <enumpair key="8" value="Encourage Socializing" />
+      <enumpair key="9" value="Reflect on Ero" />
+      <enumpair key="10" value="Spread Good Rumor" />
+      <enumpair key="11" value="Get Along With..." />
+      <enumpair key="12" value="Help Me Befriend..." />
+      <enumpair key="13" value="Spread Bad Rumor" />
+      <enumpair key="14" value="Do you like...?" />
+      <enumpair key="15" value="Talk About Life" />
+      <enumpair key="16" value="Talk About Hobbies" />
+      <enumpair key="17" value="Talk About Food" />
+      <enumpair key="18" value="Talk About Love" />
+      <enumpair key="19" value="Talk About Sex" />
+      <enumpair key="20" value="Study Together" />
+      <enumpair key="21" value="Train Together" />
+      <enumpair key="22" value="Do Club Stuff Together" />
+      <enumpair key="23" value="Offer Massage" />
+      <enumpair key="24" value="Go To Class Together" />
+      <enumpair key="25" value="Have Lunch Together" />
+      <enumpair key="26" value="Take a Break Together" />
+      <enumpair key="27" value="Go Home Together" />
+      <enumpair key="28" value="Go Have Fun Together" />
+      <enumpair key="29" value="Go Eat Out together" />
+      <enumpair key="30" value="Go Sing Together" />
+      <enumpair key="31" value="Study at Home Together" />
+      <enumpair key="32" value="Study at Home Together (Sex)" />
+      <enumpair key="33" value="Insult" />
+      <enumpair key="34" value="Pick a Fight" />
+      <enumpair key="35" value="Tell to Ignore..." />
+      <enumpair key="36" value="Show 'That' to Me" />
+      <enumpair key="37" value="Put 'This' On" />
+      <enumpair key="38" value="Coerce into Sex" />
+      <enumpair key="39" value="Ask to Join Club" />
+      <enumpair key="40" value="Ask on a Date" />
+      <enumpair key="41" value="Express Love" />
+      <enumpair key="42" value="Ask to be Lovers" />
+      <enumpair key="43" value="Ask to Break Up" />
+      <enumpair key="44" value="Pet" />
+      <enumpair key="45" value="Hug" />
+      <enumpair key="46" value="Kiss" />
+      <enumpair key="47" value="Grope" />
+      <enumpair key="48" value="Have Sex" />
+      <enumpair key="49" value="Come With Me" />
+      <enumpair key="50" value="Go Away" />
+      <enumpair key="51" value="Meet me At..." />
+      <enumpair key="52" value="It's Nothing" />
+      <enumpair key="53" value="Let's All Study" />
+      <enumpair key="54" value="Let's All Train" />
+      <enumpair key="55" value="Let's All Do Club Stuff" />
+      <enumpair key="56" value="Let's All Have Lunch" />
+      <enumpair key="57" value="Let's All Take a Break" />
+      <enumpair key="58" value="Let's All Go Play" />
+      <enumpair key="59" value="Let's All Go Eat Out" />
+      <enumpair key="60" value="Let's All Go Sing" />
+      <enumpair key="61" value="Let's All Befriend..." />
+      <enumpair key="62" value="Everyone Come Here" />
+      <enumpair key="63" value="Compete" />
+      <enumpair key="64" value="What are you Doing?" />
+      <enumpair key="65" value="Break up the Fight" />
+      <enumpair key="66" value="Interrupt Sex" />
+      <enumpair key="67" value="Warn about Sex" />
+      <enumpair key="68" value="Have a Threesome" />
+      <enumpair key="69" value="Massage me, Please" />
+      <enumpair key="70" value="Kiss me, Please" />
+      <enumpair key="71" value="Hug me, Please" />
+      <enumpair key="72" value="Suggest to skip out (Without Sex)" />
+      <enumpair key="73" value="Suggest to skip out (With Sex)" />
+      <enumpair key="74" value="Suggest to skip out (Wake-up Sex)" />
+      <enumpair key="75" value="Did you have sex with...?" />
+      <enumpair key="76" value="Want to see my Panties?" />
+      <enumpair key="77" value="Ever had sex?" />
+      <enumpair key="78" value="Let's Trade" />
+      <enumpair key="79" value="Offer Lewd Promise" />
+      <enumpair key="80" value="Reward Lewd Promise" />
+      <enumpair key="81" value="TogEtHeR FOrEVeR" />
+      <enumpair key="82" value="Murder" />
+      <enumpair key="83" value="Slap" />
+      <enumpair key="84" value="Good Morning Kiss" />
+      <enumpair key="85" value="Goodbye Kiss" />
+      <enumpair key="86" value="Surprise Kiss" />
+      <enumpair key="87" value="Break Up" />
+      <enumpair key="88" value="Declare Pregnancy" />
+      <enumpair key="89" value="Admit to Cheating" />
+      <enumpair key="90" value="Keep this a Secret" />
+      <enumpair key="91" value="Stop following me" />
+      <enumpair key="92" value="Notice of impending Murder" />
+      <enumpair key="93" value="Apparently someone likes you" />
+      <enumpair key="94" value="Someone was confessed to" />
+      <enumpair key="95" value="Someone went on a date" />
+      <enumpair key="96" value="Someonw had sex" />
+      <enumpair key="97" value="I don't want you to get near..." />
+      <enumpair key="98" value="Make fun of lovers' quarrel" />
+      <enumpair key="99" value="Daily sex" />
+      <enumpair key="102" value="Follow me (Sex)" />
+      <enumpair key="103" value="Date Greeting" />
+      <enumpair key="114" value="Wind blows Skirt up" />
+    </enumerable>
+    <enumerable key="TEST_TYPE" type="int32">
+      <enumpair key="0" value="Academics" />
+      <enumpair key="1" value="Physical" />
+      <enumpair key="2" value="Club" />
+    </enumerable>
+    <enumerable key="TEST_SCORE" type="int32">
+      <enumpair key="-1" value="Unranked" />
+      <enumpair key="0" value="Grade F" />
+      <enumpair key="1" value="Grade E" />
+      <enumpair key="2" value="Grade D" />
+      <enumpair key="3" value="Grade C" />
+      <enumpair key="4" value="Grade B" />
+      <enumpair key="5" value="Grade A" />
+    </enumerable>
+    <enumerable key="LOCATION" type="int32">
+      <enumpair key="0" value="School Gates" />
+      <enumpair key="1" value="Back Street" />
+      <enumpair key="2" value="Outside Gymnasium" />
+      <enumpair key="3" value="School Route" />
+      <enumpair key="4" value="Boys' Changing Room" />
+      <enumpair key="5" value="Girls' Changing Room" />
+      <enumpair key="6" value="Boys' Showers" />
+      <enumpair key="7" value="Girls' Showers" />
+      <enumpair key="8" value="Lockers" />
+      <enumpair key="9" value="Outside Teachers' Lounge" />
+      <enumpair key="10" value="Outside Toilets" />
+      <enumpair key="11" value="Outside Classroom" />
+      <enumpair key="12" value="Rooftop Access" />
+      <enumpair key="13" value="Old Building 1st Floor" />
+      <enumpair key="14" value="Old Building 2nd Floor" />
+      <enumpair key="15" value="Old Building 3rd Floor" />
+      <enumpair key="16" value="Teachers' lounge" />
+      <enumpair key="17" value="Infirmary" />
+      <enumpair key="18" value="Library" />
+      <enumpair key="19" value="Classroom" />
+      <enumpair key="20" value="Boys' Toilets" />
+      <enumpair key="21" value="Girls' Toilets" />
+      <enumpair key="22" value="Rooftop" />
+      <enumpair key="23" value="Outside Student Council Room" />
+      <enumpair key="24" value="Outside Cafeteria" />
+      <enumpair key="25" value="Courtyard" />
+      <enumpair key="26" value="2nd Floor Hallway" />
+      <enumpair key="27" value="3rd Floor Passage" />
+      <enumpair key="28" value="Swimming Pool" />
+      <enumpair key="29" value="Track" />
+      <enumpair key="30" value="Sports Facilities" />
+      <enumpair key="31" value="Dojo" />
+      <enumpair key="32" value="Gymnasium" />
+      <enumpair key="33" value="Arts Room" />
+      <enumpair key="34" value="Multipurpose Room" />
+      <enumpair key="35" value="Japanese Room" />
+      <enumpair key="36" value="Behind Dojo" />
+      <enumpair key="37" value="Outside Dojo" />
+      <enumpair key="38" value="Cafeteria" />
+      <enumpair key="39" value="Outside Station" />
+    </enumerable>
+  </enumerables>
+  <structs>
+    <struct key="EVALUATION_DATA">
+      <datablock key="SEAT_NUMBER" type="int32" />
+      <datablock key="LOVE_POINTS" type="int32" />
+      <datablock key="LIKE_POINTS" type="int32" />
+      <datablock key="DISLIKE_POINTS" type="int32" />
+      <datablock key="HATE_POINTS" type="int32" />
+      <!-- -->
+      <datablock key="HISTORY" type="array" headtype="int32" innertype="enum" metakey="EVALUATION_RANK" />
+      <datablock key="LOVE_COUNT" type="int32" />
+      <datablock key="LIKE_COUNT" type="int32" />
+      <datablock key="DISLIKE_COUNT" type="int32" />
+      <datablock key="HATE_COUNT" type="int32" />
+      <datablock key="LOVE_STATUS" type="enum" metakey="EVALUATION_STATUS" />
+      <datablock key="LIKE_STATUS" type="enum" metakey="EVALUATION_STATUS" />
+      <datablock key="DISLIKE_STATUS" type="enum" metakey="EVALUATION_STATUS" />
+      <datablock key="HATE_STATUS" type="enum" metakey="EVALUATION_STATUS" />
+      <!-- Unknown int[*],int -->
+      <datablock type="array" headtype="int32" innertype="dummy" datasize="4" />
+      <datablock type="dummy" datasize="4" />
+      <!-- -->
+    </struct>
+    <struct key="ACTION_DATA">
+      <datablock key="KEY" type="enum" metakey="ACTION_KEY" />
+      <datablock key="COUNTER" type="int32" />
+      <datablock key="SUCCESS" type="int32" />
+      <datablock key="FAILURE" type="int32" />
+      <datablock type="int32" />
+    </struct>
+    <struct key="INTERACTION_DATA">
+      <datablock key="SEAT_NUMBER" type="int32" />
+      <datablock key="ACTIONS" type="array" headtype="int32" innertype="struct" metakey="ACTION_DATA" />
+    </struct>
+    <struct key="LEWD_PROMISE">
+      <datablock key="SEAT_NUMBER" type="int32" />
+      <datablock key="TEST_TYPE" type="enum" metakey="TEST_TYPE" />
+      <!-- Unknown  byte,byte,short -->
+      <datablock type="dummy" datasize="4" />
+    </struct>
+    <struct key="MEET_ME_AT">
+      <datablock key="FLAG" type="bool" />
+      <datablock key="SEAT_NUMBER" type="int32" />
+      <!-- Unknown  int,int -->
+      <datablock type="dummy" datasize="8" />
+      <datablock key="LOCATION" type="enum" metakey="LOCATION" />
+      <!-- Unknown  int -->
+      <datablock type="dummy" datasize="4" />
+    </struct>
+    <struct key="PLAYER_STATUS">
+      <datablock key="QUARRELS" type="int32" />
+      <datablock key="SKIPPED" type="int32" />
+      <datablock key="COMPETITIONS" type="int32" />
+      <datablock key="RELATIONSHIPS" type="int32" />
+      <datablock key="REJECTED" type="int32" />
+      <datablock key="SCORE_TEST" type="enum" metakey="TEST_SCORE" />
+      <datablock key="SCORE_PHYS" type="enum" metakey="TEST_SCORE" />
+      <datablock key="SCORE_CLUB" type="enum" metakey="TEST_SCORE" />
+      <!-- Unknown  int,int -->
+      <datablock type="dummy" datasize="8" />
+      <datablock key="TOTAL_SEX" type="int32" />
+      <datablock key="SEX_PARTNERS" type="int32" />
+      <datablock key="FIRST_PARTNER" type="string" datasize="32" />
+      <datablock key="FIRST_PARTNER_ANAL" type="string" datasize="32" />
+      <datablock key="LAST_PARTNER" type="string" datasize="32" />
+    </struct>
+    <!-- struct7 -->
+    <struct key="UNKNOWN_A_INNER">
+      <datablock type="dummy" datasize="6" />
+      <datablock type="array" headtype="int16" innertype="byte" />
+    </struct>
+    <!-- struct8 -->
+    <struct key="UNKNOWN_A">
+      <datablock type="array" headtype="int32" innertype="struct" metakey="UNKNOWN_A_INNER" />
+    </struct>
+    <struct key="LOVER_DATA">
+      <datablock key="IS_LOVER" type="bool" />
+      <datablock key="DAYS" type="int32" />
+    </struct>
+  </structs>
+  <datablocks>
+    <!-- Unknown  int[*],int[*] -->
+    <datablock type="array" headtype="int32" innertype="dummy" datasize="4" />
+    <datablock type="array" headtype="int32" innertype="dummy" datasize="4" />
+    <!-- -->
+    <datablock key="ACTION_BACKLOG" type="array" headtype="int32" innertype="struct" metakey="EVALUATION_DATA" />
+    <datablock key="DATES_OUT" type="array" headtype="int32" innertype="int32" />
+    <datablock key="DATES_IN" type="array" headtype="int32" innertype="int32" />
+    <datablock key="INTERACTIONS_IN" type="array" headtype="int32" innertype="struct" metakey="INTERACTION_DATA" />
+    <datablock key="INTERACTIONS_OUT" type="array" headtype="int32" innertype="struct" metakey="INTERACTION_DATA" />
+    <datablock key="PROMISES_IN" type="array" headtype="int32" innertype="struct" metakey="LEWD_PROMISE" />
+    <datablock key="PROMISES_OUT" type="array" headtype="int32" innertype="struct" metakey="LEWD_PROMISE" />
+    <datablock key="MEETINGS_IN" type="array" headtype="int32" innertype="struct" metakey="MEET_ME_AT" />
+    <!-- Unknown MEET_ME_AT[*], Success/Failure? -->
+    <datablock type="array" headtype="int32" innertype="dummy" datasize="21" />
+    <datablock key="MEETINGS_OUT" type="array" headtype="int32" innertype="struct" metakey="MEET_ME_AT" />
+    <!-- Unknown MEET_ME_AT[*], Success/Failure? -->
+    <datablock type="array" headtype="int32" innertype="dummy" datasize="21" />
+    <datablock key="STATUS" type="struct" metakey="PLAYER_STATUS" />
+    <!-- Unknown 2*int[25] -->
+    <datablock type="dummy" datasize="200" />
+    <datablock key="SEX_ENCOUNTERS" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <datablock key="SEX_VAGINAL" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <datablock key="SEX_ANAL" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <datablock key="CONDOMS_USED" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <datablock key="CLIMAXED" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <datablock key="CLIMAXED_SIMUL" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <datablock key="CUM_TOTAL" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <datablock key="CUM_VAGINAL" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <datablock key="CUM_ANAL" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <datablock key="CUM_DRINK" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <!-- Unknown int[25] -->
+    <datablock type="dummy" datasize="100" />
+    <datablock key="CUM_RISKY" type="array" headtype="int32" innertype="int32" arraysize="25" />
+    <!-- Unknown 3*int[25] -->
+    <datablock type="dummy" datasize="300" />
+    <!-- Unknown UNKNOWN_A[*] -->
+    <datablock type="array" headtype="int32" innertype="struct" metakey="UNKNOWN_A" />
+    <!-- Unknown byte[89][*] -->
+    <!-- 	*struct9 -->
+    <datablock type="array" headtype="int32" innertype="dummy" datasize="89" />
+    <datablock key="LOVERS" type="array" headtype="int32" innertype="struct" metakey="LOVER_DATA" />
+  </datablocks>
+</dataset>

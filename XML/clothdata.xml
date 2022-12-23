@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- DO NOT CHANGE THE CONTENTS OF THIS FILE, DOING SO CAN MAKE THE EDITOR STOP WORKING -->
+<!-- Xml Document Distributed with ReiEditAA2 -->
+<dataset>
+  <datablocks>
+    <datablock address="0x00" type="byte" key="CLOTH_GENDER" />
+    <!-- Repeat -->
+    <datablock address="0x01" type="int32" key="CLOTH_SUIT_F" />
+    <datablock address="0x01" type="int32" key="CLOTH_SUIT_M" />
+    <!-- ~~~~~~ -->
+    <datablock address="0x05" type="bool" key="CLOTH_SHORT_SKIRT" />
+    <!-- Repeat -->
+    <datablock address="0x06" type="byte" key="CLOTH_SOCKS_F" />
+    <datablock address="0x06" type="byte" key="CLOTH_SOCKS_M" />
+    <!-- ~~~~~~ -->
+    <!-- Repeat -->
+    <datablock address="0x07" type="byte" key="CLOTH_INDOOR_SHOES_F" />
+    <datablock address="0x07" type="byte" key="CLOTH_INDOOR_SHOES_M" />
+    <!-- ~~~~~~ -->
+    <!-- Repeat -->
+    <datablock address="0x08" type="byte" key="CLOTH_OUTDOOR_SHOES_F" />
+    <datablock address="0x08" type="byte" key="CLOTH_OUTDOOR_SHOES_M" />
+    <!-- ~~~~~~ -->
+    <datablock address="0x09" type="bool" key="CLOTH_IS_ONEPIECE" />
+    <datablock address="0x0A" type="bool" key="CLOTH_IS_UNDERWEAR" />
+    <datablock address="0x0B" type="bool" key="CLOTH_IS_SKIRT" />
+
+    <datablock address="0x0C" type="color" key="CLOTH_TOP_1_COLOR" />
+    <datablock address="0x10" type="color" key="CLOTH_TOP_2_COLOR" />
+    <datablock address="0x14" type="color" key="CLOTH_TOP_3_COLOR" />
+    <datablock address="0x18" type="color" key="CLOTH_TOP_4_COLOR" />
+
+    <datablock address="0x1C" type="color" key="CLOTH_BOTTOM_1_COLOR" />
+    <datablock address="0x20" type="color" key="CLOTH_BOTTOM_2_COLOR" />
+
+    <datablock address="0x24" type="color" key="CLOTH_UNDERWEAR_COLOR" />
+    <datablock address="0x28" type="color" key="CLOTH_SOCKS_COLOR" />
+    <datablock address="0x2C" type="color" key="CLOTH_INDOOR_SHOES_COLOR" />
+    <datablock address="0x30" type="color" key="CLOTH_OUTDOOR_SHOES_COLOR" />
+
+    <datablock address="0x34" type="int32" key="CLOTH_SKIRT_TEXTURE" />
+    <datablock address="0x38" type="int32" key="CLOTH_UNDERWEAR_TEXTURE" />
+
+    <datablock address="0x3C" type="int32" key="CLOTH_SKIRT_HUE" />
+    <datablock address="0x40" type="int32" key="CLOTH_SKIRT_BRIGHTNESS" />
+    <datablock address="0x44" type="int32" key="CLOTH_UNDERWEAR_HUE" />
+    <datablock address="0x48" type="int32" key="CLOTH_UNDERWEAR_BRIGHTNESS" />
+
+    <datablock address="0x4C" type="int32" key="CLOTH_SKIRT_SHADOW_HUE" />
+    <datablock address="0x50" type="int32" key="CLOTH_SKIRT_SHADOW_BRIGHTNESS" />
+    <datablock address="0x54" type="int32" key="CLOTH_UNDERWEAR_SHADOW_HUE" />
+    <datablock address="0x58" type="int32" key="CLOTH_UNDERWEAR_SHADOW_BRIGHTNESS" />
+  </datablocks>
+</dataset>
