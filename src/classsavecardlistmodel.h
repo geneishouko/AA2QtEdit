@@ -28,7 +28,7 @@ namespace ClassEdit {
         inline Dictionary *headerDictionary() {
             return m_headerDictionary;
         }
-        void loadFromFile(const QString& path);
+        bool loadFromFile(const QString& path);
         bool save();
         bool save(const QModelIndex &);
         void saveAll();

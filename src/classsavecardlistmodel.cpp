@@ -42,7 +42,7 @@ ClassSaveCardListModel::~ClassSaveCardListModel()
         delete db;
 }
 
-void ClassSaveCardListModel::loadFromFile(const QString &path)
+bool ClassSaveCardListModel::loadFromFile(const QString &path)
 {
     static const char *pngHeader = "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a";
     static const char *endBlock= "IEND";
@@ -61,6 +61,16 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
         m_headerDictionary.insert((*it)->key(), m_classHeaderReader->read(&buffer, (*it)));
     }*/
     m_headerDictionary = m_classHeaderReader->buildDictionary(&buffer, m_classData);
+    if (m_headerDictionary->value("HEADER_VERSION") == 0x6C)
+    {
+        emit(notify(tr("Cannot open AA1 class saves!"), 5000));
+        return false;
+    }
+    else if (m_headerDictionary->value("HEADER_VERSION") != 0x65)
+    {
+        emit(notify(tr("Unknown save file format!"), 5000));
+        return false;
+    }
     int studentsCount = m_headerDictionary->value("HEADER_BOYS").toInt() + m_headerDictionary->value("HEADER_GIRLS").toInt();
 
     // read characters
@@ -95,6 +105,7 @@ void ClassSaveCardListModel::loadFromFile(const QString &path)
     m_footer.resize(static_cast<int>(footerSize));
     buffer.read(m_footer.data(), footerSize);
     m_filePath = path;
+    return true;
 }
 
 bool ClassSaveCardListModel::save()

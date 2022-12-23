@@ -164,14 +164,21 @@ void MainWindow::loadSaveFile(QString path)
         path = FileDialog::getOpenFileName(FileDialog::ClassSave, "Class saves (*.sav)", "Open a class save", this);
     if (path.isEmpty())
         return;
+
+    ClassSaveCardListModel *cs = new ClassSaveCardListModel();
+    QObject::connect(cs, &CardListModel::notify, statusBar(), &QStatusBar::showMessage);
+    if (!cs->loadFromFile(path))
+    {
+        delete cs;
+        return;
+    }
+
     destroyCurrentModel();
     if (ui->sortBy->currentData().toInt() == CardModifiedTimeRole) {
         ui->sortBy->setCurrentIndex(2); // Seat
         ui->sortOrder->setCurrentIndex(0); // Ascendant
     }
-    ClassSaveCardListModel *cs = new ClassSaveCardListModel();
-    QObject::connect(cs, &CardListModel::notify, statusBar(), &QStatusBar::showMessage);
-    cs->loadFromFile(path);
+
     m_sortFilterModel->setSourceModel(cs);
     m_cardListModel = cs;
 
