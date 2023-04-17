@@ -5,6 +5,10 @@ project(AA2QtEdit
         DESCRIPTION "Artificial Academy 2 Character Editor"
         LANGUAGES CXX)
 
+set(AA2QTEDIT_ICON "icons/application-icon.ico")
+set(AA2QTEDIT_VERSION 2.0.0.0)
+set(AA2QTEDIT_WINDOWTITLE "AA2QtEdit v2.0.0")
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -53,8 +57,12 @@ set(PROJECT_SOURCES
         XML/datadef.qrc
 )
 
+configure_file(src/defines.h.in defines.h)
+set(WINDOWS_RESOURCES "winres.rc")
+
 qt_add_executable(AA2QtEdit
     ${PROJECT_SOURCES}
+    ${WINDOWS_RESOURCES}
 )
 
 target_link_libraries(AA2QtEdit PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt6::Core5Compat)
@@ -62,3 +70,11 @@ target_link_libraries(AA2QtEdit PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt6::Core
 set_target_properties(AA2QtEdit PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
+
+qt_import_plugins(AA2QtEdit
+    INCLUDE Qt::QWindowsVistaStylePlugin
+    EXCLUDE Qt::QMinimalIntegrationPlugin
+    EXCLUDE_BY_TYPE imageformats Qt::QGifPlugin Qt::QJpegPlugin
+    EXCLUDE_BY_TYPE sqldrivers
+)
+

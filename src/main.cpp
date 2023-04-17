@@ -15,6 +15,8 @@
     along with AA2QtEdit.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "defines.h"
+
 #include "ui/mainwindow.h"
 
 #include "src/datareader.h"
@@ -67,9 +69,13 @@ int main(int argc, char *argv[])
     }
 
     MainWindow w;
+    w.setWindowTitle(AA2QTEDIT_WINDOWTITLE);
     w.show();
 
-    return a.exec();
+    int error = a.exec();
+    ClassEdit::DataReader::unloadAll();
+
+    return error;
 }
 
 #ifdef WIN32

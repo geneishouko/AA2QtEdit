@@ -35,6 +35,20 @@ DataReader::DataReader(QIODevice *xmlDefinition)
     loadDefinitions(xmlDefinition);
 }
 
+DataReader::~DataReader()
+{
+    for (auto it = m_structs.begin(); it != m_structs.end(); it++)
+    {
+        delete *it;
+    }
+    m_structs.clear();
+    for (auto it = m_dataBlocks.begin(); it != m_dataBlocks.end(); it++)
+    {
+        delete *it;
+    }
+    m_dataBlocks.clear();
+}
+
 DataReader *DataReader::getDataReader(const QString &name)
 {
     QHash<QString, DataReader*>::iterator it = s_readers.find(name);
@@ -117,8 +131,8 @@ QVariant DataReader::read(QIODevice *data, DataBlock *db) const
         QList<DataBlock*> dictBlocks;
         dictBlocks.reserve(db->m_children.size());
         for (QVector<DataBlock>::Iterator it = db->m_children.begin(); it != db->m_children.end(); it++) {
-            dict->insert(it->key(), read(data, it));
-            dictBlocks.append(it);
+            dict->insert(it->key(), read(data, &*it));
+            dictBlocks.append(&*it);
         }
         dict->setDataBlockList(dictBlocks);
         dict->buildDisplayKeyList();
@@ -267,7 +281,7 @@ void DataReader::finalizeDataBlockOffset(DataBlock *db, qint64 offset) const
 {
     db->m_address -= offset;
     for (QVector<DataBlock>::Iterator it = db->m_children.begin(); it != db->m_children.end(); it++) {
-        finalizeDataBlockOffset(it, offset);
+        finalizeDataBlockOffset(&*it, offset);
     }
 }
 
@@ -410,7 +424,7 @@ Dictionary *DataReader::buildDictionary(QIODevice *data, QVector<DataBlock> &dat
     Dictionary *dictionary = new Dictionary;
     for (QVector<DataBlock>::Iterator it = dataBlocks.begin(); it != dataBlocks.end(); it++) {
         if (it->m_children.isEmpty())
-            dictionary->insert(it->key(), read(data, it));
+            dictionary->insert(it->key(), read(data, &*it));
         else
             dictionary->insert(it->key(), QVariant::fromValue(buildDictionary(data, it->m_children, dictionary)));
     }
@@ -521,6 +535,20 @@ void DataReader::parseDatablocks(QXmlStreamReader &xml) {
         m_dataBlockMap.insert(block->key(), block);
         xml.skipCurrentElement();
     }
+}
+
+void DataReader::unloadAll()
+{
+    for (auto it = s_enumerables.begin(); it != s_enumerables.end(); it++)
+    {
+        delete *it;
+    }
+    s_enumerables.clear();
+    for (auto it = s_readers.begin(); it != s_readers.end(); it++)
+    {
+        delete *it;
+    }
+    s_readers.clear();
 }
 
 DataStruct *DataReader::getStruct(const QString &key) const

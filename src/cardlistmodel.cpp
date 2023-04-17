@@ -11,6 +11,11 @@ CardListModel::CardListModel(QObject *parent) :
 
 CardListModel::~CardListModel()
 {
+    for (auto it = m_cardList.begin(); it != m_cardList.end(); it++)
+    {
+        delete *it;
+    }
+    m_cardList.clear();
 }
 
 void CardListModel::addCard(CardFile *card)

@@ -27,6 +27,7 @@ namespace ClassEdit {
 
     public:
         DataReader(QIODevice *xmlDefinition);
+        ~DataReader();
         inline DataBlock *getDataBlock(const QString& name) const {
             return m_dataBlockMap[name];
         }
@@ -51,6 +52,7 @@ namespace ClassEdit {
         Dictionary *buildDictionary(QIODevice *data, DataBlockList dataBlocks) const;
         Dictionary *buildDictionary(QIODevice *data, QVector<DataBlock> &dataBlocks, Dictionary *parent) const;
         static bool loadExternalDefinitions(QIODevice *xmlDefinition);
+        static void unloadAll();
 
     private:
         bool loadDefinitions(QIODevice *xmlDefinition);
