@@ -92,7 +92,7 @@ void CardListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fullName());
     else
         painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin, 0, 0), Qt::AlignLeft | Qt::TextSingleLine,
-                          QString("[%1] %2").arg(card->seat() + 1).arg(card->fullName()));
+                          QString("[%1] %2").arg(card->seat()).arg(card->fullName()));
     painter->drawText(rect.adjusted(cardRect.right() + 4, itemVerticalMargin * 4, 0, 0), Qt::AlignLeft | Qt::TextSingleLine, card->fileName());
     if (hasPendingChanges)
         style->drawControl(QStyle::CE_PushButton, &saveButtonOption, painter, nullptr);
