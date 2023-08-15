@@ -43,6 +43,7 @@ ColorItemEditor::ColorItemEditor(QWidget *parent) : QWidget(parent)
     layout->addWidget(lineEdit, 0);
     layout->addWidget(pickButton, 0);
     layout->addStretch(1);
+    layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
     setFocusProxy(lineEdit);
     setFocusPolicy(Qt::StrongFocus);

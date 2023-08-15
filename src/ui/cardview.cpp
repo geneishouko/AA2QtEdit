@@ -94,7 +94,7 @@ CardView::CardView(QWidget *parent) :
     CardDataDelegate *cardDataDelegate = new CardDataDelegate(this);
     QItemEditorFactory *editorFactory = new QItemEditorFactory;
     QItemEditorCreatorBase *creator = new QStandardItemEditorCreator<ColorItemEditor>();
-    editorFactory->registerEditor(QVariant::Color, creator);
+    editorFactory->registerEditor(QMetaType::Type::QColor, creator);
     cardDataDelegate->setItemEditorFactory(editorFactory);
     ui->editDataView->setItemDelegate(cardDataDelegate);
     ui->playDataView->setItemDelegate(cardDataDelegate);
