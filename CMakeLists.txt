@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.19)
 
 project(AA2QtEdit
-        VERSION 2.0.0
+        VERSION 2.0.1
         DESCRIPTION "Artificial Academy 2 Character Editor"
         LANGUAGES CXX)
 
 set(AA2QTEDIT_ICON "icons/application-icon.ico")
-set(AA2QTEDIT_VERSION 2.0.0.0)
-set(AA2QTEDIT_WINDOWTITLE "AA2QtEdit v2.0.0")
+set(AA2QTEDIT_VERSION 2.0.1.0)
+set(AA2QTEDIT_WINDOWTITLE "AA2QtEdit v2.0.1")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
